@@ -47,7 +47,7 @@ func TestCallBuy(t *testing.T) {
 			time.Sleep(time.Second * 12)
 			s.Buy(ownerAuth1, 1)
 		}
-	}
+	
 	{
 		ret1, err := s.lottery.GetEndowmentBalance(nil)
 		if err != nil {
