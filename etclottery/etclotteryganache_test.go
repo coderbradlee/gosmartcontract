@@ -145,7 +145,7 @@ func TestBuy(t *testing.T) {
 func TestWithdrawAndReinvest(t *testing.T) {
 	c := NewConnecter(selfhost, contractAddress)
 	auth := AuthAccountFromPrivateKey(userPrivateKey1)
-	auth.GasLimit = uint64(3000000)
+	auth.GasLimit = uint64(8000000)
 	// auth.Value = big.NewInt(50000000000000000) //0.05eth
 	{
 		var i, e = big.NewInt(2), big.NewInt(256)
