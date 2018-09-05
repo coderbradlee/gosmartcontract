@@ -4,15 +4,15 @@ import (
 	"./ethclient"
 	// "github.com/ethereum/go-ethereum/ethclient"
 	"context"
+	"crypto/ecdsa"
 	"fmt"
 	"github.com/ethereum/go-ethereum/accounts/abi/bind"
 	"github.com/ethereum/go-ethereum/common"
+	"github.com/ethereum/go-ethereum/core/types"
 	"github.com/ethereum/go-ethereum/crypto"
 	"log"
 	"math/big"
 	"strings"
-	"github.com/ethereum/go-ethereum/core/types"
-	"crypto/ecdsa"
 )
 
 type Connecter struct {
@@ -28,7 +28,7 @@ func NewConnecter(host, addr string) *Connecter {
 	if err != nil {
 		panic(err)
 	}
-	l, err := NewEtclottery(contractAddress, conn)
+	l, err := NewNXlottery(contractAddress, conn)
 	if err != nil {
 		panic(err)
 	}
@@ -45,7 +45,7 @@ func NewConnecterWithDeploy(host string, ownerAuth *bind.TransactOpts) *Connecte
 	if err != nil {
 		panic(err)
 	}
-	_, tx, l, err := DeployEtclottery(ownerAuth, conn)
+	_, tx, l, err := DeployNXlottery(ownerAuth, conn)
 	if err != nil {
 		panic(err)
 	}
@@ -180,7 +180,7 @@ func (c *Connecter) Buy(auth *bind.TransactOpts, _team uint8) {
 	fmt.Println("Buy: ", ret1.Hash().Hex())
 	auth.Value = big.NewInt(0)
 }
-func (c *Connecter) Send(private,to string,amountInt *big.Int)error {
+func (c *Connecter) Send(private, to string, amountInt *big.Int) error {
 	// privateKey, err := crypto.HexToECDSA(private)
 	// if err != nil {
 	// 	// fmt.Println(err)
@@ -191,7 +191,7 @@ func (c *Connecter) Send(private,to string,amountInt *big.Int)error {
 	privateKey, err := crypto.HexToECDSA(private)
 	if err != nil {
 		// fmt.Println(err)
-		return err;
+		return err
 	}
 
 	publicKey := privateKey.Public()
@@ -199,33 +199,33 @@ func (c *Connecter) Send(private,to string,amountInt *big.Int)error {
 
 	if !ok {
 		// fmt.Println("error casting public key to ECDSA")
-		return err;
+		return err
 	}
 
 	fromAddress := crypto.PubkeyToAddress(*publicKeyECDSA)
 	nonce, err := c.conn.PendingNonceAt(context.Background(), fromAddress)
 	if err != nil {
 		// fmt.Println(err)
-		return err;
+		return err
 	}
 
 	gasPrice, err := c.conn.SuggestGasPrice(context.Background())
 	if err != nil {
 		// fmt.Println(err)
-		return err;
+		return err
 	}
-	toAddress:=common.HexToAddress(to)
+	toAddress := common.HexToAddress(to)
 	tx := types.NewTransaction(nonce, toAddress, amountInt, uint64(300000), gasPrice, nil)
 	signed, err := types.SignTx(tx, types.HomesteadSigner{}, privateKey)
 	if err != nil {
 		// fmt.Println(err)
-		return err;
+		return err
 	}
 
-	err=c.conn.SendTransaction(context.Background(),signed)
+	err = c.conn.SendTransaction(context.Background(), signed)
 	if err != nil {
 		// fmt.Println(err)
-		return err;
+		return err
 	}
-	return nil;
+	return nil
 }
