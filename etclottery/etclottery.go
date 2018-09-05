@@ -7,12 +7,12 @@ import (
 	"math/big"
 	"strings"
 
-	"github.com/bytombak/common"
 	ethereum "github.com/ethereum/go-ethereum"
+	"github.com/ethereum/go-ethereum/accounts/abi"
 	"github.com/ethereum/go-ethereum/accounts/abi/bind"
-	"github.com/go-ethereum/accounts/abi"
-	"github.com/go-ethereum/core/types"
-	"github.com/go-ethereum/event"
+	"github.com/ethereum/go-ethereum/common"
+	"github.com/ethereum/go-ethereum/core/types"
+	"github.com/ethereum/go-ethereum/event"
 )
 
 // DatasetsABI is the input ABI used to generate the binding from.
