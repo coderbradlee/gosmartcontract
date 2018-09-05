@@ -9,7 +9,7 @@ import (
 )
 
 var (
-	selfhost             = "http://172.16.5.7:18545"
+	selfhost             = "http://127.0.0.1:18545"
 	contractAddress      = "0xC2379024AA2e0323F9EbBAD7870D8ddCfC20C6F9"
 	selfhostkovan        = "https://kovan.infura.io"
 	contractAddresskovan = "0xa23bb04f42be5d00be77fb912f8553b76c51889b"
