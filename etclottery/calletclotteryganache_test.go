@@ -7,7 +7,7 @@ import (
 	// "crypto/ecdsa"
 	"fmt"
 	// "github.com/ethereum/go-ethereum/accounts/abi/bind"
-	// "github.com/ethereum/go-ethereum/common"
+	"github.com/ethereum/go-ethereum/common"
 	// "github.com/ethereum/go-ethereum/crypto"
 	// "github.com/ethereum/go-ethereum/ethclient"
 	// "log"
@@ -26,10 +26,14 @@ func TestDeployCall(t *testing.T) {
 	fmt.Println("Call Contract address is: ", c.contractAddress.String())
 
 }
+
 func TestCallBuy(t *testing.T) {
 	{
 		s := NewConnecter(selfhost, callcontractAddress)
 		s.Send(userPrivateKey1, callcontractAddress, big.NewInt(5000000000000000000))
+		time.Sleep(time.Second * 10)
+		bla := s.BalanceOfEth(common.HexToAddress(callcontractAddress))
+		fmt.Println(callcontractAddress, ":", bla)
 		{
 			ownerAuth1 := AuthAccountFromPrivateKey(userPrivateKey1)
 			s.Buy(ownerAuth1, 0)
