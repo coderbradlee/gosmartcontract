@@ -22,6 +22,7 @@ abigen --sol=FomoETC.sol --pkg=FomoETC --out=FomoETC.go
 
 abigen --sol=testinterface.sol --pkg=testinterface --out=testinterface.go
 abigen --sol=etclottery.sol --pkg=main --out=etclottery.go
+abigen --sol=calletclottery.sol --pkg=main --out=calletclottery.go
 ## Running
 
 ```bash
