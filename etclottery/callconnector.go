@@ -4,15 +4,15 @@ import (
 	"./ethclient"
 	// "github.com/ethereum/go-ethereum/ethclient"
 	"context"
-	"crypto/ecdsa"
+	// "crypto/ecdsa"
 	"fmt"
 	"github.com/ethereum/go-ethereum/accounts/abi/bind"
 	"github.com/ethereum/go-ethereum/common"
-	"github.com/ethereum/go-ethereum/core/types"
-	"github.com/ethereum/go-ethereum/crypto"
+	// "github.com/ethereum/go-ethereum/core/types"
+	// "github.com/ethereum/go-ethereum/crypto"
 	"log"
 	"math/big"
-	"strings"
+	// "strings"
 )
 
 type callConnecter struct {
