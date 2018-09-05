@@ -14,10 +14,10 @@ import (
 )
 
 // CalletclotteryABI is the input ABI used to generate the binding from.
-const CalletclotteryABI = "[{\"constant\":false,\"inputs\":[],\"name\":\"testbuy\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"}]"
+const CalletclotteryABI = "[{\"constant\":true,\"inputs\":[],\"name\":\"getEndowmentBalance\",\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[],\"name\":\"testbuy\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"}]"
 
 // CalletclotteryBin is the compiled bytecode used for deploying new contracts.
-const CalletclotteryBin = `0x608060405234801561001057600080fd5b50610107806100206000396000f300608060405260043610603e5763ffffffff7c0100000000000000000000000000000000000000000000000000000000600035041663934f203f81146043575b600080fd5b348015604e57600080fd5b5060556057565b005b604080517f14107f3c00000000000000000000000000000000000000000000000000000000815260016004820152905173d0c696767a2053d2f4ddf89ba894973d2b026834916314107f3c91602480830192600092919082900301818387803b15801560c257600080fd5b505af115801560d5573d6000803e3d6000fd5b505050505600a165627a7a723058208b9b605da77bf5dda5d060d7c7189c1955badb4a4113f4a29a6696dd6ff670910029`
+const CalletclotteryBin = `0x608060405234801561001057600080fd5b50610145806100206000396000f30060806040526004361061004b5763ffffffff7c01000000000000000000000000000000000000000000000000000000006000350416635acce36b8114610050578063934f203f14610077575b600080fd5b34801561005c57600080fd5b5061006561008e565b60408051918252519081900360200190f35b34801561008357600080fd5b5061008c610093565b005b303190565b604080517f14107f3c00000000000000000000000000000000000000000000000000000000815260016004820152905173d0c696767a2053d2f4ddf89ba894973d2b026834916314107f3c91602480830192600092919082900301818387803b1580156100ff57600080fd5b505af1158015610113573d6000803e3d6000fd5b505050505600a165627a7a72305820cbead11efca61f2003402a4cbed34ab8084df857bcf1539e8bdcdfefc9abcad70029`
 
 // DeployCalletclottery deploys a new Ethereum contract, binding an instance of Calletclottery to it.
 func DeployCalletclottery(auth *bind.TransactOpts, backend bind.ContractBackend) (common.Address, *types.Transaction, *Calletclottery, error) {
@@ -172,6 +172,32 @@ func (_Calletclottery *CalletclotteryTransactorRaw) Transfer(opts *bind.Transact
 // Transact invokes the (paid) contract method with params as input values.
 func (_Calletclottery *CalletclotteryTransactorRaw) Transact(opts *bind.TransactOpts, method string, params ...interface{}) (*types.Transaction, error) {
 	return _Calletclottery.Contract.contract.Transact(opts, method, params...)
+}
+
+// GetEndowmentBalance is a free data retrieval call binding the contract method 0x5acce36b.
+//
+// Solidity: function getEndowmentBalance() constant returns(uint256)
+func (_Calletclottery *CalletclotteryCaller) GetEndowmentBalance(opts *bind.CallOpts) (*big.Int, error) {
+	var (
+		ret0 = new(*big.Int)
+	)
+	out := ret0
+	err := _Calletclottery.contract.Call(opts, out, "getEndowmentBalance")
+	return *ret0, err
+}
+
+// GetEndowmentBalance is a free data retrieval call binding the contract method 0x5acce36b.
+//
+// Solidity: function getEndowmentBalance() constant returns(uint256)
+func (_Calletclottery *CalletclotterySession) GetEndowmentBalance() (*big.Int, error) {
+	return _Calletclottery.Contract.GetEndowmentBalance(&_Calletclottery.CallOpts)
+}
+
+// GetEndowmentBalance is a free data retrieval call binding the contract method 0x5acce36b.
+//
+// Solidity: function getEndowmentBalance() constant returns(uint256)
+func (_Calletclottery *CalletclotteryCallerSession) GetEndowmentBalance() (*big.Int, error) {
+	return _Calletclottery.Contract.GetEndowmentBalance(&_Calletclottery.CallOpts)
 }
 
 // Testbuy is a paid mutator transaction binding the contract method 0x934f203f.
