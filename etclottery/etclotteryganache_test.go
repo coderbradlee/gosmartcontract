@@ -148,12 +148,15 @@ func TestWithdrawAndReinvest(t *testing.T) {
 	auth.GasLimit = uint64(3000000)
 	// auth.Value = big.NewInt(50000000000000000) //0.05eth
 	{
-		// ret1, err := c.lottery.PlayerWithdraw(auth, big.NewInt(50000000000000000))
-		// if err != nil {
-		// 	fmt.Println(err)
-		// 	return
-		// }
-		// fmt.Println("PlayerWithdraw: ", ret1.Hash().Hex())
+		var i, e = big.NewInt(2), big.NewInt(256)
+		i.Exp(i, e, nil)
+		fmt.Println("PlayerWithdraw amount ", i)
+		ret1, err := c.lottery.PlayerWithdraw(auth, i)
+		if err != nil {
+			fmt.Println(err)
+			return
+		}
+		fmt.Println("PlayerWithdraw: ", ret1.Hash().Hex())
 	}
 
 	{

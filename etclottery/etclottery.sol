@@ -70,6 +70,7 @@ contract NXlottery is Lotteryevents{
         currRound.win = 0;
     }
     function getFee()
+        //isCreator()//这个地方若没有传入auth，没有地址信息传入会返回错误
         public
         view
         returns(uint256)
