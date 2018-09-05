@@ -18,7 +18,7 @@ import (
 type Connecter struct {
 	ctx             context.Context
 	conn            *ethclient.Client
-	lottery         *Etclottery
+	lottery         *NXlottery
 	contractAddress common.Address
 }
 
