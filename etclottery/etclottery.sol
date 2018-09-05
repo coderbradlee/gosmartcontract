@@ -75,7 +75,7 @@ contract NXlottery is Lotteryevents{
         view
         returns(uint256)
     {
-        return (feeLeft);
+        return feeLeft;
     }
     function getBlock()
         public
