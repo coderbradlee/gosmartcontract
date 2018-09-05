@@ -71,8 +71,7 @@ contract NXlottery is Lotteryevents{
     }
     function getFee()
         isCreator()
-        public
-        view
+        constant
         returns(uint256)
     {
         return feeLeft;
