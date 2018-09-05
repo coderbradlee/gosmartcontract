@@ -48,5 +48,12 @@ func TestCallBuy(t *testing.T) {
 			s.Buy(ownerAuth1, 1)
 		}
 	}
-
+	{
+		ret1, err := s.lottery.GetEndowmentBalance(nil)
+		if err != nil {
+			fmt.Println(err)
+			// return
+		}
+		fmt.Println("GetEndowmentBalance: ", ret1)
+	}
 }
