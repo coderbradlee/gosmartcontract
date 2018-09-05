@@ -18,20 +18,6 @@ import (
 	"time"
 )
 
-var (
-//metamask 0xe0e1b1e5d63e0ead6bfefcfc5a9dce543913cc15 7E76C9320595DEAA02A05DE3DE32507BC5C8B680B91E94384ADAA08CBAB0FF56
-// 0xaa3f808a9c7bb22bc8d81dd033811b5ee2cb2207 E0EDBBB22B16FB763C9D12F63EFC735495F6716066E720F5C308A5C5B4735923
-// selfhost = "http://172.16.5.7:18545"
-// // contractAddress = "0x01CAB100BC8878ff0b91FE8eDD9A8B3EB5b353DB"
-// // contractAddress = "0x46d26956E1e13F6Fb65427207B6e5194F359a3A0"
-// contractAddress = "0x39965D2Ae7D65C21914b7E57d69ad1F39D0aFb60"
-// userAddress1="0x469B0E89aE64fF9B90FF93D078dfAA5732Fc0061"
-// userAddress2="0x4A605e60d03453F038ff3b49D21053fC63e9f45A"
-// userPrivateKey1   = "1a65bef07e8cfedeb61337694b31c71b8b8284dc80aa78d94638ad0202d51e79"
-// userPrivateKey2   = "194309de4312874e5ea2b0a083f14d6e3de24cf298d851251a4f60e2dc7ef9a6"
-
-)
-
 // func TestDeploy(t *testing.T) {
 // 	// deploy()
 // }
@@ -182,6 +168,7 @@ func TestWithdrawFee(t *testing.T) {
 		fmt.Println("WithdrawFee: ", ret1.Hash().Hex())
 	}
 }
+
 func TestGet(t *testing.T) {
 	s := NewConnecter(selfhost, contractAddress)
 	auth := AuthAccountFromPrivateKey(userPrivateKey1)
