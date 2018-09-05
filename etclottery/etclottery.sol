@@ -70,8 +70,8 @@ contract NXlottery is Lotteryevents{
         currRound.win = 0;
     }
     function getFee()
-        isCreator()
-        constant
+        public
+        view
         returns(uint256)
     {
         return feeLeft;
