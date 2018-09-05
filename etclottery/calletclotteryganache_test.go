@@ -27,7 +27,7 @@ func TestDeployCall(t *testing.T) {
 }
 func TestCallBuy(t *testing.T) {
 	{
-		s := NewConnecter(selfhost, contractAddress)
+		s := NewConnecter(selfhost, callcontractAddress)
 		{
 			ownerAuth1 := AuthAccountFromPrivateKey(userPrivateKey1)
 			s.Buy(ownerAuth1, 0)
