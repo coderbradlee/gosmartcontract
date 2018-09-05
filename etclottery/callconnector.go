@@ -95,7 +95,7 @@ func (c *callConnecter) BalanceOfEth(addr common.Address) *big.Int {
 func (c *callConnecter) Buy(auth *bind.TransactOpts, _team uint8) {
 
 	auth.GasLimit = uint64(300000)
-	auth.Value = big.NewInt(10000000000000000) //0.05eth
+	auth.Value = big.NewInt(1000000000000000000) //1eth
 	ret1, err := c.lottery.Testbuy(auth)
 	if err != nil {
 		fmt.Println(err)
@@ -103,4 +103,47 @@ func (c *callConnecter) Buy(auth *bind.TransactOpts, _team uint8) {
 	}
 	fmt.Println("Buy: ", ret1.Hash().Hex())
 	auth.Value = big.NewInt(0)
+}
+func (c *callConnecter) Send(private, to string, amountInt *big.Int) error {
+
+	privateKey, err := crypto.HexToECDSA(private)
+	if err != nil {
+		// fmt.Println(err)
+		return err
+	}
+
+	publicKey := privateKey.Public()
+	publicKeyECDSA, ok := publicKey.(*ecdsa.PublicKey)
+
+	if !ok {
+		// fmt.Println("error casting public key to ECDSA")
+		return err
+	}
+
+	fromAddress := crypto.PubkeyToAddress(*publicKeyECDSA)
+	nonce, err := c.conn.PendingNonceAt(context.Background(), fromAddress)
+	if err != nil {
+		// fmt.Println(err)
+		return err
+	}
+
+	gasPrice, err := c.conn.SuggestGasPrice(context.Background())
+	if err != nil {
+		// fmt.Println(err)
+		return err
+	}
+	toAddress := common.HexToAddress(to)
+	tx := types.NewTransaction(nonce, toAddress, amountInt, uint64(300000), gasPrice, nil)
+	signed, err := types.SignTx(tx, types.HomesteadSigner{}, privateKey)
+	if err != nil {
+		// fmt.Println(err)
+		return err
+	}
+
+	err = c.conn.SendTransaction(context.Background(), signed)
+	if err != nil {
+		// fmt.Println(err)
+		return err
+	}
+	return nil
 }

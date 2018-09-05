@@ -1,6 +1,7 @@
 package main
 
 import (
+	"math/big"
 	// etclottery "../etclottery"
 	// "context"
 	// "crypto/ecdsa"
@@ -28,6 +29,7 @@ func TestDeployCall(t *testing.T) {
 func TestCallBuy(t *testing.T) {
 	{
 		s := NewConnecter(selfhost, callcontractAddress)
+		s.Send(userPrivateKey1, callcontractAddress, big.NewInt(5000000000000000000))
 		{
 			ownerAuth1 := AuthAccountFromPrivateKey(userPrivateKey1)
 			s.Buy(ownerAuth1, 0)
