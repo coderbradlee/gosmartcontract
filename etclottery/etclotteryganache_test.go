@@ -203,7 +203,7 @@ func TestGet(t *testing.T) {
 	}
 	fmt.Println("########################################################")
 	{
-		ret1, err := s.lottery.GetFee(auth)
+		ret1, err := s.lottery.GetFee(nil)
 		if err != nil {
 			fmt.Println(err)
 			// return
