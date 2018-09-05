@@ -1,0 +1,25 @@
+var abi = JSON.parse('[{\"constant\":false,\"inputs\":[],\"name\":\"what\",\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"}]')
+myContract = web3.eth.contract(abi)
+bytecode="0x608060405234801561001057600080fd5b50610127806100206000396000f300608060405260043610603e5763ffffffff7c0100000000000000000000000000000000000000000000000000000000600035041663b24bb84581146043575b600080fd5b348015604e57600080fd5b5060556067565b60408051918252519081900360200190f35b60008073ffffffffffffffffffffffffffffffffffffffff1663d0e30db06040518163ffffffff167c0100000000000000000000000000000000000000000000000000000000028152600401602060405180830381600087803b15801560cc57600080fd5b505af115801560df573d6000803e3d6000fd5b505050506040513d602081101560f457600080fd5b50519050905600a165627a7a72305820ddce7b3b24e91aed3ed0c0c97a5b0b2108bda1cf32503d628bb811b08961f4d70029"
+web3.eth.estimateGas({data: bytecode})
+
+account1 = web3.eth.coinbase
+web3.eth.getBalance(account1)
+personal.unlockAccount(account1, '123456789') 
+//geth 启动增加参数--targetgaslimit 7000000，默认4712388，需要挖矿后才能生效，每挖一块gaslimit增加一些
+/////eth.getBlock("pending").gasLimit
+///////6300000gas*40000 Mweigasprice=6300000*40000 000 000=252 15个0=0.252etc
+
+contractInstance = myContract.new({data: bytecode,gas: 6300000, from: account1}, function(e, contract){
+  if(!e){
+    if(!contract.address){
+      console.log("Contract transaction send: Transaction Hash: "+contract.transactionHash+" waiting to be mined...");
+    }else{
+      console.log("Contract mined! Address: "+contract.address);
+      console.log(contract);
+    }
+  }else{
+    console.log(e)
+  }
+})
+eth.getCode(contractInstance.address)

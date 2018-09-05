@@ -1,0 +1,9 @@
+
+host = "https://kovan.infura.io"
+contractAddress = "0xa23bb04f42be5d00be77fb912f8553b76c51889b"
+interval="0/10 * * * * *"
+keystore="{\"id\":\"16f2aa71-435d-66a9-8dc9-4c4889103772\",\"version\":3,\"crypto\":{\"cipher\":\"aes-128-ctr\",\"cipherparams\":{\"iv\":\"11d6de57754581d92c701fcda0312e22\"},\"ciphertext\":\"8c5593f40055c9d686b5901036ef180c8f2e856f7b608baa56c45ce9f2371e5d\",\"kdf\":\"pbkdf2\",\"kdfparams\":{\"c\":10240,\"dklen\":32,\"prf\":\"hmac-sha256\",\"salt\":\"552e3fe91c2c6ac4241ca7ca1d44979081cc5a7890f4647d8e38b899816c08bc\"},\"mac\":\"c6fa315e304b7625d4bd2b28b26d8f3ca1774c0e2e3461b8ae9faec1156b068b\"},\"address\":\"7b6d393414d77cce0177ecd6883b08a0b5b881ea\",\"name\":\"\",\"meta\":\"{}\"}"
+password="123456789"
+gaslimit=7900000
+gaspricemin=9000000000
+gaspricemax=20000000000

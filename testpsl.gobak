@@ -1,0 +1,131 @@
+package main
+
+import (
+	"fmt"
+	"log"
+	"math/big"
+	// "time"
+	"crypto/ecdsa"
+	// "./Divies"
+	// "./PlayerBook"
+	// fomo3d "./FomoETC"
+	// "./testinterface"
+	PoSL"./HourGlass"
+	"context"
+	"github.com/ethereum/go-ethereum/accounts/abi/bind"
+	// "github.com/ethereum/go-ethereum/accounts/abi/bind/backends"
+	// "github.com/ethereum/go-ethereum/core"
+	"github.com/ethereum/go-ethereum/crypto"
+	"github.com/ethereum/go-ethereum/common"
+	"github.com/ethereum/go-ethereum/ethclient"
+)
+func testpsladmin() { //conn to testrpc method
+	client, err := ethclient.Dial("http://172.16.2.12:8545")
+	if err != nil {
+		log.Fatalf("Failed to connect to the Ethereum client: %v", err)
+	}
+	{		
+		privateKey, err := crypto.HexToECDSA("567801F2E88565BCD58548D837BB1FAD4192F38507B525E2AA4736843473641E")
+		if err != nil {
+			fmt.Println(err)
+		}
+
+		publicKey := privateKey.Public()
+		publicKeyECDSA, ok := publicKey.(*ecdsa.PublicKey)
+		if !ok {
+			fmt.Println("error casting public key to ECDSA")
+		}
+
+		fromAddress := crypto.PubkeyToAddress(*publicKeyECDSA)
+		nonce, err := client.PendingNonceAt(context.Background(), fromAddress)
+		if err != nil {
+			fmt.Println(err)
+		}
+
+		gasPrice, err := client.SuggestGasPrice(context.Background())
+		if err != nil {
+			fmt.Println(err)
+		}
+
+		auth := bind.NewKeyedTransactor(privateKey)
+		auth.Nonce = big.NewInt(int64(nonce))
+		auth.Value = big.NewInt(1000000000000000)     // in wei,0.001ether
+		auth.GasLimit = uint64(300000) // in units
+		auth.GasPrice = gasPrice
+		// fmt.Println(auth)
+		fo, _ := PoSL.NewPoSL(common.HexToAddress("0xCCCb42fCF332e879B42A499Db55e91cc93E4b5fe"), client)
+		{
+			ret1, err := fo.BuyPrice(nil)
+			fmt.Println("BuyPrice: ", ret1, err)
+		}
+		{
+			ret1, err := fo.Buy(auth,common.HexToAddress("0xe0e1b1e5d63e0ead6bfefcfc5a9dce543913cc15"))
+			if err!=nil{
+				fmt.Println(err)
+			}
+			fmt.Println("tx Buy: \n", ret1.Hash().Hex())
+		}
+		{
+			ret1, err := fo.MyTokens(nil)
+			if err!=nil{
+				fmt.Println(err)
+			}
+			fmt.Println("MyTokens: ", ret1.Text(10))
+		}
+	}
+}
+
+func testpslnotadmin() { //conn to testrpc method
+	client, err := ethclient.Dial("http://172.16.2.12:8545")
+	if err != nil {
+		log.Fatalf("Failed to connect to the Ethereum client: %v", err)
+	}
+	{		
+		privateKey, err := crypto.HexToECDSA("E0EDBBB22B16FB763C9D12F63EFC735495F6716066E720F5C308A5C5B4735923")
+		if err != nil {
+			fmt.Println(err)
+		}
+
+		publicKey := privateKey.Public()
+		publicKeyECDSA, ok := publicKey.(*ecdsa.PublicKey)
+		if !ok {
+			fmt.Println("error casting public key to ECDSA")
+		}
+
+		fromAddress := crypto.PubkeyToAddress(*publicKeyECDSA)
+		nonce, err := client.PendingNonceAt(context.Background(), fromAddress)
+		if err != nil {
+			fmt.Println(err)
+		}
+
+		gasPrice, err := client.SuggestGasPrice(context.Background())
+		if err != nil {
+			fmt.Println(err)
+		}
+
+		auth := bind.NewKeyedTransactor(privateKey)
+		auth.Nonce = big.NewInt(int64(nonce))
+		auth.Value = big.NewInt(1000000000000000)     // in wei,0.001ether
+		auth.GasLimit = uint64(300000) // in units
+		auth.GasPrice = gasPrice
+		fo, _ := PoSL.NewPoSL(common.HexToAddress("0xCCCb42fCF332e879B42A499Db55e91cc93E4b5fe"), client)
+		{
+			ret1, _ := fo.BuyPrice(nil)
+			fmt.Println("BuyPrice: ", ret1, err)
+		}
+		{
+			ret1, err := fo.Buy(auth,common.HexToAddress("0xaa3f808a9c7bb22bc8d81dd033811b5ee2cb2207"))
+			if err!=nil{
+				fmt.Println(err)
+			}
+			fmt.Println("tx Buy: ", ret1.Hash().Hex())
+		}
+		{
+			ret1, err := fo.MyTokens(nil)
+			if err!=nil{
+				fmt.Println(err)
+			}
+			fmt.Println("MyTokens: ", ret1.Text(10))
+		}
+	}
+}

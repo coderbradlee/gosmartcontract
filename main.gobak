@@ -1,0 +1,652 @@
+package main
+
+import (
+	"fmt"
+	"log"
+	"math/big"
+	// "time"
+	"./Divies"
+	"crypto/ecdsa"
+	// "./PlayerBook"
+	fomo3d "./FomoETC"
+	"./PlayerBook"
+	// "./testinterface"
+	"context"
+	"github.com/ethereum/go-ethereum/accounts/abi/bind"
+	// "github.com/ethereum/go-ethereum/accounts/abi/bind/backends"
+	// "github.com/ethereum/go-ethereum/core"
+	"github.com/ethereum/go-ethereum/common"
+	"github.com/ethereum/go-ethereum/crypto"
+	"github.com/ethereum/go-ethereum/ethclient"
+	// "golang.org/x/net/websocket"
+)
+
+const (
+	host = "http://47.91.31.224:2301"
+	// host="http://13.113.9.175:18545"
+)
+
+func test() { //conn to testrpc method
+	chairmanAddr := common.HexToAddress("0x270e87f1e481b9509f8bff4229e736b9758b1c14")
+	// chairmanAuth:=&bind.TransactOpts{From:chairmanAddr}
+
+	conn, err := ethclient.Dial("http://172.16.2.12:2101")
+	if err != nil {
+		log.Fatalf("Failed to connect to the Ethereum client: %v", err)
+	}
+	var context = context.Background()
+	balance, err := conn.BalanceAt(context, chairmanAddr, nil)
+
+	fmt.Println("//////////////////////////////////////////////////////")
+	if err != nil {
+		fmt.Printf("chairman balance %v\n", err)
+	}
+
+	fmt.Printf("chairman balance : %v\n", balance)
+
+	// contractAddr, transaction, div, err := Divies.DeployDivies(chairmanAuth, conn)
+	// if err != nil {
+	// 	log.Fatalf("Failed to deploy new token contract: %v\n", err)
+	// }
+	// fmt.Printf("contract addr:%v\n", contractAddr.Hex())
+	// fmt.Printf("Transaction hash: %v\n", transaction.Hash().Hex());
+	// // Print the current (non existent) and pending name of the contract
+	// bala, _ := div.Balances(nil)
+	// fmt.Printf("bala:%v\n", bala.Text(10))
+	div, err := Divies.NewDivies(common.HexToAddress("0x81f8380c141fd2feb9855724c22ca55f5178fde3"), conn)
+	bala, _ := div.Balances(nil)
+	fmt.Printf("bala:%v\n", bala.Text(10))
+}
+
+// func Hc_CheckExtraData(extraData uint32) bool {
+// 	    extraDataLowHigh := (uint32)(12 * 3000)
+// 	    extraDataLow := extraData & 0xFFFF
+// 	    extraDataGap := extraDataLow % 3000
+
+// 	    //1.condition extraData<0x00650000
+// 	    if extraData > 0x00650000 {
+// 	        return false
+// 	    }
+// 	    //2.condition extraDataLow<extraDataLowHigh
+// 	    if extraDataLow > extraDataLowHigh {
+// 	        return false
+// 	    }
+// 	    //3.condition extraDataGap <120
+// 	    if extraDataGap > 120 {
+// 	        return false
+// 	    }
+// 	    return true
+// }
+
+func testfomo3d() { //conn to testrpc method
+	client, err := ethclient.Dial(host)
+	if err != nil {
+		log.Fatalf("Failed to connect to the Ethereum client: %v", err)
+	}
+	privateKey, err := crypto.HexToECDSA("567801F2E88565BCD58548D837BB1FAD4192F38507B525E2AA4736843473641E")
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	publicKey := privateKey.Public()
+	publicKeyECDSA, ok := publicKey.(*ecdsa.PublicKey)
+	if !ok {
+		fmt.Println("error casting public key to ECDSA")
+	}
+
+	fromAddress := crypto.PubkeyToAddress(*publicKeyECDSA)
+	nonce, err := client.PendingNonceAt(context.Background(), fromAddress)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	gasPrice, err := client.SuggestGasPrice(context.Background())
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	auth := bind.NewKeyedTransactor(privateKey)
+	auth.Nonce = big.NewInt(int64(nonce))
+	// auth.Value = big.NewInt(1000000000000000)     // in wei,0.001ether
+	auth.Value = big.NewInt(100000000000000000) // in wei,0.1ether for airpot
+	auth.GasLimit = uint64(6800000)             // in units
+	auth.GasPrice = gasPrice
+	fo, _ := fomo3d.NewFomoETClong(common.HexToAddress("0x9fAB5a8e28327D75E720fB190852F04368188D62"), client)
+	// fo, _ := fomo3d.NewFomoETClong(common.HexToAddress("0xcd91503ed044d33fb6ad0b82a0db1e7ce51ce4db"), client)
+	// {
+	// 	ret1, ret2, ret3, ret4, ret5, ret6, ret7, retaddr, retbytearray, ret8, ret9, ret10, ret11, ret12, err := fo.GetCurrentRoundInfo(nil)
+	// 	// fmt.Println("GetCurrentRoundInfo: ", ret1, ret2, ret3, ret4, ret5, ret6, ret7, retaddr.Hex(), string(retbytearray[:]), ret8, ret9, ret10, ret11, ret12, err)
+	// 	fmt.Println("{GetCurrentRoundInfo:")
+	// 	fmt.Println("etc invested during ICO phase ico:",ret1)
+	// 	fmt.Println("round id:",ret2)
+	// 	fmt.Println("total keys for round:",ret3)
+	// 	fmt.Println("time round ends:",ret4)
+	// 	fmt.Println("time round started:",ret5)
+	// 	fmt.Println("current pot:",ret6)
+	// 	fmt.Println("current team ID & player ID in lead:",ret7)
+	// 	fmt.Println("current player in leads address:",retaddr.Hex())
+	// 	fmt.Println("current player in leads name:",string(retbytearray[:]))
+	// 	fmt.Println("moon etc in for round:",ret8)
+	// 	fmt.Println("mars etc in for round:",ret9)
+	// 	fmt.Println("sun etc in for round:",ret10)
+	// 	fmt.Println("earth etc in for round:",ret11)
+	// 	fmt.Println("airdrop tracker # & airdrop pot:",ret12)
+	// 	fmt.Println("err:",err,"}")
+	// }
+	{
+		// tx, err := fo.BuyXid(auth, big.NewInt(5), big.NewInt(2))
+		// if err != nil {
+		// 	fmt.Println(err)
+		// 	return
+		// }
+
+		// fmt.Printf("tx sent: %s\n", tx.Hash().Hex()) // tx sent: 0x8d490e535678e9a24360e955d75b27ad307bdfb97a1dca51d0f3035dcee3e870
+	}
+	{
+		// tx, err := fo.Withdraw(auth)
+		// if err != nil {
+		// 	fmt.Println(err)
+		// 	return
+		// }
+		// fmt.Printf("Withdraw: %s\n", tx.Hash().Hex())
+	}
+	// {
+	// 	price, err := fo.GetBuyPrice(nil)
+	// 	if err != nil {
+	// 		fmt.Println(err)
+	// 	}
+
+	// 	fmt.Printf("price: %s\n", price.Text(10))
+	// }
+	// //////////////////////////////////
+	// {
+	// 	act, err := fo.Activated(nil)
+	// 	if err != nil {
+	// 		fmt.Println(err)
+	// 	}
+	// 	fmt.Println("activated:",act)
+	// }
+	// {
+	// 	act, err := fo.GetTimeLeft(nil)
+	// 	if err != nil {
+	// 		fmt.Println(err)
+	// 	}
+	// 	fmt.Println("time left:",act.Text(10))
+	// }
+	{
+		ret1, ret2, ret3, err := fo.GetPlayerVaults(nil, big.NewInt(1))
+		if err != nil {
+			fmt.Println(err)
+		}
+		fmt.Println("winnings vault:", ret1.Text(10))
+		fmt.Println("general vault:", ret2.Text(10))
+		fmt.Println("affiliate vault:", ret3.Text(10))
+		fmt.Println("****************************************")
+	}
+	{
+		ret1, ret2, ret3, ret4, ret5, ret6, ret7, err := fo.GetPlayerInfoByAddress(nil, common.HexToAddress("0xe0e1b1e5d63e0ead6bfefcfc5a9dce543913cc15"))
+		if err != nil {
+			fmt.Println(err)
+		}
+		// fmt.Println("GetPlayerInfoByAddress:",ret1,string(ret2[:]),ret3,ret4,ret5,ret6,ret7)
+		fmt.Println("{GetPlayerInfoByAddress:0xe0e1b1e5d63e0ead6bfefcfc5a9dce543913cc15")
+		fmt.Println("player ID:", ret1, " player name:", string(ret2[:]))
+		fmt.Println("keys owned (current round):", ret3)
+		fmt.Println("winnings vault:", ret4)
+		fmt.Println("general vault:", ret5)
+		fmt.Println("affiliate vault:", ret6)
+		fmt.Println("player round etc:", ret7, "}")
+		fmt.Println("  ")
+		// fmt.Println("###############################################")
+	}
+	{
+		ret1, ret2, ret3, ret4, ret5, ret6, ret7, err := fo.GetPlayerInfoByAddress(nil, common.HexToAddress("0x3d5E6A9db158d796a0C334BFD4bf9A2d46403fbb"))
+		if err != nil {
+			fmt.Println(err)
+		}
+		// fmt.Println("GetPlayerInfoByAddress:",ret1,string(ret2[:]),ret3,ret4,ret5,ret6,ret7)
+		fmt.Println("{GetPlayerInfoByAddress:0x3d5E6A9db158d796a0C334BFD4bf9A2d46403fbb")
+		fmt.Println("player ID:", ret1, " player name:", string(ret2[:]))
+		fmt.Println("keys owned (current round):", ret3)
+		fmt.Println("winnings vault:", ret4)
+		fmt.Println("general vault:", ret5)
+		fmt.Println("affiliate vault:", ret6)
+		fmt.Println("player round etc:", ret7, "}")
+		fmt.Println("  ")
+		// fmt.Println("###############################################")
+	}
+}
+func testfomo3dnotadmin() { //conn to testrpc method
+	client, err := ethclient.Dial(host)
+	if err != nil {
+		log.Fatalf("Failed to connect to the Ethereum client: %v", err)
+	}
+	// 0xAA3f808a9C7BB22bC8D81DD033811B5eE2cb2207
+	privateKey, err := crypto.HexToECDSA("E0EDBBB22B16FB763C9D12F63EFC735495F6716066E720F5C308A5C5B4735923")
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	publicKey := privateKey.Public()
+	publicKeyECDSA, ok := publicKey.(*ecdsa.PublicKey)
+	if !ok {
+		fmt.Println("error casting public key to ECDSA")
+	}
+
+	fromAddress := crypto.PubkeyToAddress(*publicKeyECDSA)
+	nonce, err := client.PendingNonceAt(context.Background(), fromAddress)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	gasPrice, err := client.SuggestGasPrice(context.Background())
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	auth := bind.NewKeyedTransactor(privateKey)
+	auth.Nonce = big.NewInt(int64(nonce))
+	// auth.Value = big.NewInt(1000000000000000)     // in wei,0.001ether
+	// auth.Value = big.NewInt(500000000000000000) //0.5for buy register name
+	auth.Value = big.NewInt(10000000000000000) //0.1for air pot
+	auth.GasLimit = uint64(6800000)            // in units
+	auth.GasPrice = gasPrice
+	// fo, _ := fomo3d.NewFomoETClong(common.HexToAddress("0xcd91503ed044d33fb6ad0b82a0db1e7ce51ce4db"), client)
+	fo, _ := fomo3d.NewFomoETClong(common.HexToAddress("0x9fAB5a8e28327D75E720fB190852F04368188D62"), client)
+	{
+		// tx, err := fo.BuyXid(auth, big.NewInt(0), big.NewInt(0))
+		// if err != nil {
+		// 	fmt.Println(err)
+		// 	return
+		// }
+		// fmt.Printf("tx BuyXid: %s\n", tx.Hash().Hex()) // tx sent: 0x8d490e535678e9a24360e955d75b27ad307bdfb97a1dca51d0f3035dcee3e870
+	}
+	// {
+	// 	tx, err := fo.BuyXid(auth, big.NewInt(0), big.NewInt(1))
+	// 	if err != nil {
+	// 		fmt.Println(err)
+	// 		return
+	// 	}
+	// 	fmt.Printf("tx BuyXid: %s\n", tx.Hash().Hex()) // tx sent: 0x8d490e535678e9a24360e955d75b27ad307bdfb97a1dca51d0f3035dcee3e870
+	// }
+	{
+		// tx, err := fo.BuyXid(auth, big.NewInt(0), big.NewInt(2))
+		// if err != nil {
+		// 	fmt.Println(err)
+		// 	return
+		// }
+		// fmt.Printf("tx BuyXid: %s\n", tx.Hash().Hex()) // tx sent: 0x8d490e535678e9a24360e955d75b27ad307bdfb97a1dca51d0f3035dcee3e870
+	}
+	{
+		// tx, err := fo.BuyXid(auth, big.NewInt(0), big.NewInt(3))
+		// if err != nil {
+		// 	fmt.Println(err)
+		// 	return
+		// }
+		// fmt.Printf("tx BuyXid: %s\n", tx.Hash().Hex()) // tx sent: 0x8d490e535678e9a24360e955d75b27ad307bdfb97a1dca51d0f3035dcee3e870
+	}
+	{
+		// tx, err := fo.Withdraw(auth)
+		// if err != nil {
+		// 	fmt.Println(err)
+		// 	return
+		// }
+		// fmt.Printf("Withdraw: %s\n", tx.Hash().Hex())
+	}
+	{
+		// (opts *bind.TransactOpts, _nameString string, _affCode *big.Int, _all bool) (*types.Transaction, error)
+		// tx, err := fo.RegisterNameXID(auth,"yyy",big.NewInt(0),true)
+		// if err != nil {
+		// 	fmt.Println(err)
+		// 	return
+		// }
+		// fmt.Printf("RegisterNameXID: %s\n", tx.Hash().Hex())
+	}
+	// {
+	// 	etc, err := fo.IWantXKeys(nil,big.NewInt(1e18))
+	// 	if err != nil {
+	// 		fmt.Println(err)
+	// 	}
+	// 	fmt.Println("etc:",etc)
+
+	// }
+	{
+		ret1, ret2, ret3, err := fo.GetPlayerVaults(nil, big.NewInt(5))
+		if err != nil {
+			fmt.Println(err)
+		}
+		fmt.Println("winnings vault:", ret1.Text(10))
+		fmt.Println("general vault:", ret2.Text(10))
+		fmt.Println("affiliate vault:", ret3.Text(10))
+		fmt.Println("****************************************")
+	}
+	{
+		ret1, ret2, ret3, ret4, ret5, ret6, ret7, err := fo.GetPlayerInfoByAddress(nil, common.HexToAddress("0xaa3f808a9c7bb22bc8d81dd033811b5ee2cb2207"))
+		if err != nil {
+			fmt.Println(err)
+		}
+		// fmt.Println("GetPlayerInfoByAddress:",ret1,string(ret2[:]),ret3,ret4,ret5,ret6,ret7)
+		fmt.Println("{GetPlayerInfoByAddress:0xaa3f808a9c7bb22bc8d81dd033811b5ee2cb2207")
+		fmt.Println("player ID:", ret1, " player name:", string(ret2[:]))
+		fmt.Println("keys owned (current round):", ret3)
+		fmt.Println("winnings vault:", ret4)
+		fmt.Println("general vault:", ret5)
+		fmt.Println("affiliate vault:", ret6)
+		fmt.Println("player round etc:", ret7, "}")
+		fmt.Println("  ")
+		fmt.Println("  ")
+		fmt.Println("###########################################################")
+	}
+	{
+		act, err := fo.Activated(nil)
+		if err != nil {
+			fmt.Println(err)
+		}
+		fmt.Println("activated:", act)
+	}
+	{
+		price, err := fo.GetBuyPrice(nil)
+		if err != nil {
+			fmt.Println(err)
+		}
+
+		fmt.Printf("price: %s\n", price.Text(10))
+	}
+
+	{
+		act, err := fo.GetTimeLeft(nil)
+		if err != nil {
+			fmt.Println(err)
+		}
+		fmt.Println("time left:", act.Text(10))
+		fmt.Println(" ")
+		fmt.Println(" ")
+	}
+	{
+		ret1, ret2, ret3, ret4, ret5, ret6, ret7, retaddr, retbytearray, ret8, ret9, ret10, ret11, ret12, err := fo.GetCurrentRoundInfo(nil)
+		// fmt.Println("GetCurrentRoundInfo: ", ret1, ret2, ret3, ret4, ret5, ret6, ret7,retaddr.Hex(), string(retbytearray[:]), ret8, ret9, ret10, ret11, ret12, err)
+		fmt.Println("{GetCurrentRoundInfo:")
+		fmt.Println("etc invested during ICO phase ico:", ret1)
+		fmt.Println("round id:", ret2)
+		fmt.Println("total keys for round:", ret3)
+		fmt.Println("time round ends:", ret4)
+		fmt.Println("time round started:", ret5)
+		fmt.Println("current pot:", ret6)
+		fmt.Println("current team ID & player ID in lead:", ret7)
+		fmt.Println("current player in leads address:", retaddr.Hex())
+		fmt.Println("current player in leads name:", string(retbytearray[:]))
+		fmt.Println("moon etc in for round:", ret8)
+		fmt.Println("mars etc in for round:", ret9)
+		fmt.Println("sun etc in for round:", ret10)
+		fmt.Println("earth etc in for round:", ret11)
+		fmt.Println("airdrop tracker # & airdrop pot:", ret12.Text(10))
+		// ret1201:=ret12
+		// ret1202:=ret12
+		fmt.Println("err:", err, "}")
+		modRet := big.NewInt(0)
+		divRet, modRet := ret12.DivMod(ret12, big.NewInt(1000), modRet)
+		// fmt.Println("aridrop pot:",ret12.Div(ret12,big.NewInt(1000)))
+		fmt.Println("aridrop pot:", divRet)
+		// // fmt.Println("aridrop pot:",seed - ((seed / 1000) * 1000))
+
+		// ret1201.Div(ret1201,big.NewInt(1000))
+		// ret1201.Mul(ret1201,big.NewInt(1000))
+
+		// fmt.Println("airdrop tracker:",ret1202.Sub(ret1202,ret1201))
+		fmt.Println("airdrop tracker:", modRet)
+	}
+}
+func testplayerbooknotadmin() { //conn to testrpc method
+	client, err := ethclient.Dial(host)
+	if err != nil {
+		log.Fatalf("Failed to connect to the Ethereum client: %v", err)
+	}
+	// 0xAA3f808a9C7BB22bC8D81DD033811B5eE2cb2207
+	privateKey, err := crypto.HexToECDSA("E0EDBBB22B16FB763C9D12F63EFC735495F6716066E720F5C308A5C5B4735923")
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	publicKey := privateKey.Public()
+	publicKeyECDSA, ok := publicKey.(*ecdsa.PublicKey)
+	if !ok {
+		fmt.Println("error casting public key to ECDSA")
+	}
+
+	fromAddress := crypto.PubkeyToAddress(*publicKeyECDSA)
+	nonce, err := client.PendingNonceAt(context.Background(), fromAddress)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	gasPrice, err := client.SuggestGasPrice(context.Background())
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	auth := bind.NewKeyedTransactor(privateKey)
+	auth.Nonce = big.NewInt(int64(nonce))
+	// auth.Value = big.NewInt(1000000000000000)     // in wei,0.001ether
+	auth.Value = big.NewInt(500000000000000000) //0.5for buy register name
+	auth.GasLimit = uint64(6800000)             // in units
+	auth.GasPrice = gasPrice
+	// fo, _ := fomo3d.NewFomoETClong(common.HexToAddress("0xcd91503ed044d33fb6ad0b82a0db1e7ce51ce4db"), client)
+	fo, _ := PlayerBook.NewPlayerBook(common.HexToAddress("0x155Bfe544530d9Ee6A8524298149974901E722Aa"), client)
+	{
+		name, err := fo.GetPlayerName(nil, big.NewInt(1))
+		if err != nil {
+			fmt.Println("GetPlayerName:", err)
+		}
+		fmt.Println("name1:", string(name[:]))
+	}
+	{
+		name, err := fo.GetPlayerName(nil, big.NewInt(5))
+		if err != nil {
+			fmt.Println("GetPlayerName:", err)
+		}
+		fmt.Println("name5:", string(name[:]))
+	}
+	{
+		name, err := fo.GetPlayerName(nil, big.NewInt(6))
+		if err != nil {
+			fmt.Println("GetPlayerName:", err)
+		}
+		fmt.Println("name6:", string(name[:]))
+	}
+}
+// func testplaybook() { //conn to testrpc method
+// 	client, err := ethclient.Dial(host)
+// 	if err != nil {
+// 		log.Fatalf("Failed to connect to the Ethereum client: %v", err)
+// 	}
+// 	// 0xAA3f808a9C7BB22bC8D81DD033811B5eE2cb2207
+// 	privateKey, err := crypto.HexToECDSA("7E76C9320595DEAA02A05DE3DE32507BC5C8B680B91E94384ADAA08CBAB0FF56")
+// 	if err != nil {
+// 		fmt.Println(err)
+// 	}
+
+// 	publicKey := privateKey.Public()
+// 	publicKeyECDSA, ok := publicKey.(*ecdsa.PublicKey)
+// 	if !ok {
+// 		fmt.Println("error casting public key to ECDSA")
+// 	}
+
+// 	fromAddress := crypto.PubkeyToAddress(*publicKeyECDSA)
+// 	nonce, err := client.PendingNonceAt(context.Background(), fromAddress)
+// 	if err != nil {
+// 		fmt.Println(err)
+// 	}
+
+// 	gasPrice, err := client.SuggestGasPrice(context.Background())
+// 	if err != nil {
+// 		fmt.Println(err)
+// 	}
+
+// 	auth := bind.NewKeyedTransactor(privateKey)
+// 	auth.Nonce = big.NewInt(int64(nonce))
+// 	// auth.Value = big.NewInt(1000000000000000)     // in wei,0.001ether
+// 	auth.Value = big.NewInt(500000000000000000) //0.5for buy register name
+// 	auth.GasLimit = uint64(6800000)             // in units
+// 	auth.GasPrice = gasPrice
+// 	// fo, _ := fomo3d.NewFomoETClong(common.HexToAddress("0xcd91503ed044d33fb6ad0b82a0db1e7ce51ce4db"), client)
+// 	fo, _ := PlayerBook.NewPlayerBook(common.HexToAddress("0xEc3Bd193755E70cace4D977FE558A3875D20EEDB"), client)
+// 	{
+// 		fee, err := fo.GetNameFee(nil)
+// 		if err != nil {
+// 			fmt.Println("GetNameFee:", err)
+// 		}
+// 		fmt.Println("fee:", fee)
+// 	}
+// 	{
+// 		// AddGame(opts *bind.TransactOpts, _gameAddress common.Address, _gameNameStr string) (*types.Transaction, error)
+// 		tx, err := fo.AddGame(nil, common.HexToAddress("0x630962869Fc0A91B0Be2adf9007Fd04A0E130828"), "FETCLong")
+// 		if err != nil {
+// 			fmt.Println("GetPlayerName:", err)
+// 		}
+// 		fmt.Printf("tx sent: %s\n", tx.Hash().Hex())
+// 	}
+
+// }
+
+// func testinter() {
+// 	conn, err := ethclient.Dial("http://172.16.2.12:2101")
+// 	if err != nil {
+// 		log.Fatalf("Failed to connect to the Ethereum client: %v", err)
+// 	}
+
+// 	fo, _ := testinterface.NewFoMo3Dlong(common.HexToAddress("0x95e74b2a6107b0314aae7d16df408ae4b9c3ec6f"), conn)
+// 	// fcaller,_:=fomo3d.NewFoMo3DlongCaller(common.HexToAddress("0x95e74b2a6107b0314aae7d16df408ae4b9c3ec6f"),fo.FoMo3DlongCaller)
+// 	ret1, ret2, ret3, ret4, ret5, ret6, ret7, retaddr, retbytearray, ret8, ret9, ret10, ret11, ret12, err := fo.GetCurrentRoundInfo(nil)
+// 	fmt.Println("GetCurrentRoundInfo: ", ret1, ret2, ret3, ret4, ret5, ret6, ret7, retaddr, retbytearray, ret8, ret9, ret10, ret11, ret12, err)
+// }
+func testwebsocket() {
+	// origin := "http://localhost/"
+	// url := "ws://13.113.9.175:18546"
+	// ws, err := websocket.Dial(url, "", origin)
+	// if err != nil {
+	// 	fmt.Println("websocket:",err)
+	// }
+	// // if _, err := ws.Write([]byte("hello, world!\n")); err != nil {
+	// // 	fmt.Println("write err:",err)
+	// // }
+	// var msg = make([]byte, 512)
+	// var n int
+	// if n, err = ws.Read(msg); err != nil {
+	// 	fmt.Println(err)
+	// }
+	// fmt.Printf("Received: %s.\n", msg[:n])
+	ExampleClientSubscription()
+}
+func testwatch(){
+	selfhost        := "ws://172.16.2.12:18546"
+	contractAddress := "0x01CAB100BC8878ff0b91FE8eDD9A8B3EB5b353DB"
+	s := NewConnecter(selfhost,contractAddress)
+
+	s.WatchOnBuys()
+}
+func main() {
+	testwatch()
+	// testetclotteryadmin()
+	// testwebsocket()
+	// testfomo3d()
+	fmt.Println("###############################################")
+	// testetclotterynotadmin()
+	// testfomo3dnotadmin()
+	// fmt.Println("###############################################")
+	// testplayerbooknotadmin()
+	// testplaybook()
+	// fmt.Println("###############################################")
+	// testpsladmin()
+	// fmt.Println("###############################################")
+	// testpslnotadmin()
+	// testinter()
+	// key, _ := crypto.GenerateKey()
+	// auth := bind.NewKeyedTransactor(key)
+
+	// alloc := make(core.GenesisAlloc)
+	// b := new(big.Int)
+	// b.SetString("1337000000000000000000000", 10)
+	// fmt.Println(b.Text(10))
+	// alloc[auth.From] = core.GenesisAccount{Balance: b}
+	// sim := backends.NewSimulatedBackend(alloc)
+
+	// addrDivies, _, _, err := Divies.DeployDivies(auth, sim)
+	// if err != nil {
+	// 	log.Fatalf("could not deploy Divies: %v", err)
+	// }
+	// fmt.Printf("Divies contract at address %s...\n", addrDivies.String())
+
+	// addrPlayerBook, _, _, err := PlayerBook.DeployPlayerBook(auth, sim)
+	// if err != nil {
+	// 	log.Fatalf("could not deploy addrPlayerBook: %v", err)
+	// }
+	// fmt.Printf("addrPlayerBook contract at address %s...\n", addrPlayerBook.String())
+
+	// deploy contract
+	// DeployFoMo3Dlong(auth *bind.TransactOpts, backend bind.ContractBackend) (common.Address, *types.Transaction, *FoMo3Dlong, error)
+	// addr, _, _, err := DeployFoMo3Dlong(auth, sim)
+	// if err != nil {
+	// 	log.Fatalf("could not deploy contract: %v", err)
+	// }
+	// fmt.Printf("Instantiating contract at address %s...\n", addr.String())
+	// instContract, err := NewFoMo3Dlong(addr, sim)
+	// if err != nil {
+	// 	log.Fatalf("could not instantiate contract: %v", err)
+	// }
+	// fmt.Printf("Contract deployed to %s\n", addr.String())
+	// // deadlineCampaign, _ := contract.GetCurrentRoundInfo()
+	// ret1, ret2, ret3, ret4, ret5, ret6, ret7, retaddr, retbytearray, ret8, ret9, ret10, ret11, ret12, err := instContract.GetCurrentRoundInfo(nil)
+	// fmt.Println("GetCurrentRoundInfo: ", ret1, ret2, ret3, ret4, ret5, ret6, ret7, retaddr, retbytearray, ret8, ret9, ret10, ret11, ret12, err)
+
+	// fmt.Println("Mining...")
+	// simulate mining
+	// sim.Commit()
+
+	//	、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、
+	// deploy contract
+	// addr, _, contract, err := DeployWinnerTakesAll(auth, sim, big.NewInt(10), big.NewInt(time.Now().Add(2*time.Minute).Unix()), big.NewInt(time.Now().Add(5*time.Minute).Unix()))
+	// if err != nil {
+	// 	log.Fatalf("could not deploy contract: %v", err)
+	// }
+
+	// // interact with contract
+	// fmt.Printf("Contract deployed to %s\n", addr.String())
+	// deadlineCampaign, _ := contract.DeadlineCampaign(nil)
+	// fmt.Printf("Pre-mining Campaign Deadline: %s\n", deadlineCampaign)
+
+	// fmt.Println("Mining...")
+	// // simulate mining
+	// sim.Commit()
+
+	// postDeadlineCampaign, _ := contract.DeadlineCampaign(nil)
+	// fmt.Printf("Post-mining Campaign Deadline: %s\n", time.Unix(postDeadlineCampaign.Int64(), 0))
+
+	// // create a project
+	// numOfProjects, _ := contract.NumberOfProjects(nil)
+	// fmt.Printf("Number of Projects before: %d\n", numOfProjects)
+
+	// fmt.Println("Adding new project...")
+	// contract.SubmitProject(&bind.TransactOpts{
+	// 	From:     auth.From,
+	// 	Signer:   auth.Signer,
+	// 	GasLimit: 2381623,
+	// 	Value:    big.NewInt(10),
+	// }, "test project", "http://www.example.com")
+
+	// fmt.Println("Mining...")
+	// sim.Commit()
+
+	// numOfProjects, _ = contract.NumberOfProjects(nil)
+	// fmt.Printf("Number of Projects after: %d\n", numOfProjects)
+	// info, _ := contract.GetProjectInfo(nil, auth.From)
+	// fmt.Printf("Project Info: %v\n", info)
+
+	// // instantiate deployed contract
+	// fmt.Printf("Instantiating contract at address %s...\n", auth.From.String())
+	// instContract, err := NewWinnerTakesAll(addr, sim)
+	// if err != nil {
+	// 	log.Fatalf("could not instantiate contract: %v", err)
+	// }
+	// numOfProjects, _ = instContract.NumberOfProjects(nil)
+	// fmt.Printf("Number of Projects of instantiated Contract: %d\n", numOfProjects)
+}

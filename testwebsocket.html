@@ -1,0 +1,111 @@
+<!DOCTYPE html>  
+<meta charset="utf-8" />  
+<title>xxxxxxxxxxxxxxx</title>  
+<script src="./BigInteger.min.js"></script>
+<script language="javascript"type="text/javascript">  
+
+// var bigInt = require("big-integer");
+
+
+var ori=bigInt(6717446422013994001);
+// console.log("xxxxxxxxxxxxxxx");
+// writeToScreen("ori:"+ori.toJSNumber());
+console.log("ori:"+ori.toString());
+
+var airpot = ori.divmod(1000);
+// writeToScreen("airdrop pot:"+airpot);
+console.log("airdrop pot:"+airpot.quotient+":"+airpot.remainder);
+
+// var temp=airpot.times(1000)
+// console.log("temp:",temp.toNumber())
+// console.log("ori:",ori.toNumber())
+// var tracker=ori.minus(temp)
+// console.log("airdrop tracker:",tracker.toNumber())
+
+
+
+// var Web3 = require('web3');
+// use the given Provider, e.g in Mist, or instantiate a new websocket provider
+// var web3 = new Web3(Web3.givenProvider || 'ws://13.113.9.175:28546');
+// or
+// var web3 = new Web3(Web3.givenProvider || new Web3.providers.WebsocketProvider('ws://remotenode.com:8546'));
+
+// // Using the IPC provider in node.js
+// var net = require('net');
+
+// var web3 = new Web3('/Users/myuser/Library/Ethereum/geth.ipc', net); // mac os path
+// // or
+// var web3 = new Web3(new Web3.providers.IpcProvider('/Users/myuser/Library/Ethereum/geth.ipc', net)); // mac os path
+// // on windows the path is: "\\\\.\\pipe\\geth.ipc"
+// // on linux the path is: "/users/myuser/.ethereum/geth.ipc"
+
+//     web3 = new Web3()
+//   const eventProvider = new Web3.providers.WebsocketProvider('ws://13.113.9.175:28546')
+//   web3.setProvider(eventProvider)
+
+
+
+
+
+
+
+
+//     var wsUri ="ws://13.113.9.175:28546"; 
+    // var output;  
+    
+    // function init() { 
+    //     output = document.getElementById("output"); 
+    //     // testWebSocket(); 
+    // }  
+ 
+//     function testWebSocket() { 
+//         websocket = new WebSocket(wsUri); 
+//         websocket.onopen = function(evt) { 
+//             onOpen(evt) 
+//         }; 
+//         websocket.onclose = function(evt) { 
+//             onClose(evt) 
+//         }; 
+//         websocket.onmessage = function(evt) { 
+//             onMessage(evt) 
+//         }; 
+//         websocket.onerror = function(evt) { 
+//             onError(evt) 
+//         }; 
+//     }  
+ 
+//     function onOpen(evt) { 
+//         writeToScreen("CONNECTED"); 
+//         doSend("WebSocket rocks"); 
+//     }  
+ 
+//     function onClose(evt) { 
+//         writeToScreen("DISCONNECTED"); 
+//     }  
+ 
+//     function onMessage(evt) { 
+//         writeToScreen('<span style="color: blue;">RESPONSE: '+ evt.data+'</span>'); 
+//         websocket.close(); 
+//     }  
+ 
+//     function onError(evt) { 
+//         writeToScreen('<span style="color: red;">ERROR:</span> '+ evt.data); 
+//     }  
+ 
+//     function doSend(message) { 
+//         writeToScreen("SENT: " + message);  
+//         websocket.send(message); 
+//     }  
+ 
+    // function writeToScreen(message) { 
+    //     var pre = document.createElement("p"); 
+    //     pre.style.wordWrap = "break-word"; 
+    //     pre.innerHTML = message; 
+    //     output.appendChild(pre); 
+    // }  
+ 
+    // window.addEventListener("load", init, false);  
+</script>  
+<h2>xxxxxxxxxxxxxxx</h2>  
+<div id="output"></div>  
+</html>
