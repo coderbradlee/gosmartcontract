@@ -150,7 +150,7 @@ func TestWithdrawAndReinvest(t *testing.T) {
 	{
 		var i, e = big.NewInt(2), big.NewInt(256)
 		i.Exp(i, e, nil)
-		fmt.Println("PlayerWithdraw amount ", i)
+		fmt.Println("PlayerWithdraw amount ", i.Text(16))
 		ret1, err := c.lottery.PlayerWithdraw(auth, i)
 		if err != nil {
 			fmt.Println(err)
@@ -159,14 +159,14 @@ func TestWithdrawAndReinvest(t *testing.T) {
 		fmt.Println("PlayerWithdraw: ", ret1.Hash().Hex())
 	}
 
-	{
-		ret1, err := c.lottery.Reinvest(auth, big.NewInt(50000000000000000), 1)
-		if err != nil {
-			fmt.Println(err)
-			return
-		}
-		fmt.Println("Reinvest: ", ret1.Hash().Hex())
-	}
+	// {
+	// 	ret1, err := c.lottery.Reinvest(auth, big.NewInt(50000000000000000), 1)
+	// 	if err != nil {
+	// 		fmt.Println(err)
+	// 		return
+	// 	}
+	// 	fmt.Println("Reinvest: ", ret1.Hash().Hex())
+	// }
 }
 func TestWithdrawFee(t *testing.T) {
 	c := NewConnecter(selfhost, contractAddress)
