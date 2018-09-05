@@ -22,10 +22,10 @@ var (
 	userKeystore2   = `{"id":"954ae627-bd39-6a38-bb0b-8f290dfe8dc9","version":3,"crypto":{"cipher":"aes-128-ctr","cipherparams":{"iv":"92c2dd85471721fd7e0997ab9f5703c4"},"ciphertext":"cddc315e72d89a50228d4244e1e390413e12f39ed0fbd348312ebc39b1108175","kdf":"pbkdf2","kdfparams":{"c":10240,"dklen":32,"prf":"hmac-sha256","salt":"d8afc1723758d985273eb08979d2c9542757bd57f26e841e2372b507a80ec15f"},"mac":"fed2fdb5b538e65c9ee11c47b7d6f31f17eab1abb6776abcae1fe8d9573e959c"},"address":"e143c83f4e365928a1bc41034d3dc4ec8e5c47d9","name":"","meta":"{}"}`
 	userPassphrase2 = "123456789"
 	///////////////////ganache
-	userAddress11   = "0xd9863dF69727a27029b9084Acb7ee7753c86a981"
-	userAddress22   = "0xE70a45E5148C5832e63eAaDc6CA5Ec280d1Ec68A"
-	userPrivateKey1 = "044d1f47d7dd307457ab33ec4b369a37830003db78936ea8aaf14e02e3b86592"
-	userPrivateKey2 = "7c46ad52e3ef49e5be8120a785d8ee0889899142d51edd26d8f3fb31bf5159fa"
+	userAddress11   = "0xA6e2d4666b0c4B73bDbb54CA8209bfD0EC89Ea88"
+	userAddress22   = "0x1eB5E96518f6DA9FFcf32a401F26e2a8CA9E10b7"
+	userPrivateKey1 = "8b01fcf00efb07a877e57c69811b414586ec1e7d531443ab0d88a9093b05f015"
+	userPrivateKey2 = "6a7af08e232aacd433158d5586d513be64d97044e83b7f5738bc345917ba6c17"
 )
 
 func LoadConfig(configFileName string, cfg interface{}) bool {
