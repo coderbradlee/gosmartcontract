@@ -28,7 +28,7 @@ func TestDeployCall(t *testing.T) {
 }
 
 func TestCallBuy(t *testing.T) {
-	s := NewConnecter(selfhost, callcontractAddress)
+	s := NewCallConnecter(selfhost, callcontractAddress)
 	s.Send(userPrivateKey1, callcontractAddress, big.NewInt(5000000000000000000))
 	time.Sleep(time.Second * 10)
 	bla := s.BalanceOfEth(common.HexToAddress(callcontractAddress))
