@@ -1,12 +1,25 @@
 pragma solidity ^0.4.24;
 contract calletclottery {
     
-    etclotteryInterface constant private etclottery = etclotteryInterface(0xd0c696767a2053d2f4dDF89bA894973D2b026834);
+    etclotteryInterface constant private etclottery;
     function()
         public
         payable
     {
        
+    }
+    function setup(address addr)
+        external
+    {
+        etclottery = etclotteryInterface(addr);
+    }
+    function callByFun(address addr)returns (bool){
+        bytes4 methodId = bytes4(keccak256("buy(uint8)"));
+        return addr.call(methodId, 1);
+    }
+    function delegatecallByFun(address addr)returns (bool){
+        bytes4 methodId = bytes4(keccak256("buy(uint8)"));
+        return addr.delegatecall(methodId, 1);
     }
     function testbuy()
         public
