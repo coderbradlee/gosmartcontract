@@ -25,7 +25,7 @@ func TestDeployCall(t *testing.T) {
 	time.Sleep(time.Second * 10)
 	fmt.Println("Call Contract address is: ", c.contractAddress.String())
 	{
-		ret1, err := s.lottery.Setup(ownerAuth, c.contractAddress)
+		ret1, err := c.lottery.Setup(ownerAuth, c.contractAddress)
 		if err != nil {
 			fmt.Println("Setup:", err)
 			// return
