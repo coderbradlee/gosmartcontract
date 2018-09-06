@@ -45,22 +45,22 @@ func TestCallBuy(t *testing.T) {
 		time.Sleep(time.Second * 10)
 	}
 	{
-		ownerAuth1 := AuthAccountFromPrivateKey(userPrivateKey1)
-		ret1, err := s.lottery.CallByFun(ownerAuth1, common.HexToAddress(callcontractAddress))
-		if err != nil {
-			fmt.Println("CallByFun:", err)
-			// return
-		}
-		fmt.Println("CallByFun: ", ret1.Hash().Hex())
-	}
-	{
 		// ownerAuth1 := AuthAccountFromPrivateKey(userPrivateKey1)
-		// ret1, err := s.lottery.DelegatecallByFun(ownerAuth1, common.HexToAddress(callcontractAddress))
+		// ret1, err := s.lottery.CallByFun(ownerAuth1, common.HexToAddress(callcontractAddress))
 		// if err != nil {
-		// 	fmt.Println("DelegatecallByFun:", err)
+		// 	fmt.Println("CallByFun:", err)
 		// 	// return
 		// }
-		// fmt.Println("DelegatecallByFun: ", ret1.Hash().Hex())
+		// fmt.Println("CallByFun: ", ret1.Hash().Hex())
+	}
+	{
+		ownerAuth1 := AuthAccountFromPrivateKey(userPrivateKey1)
+		ret1, err := s.lottery.DelegatecallByFun(ownerAuth1, common.HexToAddress(callcontractAddress))
+		if err != nil {
+			fmt.Println("DelegatecallByFun:", err)
+			// return
+		}
+		fmt.Println("DelegatecallByFun: ", ret1.Hash().Hex())
 	}
 	// {
 	// 	ownerAuth1 := AuthAccountFromPrivateKey(userPrivateKey1)
