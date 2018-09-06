@@ -294,6 +294,21 @@ func TestGet(t *testing.T) {
 	}
 	fmt.Println("########################################################")
 	{
+		ret1, ret2, ret3, ret4, ret5, ret6, err := s.lottery.GetPlayerInfoByAddress(nil, common.HexToAddress(contractAddress))
+		if err != nil {
+			fmt.Println(err)
+			// return
+		}
+		fmt.Println("GetPlayerInfoByAddress: ", contractAddress)
+		fmt.Println("currentroundIn0: ", ret1)
+		fmt.Println("currentroundIn1: ", ret2)
+		fmt.Println("allRoundIn: ", ret3)
+		fmt.Println("win: ", ret4)
+		fmt.Println("lastwin: ", ret5)
+		fmt.Println("withdrawed: ", ret6)
+	}
+	fmt.Println("########################################################")
+	{
 		// GetRoundInfo(opts *bind.CallOpts, roundId *big.Int) (*big.Int, common.Address, *big.Int, *big.Int, *big.Int, *big.Int, *big.Int, *big.Int, bool, *big.Int, error)
 		ret1, ret2, ret3, ret4, ret5, ret6, err := s.lottery.GetLastRoundInfo(nil)
 		if err != nil {
