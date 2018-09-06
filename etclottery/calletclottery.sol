@@ -1,7 +1,7 @@
 pragma solidity ^0.4.24;
 contract calletclottery {
     
-    etclotteryInterface constant private etclottery;
+    etclotteryInterface private etclottery;
     function()
         public
         payable
