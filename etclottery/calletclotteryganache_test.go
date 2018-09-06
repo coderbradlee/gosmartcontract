@@ -42,6 +42,7 @@ func TestCallBuy(t *testing.T) {
 			// return
 		}
 		fmt.Println("Setup: ", ret1.Hash().Hex())
+		time.Sleep(time.Second * 10)
 	}
 	{
 		ownerAuth1 := AuthAccountFromPrivateKey(userPrivateKey1)
