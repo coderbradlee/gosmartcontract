@@ -14,10 +14,10 @@ import (
 )
 
 // CalletclotteryABI is the input ABI used to generate the binding from.
-const CalletclotteryABI = "[{\"constant\":true,\"inputs\":[],\"name\":\"getEndowmentBalance\",\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[],\"name\":\"testbuy\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"payable\":true,\"stateMutability\":\"payable\",\"type\":\"fallback\"}]"
+const CalletclotteryABI = "[{\"constant\":true,\"inputs\":[],\"name\":\"getEndowmentBalance\",\"outputs\":[{\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"addr\",\"type\":\"address\"}],\"name\":\"setup\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"addr\",\"type\":\"address\"}],\"name\":\"delegatecallByFun\",\"outputs\":[{\"name\":\"\",\"type\":\"bool\"}],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[],\"name\":\"testbuy\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"addr\",\"type\":\"address\"}],\"name\":\"callByFun\",\"outputs\":[{\"name\":\"\",\"type\":\"bool\"}],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"payable\":true,\"stateMutability\":\"payable\",\"type\":\"fallback\"}]"
 
 // CalletclotteryBin is the compiled bytecode used for deploying new contracts.
-const CalletclotteryBin = `0x608060405234801561001057600080fd5b50610140806100206000396000f30060806040526004361061004b5763ffffffff7c01000000000000000000000000000000000000000000000000000000006000350416635acce36b811461004d578063934f203f14610074575b005b34801561005957600080fd5b50610062610089565b60408051918252519081900360200190f35b34801561008057600080fd5b5061004b61008e565b303190565b604080517f14107f3c00000000000000000000000000000000000000000000000000000000815260016004820152905173d0c696767a2053d2f4ddf89ba894973d2b026834916314107f3c91602480830192600092919082900301818387803b1580156100fa57600080fd5b505af115801561010e573d6000803e3d6000fd5b505050505600a165627a7a72305820e29d413c404c8605df57ea7830f0baf69173155f82a240802c62e60194d2aa760029`
+const CalletclotteryBin = `0x608060405234801561001057600080fd5b506102da806100206000396000f3006080604052600436106100535763ffffffff60e060020a6000350416635acce36b811461005557806366d382031461007c5780638020d1461461009d578063934f203f146100d2578063d11f17ad146100e7575b005b34801561006157600080fd5b5061006a610108565b60408051918252519081900360200190f35b34801561008857600080fd5b50610053600160a060020a036004351661010d565b3480156100a957600080fd5b506100be600160a060020a036004351661013c565b604080519115158252519081900360200190f35b3480156100de57600080fd5b506100536101b7565b3480156100f357600080fd5b506100be600160a060020a0360043516610232565b303190565b6000805473ffffffffffffffffffffffffffffffffffffffff1916600160a060020a0392909216919091179055565b604080517f6275792875696e743829000000000000000000000000000000000000000000008152815190819003600a01812063ffffffff60e060020a8083049182160283526001600484015292516000939192600160a060020a0386169291602480830192879291908290030181865af49695505050505050565b60008054604080517f14107f3c000000000000000000000000000000000000000000000000000000008152600160048201529051600160a060020a03909216926314107f3c9260248084019382900301818387803b15801561021857600080fd5b505af115801561022c573d6000803e3d6000fd5b50505050565b604080517f6275792875696e743829000000000000000000000000000000000000000000008152815190819003600a01812063ffffffff60e060020a8083049182160283526001600484015292516000939192600160a060020a038616929160248083019287929190829003018183875af196955050505050505600a165627a7a723058201205880715f1ba50086f035c9ae76b00243fb2f714f6889108ad4e7a0fcd8b400029`
 
 // DeployCalletclottery deploys a new Ethereum contract, binding an instance of Calletclottery to it.
 func DeployCalletclottery(auth *bind.TransactOpts, backend bind.ContractBackend) (common.Address, *types.Transaction, *Calletclottery, error) {
@@ -198,6 +198,69 @@ func (_Calletclottery *CalletclotterySession) GetEndowmentBalance() (*big.Int, e
 // Solidity: function getEndowmentBalance() constant returns(uint256)
 func (_Calletclottery *CalletclotteryCallerSession) GetEndowmentBalance() (*big.Int, error) {
 	return _Calletclottery.Contract.GetEndowmentBalance(&_Calletclottery.CallOpts)
+}
+
+// CallByFun is a paid mutator transaction binding the contract method 0xd11f17ad.
+//
+// Solidity: function callByFun(addr address) returns(bool)
+func (_Calletclottery *CalletclotteryTransactor) CallByFun(opts *bind.TransactOpts, addr common.Address) (*types.Transaction, error) {
+	return _Calletclottery.contract.Transact(opts, "callByFun", addr)
+}
+
+// CallByFun is a paid mutator transaction binding the contract method 0xd11f17ad.
+//
+// Solidity: function callByFun(addr address) returns(bool)
+func (_Calletclottery *CalletclotterySession) CallByFun(addr common.Address) (*types.Transaction, error) {
+	return _Calletclottery.Contract.CallByFun(&_Calletclottery.TransactOpts, addr)
+}
+
+// CallByFun is a paid mutator transaction binding the contract method 0xd11f17ad.
+//
+// Solidity: function callByFun(addr address) returns(bool)
+func (_Calletclottery *CalletclotteryTransactorSession) CallByFun(addr common.Address) (*types.Transaction, error) {
+	return _Calletclottery.Contract.CallByFun(&_Calletclottery.TransactOpts, addr)
+}
+
+// DelegatecallByFun is a paid mutator transaction binding the contract method 0x8020d146.
+//
+// Solidity: function delegatecallByFun(addr address) returns(bool)
+func (_Calletclottery *CalletclotteryTransactor) DelegatecallByFun(opts *bind.TransactOpts, addr common.Address) (*types.Transaction, error) {
+	return _Calletclottery.contract.Transact(opts, "delegatecallByFun", addr)
+}
+
+// DelegatecallByFun is a paid mutator transaction binding the contract method 0x8020d146.
+//
+// Solidity: function delegatecallByFun(addr address) returns(bool)
+func (_Calletclottery *CalletclotterySession) DelegatecallByFun(addr common.Address) (*types.Transaction, error) {
+	return _Calletclottery.Contract.DelegatecallByFun(&_Calletclottery.TransactOpts, addr)
+}
+
+// DelegatecallByFun is a paid mutator transaction binding the contract method 0x8020d146.
+//
+// Solidity: function delegatecallByFun(addr address) returns(bool)
+func (_Calletclottery *CalletclotteryTransactorSession) DelegatecallByFun(addr common.Address) (*types.Transaction, error) {
+	return _Calletclottery.Contract.DelegatecallByFun(&_Calletclottery.TransactOpts, addr)
+}
+
+// Setup is a paid mutator transaction binding the contract method 0x66d38203.
+//
+// Solidity: function setup(addr address) returns()
+func (_Calletclottery *CalletclotteryTransactor) Setup(opts *bind.TransactOpts, addr common.Address) (*types.Transaction, error) {
+	return _Calletclottery.contract.Transact(opts, "setup", addr)
+}
+
+// Setup is a paid mutator transaction binding the contract method 0x66d38203.
+//
+// Solidity: function setup(addr address) returns()
+func (_Calletclottery *CalletclotterySession) Setup(addr common.Address) (*types.Transaction, error) {
+	return _Calletclottery.Contract.Setup(&_Calletclottery.TransactOpts, addr)
+}
+
+// Setup is a paid mutator transaction binding the contract method 0x66d38203.
+//
+// Solidity: function setup(addr address) returns()
+func (_Calletclottery *CalletclotteryTransactorSession) Setup(addr common.Address) (*types.Transaction, error) {
+	return _Calletclottery.Contract.Setup(&_Calletclottery.TransactOpts, addr)
 }
 
 // Testbuy is a paid mutator transaction binding the contract method 0x934f203f.

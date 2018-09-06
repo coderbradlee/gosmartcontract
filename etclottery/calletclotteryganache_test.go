@@ -33,26 +33,54 @@ func TestCallBuy(t *testing.T) {
 	time.Sleep(time.Second * 10)
 	bla := s.BalanceOfEth(common.HexToAddress(callcontractAddress))
 	fmt.Println(callcontractAddress, ":", bla)
-	{
-		ownerAuth1 := AuthAccountFromPrivateKey(userPrivateKey1)
-		s.Buy(ownerAuth1, 0)
-		time.Sleep(time.Second * 10)
-		s.Buy(ownerAuth1, 1)
-		time.Sleep(time.Second * 10)
-	}
-	{
-		ownerAuth1 := AuthAccountFromPrivateKey(userPrivateKey2)
-		s.Buy(ownerAuth1, 0)
-		time.Sleep(time.Second * 12)
-		s.Buy(ownerAuth1, 1)
-	}
 
 	{
-		ret1, err := s.lottery.GetEndowmentBalance(nil)
+		ownerAuth1 := AuthAccountFromPrivateKey(userPrivateKey1)
+		ret1, err := s.lottery.Setup(ownerAuth1, common.HexToAddress(callcontractAddress))
 		if err != nil {
-			fmt.Println(err)
+			fmt.Println("Setup:", err)
 			// return
 		}
-		fmt.Println("GetEndowmentBalance: ", ret1)
+		fmt.Println("Setup: ", ret1.Hash().Hex())
 	}
+	{
+		ownerAuth1 := AuthAccountFromPrivateKey(userPrivateKey1)
+		ret1, err := s.lottery.CallByFun(ownerAuth1, common.HexToAddress(callcontractAddress))
+		if err != nil {
+			fmt.Println("CallByFun:", err)
+			// return
+		}
+		fmt.Println("CallByFun: ", ret1.Hash().Hex())
+	}
+	{
+		// ownerAuth1 := AuthAccountFromPrivateKey(userPrivateKey1)
+		// ret1, err := s.lottery.DelegatecallByFun(ownerAuth1, common.HexToAddress(callcontractAddress))
+		// if err != nil {
+		// 	fmt.Println("DelegatecallByFun:", err)
+		// 	// return
+		// }
+		// fmt.Println("DelegatecallByFun: ", ret1.Hash().Hex())
+	}
+	// {
+	// 	ownerAuth1 := AuthAccountFromPrivateKey(userPrivateKey1)
+	// 	s.Buy(ownerAuth1, 0)
+	// 	time.Sleep(time.Second * 10)
+	// 	s.Buy(ownerAuth1, 1)
+	// 	time.Sleep(time.Second * 10)
+	// }
+	// {
+	// 	ownerAuth1 := AuthAccountFromPrivateKey(userPrivateKey2)
+	// 	s.Buy(ownerAuth1, 0)
+	// 	time.Sleep(time.Second * 12)
+	// 	s.Buy(ownerAuth1, 1)
+	// }
+
+	// {
+	// 	ret1, err := s.lottery.GetEndowmentBalance(nil)
+	// 	if err != nil {
+	// 		fmt.Println(err)
+	// 		// return
+	// 	}
+	// 	fmt.Println("GetEndowmentBalance: ", ret1)
+	// }
 }
