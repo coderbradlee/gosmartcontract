@@ -1,7 +1,7 @@
 package main
 
 import (
-	"math/big"
+	// "math/big"
 	// etclottery "../etclottery"
 	// "context"
 	// "crypto/ecdsa"
