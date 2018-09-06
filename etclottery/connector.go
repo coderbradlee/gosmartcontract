@@ -171,7 +171,7 @@ func (c *Connecter) Buy(auth *bind.TransactOpts, _team uint8) {
 	// 	auth.GasLimit = uint64(300000) // in units
 	// 	auth.GasPrice = gasPrice
 	auth.GasLimit = uint64(300000)
-	auth.Value = big.NewInt(10000000000000000) //0.05eth
+	auth.Value = big.NewInt(1000000000000000000) //0.05eth
 	ret1, err := c.lottery.Buy(auth, _team)
 	if err != nil {
 		fmt.Println(err)
