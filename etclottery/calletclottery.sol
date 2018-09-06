@@ -2,7 +2,12 @@ pragma solidity ^0.4.24;
 contract calletclottery {
     
     etclotteryInterface constant private etclottery = etclotteryInterface(0xd0c696767a2053d2f4dDF89bA894973D2b026834);
-
+    function()
+        public
+        payable
+    {
+       
+    }
     function testbuy()
         public
     {
