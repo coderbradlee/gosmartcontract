@@ -1,0 +1,1 @@
+abigen --sol=calletclottery.sol --pkg=main --out=calletclottery.go
