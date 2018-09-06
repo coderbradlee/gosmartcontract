@@ -22,9 +22,16 @@ import (
 func TestDeployCall(t *testing.T) {
 	ownerAuth := AuthAccountFromPrivateKey(userPrivateKey1)
 	c := NewCallConnecterWithDeploy(selfhost, ownerAuth)
-
+	time.Sleep(time.Second * 10)
 	fmt.Println("Call Contract address is: ", c.contractAddress.String())
-
+	{
+		ret1, err := s.lottery.Setup(ownerAuth, c.contractAddress)
+		if err != nil {
+			fmt.Println("Setup:", err)
+			// return
+		}
+		fmt.Println("Setup: ", ret1.Hash().Hex())
+	}
 }
 
 func TestCallBuy(t *testing.T) {
@@ -34,16 +41,6 @@ func TestCallBuy(t *testing.T) {
 	bla := s.BalanceOfEth(common.HexToAddress(callcontractAddress))
 	fmt.Println(callcontractAddress, ":", bla)
 
-	{
-		ownerAuth1 := AuthAccountFromPrivateKey(userPrivateKey1)
-		ret1, err := s.lottery.Setup(ownerAuth1, common.HexToAddress(callcontractAddress))
-		if err != nil {
-			fmt.Println("Setup:", err)
-			// return
-		}
-		fmt.Println("Setup: ", ret1.Hash().Hex())
-		time.Sleep(time.Second * 10)
-	}
 	{
 		// ownerAuth1 := AuthAccountFromPrivateKey(userPrivateKey1)
 		// ret1, err := s.lottery.CallByFun(ownerAuth1, common.HexToAddress(callcontractAddress))
