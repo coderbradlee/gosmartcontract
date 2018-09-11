@@ -22,7 +22,7 @@ contract ReceiverPays {
         bytes32 message = prefixed(keccak256(abi.encodePacked(msg.sender, amount,nonce, this)));
         require(recoverSigner(message, signature) == owner);
         msg.sender.transfer(amount);
-        return (message,signature)
+        return (message,signature);
     }
     /// destroy the contract and reclaim the leftover funds.
     function kill() public {
