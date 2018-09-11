@@ -88,6 +88,7 @@ func TestBuy(t *testing.T) {
 			// ownerAuth1 := AuthAccountFromPrivateKey(userPrivateKey1)
 			s.Send(userPrivateKey1, contractAddress, big.NewInt(1000000000000000000))
 		}
+		time.Sleep(time.Second * 10)
 		balance, err := s.conn.GetBalance(s.ctx, contractAddress)
 		if err != nil {
 			fmt.Println("GetBalance:", err)
