@@ -3,6 +3,10 @@ contract ReceiverPays {
     address owner = msg.sender;
     mapping(uint256 => bool) usedNonces;
     constructor() public payable {}
+    function getEndowmentBalance() constant public returns (uint)
+    {
+    	return address(this).balance;
+    }
     function claimPayment(uint256 amount, uint256 nonce, bytes signature) 
         public 
     {
