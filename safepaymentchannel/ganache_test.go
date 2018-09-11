@@ -97,7 +97,7 @@ func TestClaim(t *testing.T) {
 		addr := common.HexToAddress(userAddress11)
 
 		//want to send to userAddress22 1eth nonce 10
-		msg := Keccak256([]byte(userAddress22), big.NewInt(1000000000000000000).Bytes(), big.NewInt(10).Bytes(), []byte(contractAddress))
+		msg := crypto.Keccak256([]byte(userAddress22), big.NewInt(1000000000000000000).Bytes(), big.NewInt(10).Bytes(), []byte(contractAddress))
 		sig, err := crypto.Sign(msg, key)
 		if err != nil {
 			fmt.Printf("Sign error: %s\n", err)
