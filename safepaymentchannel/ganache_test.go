@@ -92,43 +92,43 @@ func TestBuy(t *testing.T) {
 	}
 }
 func TestClaim(t *testing.T) {
-	{
-		key, _ := crypto.HexToECDSA(userPrivateKey1)
-		addr := common.HexToAddress(userAddress11)
 
-		//want to send to userAddress22 1eth nonce 10
-		msg := crypto.Keccak256([]byte(userAddress22), big.NewInt(1000000000000000000).Bytes(), big.NewInt(10).Bytes(), []byte(contractAddress))
-		sig, err := crypto.Sign(msg, key)
-		if err != nil {
-			fmt.Printf("Sign error: %s\n", err)
-		}
-		recoveredPub, err := crypto.Ecrecover(msg, sig)
-		if err != nil {
-			fmt.Printf("ECRecover error: %s\n", err)
-		}
-		pubKey, _ := crypto.UnmarshalPubkey(recoveredPub)
-		recoveredAddr := crypto.PubkeyToAddress(*pubKey)
-		if addr != recoveredAddr {
-			fmt.Printf("Address mismatch: want: %x have: %x\n", addr, recoveredAddr)
-		}
-		fmt.Println("recoveredAddr:", recoveredAddr.String())
-		// // should be equal to SigToPub
-		// recoveredPub2, err := SigToPub(msg, sig)
-		// if err != nil {
-		// 	t.Errorf("ECRecover error: %s", err)
-		// }
-		// recoveredAddr2 := PubkeyToAddress(*recoveredPub2)
-		// if addr != recoveredAddr2 {
-		// 	t.Errorf("Address mismatch: want: %x have: %x", addr, recoveredAddr2)
-		// }
+	key, _ := crypto.HexToECDSA(userPrivateKey1)
+	addr := common.HexToAddress(userAddress11)
+
+	//want to send to userAddress22 1eth nonce 10
+	msg := crypto.Keccak256([]byte(userAddress22), big.NewInt(1000000000000000000).Bytes(), big.NewInt(10).Bytes(), []byte(contractAddress))
+	sig, err := crypto.Sign(msg, key)
+	if err != nil {
+		fmt.Printf("Sign error: %s\n", err)
 	}
-	// ownerAuth1 := AuthAccountFromPrivateKey(userPrivateKey2)
-	// s := NewConnecter(selfhost, contractAddress)
-	// ret1, err := s.lottery.ClaimPayment(ownerAuth1, big.NewInt(1000000000000000000), big.NewInt(10), signature []byte)
+	recoveredPub, err := crypto.Ecrecover(msg, sig)
+	if err != nil {
+		fmt.Printf("ECRecover error: %s\n", err)
+	}
+	pubKey, _ := crypto.UnmarshalPubkey(recoveredPub)
+	recoveredAddr := crypto.PubkeyToAddress(*pubKey)
+	if addr != recoveredAddr {
+		fmt.Printf("Address mismatch: want: %x have: %x\n", addr, recoveredAddr)
+	}
+	fmt.Println("recoveredAddr:", recoveredAddr.String())
+	// // should be equal to SigToPub
+	// recoveredPub2, err := SigToPub(msg, sig)
 	// if err != nil {
-	// 	fmt.Println(err)
-	// 	return
+	// 	t.Errorf("ECRecover error: %s", err)
 	// }
-	// fmt.Println("ClaimPayment: ", ret1.Hash().Hex())
+	// recoveredAddr2 := PubkeyToAddress(*recoveredPub2)
+	// if addr != recoveredAddr2 {
+	// 	t.Errorf("Address mismatch: want: %x have: %x", addr, recoveredAddr2)
+	// }
+
+	ownerAuth1 := AuthAccountFromPrivateKey(userPrivateKey2)
+	s := NewConnecter(selfhost, contractAddress)
+	ret1, err := s.lottery.ClaimPayment(ownerAuth1, big.NewInt(1000000000000000000), big.NewInt(10), sig)
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	fmt.Println("ClaimPayment: ", ret1.Hash().Hex())
 
 }
