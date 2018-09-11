@@ -14,6 +14,7 @@ import (
 	"./hdwallet"
 	"crypto/ecdsa"
 	"encoding/hex"
+	"github.com/miguelmota/go-solidity-sha3"
 	"math/big"
 	"testing"
 	"time"
@@ -102,15 +103,22 @@ func TestBuy(t *testing.T) {
 func TestSoliditySha3fromethereumjsabi(t *testing.T) {
 	// new BN("43989fb883ba8111221e89123897538475893837", 16), 0, 10000, 1448075779
 	// * sha3 will return ```0xc3ab5ca31a013757f26a88561f0ff5057a97dfcc33f43d6b479abc3ac2d1d595```
-	first := big.NewInt(0)
-	b, _ := first.SetString("43989fb883ba8111221e89123897538475893837", 16)
-	second := []byte(strconv.Itoa(0))
-	third := []byte(strconv.Itoa(10000))
-	fourth := []byte(strconv.Itoa(1448075779))
-	msg := crypto.Keccak256(b.Bytes(), second, third, fourth)
-	out := hex.EncodeToString(msg)
-	fmt.Println("out:", out)
+	// first := big.NewInt(0)
+	// b, _ := first.SetString("43989fb883ba8111221e89123897538475893837", 16)
+	// second := []byte(strconv.Itoa(0))
+	// third := []byte(strconv.Itoa(10000))
+	// fourth := []byte(strconv.Itoa(1448075779))
+	// msg := crypto.Keccak256(b.Bytes(), second, third, fourth)
+	// out := hex.EncodeToString(msg)
+	// fmt.Println("out:", out)
+	hash := solsha3.SoliditySHA3(
+		solsha3.Address("0x43989fb883ba8111221e89123897538475893837"),
+		solsha3.Address("0x0"),
+		solsha3.Uint256(big.NewInt(10000)),
+		solsha3.Uint256(big.NewInt(1448075779))
+	)
 
+	fmt.Println("hash:",hex.EncodeToString(hash))
 }
 func TestClaim(t *testing.T) {
 
