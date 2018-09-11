@@ -125,8 +125,14 @@ func TestClaim(t *testing.T) {
 	addr := common.HexToAddress(userAddress11)
 
 	//want to send to userAddress22 1eth nonce 10
-	msg0 := crypto.Keccak256([]byte(userAddress22), big.NewInt(1000000000000000000).Bytes(), big.NewInt(10).Bytes(), []byte(contractAddress))
+	// msg0 := crypto.Keccak256([]byte(userAddress22), big.NewInt(1000000000000000000).Bytes(), big.NewInt(10).Bytes(), []byte(contractAddress))
 
+	msg0 := solsha3.SoliditySHA3(
+		solsha3.Address(userAddress22)
+		solsha3.Uint256(big.NewInt(1000000000000000000)),
+		solsha3.Uint256(big.NewInt(10)),
+		solsha3.Address(contractAddress),
+	)
 	msg := signHash(msg0)
 	sig, err := crypto.Sign(msg, key)
 	if err != nil {
