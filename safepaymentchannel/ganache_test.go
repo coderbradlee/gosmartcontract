@@ -89,7 +89,7 @@ func TestBuy(t *testing.T) {
 			s.Send(userPrivateKey1, contractAddress, big.NewInt(1000000000000000000))
 		}
 		time.Sleep(time.Second * 10)
-		balance, err := s.conn.GetBalance(s.ctx, contractAddress)
+		balance, err := s.lottery.GetEndowmentBalance(nil)
 		if err != nil {
 			fmt.Println("GetBalance:", err)
 			return
