@@ -115,10 +115,9 @@ func TestSoliditySha3fromethereumjsabi(t *testing.T) {
 		solsha3.Address("0x43989fb883ba8111221e89123897538475893837"),
 		solsha3.Address("0x0"),
 		solsha3.Uint256(big.NewInt(10000)),
-		solsha3.Uint256(big.NewInt(1448075779))
-	)
+		solsha3.Uint256(big.NewInt(1448075779)))
 
-	fmt.Println("hash:",hex.EncodeToString(hash))
+	fmt.Println("hash:", hex.EncodeToString(hash))
 }
 func TestClaim(t *testing.T) {
 
