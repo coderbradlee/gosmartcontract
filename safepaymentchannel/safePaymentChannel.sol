@@ -2,7 +2,12 @@ pragma solidity ^0.4.24;
 contract ReceiverPays {
     address owner = msg.sender;
     mapping(uint256 => bool) usedNonces;
-    constructor() public payable {}
+    // constructor() public payable {}
+    function()
+        public
+        payable
+    {
+    }
     function getEndowmentBalance() constant public returns (uint)
     {
     	return address(this).balance;
