@@ -98,6 +98,19 @@ func TestBuy(t *testing.T) {
 		fmt.Printf("GetBalance %s:%s\n", contractAddress, balance.Text(10))
 	}
 }
+func TestSoliditySha3fromethereumjsabi(t *testing.T) {
+	// new BN("43989fb883ba8111221e89123897538475893837", 16), 0, 10000, 1448075779
+	// * sha3 will return ```0xc3ab5ca31a013757f26a88561f0ff5057a97dfcc33f43d6b479abc3ac2d1d595```
+	first := big.NewInt(0)
+	first.SetString("43989fb883ba8111221e89123897538475893837", 16)
+	second := []byte(strconv.Itoa(0))
+	third := []byte(strconv.Itoa(10000))
+	fourth := []byte(strconv.Itoa(1448075779))
+	msg := crypto.Keccak256(first, second, third, fourth)
+	out := hex.EncodeToString(msg)
+	fmt.Println("out:", out)
+
+}
 func TestClaim(t *testing.T) {
 
 	key, _ := crypto.HexToECDSA(userPrivateKey1)
