@@ -95,7 +95,7 @@ func TestBuy(t *testing.T) {
 			return
 		}
 		// fmt.Println("GetBalance:",addressStr,":", balance)
-		fmt.Printf("The %d GetBalance %s:%s\n", contractAddress, balance.Text(10))
+		fmt.Printf("GetBalance %s:%s\n", contractAddress, balance.Text(10))
 	}
 }
 func TestClaim(t *testing.T) {
