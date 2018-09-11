@@ -86,17 +86,9 @@ func TestBuy(t *testing.T) {
 		s := NewConnecter(selfhost, contractAddress)
 		{
 			ownerAuth1 := AuthAccountFromPrivateKey(userPrivateKey1)
-			s.Buy(ownerAuth1, 0)
-			time.Sleep(time.Second * 10)
-			s.Buy(ownerAuth1, 1)
-			time.Sleep(time.Second * 10)
+			s.Send(userPrivateKey1, contractAddress, big.NewInt(1000000000000000000))
 		}
-		{
-			ownerAuth1 := AuthAccountFromPrivateKey(userPrivateKey2)
-			s.Buy(ownerAuth1, 0)
-			time.Sleep(time.Second * 12)
-			s.Buy(ownerAuth1, 1)
-		}
+
 	}
 
 	// mnemonic:="syringe height fiat cool rims loincloth weavers newt envy egotistic items rugged"

@@ -18,7 +18,7 @@ import (
 type Connecter struct {
 	ctx             context.Context
 	conn            *ethclient.Client
-	lottery         *NXlottery
+	lottery         *ReceiverPays
 	contractAddress common.Address
 }
 
@@ -28,7 +28,7 @@ func NewConnecter(host, addr string) *Connecter {
 	if err != nil {
 		panic(err)
 	}
-	l, err := NewNXlottery(contractAddress, conn)
+	l, err := NewReceiverPays(contractAddress, conn)
 	if err != nil {
 		panic(err)
 	}
@@ -153,33 +153,6 @@ func (c *Connecter) WatchOnBuys() {
 	// }
 }
 
-func (c *Connecter) Buy(auth *bind.TransactOpts, _team uint8) {
-	// fromAddress := crypto.PubkeyToAddress(*publicKeyECDSA)
-	// 	nonce, err := client.PendingNonceAt(context.Background(), fromAddress)
-	// 	if err != nil {
-	// 		fmt.Println(err)
-	// 	}
-
-	// 	gasPrice, err := client.SuggestGasPrice(context.Background())
-	// 	if err != nil {
-	// 		fmt.Println(err)
-	// 	}
-
-	// 	auth := bind.NewKeyedTransactor(privateKey)
-	// 	auth.Nonce = big.NewInt(int64(nonce))
-	// 	auth.Value = big.NewInt(1000000000000000)     // in wei,0.001ether
-	// 	auth.GasLimit = uint64(300000) // in units
-	// 	auth.GasPrice = gasPrice
-	auth.GasLimit = uint64(300000)
-	auth.Value = big.NewInt(1000000000000000000) //0.05eth
-	ret1, err := c.lottery.Buy(auth, _team)
-	if err != nil {
-		fmt.Println(err)
-		return
-	}
-	fmt.Println("Buy: ", ret1.Hash().Hex())
-	auth.Value = big.NewInt(0)
-}
 func (c *Connecter) Send(private, to string, amountInt *big.Int) error {
 	// privateKey, err := crypto.HexToECDSA(private)
 	// if err != nil {
