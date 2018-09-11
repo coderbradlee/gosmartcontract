@@ -130,6 +130,7 @@ func TestClaim(t *testing.T) {
 	// }
 
 	ownerAuth1 := AuthAccountFromPrivateKey(userPrivateKey2)
+	ownerAuth1.GasLimit = uint64(8000000)
 	s := NewConnecter(selfhost, contractAddress)
 	ret1, err := s.lottery.ClaimPayment(ownerAuth1, big.NewInt(1000000000000000000), big.NewInt(10), sig)
 	if err != nil {
