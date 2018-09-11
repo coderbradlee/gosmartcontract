@@ -128,7 +128,7 @@ func TestClaim(t *testing.T) {
 	// msg0 := crypto.Keccak256([]byte(userAddress22), big.NewInt(1000000000000000000).Bytes(), big.NewInt(10).Bytes(), []byte(contractAddress))
 
 	msg0 := solsha3.SoliditySHA3(
-		solsha3.Address(userAddress22)
+		solsha3.Address(userAddress22),
 		solsha3.Uint256(big.NewInt(1000000000000000000)),
 		solsha3.Uint256(big.NewInt(10)),
 		solsha3.Address(contractAddress),
