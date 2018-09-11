@@ -85,7 +85,7 @@ func TestBuy(t *testing.T) {
 	{
 		s := NewConnecter(selfhost, contractAddress)
 		{
-			ownerAuth1 := AuthAccountFromPrivateKey(userPrivateKey1)
+			// ownerAuth1 := AuthAccountFromPrivateKey(userPrivateKey1)
 			s.Send(userPrivateKey1, contractAddress, big.NewInt(1000000000000000000))
 		}
 
