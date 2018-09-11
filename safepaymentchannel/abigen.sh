@@ -1,0 +1,1 @@
+abigen --sol=safePaymentChannel.sol --pkg=main --out=safePaymentChannel.go
