@@ -133,7 +133,8 @@ func TestClaim(t *testing.T) {
 		solsha3.Uint256(big.NewInt(10)),
 		solsha3.Address(contractAddress),
 	)
-	msg := signHash(msg0)
+	// msg := signHash(msg0)
+	msg := solsha3.SoliditySHA3WithPrefix(msg0)
 	sig, err := crypto.Sign(msg, key)
 	if err != nil {
 		fmt.Printf("Sign error: %s\n", err)
