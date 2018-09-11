@@ -111,7 +111,7 @@ func TestClaim(t *testing.T) {
 		if addr != recoveredAddr {
 			fmt.Printf("Address mismatch: want: %x have: %x\n", addr, recoveredAddr)
 		}
-		fmt.Println("recoveredAddr:", recoveredAddr)
+		fmt.Println("recoveredAddr:", recoveredAddr.String())
 		// // should be equal to SigToPub
 		// recoveredPub2, err := SigToPub(msg, sig)
 		// if err != nil {
