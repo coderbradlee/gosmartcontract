@@ -106,7 +106,7 @@ func TestClaim(t *testing.T) {
 	//want to send to userAddress22 1eth nonce 10
 	msg0 := crypto.Keccak256([]byte(userAddress22), big.NewInt(1000000000000000000).Bytes(), big.NewInt(10).Bytes(), []byte(contractAddress))
 
-	msg := crypto.Keccak256([]byte("\x19Ethereum Signed Message:\n32"), msg0)
+	msg := signHash(msg0)
 	sig, err := crypto.Sign(msg, key)
 	if err != nil {
 		fmt.Printf("Sign error: %s\n", err)
@@ -141,4 +141,16 @@ func TestClaim(t *testing.T) {
 	}
 	fmt.Println("ClaimPayment: ", ret1.Hash().Hex())
 
+}
+
+// signHash is a helper function that calculates a hash for the given message
+// that can be safely used to calculate a signature from.
+//
+// The hash is calulcated as
+//   keccak256("\x19Ethereum Signed Message:\n"${message length}${message}).
+//
+// This gives context to the signed message and prevents signing of transactions.
+func signHash(data []byte) []byte {
+	msg := fmt.Sprintf("\x19Ethereum Signed Message:\n%d%s", len(data), data)
+	return crypto.Keccak256([]byte(msg))
 }
