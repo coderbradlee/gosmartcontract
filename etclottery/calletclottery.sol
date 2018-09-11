@@ -24,7 +24,7 @@ contract calletclottery {
     function testbuy()
         public
     {
-        etclottery.buy(1);
+        etclottery.buy.value(10000000000000000).gas(8000000)(1);
 
     }
     function getEndowmentBalance() constant public returns (uint)
