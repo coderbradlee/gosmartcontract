@@ -45,7 +45,7 @@ func NewConnecterWithDeploy(host string, ownerAuth *bind.TransactOpts) *Connecte
 	if err != nil {
 		panic(err)
 	}
-	_, tx, l, err := DeployNXlottery(ownerAuth, conn)
+	_, tx, l, err := DeployReceiverPays(ownerAuth, conn)
 	if err != nil {
 		panic(err)
 	}
