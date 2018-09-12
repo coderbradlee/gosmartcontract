@@ -120,7 +120,7 @@ func TestSoliditySha3fromethereumjsabi(t *testing.T) {
 	fmt.Println("hash:", hex.EncodeToString(hash))
 }
 func TestClaim(t *testing.T) {
-
+	fmt.Println("len:", len(common.Hash{}))
 	key, _ := crypto.HexToECDSA(userPrivateKey1)
 	addr := common.HexToAddress(userAddress11)
 
