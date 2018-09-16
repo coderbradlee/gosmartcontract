@@ -63,14 +63,15 @@ func TestChannel(t *testing.T) {
 	{
 		ch := make(chan int)
 		for {
+			i := <-ch
+			fmt.Println("Value received:", i) // 报错：fatal error: all goroutines are asleep - deadlock!
 			select {
 			case ch <- 0:
 				fmt.Println("0")
 			case ch <- 1:
 				fmt.Println("1")
 			}
-			i := <-ch
-			fmt.Println("Value received:", i) // 报错：fatal error: all goroutines are asleep - deadlock!
+
 		}
 	}
 }
