@@ -64,8 +64,8 @@ func TestChannel(t *testing.T) {
 		ch := make(chan int)
 		go func() {
 			for {
-				select{
-					i := <-ch
+				select {
+				case i := <-ch:
 					fmt.Println("Value received:", i)
 				}
 			}
