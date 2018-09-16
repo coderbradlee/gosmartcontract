@@ -70,6 +70,7 @@ func TestChannel(t *testing.T) {
 	close(c)
 	v, ok := <-c
 	fmt.Println("v ok3", v, ok)
+	c <- 12
 	// {
 	// 	ch := make(chan int, 1)
 	// 	for {
