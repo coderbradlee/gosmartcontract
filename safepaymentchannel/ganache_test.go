@@ -67,8 +67,9 @@ func TestChannel(t *testing.T) {
 	default: // 没有可读的，走这个分支
 		fmt.Println("default4")
 	}
+	close(c)
 	v, ok := <-c
-	fmt.Println("v ok2", v, ok)
+	fmt.Println("v ok3", v, ok)
 	// {
 	// 	ch := make(chan int, 1)
 	// 	for {
