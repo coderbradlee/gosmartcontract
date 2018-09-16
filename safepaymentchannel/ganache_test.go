@@ -37,15 +37,27 @@ func TestDeploy(t *testing.T) {
 
 }
 func TestChannel(t *testing.T) {
+	// {
+	// 	ch := make(chan int, 1)
+	// 	for {
+	// 		select {
+	// 		case ch <- 0:
+	// 		case ch <- 1:
+	// 		}
+	// 		i := <-ch
+	// 		fmt.Println("Value received:", i) // 随机输出0和1
+	// 	}
+	// }
 	{
-		ch := make(chan int, 1)
-		for {
-			select {
-			case ch <- 0:
-			case ch <- 1:
-			}
-			i := <-ch
-			fmt.Println("Value received:", i) // 随机输出0和1
+		ch1 := make(chan int, 1)
+		ch2 := make(chan int, 1)
+		ch1 <- 0
+		ch2 <- 1
+		select {
+		case i := <-ch1:
+			fmt.Println("ch1 received:", i)
+		case i := <-ch2:
+			fmt.Println("ch2 received:", i)
 		}
 	}
 	{
