@@ -37,6 +37,36 @@ func TestDeploy(t *testing.T) {
 
 }
 func TestChannel(t *testing.T) {
+	c := make(chan int, 1)
+
+	select {
+	case c <- 10: // c中放入了10，因为chan的buffer为1
+		fmt.Println("10")
+	default:
+		fmt.Println("default1")
+	}
+
+	select {
+	case c <- 11:
+		fmt.Println("11")
+	default: // c中只有10，没有11
+		fmt.Println("default2")
+	}
+
+	select {
+	case v, ok := <-c:
+		// 读出来一个，v=10, ok=true
+		fmt.Println("v ok", v, ok)
+	default:
+		fmt.Println("default3")
+	}
+
+	select {
+	case v, ok := <-c:
+		fmt.Println("v ok2", v, ok)
+	default: // 没有可读的，走这个分支
+		fmt.Println("default4")
+	}
 	// {
 	// 	ch := make(chan int, 1)
 	// 	for {
@@ -48,37 +78,37 @@ func TestChannel(t *testing.T) {
 	// 		fmt.Println("Value received:", i) // 随机输出0和1
 	// 	}
 	// }
-	{
-		ch1 := make(chan int, 1)
-		ch2 := make(chan int, 1)
-		ch1 <- 0
-		ch2 <- 1
-		select {
-		case i := <-ch1:
-			fmt.Println("ch1 received:", i)
-		case i := <-ch2:
-			fmt.Println("ch2 received:", i)
-		}
-	}
-	{
-		ch := make(chan int)
-		go func() {
-			for {
-				select {
-				case i := <-ch:
-					fmt.Println("Value received:", i)
-				}
-			}
-		}()
-		for {
-			select {
-			case ch <- 0:
-				fmt.Println("0")
-			case ch <- 1:
-				fmt.Println("1")
-			}
-		}
-	}
+	// {
+	// 	ch1 := make(chan int, 1)
+	// 	ch2 := make(chan int, 1)
+	// 	ch1 <- 0
+	// 	ch2 <- 1
+	// 	select {
+	// 	case i := <-ch1:
+	// 		fmt.Println("ch1 received:", i)
+	// 	case i := <-ch2:
+	// 		fmt.Println("ch2 received:", i)
+	// 	}
+	// }
+	// {
+	// 	ch := make(chan int)
+	// 	go func() {
+	// 		for {
+	// 			select {
+	// 			case i := <-ch:
+	// 				fmt.Println("Value received:", i)
+	// 			}
+	// 		}
+	// 	}()
+	// 	for {
+	// 		select {
+	// 		case ch <- 0:
+	// 			fmt.Println("0")
+	// 		case ch <- 1:
+	// 			fmt.Println("1")
+	// 		}
+	// 	}
+	// }
 }
 func TestAccounts(t *testing.T) {
 
