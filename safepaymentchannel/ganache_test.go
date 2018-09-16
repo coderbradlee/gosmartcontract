@@ -37,23 +37,27 @@ func TestDeploy(t *testing.T) {
 
 }
 func TestChannel(t *testing.T) {
-	ch := make(chan int, 1)
-	for {
-		select {
-		case ch <- 0:
-		case ch <- 1:
+	{
+		ch := make(chan int, 1)
+		for {
+			select {
+			case ch <- 0:
+			case ch <- 1:
+			}
+			i := <-ch
+			fmt.Println("Value received:", i) // 随机输出0和1
 		}
-		i := <-ch
-		fmt.Println("Value received:", i) // 随机输出0和1
 	}
-	ch := make(chan int)
-	for {
-		select {
-		case ch <- 0:
-		case ch <- 1:
+	{
+		ch := make(chan int)
+		for {
+			select {
+			case ch <- 0:
+			case ch <- 1:
+			}
+			i := <-ch
+			fmt.Println("Value received:", i) // 报错：fatal error: all goroutines are asleep - deadlock!
 		}
-		i := <-ch
-		fmt.Println("Value received:", i) // 报错：fatal error: all goroutines are asleep - deadlock!
 	}
 }
 func TestAccounts(t *testing.T) {
