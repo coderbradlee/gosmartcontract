@@ -1,0 +1,1 @@
+abigen --sol=BountyHeap.sol --pkg=main --out=BountyHeap.go
