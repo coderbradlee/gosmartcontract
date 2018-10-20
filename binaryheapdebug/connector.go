@@ -18,7 +18,7 @@ import (
 type Connecter struct {
 	ctx             context.Context
 	conn            *ethclient.Client
-	lottery         *NXlottery
+	lottery         *BountyHeap
 	contractAddress common.Address
 }
 
@@ -28,7 +28,7 @@ func NewConnecter(host, addr string) *Connecter {
 	if err != nil {
 		panic(err)
 	}
-	l, err := NewNXlottery(contractAddress, conn)
+	l, err := NewBountyHeap(contractAddress, conn)
 	if err != nil {
 		panic(err)
 	}
@@ -45,7 +45,7 @@ func NewConnecterWithDeploy(host string, ownerAuth *bind.TransactOpts) *Connecte
 	if err != nil {
 		panic(err)
 	}
-	_, tx, l, err := DeployNXlottery(ownerAuth, conn)
+	_, tx, l, err := DeployBountyHeap(ownerAuth, conn)
 	if err != nil {
 		panic(err)
 	}
