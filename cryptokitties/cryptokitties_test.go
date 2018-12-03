@@ -39,55 +39,55 @@ var (
 // 	s.WatchOnBuys()
 	
 // }
-func mix(genes1,genes2 string)string{
-	// mGenes[48], sGenes[48], babyGenes[48]
+// func mix(genes1,genes2 string)string{
+// 	// mGenes[48], sGenes[48], babyGenes[48]
 
-	for i:=0;i<12;i++{
-		index:=4*i
-		for j:=3;j>0;j--{
-			if rand.Float64()< 0.25{
-				// swap(mGenes, index+j, index+j-1)
-				temp:=mGenes[index+j]
-				mGenes[index+j]=mGenes[index+j-1]
-				mGenes[index+j-1]=temp
-			}
-			if rand.Float64()< 0.25{
-				// swap(sGenes, index+j, index+j-1)
-				temp:=sGenes[index+j]
-				sGenes[index+j]=sGenes[index+j-1]
-				sGenes[index+j-1]=temp
-			}
-		}
-	}
-	for i:=0;i<48;i++{
-		mutation := 0
-		if i % 4 == 0{
-			gene1 := mGene[i]
-			gene2 := sGene[i]
-			if gene1 > gene2{
-				gene1, gene2 = gene2, gene1
-			}
-			if (gene2 - gene1 == 1) && iseven(gene1){
-				probability = 0.25
-				if gene1 > 23{
-					probability /= 2
-				}
-				if rand.Float64() < probability{
-					mutation = (gene1 / 2) + 16
-				}
-			}
-		}
-      	if mutation{
-			baby[i] = mutation
-		}else{
-			if rand.Float64() < 0.5{
-				babyGenes[i] = mGene[i]
-			}else{
-				babyGenes[i] = sGene[i]
-			}	
-		}
-	}
-}
+// 	for i:=0;i<12;i++{
+// 		index:=4*i
+// 		for j:=3;j>0;j--{
+// 			if rand.Float64()< 0.25{
+// 				// swap(mGenes, index+j, index+j-1)
+// 				temp:=mGenes[index+j]
+// 				mGenes[index+j]=mGenes[index+j-1]
+// 				mGenes[index+j-1]=temp
+// 			}
+// 			if rand.Float64()< 0.25{
+// 				// swap(sGenes, index+j, index+j-1)
+// 				temp:=sGenes[index+j]
+// 				sGenes[index+j]=sGenes[index+j-1]
+// 				sGenes[index+j-1]=temp
+// 			}
+// 		}
+// 	}
+// 	for i:=0;i<48;i++{
+// 		mutation := 0
+// 		if i % 4 == 0{
+// 			gene1 := mGene[i]
+// 			gene2 := sGene[i]
+// 			if gene1 > gene2{
+// 				gene1, gene2 = gene2, gene1
+// 			}
+// 			if (gene2 - gene1 == 1) && iseven(gene1){
+// 				probability = 0.25
+// 				if gene1 > 23{
+// 					probability /= 2
+// 				}
+// 				if rand.Float64() < probability{
+// 					mutation = (gene1 / 2) + 16
+// 				}
+// 			}
+// 		}
+//       	if mutation{
+// 			baby[i] = mutation
+// 		}else{
+// 			if rand.Float64() < 0.5{
+// 				babyGenes[i] = mGene[i]
+// 			}else{
+// 				babyGenes[i] = sGene[i]
+// 			}	
+// 		}
+// 	}
+// }
 
 func TestMix(t *testing.T){
 	gene1:="0x000063169218f348dc640d171b000208934b5a90189038cb3084624a50f7316c"
@@ -95,212 +95,212 @@ func TestMix(t *testing.T){
 	fmt.Println(anyToDecimal(gene1, 32))
 	fmt.Println(anyToDecimal(gene2, 32))
 }
-func TestDeploy(t *testing.T) {
-	ownerAuth := AuthAccount(userKeystore1,userPassphrase1)
-	c := NewConnecterWithDeploy(selfhost,ownerAuth)
+// func TestDeploy(t *testing.T) {
+// 	ownerAuth := AuthAccount(userKeystore1,userPassphrase1)
+// 	c := NewConnecterWithDeploy(selfhost,ownerAuth)
 
-	fmt.Println("Contract address is: ", c.contractAddress.String())
+// 	fmt.Println("Contract address is: ", c.contractAddress.String())
 	
-}
-func TestBuy(t *testing.T){
-	s := NewConnecter(selfhost,contractAddress)
-	ownerAuth1 := AuthAccount(userKeystore1,userPassphrase1)
-	s.Buy(ownerAuth1,1)
-	time.Sleep(time.Second*10)
-	s.Buy(ownerAuth1,0)
-	// ownerAuth2 := AuthAccount(userKeystore2,userPassphrase2)
-	// s.Buy(ownerAuth2,0)
-}
-func TestWithdrawAndReinvest(t *testing.T){
-	c := NewConnecter(selfhost,contractAddress)
-	auth := AuthAccount(userKeystore1,userPassphrase1)
-	auth.GasLimit = uint64(3000000)
-	// auth.Value = big.NewInt(50000000000000000) //0.05eth
-	{
-		// ret1, err := c.lottery.PlayerWithdraw(auth, big.NewInt(50000000000000000))
-		// if err != nil {
-		// 	fmt.Println(err)
-		// 	return
-		// }
-		// fmt.Println("PlayerWithdraw: ", ret1.Hash().Hex())
-	}
+// }
+// func TestBuy(t *testing.T){
+// 	s := NewConnecter(selfhost,contractAddress)
+// 	ownerAuth1 := AuthAccount(userKeystore1,userPassphrase1)
+// 	s.Buy(ownerAuth1,1)
+// 	time.Sleep(time.Second*10)
+// 	s.Buy(ownerAuth1,0)
+// 	// ownerAuth2 := AuthAccount(userKeystore2,userPassphrase2)
+// 	// s.Buy(ownerAuth2,0)
+// }
+// func TestWithdrawAndReinvest(t *testing.T){
+// 	c := NewConnecter(selfhost,contractAddress)
+// 	auth := AuthAccount(userKeystore1,userPassphrase1)
+// 	auth.GasLimit = uint64(3000000)
+// 	// auth.Value = big.NewInt(50000000000000000) //0.05eth
+// 	{
+// 		// ret1, err := c.lottery.PlayerWithdraw(auth, big.NewInt(50000000000000000))
+// 		// if err != nil {
+// 		// 	fmt.Println(err)
+// 		// 	return
+// 		// }
+// 		// fmt.Println("PlayerWithdraw: ", ret1.Hash().Hex())
+// 	}
 	
-	{
-			ret1, err := c.lottery.Reinvest(auth, big.NewInt(50000000000000000),1)
-			if err != nil {
-				fmt.Println(err)
-				return
-			}
-			fmt.Println("Reinvest: ", ret1.Hash().Hex())
-	}
-}
-func TestWithdrawFee(t *testing.T){
-	c := NewConnecter(selfhost,contractAddress)
-	auth := AuthAccount(userKeystore1,userPassphrase1)
-	auth.GasLimit = uint64(3000000)
+// 	{
+// 			ret1, err := c.lottery.Reinvest(auth, big.NewInt(50000000000000000),1)
+// 			if err != nil {
+// 				fmt.Println(err)
+// 				return
+// 			}
+// 			fmt.Println("Reinvest: ", ret1.Hash().Hex())
+// 	}
+// }
+// func TestWithdrawFee(t *testing.T){
+// 	c := NewConnecter(selfhost,contractAddress)
+// 	auth := AuthAccount(userKeystore1,userPassphrase1)
+// 	auth.GasLimit = uint64(3000000)
 	
-	{
-		ret1, err := c.lottery.WithdrawFee(auth, big.NewInt(10000000000000000))
-		if err != nil {
-			fmt.Println(err)
-			return
-		}
-		fmt.Println("WithdrawFee: ", ret1.Hash().Hex())
-	}
-}
-func TestGet(t *testing.T) {
-	s := NewConnecter(selfhost,contractAddress)
-	auth := AuthAccount(userKeystore1,userPassphrase1)
-	// auth.GasLimit = uint64(3000000)
-	fmt.Println("########################################################")
-	{
-		ret1, err := s.lottery.GetCreator(nil)
-		if err != nil {
-			fmt.Println(err)
-			return
-		}
-		fmt.Println("GetCreator: ", ret1.String())
-	}
-	fmt.Println("########################################################")
-	{
-		ret1, err := s.lottery.GetCurrentRoundLeft(nil)
-		if err != nil {
-			fmt.Println(err)
-			return
-		}
-		fmt.Println("GetCurrentRoundLeft: ", ret1.String())
-	}
-	fmt.Println("########################################################")
-	{
-		ret1, err := s.lottery.GetFee(nil)
-		if err != nil {
-			fmt.Println(err)
-			// return
-		}
-		fmt.Println("GetFee: ", ret1)
-	}
-	fmt.Println("########################################################")
-	{
-		ret1, err := s.lottery.GetEndowmentBalance(nil)
-		if err != nil {
-			fmt.Println(err)
-			// return
-		}
-		fmt.Println("GetEndowmentBalance: ", ret1)
-	}
-	fmt.Println("########################################################")
-	{
-		ret1,err := s.lottery.GetBlock(auth)
-		if err != nil {
-			fmt.Println("GetBlock:",err)
-			// return
-		}else{
-			fmt.Println("GetBlock:",ret1.Hash().Hex())
-		}
-	}
-	// fmt.Println("########################################################")
-	// {
-	// 	ret1, err := s.lottery.Reinvest(auth, big.NewInt(1000000000000000000), 0)
-	// 	if err != nil {
-	// 		fmt.Println(err)
-	// 		return
-	// 	}
-	// 	fmt.Println("Reinvest: ", ret1.Hash().Hex())
-	// }
-	fmt.Println("########################################################")
-	{
-		// GetPlayerInfoByAddress(opts *bind.CallOpts, addr common.Address) (*big.Int, *big.Int, *big.Int, *big.Int, *big.Int, *big.Int, *big.Int, *big.Int, uint8, error) 
-		ret1, ret2, ret3, ret4, ret5, ret6, ret7, ret8, ret9, ret10, ret11,err := s.lottery.GetPlayerInfoByAddress(nil, common.HexToAddress(userAddress1))
-		if err != nil {
-			fmt.Println(err)
-			// return
-		}
-		fmt.Println("GetPlayerInfoByAddress: ",userAddress1)
-		fmt.Println("currentroundIn0: ", ret1)
-		fmt.Println("currentroundIn1: ", ret2)
-		fmt.Println("lastRoundIn0: ", ret3)
-		fmt.Println("lastRoundIn1: ", ret4)
-		fmt.Println("allRoundIn: ", ret5)
-		fmt.Println("win: ", ret6)
-		fmt.Println("lastwin: ", ret7)
-		fmt.Println("withdrawed: ", ret8)
-		fmt.Println("currRoundId: ", ret9)
-		fmt.Println("lrnd: ", ret10)
-		fmt.Println("teamId: ", ret11)
-	}
-	fmt.Println("########################################################")
-	{
-		ret1, ret2, ret3, ret4, ret5, ret6, ret7, ret8,ret9, ret10, ret11, err := s.lottery.GetPlayerInfoByAddress(nil, common.HexToAddress(userAddress2))
-		if err != nil {
-			fmt.Println(err)
-			// return
-		}
-		fmt.Println("GetPlayerInfoByAddress: ",userAddress1)
-		fmt.Println("currentroundIn0: ", ret1)
-		fmt.Println("currentroundIn1: ", ret2)
-		fmt.Println("lastRoundIn0: ", ret3)
-		fmt.Println("lastRoundIn1: ", ret4)
-		fmt.Println("allRoundIn: ", ret5)
-		fmt.Println("win: ", ret6)
-		fmt.Println("lastwin: ", ret7)
-		fmt.Println("withdrawed: ", ret8)
-		fmt.Println("currRoundId: ", ret9)
-		fmt.Println("lrnd: ", ret10)
-		fmt.Println("teamId: ", ret11)
-	}
-	fmt.Println("########################################################")
-	{
-		// GetRoundInfo(opts *bind.CallOpts, roundId *big.Int) (*big.Int, common.Address, *big.Int, *big.Int, *big.Int, *big.Int, *big.Int, *big.Int, bool, *big.Int, error)
-		ret1, ret2, ret3, ret4, ret5, ret6, ret7, ret8, ret9, ret10, err := s.lottery.GetRoundInfo(nil, big.NewInt(1))
-		if err != nil {
-			fmt.Println(err)
-			// return
-		}
-		fmt.Println("GetRoundInfo(1)")
-		fmt.Println("rid: ", ret1)
-		fmt.Println("addr: ", ret2.String())
-		fmt.Println("strt: ", ret3)
-		fmt.Println("end: ", ret4)
-		fmt.Println("etc: ", ret5)
-		fmt.Println("etc0: ", ret6)
-		fmt.Println("etc1: ", ret7)
-		fmt.Println("pot: ", ret8)
-		fmt.Println("ended: ", ret9)
-		fmt.Println("winTeam: ", ret10)
-	}
-	fmt.Println("########################################################")
-	{
-		// GetCurrentInfo(opts *bind.CallOpts) (*big.Int, common.Address, *big.Int, *big.Int, *big.Int, *big.Int, *big.Int, *big.Int, bool, *big.Int, error)
-		ret1, ret2, ret3, ret4, ret5, ret6, ret7, ret8, ret9, ret10, err := s.lottery.GetCurrentInfo(nil)
-		if err != nil {
-			fmt.Println(err)
-			// return
-		}
-		fmt.Println("GetRoundInfo")
-		fmt.Println("rid: ", ret1)
-		fmt.Println("addr: ", ret2.String())
-		fmt.Println("strt: ", ret3)
-		fmt.Println("end: ", ret4)
-		fmt.Println("etc: ", ret5)
-		fmt.Println("etc0: ", ret6)
-		fmt.Println("etc1: ", ret7)
-		fmt.Println("pot: ", ret8)
-		fmt.Println("ended: ", ret9)
-		fmt.Println("winTeam: ", ret10)
-	}
-	fmt.Println("########################################################")
-	{
-		// GetTotalInfo(opts *bind.CallOpts) (*big.Int, *big.Int, *big.Int, *big.Int, *big.Int, error)
-		ret1, ret2, ret3, ret4, ret5, err := s.lottery.GetTotalInfo(nil)
-		if err != nil {
-			fmt.Println(err)
-			// return
-		}
-		fmt.Println("totalIn: ", ret1)
-		fmt.Println("bullTotalIn: ", ret2)
-		fmt.Println("bearTotalIn: ", ret3)
-		fmt.Println("bullTotalWin: ", ret4)
-		fmt.Println("bearTotalWin: ", ret5)
-	}
+// 	{
+// 		ret1, err := c.lottery.WithdrawFee(auth, big.NewInt(10000000000000000))
+// 		if err != nil {
+// 			fmt.Println(err)
+// 			return
+// 		}
+// 		fmt.Println("WithdrawFee: ", ret1.Hash().Hex())
+// 	}
+// }
+// func TestGet(t *testing.T) {
+// 	s := NewConnecter(selfhost,contractAddress)
+// 	auth := AuthAccount(userKeystore1,userPassphrase1)
+// 	// auth.GasLimit = uint64(3000000)
+// 	fmt.Println("########################################################")
+// 	{
+// 		ret1, err := s.lottery.GetCreator(nil)
+// 		if err != nil {
+// 			fmt.Println(err)
+// 			return
+// 		}
+// 		fmt.Println("GetCreator: ", ret1.String())
+// 	}
+// 	fmt.Println("########################################################")
+// 	{
+// 		ret1, err := s.lottery.GetCurrentRoundLeft(nil)
+// 		if err != nil {
+// 			fmt.Println(err)
+// 			return
+// 		}
+// 		fmt.Println("GetCurrentRoundLeft: ", ret1.String())
+// 	}
+// 	fmt.Println("########################################################")
+// 	{
+// 		ret1, err := s.lottery.GetFee(nil)
+// 		if err != nil {
+// 			fmt.Println(err)
+// 			// return
+// 		}
+// 		fmt.Println("GetFee: ", ret1)
+// 	}
+// 	fmt.Println("########################################################")
+// 	{
+// 		ret1, err := s.lottery.GetEndowmentBalance(nil)
+// 		if err != nil {
+// 			fmt.Println(err)
+// 			// return
+// 		}
+// 		fmt.Println("GetEndowmentBalance: ", ret1)
+// 	}
+// 	fmt.Println("########################################################")
+// 	{
+// 		ret1,err := s.lottery.GetBlock(auth)
+// 		if err != nil {
+// 			fmt.Println("GetBlock:",err)
+// 			// return
+// 		}else{
+// 			fmt.Println("GetBlock:",ret1.Hash().Hex())
+// 		}
+// 	}
+// 	// fmt.Println("########################################################")
+// 	// {
+// 	// 	ret1, err := s.lottery.Reinvest(auth, big.NewInt(1000000000000000000), 0)
+// 	// 	if err != nil {
+// 	// 		fmt.Println(err)
+// 	// 		return
+// 	// 	}
+// 	// 	fmt.Println("Reinvest: ", ret1.Hash().Hex())
+// 	// }
+// 	fmt.Println("########################################################")
+// 	{
+// 		// GetPlayerInfoByAddress(opts *bind.CallOpts, addr common.Address) (*big.Int, *big.Int, *big.Int, *big.Int, *big.Int, *big.Int, *big.Int, *big.Int, uint8, error) 
+// 		ret1, ret2, ret3, ret4, ret5, ret6, ret7, ret8, ret9, ret10, ret11,err := s.lottery.GetPlayerInfoByAddress(nil, common.HexToAddress(userAddress1))
+// 		if err != nil {
+// 			fmt.Println(err)
+// 			// return
+// 		}
+// 		fmt.Println("GetPlayerInfoByAddress: ",userAddress1)
+// 		fmt.Println("currentroundIn0: ", ret1)
+// 		fmt.Println("currentroundIn1: ", ret2)
+// 		fmt.Println("lastRoundIn0: ", ret3)
+// 		fmt.Println("lastRoundIn1: ", ret4)
+// 		fmt.Println("allRoundIn: ", ret5)
+// 		fmt.Println("win: ", ret6)
+// 		fmt.Println("lastwin: ", ret7)
+// 		fmt.Println("withdrawed: ", ret8)
+// 		fmt.Println("currRoundId: ", ret9)
+// 		fmt.Println("lrnd: ", ret10)
+// 		fmt.Println("teamId: ", ret11)
+// 	}
+// 	fmt.Println("########################################################")
+// 	{
+// 		ret1, ret2, ret3, ret4, ret5, ret6, ret7, ret8,ret9, ret10, ret11, err := s.lottery.GetPlayerInfoByAddress(nil, common.HexToAddress(userAddress2))
+// 		if err != nil {
+// 			fmt.Println(err)
+// 			// return
+// 		}
+// 		fmt.Println("GetPlayerInfoByAddress: ",userAddress1)
+// 		fmt.Println("currentroundIn0: ", ret1)
+// 		fmt.Println("currentroundIn1: ", ret2)
+// 		fmt.Println("lastRoundIn0: ", ret3)
+// 		fmt.Println("lastRoundIn1: ", ret4)
+// 		fmt.Println("allRoundIn: ", ret5)
+// 		fmt.Println("win: ", ret6)
+// 		fmt.Println("lastwin: ", ret7)
+// 		fmt.Println("withdrawed: ", ret8)
+// 		fmt.Println("currRoundId: ", ret9)
+// 		fmt.Println("lrnd: ", ret10)
+// 		fmt.Println("teamId: ", ret11)
+// 	}
+// 	fmt.Println("########################################################")
+// 	{
+// 		// GetRoundInfo(opts *bind.CallOpts, roundId *big.Int) (*big.Int, common.Address, *big.Int, *big.Int, *big.Int, *big.Int, *big.Int, *big.Int, bool, *big.Int, error)
+// 		ret1, ret2, ret3, ret4, ret5, ret6, ret7, ret8, ret9, ret10, err := s.lottery.GetRoundInfo(nil, big.NewInt(1))
+// 		if err != nil {
+// 			fmt.Println(err)
+// 			// return
+// 		}
+// 		fmt.Println("GetRoundInfo(1)")
+// 		fmt.Println("rid: ", ret1)
+// 		fmt.Println("addr: ", ret2.String())
+// 		fmt.Println("strt: ", ret3)
+// 		fmt.Println("end: ", ret4)
+// 		fmt.Println("etc: ", ret5)
+// 		fmt.Println("etc0: ", ret6)
+// 		fmt.Println("etc1: ", ret7)
+// 		fmt.Println("pot: ", ret8)
+// 		fmt.Println("ended: ", ret9)
+// 		fmt.Println("winTeam: ", ret10)
+// 	}
+// 	fmt.Println("########################################################")
+// 	{
+// 		// GetCurrentInfo(opts *bind.CallOpts) (*big.Int, common.Address, *big.Int, *big.Int, *big.Int, *big.Int, *big.Int, *big.Int, bool, *big.Int, error)
+// 		ret1, ret2, ret3, ret4, ret5, ret6, ret7, ret8, ret9, ret10, err := s.lottery.GetCurrentInfo(nil)
+// 		if err != nil {
+// 			fmt.Println(err)
+// 			// return
+// 		}
+// 		fmt.Println("GetRoundInfo")
+// 		fmt.Println("rid: ", ret1)
+// 		fmt.Println("addr: ", ret2.String())
+// 		fmt.Println("strt: ", ret3)
+// 		fmt.Println("end: ", ret4)
+// 		fmt.Println("etc: ", ret5)
+// 		fmt.Println("etc0: ", ret6)
+// 		fmt.Println("etc1: ", ret7)
+// 		fmt.Println("pot: ", ret8)
+// 		fmt.Println("ended: ", ret9)
+// 		fmt.Println("winTeam: ", ret10)
+// 	}
+// 	fmt.Println("########################################################")
+// 	{
+// 		// GetTotalInfo(opts *bind.CallOpts) (*big.Int, *big.Int, *big.Int, *big.Int, *big.Int, error)
+// 		ret1, ret2, ret3, ret4, ret5, err := s.lottery.GetTotalInfo(nil)
+// 		if err != nil {
+// 			fmt.Println(err)
+// 			// return
+// 		}
+// 		fmt.Println("totalIn: ", ret1)
+// 		fmt.Println("bullTotalIn: ", ret2)
+// 		fmt.Println("bearTotalIn: ", ret3)
+// 		fmt.Println("bullTotalWin: ", ret4)
+// 		fmt.Println("bearTotalWin: ", ret5)
+// 	}
 
-}
+// }
