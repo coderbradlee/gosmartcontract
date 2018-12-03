@@ -40,8 +40,6 @@ contract Ownable {
 
 }
 
-
-
 /// @title Interface for contracts conforming to ERC-721: Non-Fungible Tokens
 /// @author Dieter Shirley <dete@axiomzen.co> (https://github.com/dete)
 contract ERC721 {
@@ -67,17 +65,9 @@ contract ERC721 {
     function supportsInterface(bytes4 _interfaceID) external view returns (bool);
 }
 
-
 // // Auction wrapper functions
 
-
 // Auction wrapper functions
-
-
-
-
-
-
 
 /// @title SEKRETOOOO
 contract GeneScienceInterface {
@@ -88,14 +78,52 @@ contract GeneScienceInterface {
     /// @param genes1 genes of mom
     /// @param genes2 genes of sire
     /// @return the genes that are supposed to be passed down the child
-    function mixGenes(uint256 genes1, uint256 genes2, uint256 targetBlock) public returns (uint256);
+//     function mixGenes(uint256 genes1, uint256 genes2, uint256 targetBlock) public returns (uint256);
+//     def mixGenes(mGenes[48], sGenes[48], babyGenes[48]):
+//   # PARENT GENE SWAPPING
+//   for (i = 0; i < 12; i++):
+//     index = 4 * i
+//     for (j = 3; j > 0; j--):
+//       if random() < 0.25:
+//         swap(mGenes, index+j, index+j-1)
+//       if random() < 0.25:
+//         swap(sGenes, index+j, index+j-1)
+//   # BABY GENES
+//   for (i = 0; i < 48; i++):
+//     mutation = 0
+//     # CHECK MUTATION
+//     if i % 4 == 0:
+//       gene1 = mGene[i]
+//       gene2 = sGene[i]
+//       if gene1 > gene2:
+//         gene1, gene2 = gene2, gene1
+//       if (gene2 - gene1) == 1 and iseven(gene1):
+//         probability = 0.25
+//         if gene1 > 23:
+//           probability /= 2
+//         if random() < probability:
+//           mutation = (gene1 / 2) + 16
+//     # GIVE BABY GENES
+//     if mutation:
+//       baby[i] = mutation
+//     else:
+//       if random() < 0.5:
+//         babyGenes[i] = mGene[i]
+//       else:
+//         babyGenes[i] = sGene[i]
+
+// mgenes = Kai.encode( mgenes_hex )
+// p Kai.fmt( mgenes )
+// # => "ddca 578k a4f7 949p 4d11 535k aeea 175h 846k 2243 aa9g fdcd"
+
+// sgenes = Kai.encode( sgenes_hex )
+// p Kai.fmt( sgenes )
+// # => "c9am 6556 7ff7 b9gg 1d11 3853 9f77 6475 77k4 6784 f9gp fcaa"
+
+// babygenes = mixgenes( mgenes, sgenes )
+// p Kai.fmt( babygenes )
+// # => "9dca 5586 aff7 b99p 1d11 33k5 aea7 67h5 74kk 6744 aafg ffaa"
 }
-
-
-
-
-
-
 
 /// @title A facet of KittyCore that manages special access privileges.
 /// @author Axiom Zen (https://www.axiomzen.co)
