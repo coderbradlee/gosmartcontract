@@ -92,8 +92,14 @@ var (
 func TestMix(t *testing.T){
 	gene1:="0x000063169218f348dc640d171b000208934b5a90189038cb3084624a50f7316c"
 	gene2:="0x000063169218f348dc640d171b000208934b5a90189038cb3084624a50f7316c"
-	fmt.Println(anyToDecimal(gene1, 32))
-	fmt.Println(anyToDecimal(gene2, 32))
+	// fmt.Println(anyToDecimal(gene1, 32))
+	// fmt.Println(anyToDecimal(gene2, 32))
+	g1:=big.NewInt(0)
+	g1.SetString(gene1,16)
+	fmt.Println(g1.Text(16))
+
+	g1.SetString(gene2,16)
+	fmt.Println(g1.Text(16))
 }
 // func TestDeploy(t *testing.T) {
 // 	ownerAuth := AuthAccount(userKeystore1,userPassphrase1)
