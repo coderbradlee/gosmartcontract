@@ -1,4 +1,4 @@
-package highlimit
+package loopring
 
 import (
 	"bytes"
@@ -13,7 +13,6 @@ import (
 	"sync"
 
 	"github.com/ethereum/go-ethereum/common"
-
 )
 
 type RPCClient struct {
@@ -305,6 +304,7 @@ func (r *RPCClient) markAlive() {
 	}
 	r.Unlock()
 }
+
 // func (r *RPCClient) SendTransactionParity(from, to, gas, gasPrice, value string, autoGas bool, pwd string) (string, error) {
 
 // 	params := map[string]string{
@@ -315,7 +315,7 @@ func (r *RPCClient) markAlive() {
 // 	params["gas"] = gas
 // 	params["gasPrice"] = gasPrice
 // 	}
-	
+
 // 	rpcResp, err := r.doPost(r.Url, "personal_sendTransaction", []interface{}{params, pwd})
 // 	var reply string
 // 	if err != nil {
