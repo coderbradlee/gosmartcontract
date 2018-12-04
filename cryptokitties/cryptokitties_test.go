@@ -96,9 +96,11 @@ func TestMix(t *testing.T){
 	// fmt.Println(anyToDecimal(gene2, 32))
 	g1:=big.NewInt(0)
 	g1.SetString(gene1,16)
+	fmt.Println(g1.Text(16))
 	fmt.Println(g1.Text(32))
 
 	g1.SetString(gene2,16)
+	fmt.Println(g1.Text(16))
 	fmt.Println(g1.Text(32))
 }
 // func TestDeploy(t *testing.T) {
