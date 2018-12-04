@@ -91,7 +91,7 @@ var (
 
 func TestMix(t *testing.T){
 	gene1:="000063169218f348dc640d171b000208934b5a90189038cb3084624a50f7316c"
-	gene2:="000063169218f348dc640d171b000208934b5a90189038cb3084624a50f7316c"
+	gene2:="00005a13429085339c6521ef0300011c82438c628cc431a63298e3721f772d29"
 	// fmt.Println(anyToDecimal(gene1, 32))
 	// fmt.Println(anyToDecimal(gene2, 32))
 	g1:=big.NewInt(0)

@@ -15,116 +15,113 @@ import (
 	// "github.com/ethereum/go-ethereum/core/types"
 	// "github.com/ethereum/go-ethereum/event"
 )
-var tenToAny map[int]string = map[int]string{
-	0: "0",
-	1: "1",
-	2: "2",
-	3: "3",
-	4: "4",
-	5: "5",
-	6: "6",
-	7: "7",
-	8: "8",
-	9: "9",
-	10: "a",
-	11: "b",
-	12: "c",
-	13: "d",
-	14: "e",
-	15: "f",
-	16: "g",
-	17: "h",
-	18: "i",
-	19: "j",
-	20: "k",
-	21: "l",
-	22: "m",
-	23: "n",
-	24: "o",
-	25: "p",
-	26: "q",
-	27: "r",
-	28: "s",
-	29: "t",
-	30: "u",
-	31: "v",
-	32: "w",
-	33: "x",
-	34: "y",
-	35: "z",
-	36: "A",
-	37: "B",
-	38: "C",
-	39: "D",
-	40: "E",
-	41: "F",
-	42: "G",
-	43: "H",
-	44: "I",
-	45: "J",
-	46: "K",
-	47: "L",
-	48: "M",
-	49: "N",
-	50: "O",
-	51: "P",
-	52: "Q",
-	53: "R",
-	54: "S",
-	55: "T",
-	56: "U",
-	57: "V",
-	58: "W",
-	59: "X",
-	60: "Y",
-	61: "Z"}
-
-// 10进制转任意进制
-func decimalToAny(num, n int) string {
-	new_num_str := ""
-	var remainder int
-	var remainder_string string
-	for num != 0 {
-		remainder = num % n
-		if 76 > remainder && remainder > 9 {
-			remainder_string = tenToAny[remainder]
-		} else {
-			remainder_string = strconv.Itoa(remainder)
-		}
-		new_num_str = remainder_string + new_num_str
-		num = num / n
+var (
+	ALPHABET = "123456789abcdefghijkmnopqrstuvwx"
+  	BASE     = 32   //## 32 chars/letters/digits
+)
+//   def self.encode( num )
+//     buf = String.new
+//     while num >= BASE
+//       ## puts "num=#{num}"
+//       mod = num % BASE
+//       ## puts "  mod=#{mod} == #{ALPHABET[mod]}"
+//       buf = ALPHABET[mod] + buf
+//       ## puts "buf=#{buf}"
+//       num = (num - mod)/BASE
+//     end
+//     ALPHABET[num] + buf
+//   end
+func Encode(hexNum string)(ret string){
+	if hexNum[:2]=="0x"{
+		hexNum=hexNum[2:]
 	}
-	return new_num_str
+	for _,v:=range hexNum{
+
+	}
 }
 
-// map根据value找key
-func findKey(in string) int {
-	result := -1
-	for k, v := range tenToAny {
-		if in == v {
-			result = k
-		}
-	}
-	return result
+  # Converts a base32 string to a base10 integer.
+  def self.decode( str )
+    ## note: allow spaces; remove them all first
+    str = str.gsub( ' ', '' )
+
+    num = 0
+    str.reverse.each_char.with_index do |char,index|
+      code = NUMBER[char]
+      raise ArgumentError, "Value passed not a valid base32 string - >#{char}< not found in alphabet"  if code.nil?
+      num += code * (BASE**(index))
+    end
+    num
+  end
+
+
+## simple hash map (helper) for conversion to binary string
+BINARY = {
+  '1' => '00000',    # 0
+  '2' => '00001',    # 1
+  '3' => '00010',    # 2
+  '4' => '00011',    # 3
+  '5' => '00100',    # 4
+  '6' => '00101',    # 5
+  '7' => '00110',    # 6
+  '8' => '00111',    # 7
+  '9' => '01000',    # 8
+  'a' => '01001',    # 9
+  'b' => '01010',    # 10
+  'c' => '01011',    # 11
+  'd' => '01100',    # 12
+  'e' => '01101',    # 13
+  'f' => '01110',    # 14
+  'g' => '01111',    # 15
+  'h' => '10000',    # 16
+  'i' => '10001',    # 17
+  'j' => '10010',    # 18
+  'k' => '10011',    # 19
+  'm' => '10100',    # 20
+  'n' => '10101',    # 21
+  'o' => '10110',    # 22
+  'p' => '10111',    # 23
+  'q' => '11000',    # 24
+  'r' => '11001',    # 25
+  's' => '11010',    # 26
+  't' => '11011',    # 27
+  'u' => '11100',    # 28
+  'v' => '11101',    # 29
+  'w' => '11110',    # 30
+  'x' => '11111'     # 31
 }
 
-// 任意进制转10进制
-func anyToDecimal(num string, n int) int {
-	var new_num float64
-	new_num = 0.0
-	nNum := len(strings.Split(num, "")) - 1
-	for _, value := range strings.Split(num, "") {
-		tmp := float64(findKey(value))
-		if tmp != -1 {
-			new_num = new_num + tmp * math.Pow(float64(n), float64(nNum))
-			nNum = nNum - 1
-		} else {
-			break
-		}
-	}
-	return int(new_num)
+NUMBER = {    ## rename INTEGER /INT - why? why not??
+  '1' => 0, 'l' => 0, 'L'=> 0,
+  '2' => 1,
+  '3' => 2,
+  '4' => 3,
+  '5' => 4,
+  '6' => 5,
+  '7' => 6,
+  '8' => 7,
+  '9' => 8,
+  'a' => 9,  'A' => 9,
+  'b' => 10, 'B' => 10,
+  'c' => 11, 'C' => 11,
+  'd' => 12, 'D' => 12,
+  'e' => 13, 'E' => 13,
+  'f' => 14, 'F' => 14,
+  'g' => 15, 'G' => 15,
+  'h' => 16, 'H' => 16,
+  'i' => 17, 'I' => 17,
+  'j' => 18, 'J' => 18,
+  'k' => 19, 'K' => 19,
+  'm' => 20, 'M' => 20,
+  'n' => 21, 'N' => 21,
+  'o' => 22, 'O' => 22, '0' => 22,
+  'p' => 23, 'P' => 23,
+  'q' => 24, 'Q' => 24,
+  'r' => 25, 'R' => 25,
+  's' => 26, 'S' => 26,
+  't' => 27, 'T' => 27,
+  'u' => 28, 'U' => 28,
+  'v' => 29, 'V' => 29,
+  'w' => 30, 'W' => 30,
+  'x' => 31, 'X' => 31
 }
-// func main() {
-// 	fmt.Println(decimalToAny(1, 62))
-// 	fmt.Println(anyToDecimal("1", 62))
-// }
