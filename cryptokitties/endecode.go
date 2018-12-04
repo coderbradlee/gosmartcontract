@@ -126,7 +126,7 @@ func MixGenes(mGenes,sGenes string)(babyGenes string){
 				}
 				
 				if rand.Float64() < probability{
-					mutation = (gene1 / 2) + 16
+					mutation = (int(gene1) / 2) + 16
 				}	
 			}
 		}
