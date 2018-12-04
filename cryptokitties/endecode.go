@@ -17,19 +17,60 @@ import (
 	"fmt"
 )
 var (
-	ALPHABET = "123456789abcdefghijkmnopqrstuvwx"//此实现不是32进制表示，正确的应该是从0-w，在golang中需要将转换完的32进制
-  	BASE     = 32   //## 32 chars/letters/digits
+	// ALPHABET = "123456789abcdefghijkmnopqrstuvwx"//此实现不是32进制表示，正确的应该是从0-w，在golang中需要将转换完的32进制
+	// 			   0123456789abcdefghijklmnopqrstuv
+	// BASE     = 32   //## 32 chars/letters/digits
+	
 )
 func ConvertTo32(hex string)(ret string){
+	m1 := make(map[string]string)
+	m1["0"] = "1"
+	m1["1"] = "2"
+	m1["2"] = "3"
+	m1["3"] = "4"
+	m1["4"] = "5"
+	m1["5"] = "6"
+	m1["6"] = "7"
+	m1["7"] = "8"
+	m1["8"] = "9"
+	m1["9"] = "a"
+	m1["a"] = "b"
+	m1["b"] = "c"
+	m1["c"] = "d"
+	m1["d"] = "e"
+	m1["e"] = "f"
+	m1["f"] = "g"
+	m1["g"] = "h"
+	m1["h"] = "i"
+	m1["i"] = "j"
+	m1["j"] = "k"
+	m1["k"] = "m"
+	m1["l"] = "n"
+	m1["m"] = "o"
+	m1["n"] = "p"
+	m1["o"] = "q"
+	m1["p"] = "r"
+	m1["q"] = "s"
+	m1["r"] = "t"
+	m1["s"] = "u"
+	m1["t"] = "v"
+	m1["u"] = "w"
+	m1["v"] = "x"
+
+
+
+
+
+
+
+
 	g1:=big.NewInt(0)
 	g1.SetString(hex,16)
 	// fmt.Println(g1.Text(16))
 	// fmt.Println(g1.Text(32))
 	ori:=g1.Text(32)
 	for _,v:=range ori{
-		index:=int(v)
-		fmt.Println(index)
-		ret+=string(ALPHABET[index])
+		ret+=m1[v])
 	}
 	return
 }
