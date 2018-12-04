@@ -113,8 +113,8 @@ func MixGenes(mGenes,sGenes string)(babyGenes string){
 	for i:=0;i<48;i++{
 		mutation := 0
 		if i%4==0{
-			gene1 := mGene[i]
-			gene2 := sGene[i]
+			gene1 := mGenes[i]
+			gene2 := sGenes[i]
 			if gene1 > gene2{
 				gene1, gene2 = gene2, gene1
 			}
