@@ -111,6 +111,8 @@ func MixGenes(mGenes,sGenes string)(ret string){
 			}
 		}
 	}
+	fmt.Println("mGenes::",mGenes)
+	fmt.Println("sGenes::",sGenes)
 	for i:=0;i<48;i++{
 		mutation := 0
 		if i%4==0{
