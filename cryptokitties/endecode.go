@@ -16,7 +16,7 @@ import (
 	// "github.com/ethereum/go-ethereum/event"
 )
 var (
-	ALPHABET = "123456789abcdefghijkmnopqrstuvwx"
+	ALPHABET = "123456789abcdefghijkmnopqrstuvwx"//此实现不是32进制表示，正确的应该是从0-w，在golang中需要将转换完的32进制
   	BASE     = 32   //## 32 chars/letters/digits
 )
 //   def self.encode( num )

@@ -115,13 +115,19 @@ func TestMix(t *testing.T){
 
 	g1.SetString(gene2,16)
 	fmt.Println(g1.Text(16))
-	fmt.Println(g1.Text(32))
+	ori:=g1.Text(32)
+	for i,_:=range ori{
+		ori[i]=ori[i]+1
+	}
+	fmt.Println(ori)
 	
 	fmt.Println("")
 
 	g1.SetString(gene3,16)
 	fmt.Println(g1.Text(16))
 	fmt.Println(g1.Text(32))
+	// 9999 6774 11e1 9fee 0550 6644 d868 1330 5556 6553 9899 beee
+	// aaaa 7885 22f2 agff 1661 7755 e979 2441 6667 7664 a9aa cfff
 }
 // func TestDeploy(t *testing.T) {
 // 	ownerAuth := AuthAccount(userKeystore1,userPassphrase1)
