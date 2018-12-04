@@ -94,7 +94,8 @@ func iseven(c rune)bool{
 	}
 	return false
 }
-func MixGenes(mGenes,sGenes string)(babyGenes string){
+func MixGenes(mGenes,sGenes string)(ret string){
+	var babyGenes [48]rune
 	for i:=0;i<12;i++{
 		index:=4*i
 		for j:=3;j>0;j--{
@@ -139,5 +140,7 @@ func MixGenes(mGenes,sGenes string)(babyGenes string){
 				babyGenes[i] = sGene[i]
 			}
 		}
-	} 
+	}
+	ret= string(babyGenes)
+	return
 }
