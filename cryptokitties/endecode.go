@@ -5,9 +5,9 @@ package cryptokitties
 
 import (
 	// "math/big"
-	"strings"
-	"strconv"
-	"math"
+	// "strings"
+	// "strconv"
+	// "math"
 	// ethereum "github.com/ethereum/go-ethereum"
 	// "github.com/ethereum/go-ethereum/accounts/abi"
 	// "github.com/ethereum/go-ethereum/accounts/abi/bind"
