@@ -15,14 +15,17 @@ import (
 	// "github.com/ethereum/go-ethereum/core/types"
 	// "github.com/ethereum/go-ethereum/event"
 	"fmt"
+	"time"
 )
+
 var (
-	// ALPHABET = "123456789abcdefghijkmnopqrstuvwx"//此实现不是32进制表示，正确的应该是从0-w，在golang中需要将转换完的32进制
-	// 			   0123456789abcdefghijklmnopqrstuv
-	// BASE     = 32   //## 32 chars/letters/digits
-	
+// ALPHABET = "123456789abcdefghijkmnopqrstuvwx"//此实现不是32进制表示，正确的应该是从0-w，在golang中需要将转换完的32进制
+// 			   0123456789abcdefghijklmnopqrstuv
+// BASE     = 32   //## 32 chars/letters/digits
+
 )
-func ConvertTo32(hex string)(ret string){
+
+func ConvertTo32(hex string) (ret string) {
 	m1 := make(map[string]string)
 	m1["0"] = "1"
 	m1["1"] = "2"
@@ -57,104 +60,105 @@ func ConvertTo32(hex string)(ret string){
 	m1["u"] = "w"
 	m1["v"] = "x"
 
-	g1:=big.NewInt(0)
-	g1.SetString(hex,16)
+	g1 := big.NewInt(0)
+	g1.SetString(hex, 16)
 	// fmt.Println(g1.Text(16))
 	// fmt.Println(g1.Text(32))
-	ori:=g1.Text(32)
-	for _,v:=range ori{
-		ret+=m1[string(v)]
+	ori := g1.Text(32)
+	for _, v := range ori {
+		ret += m1[string(v)]
 	}
 	return
 }
-func iseven(c rune)bool{
+func iseven(c rune) bool {
 	switch c {
-		case '2'://123456789abcdefghijkmnopqrstuvwx
-		case '4':
-		case '6':
-		case '8':
-		case 'a':
-		case 'c':
-		case 'e':
-		case 'g':
-		case 'i':
-		case 'k':
-		case 'n':
-		case 'p':
-		case 'r':
-		case 't':
-		case 'v':
-		case 'x':			
-			return true
-		default:
-			// freebsd, openbsd,
-			// plan9, windows...
-			// fmt.Printf("%s.", os)
-			return false
+	case '2': //123456789abcdefghijkmnopqrstuvwx
+	case '4':
+	case '6':
+	case '8':
+	case 'a':
+	case 'c':
+	case 'e':
+	case 'g':
+	case 'i':
+	case 'k':
+	case 'n':
+	case 'p':
+	case 'r':
+	case 't':
+	case 'v':
+	case 'x':
+		return true
+	default:
+		// freebsd, openbsd,
+		// plan9, windows...
+		// fmt.Printf("%s.", os)
+		return false
 	}
 	return false
 }
-func MixGenes(mGenes,sGenes string)(ret string){
-// 	ddca578ka4f7949p4d11535kaeea175h846k2243aa9gfdcd
-//	ddca5k78a47f994p4d11553keaea175h846k4223aa9gdfcd
-//  c9am65567ff7b9gg1d1138539f77647577k46784f9gpfcaa
-//  c9am65657ff7b9gg11d183359f77647577k46748f9gpfcaa
-// mGenes:: ddca5k78a47f994p4d11553keaea175h846k4223aa9gdfcd
-// sGenes:: c9am65657ff7b9gg11d183359f77647577k46748f9gpfcaa
-// c9am65657ff7b9gg11d183359f77647577k46748f9gpfcaa
-// c9cm65657477b9gg41d1533k9aea147577644243aa9pfcaa
+func MixGenes(mGenes, sGenes string) (ret string) {
+	// 	ddca578ka4f7949p4d11535kaeea175h846k2243aa9gfdcd
+	//	ddca5k78a47f994p4d11553keaea175h846k4223aa9gdfcd
+	//  c9am65567ff7b9gg1d1138539f77647577k46784f9gpfcaa
+	//  c9am65657ff7b9gg11d183359f77647577k46748f9gpfcaa
+	// mGenes:: ddca5k78a47f994p4d11553keaea175h846k4223aa9gdfcd
+	// sGenes:: c9am65657ff7b9gg11d183359f77647577k46748f9gpfcaa
+	// c9am65657ff7b9gg11d183359f77647577k46748f9gpfcaa
+	// c9cm65657477b9gg41d1533k9aea147577644243aa9pfcaa
+	rand.Seed(time.Now().UnixNano())
 	var babyGenes [48]rune
-	for i:=0;i<12;i++{
-		index:=4*i
-		for j:=3;j>0;j--{
-			ran:=rand.Float64()
-			fmt.Println("ran:",ran)
-			if ran<0.25{
+	for i := 0; i < 12; i++ {
+		index := 4 * i
+		for j := 3; j > 0; j-- {
+			ran := rand.Float64()
+			fmt.Println("ran:", ran)
+			if ran < 0.25 {
 				chars := []rune(mGenes)
 				chars[index+j], chars[index+j-1] = chars[index+j-1], chars[index+j]
-				mGenes=string(chars)
+				mGenes = string(chars)
 			}
-			ran2:=rand.Float64()
-			fmt.Println("ran2:",ran2)
-			if ran2<0.25{
+			ran2 := rand.Float64()
+			fmt.Println("ran2:", ran2)
+			if ran2 < 0.25 {
 				chars := []rune(sGenes)
 				chars[index+j], chars[index+j-1] = chars[index+j-1], chars[index+j]
-				sGenes=string(chars)
+				sGenes = string(chars)
 			}
 		}
 	}
-	fmt.Println("mGenes::",mGenes)
-	fmt.Println("sGenes::",sGenes)
-	for i:=0;i<48;i++{
+	fmt.Println("mGenes::", mGenes)
+	fmt.Println("sGenes::", sGenes)
+	for i := 0; i < 48; i++ {
 		mutation := 0
-		if i%4==0{
+		if i%4 == 0 {
 			gene1 := mGenes[i]
 			gene2 := sGenes[i]
-			if gene1 > gene2{
+			if gene1 > gene2 {
 				gene1, gene2 = gene2, gene1
 			}
-			
-			if (gene2 - gene1) == 1 && iseven(rune(gene1)){
+
+			if (gene2-gene1) == 1 && iseven(rune(gene1)) {
 				probability := 0.25
-				if gene1 > 23{
+				if gene1 > 23 {
 					probability /= 2
 				}
-				
-				if rand.Float64() < probability{
+
+				if rand.Float64() < probability {
 					mutation = (int(gene1) / 2) + 16
-				}	
+				}
 			}
 		}
-		if mutation>0{
+		if mutation > 0 {
 			babyGenes[i] = rune(mutation)
-		}else{
-			if rand.Float64() < 0.5{
+		} else {
+			if rand.Float64() < 0.5 {
 				babyGenes[i] = rune(mGenes[i])
-			}else{
+			} else {
 				babyGenes[i] = rune(sGenes[i])
 			}
 		}
 	}
-	ret= string(babyGenes[:])
+	ret = string(babyGenes[:])
 	return
 }
