@@ -26,7 +26,7 @@ func ConvertTo32(hex string)(ret string){
 	// fmt.Println(g1.Text(32))
 	ori:=g1.Text(32)
 	for i,_:=range ori{
-		ret+=ALPHABET[i]
+		ret+=string(ALPHABET[i])
 	}
 	return
 }
