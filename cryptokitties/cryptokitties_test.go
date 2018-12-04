@@ -111,9 +111,13 @@ func TestMix(t *testing.T){
 	fmt.Println(g1.Text(32))
 	// ccb9 467j 93e6 838n 3c00 424j 9dd9 064g 735j 1132 998f ecbc
 	// ddca 578k a4f7 949p 4d11 535k aeea 175h 846k 2243 aa9g fdcd
+	fmt.Println("\n")
+
 	g1.SetString(gene2,16)
 	fmt.Println(g1.Text(16))
 	fmt.Println(g1.Text(32))
+	
+	fmt.Println("\n")
 
 	g1.SetString(gene3,16)
 	fmt.Println(g1.Text(16))
