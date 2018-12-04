@@ -124,10 +124,10 @@ func TestMix(t *testing.T){
 	ori:=g1.Text(32)
 	out:=""
 	for _,v:=range ori{
-		// ori[i]=ori[i]+1
-		i1:=int(v)
+		var c rune=rune(v)
+		i1:=int(c)
 		i1++
-		out+=string(i1)
+		out+=string(rune(i1))
 	}
 	fmt.Println(out)
 	// 9999 6774 11e1 9fee 0550 6644 d868 1330 5556 6553 9899 beee
