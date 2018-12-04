@@ -100,7 +100,7 @@ func TestMix(t *testing.T){
 	// fmt.Println(anyToDecimal(gene2, 32))
 	out1:=ConvertTo32(gene1)
 	fmt.Println(out1)
-	out2=ConvertTo32(gene2)
+	out2:=ConvertTo32(gene2)
 	fmt.Println(out2)
 	// out=ConvertTo32(gene3)
 	// fmt.Println(out)
