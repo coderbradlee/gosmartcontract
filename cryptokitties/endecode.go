@@ -95,11 +95,21 @@ func iseven(c rune)bool{
 	return false
 }
 func MixGenes(mGenes,sGenes string)(ret string){
+// 	ddca578ka4f7949p4d11535kaeea175h846k2243aa9gfdcd
+//	ddca5k78a47f994p4d11553keaea175h846k4223aa9gdfcd
+//  c9am65567ff7b9gg1d1138539f77647577k46784f9gpfcaa
+//  c9am65657ff7b9gg11d183359f77647577k46748f9gpfcaa
+// mGenes:: ddca5k78a47f994p4d11553keaea175h846k4223aa9gdfcd
+// sGenes:: c9am65657ff7b9gg11d183359f77647577k46748f9gpfcaa
+// c9am65657ff7b9gg11d183359f77647577k46748f9gpfcaa
+// c9cm65657477b9gg41d1533k9aea147577644243aa9pfcaa
 	var babyGenes [48]rune
 	for i:=0;i<12;i++{
 		index:=4*i
 		for j:=3;j>0;j--{
-			if rand.Float64()<0.25{
+			ran:=rand.Float64()
+			fmt.Println("ran:",ran)
+			if ran<0.25{
 				chars := []rune(mGenes)
 				chars[index+j], chars[index+j-1] = chars[index+j-1], chars[index+j]
 				mGenes=string(chars)
