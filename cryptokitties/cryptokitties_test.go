@@ -91,13 +91,6 @@ var (
 
 func TestMix(t *testing.T){
 
-	// binary = 0b0000000000000000010010100101001010010011000111001110010000001000010111000001010010111101110011100000000101001010000000110001100010000100011010100000110010000000100011000110000000101001010010100110001100010100101000110100101000010010100101011011100111001110  # binary
-	// hex    = 0x00004a52931ce4085c14bdce014a0318846a0c808c60294a6314a34a_1295_b9ce   # hex
- 
-	// kai_fmt = "aaaa 7885 22f2 agff 1661 7755 e979 2441 6667 7664 a9aa cfff"
-
-
-
 	gene1:="000063169218f348dc640d171b000208934b5a90189038cb3084624a50f7316c"
 	            // 63169218f348dc640d171b000208934b5a90189038cb3084624a50f7316c
 	gene2:="00005a13429085339c6521ef0300011c82438c628cc431a63298e3721f772d29"
@@ -105,14 +98,20 @@ func TestMix(t *testing.T){
 	gene3:="00004a52931ce4085c14bdce014a0318846a0c808c60294a6314a34a1295b9ce"			
 	// fmt.Println(anyToDecimal(gene1, 32))
 	// fmt.Println(anyToDecimal(gene2, 32))
-	out:=ConvertTo32(gene1)
-	fmt.Println(out)
-	out=ConvertTo32(gene2)
-	fmt.Println(out)
-	out=ConvertTo32(gene3)
-	fmt.Println(out)
-	// 9999 6774 11e1 9fee 0550 6644 d868 1330 5556 6553 9899 beee
+	out1:=ConvertTo32(gene1)
+	fmt.Println(out1)
+	out2=ConvertTo32(gene2)
+	fmt.Println(out2)
+	// out=ConvertTo32(gene3)
+	// fmt.Println(out)
+	// ddca578ka4f7949p4d11535kaeea175h846k2243aa9gfdcd
+	// ddca 578k a4f7 949p 4d11 535k aeea 175h 846k 2243 aa9g fdcd
+	// c9am 6556 7ff7 b9gg 1d11 3853 9f77 6475 77k4 6784 f9gp fcaa
+	// c9am 6556 7ff7 b9gg 1d11 3853 9f77 6475 77k4 6784 f9gp fcaa
 	// aaaa 7885 22f2 agff 1661 7755 e979 2441 6667 7664 a9aa cfff
+	// aaaa 7885 22f2 agff 1661 7755 e979 2441 6667 7664 a9aa cfff
+	mix:=MixGenes(out1,out2)
+	fmt.Println(mix)
 }
 // func TestDeploy(t *testing.T) {
 // 	ownerAuth := AuthAccount(userKeystore1,userPassphrase1)
