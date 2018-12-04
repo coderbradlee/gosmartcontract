@@ -119,7 +119,7 @@ func MixGenes(mGenes,sGenes string)(babyGenes string){
 				gene1, gene2 = gene2, gene1
 			}
 			
-			if (gene2 - gene1) == 1 && iseven(gene1){
+			if (gene2 - gene1) == 1 && iseven(rune(gene1)){
 				probability := 0.25
 				if gene1 > 23{
 					probability /= 2
