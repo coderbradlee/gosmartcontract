@@ -63,7 +63,7 @@ func ConvertTo32(hex string)(ret string){
 	// fmt.Println(g1.Text(32))
 	ori:=g1.Text(32)
 	for _,v:=range ori{
-		ret+=m1[v]
+		ret+=m1[string(v)]
 	}
 	return
 }
