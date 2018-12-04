@@ -14,7 +14,7 @@ import (
 	// "github.com/ethereum/go-ethereum/common"
 	// "github.com/ethereum/go-ethereum/core/types"
 	// "github.com/ethereum/go-ethereum/event"
-	"fmt"
+	// "fmt"
 )
 var (
 	// ALPHABET = "123456789abcdefghijkmnopqrstuvwx"//此实现不是32进制表示，正确的应该是从0-w，在golang中需要将转换完的32进制
@@ -70,21 +70,21 @@ func ConvertTo32(hex string)(ret string){
 func iseven(c rune)bool{
 	switch c {
 		case '2'://123456789abcdefghijkmnopqrstuvwx
-		case "4":
-		case "6":
-		case "8":
-		case "a":
-		case "c":
-		case "e":
-		case "g":
-		case "i":
-		case "k":
-		case "n":
-		case "p":
-		case "r":
-		case "t":
-		case "v":
-		case "x":			
+		case '4':
+		case '6':
+		case '8':
+		case 'a':
+		case 'c':
+		case 'e':
+		case 'g':
+		case 'i':
+		case 'k':
+		case 'n':
+		case 'p':
+		case 'r':
+		case 't':
+		case 'v':
+		case 'x':			
 			return true
 		default:
 			// freebsd, openbsd,
