@@ -92,6 +92,7 @@ func iseven(c rune)bool{
 			// fmt.Printf("%s.", os)
 			return false
 	}
+	return false
 }
 func MixGenes(mGenes,sGenes string)(babyGenes string){
 	for i:=0;i<12;i++{
