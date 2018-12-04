@@ -112,14 +112,14 @@ func MixGenes(mGenes, sGenes string) (ret string) {
 		index := 4 * i
 		for j := 3; j > 0; j-- {
 			ran := rand.Float64()
-			fmt.Println("ran:", ran)
+			// fmt.Println("ran:", ran)
 			if ran < 0.25 {
 				chars := []rune(mGenes)
 				chars[index+j], chars[index+j-1] = chars[index+j-1], chars[index+j]
 				mGenes = string(chars)
 			}
 			ran2 := rand.Float64()
-			fmt.Println("ran2:", ran2)
+			// fmt.Println("ran2:", ran2)
 			if ran2 < 0.25 {
 				chars := []rune(sGenes)
 				chars[index+j], chars[index+j-1] = chars[index+j-1], chars[index+j]
