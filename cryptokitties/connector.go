@@ -1,7 +1,7 @@
 package cryptokitties
 
 import (
-	"../etclottery/ethclient"
+	"./ethclient"
 	// "github.com/ethereum/go-ethereum/ethclient"
 	"context"
 	"crypto/ecdsa"
