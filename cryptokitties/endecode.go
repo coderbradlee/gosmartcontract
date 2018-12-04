@@ -135,9 +135,9 @@ func MixGenes(mGenes,sGenes string)(ret string){
 			babyGenes[i] = rune(mutation)
 		}else{
 			if rand.Float64() < 0.5{
-				babyGenes[i] = mGenes[i]
+				babyGenes[i] = rune(mGenes[i])
 			}else{
-				babyGenes[i] = sGenes[i]
+				babyGenes[i] = rune(sGenes[i])
 			}
 		}
 	}
