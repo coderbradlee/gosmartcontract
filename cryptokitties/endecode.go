@@ -57,20 +57,13 @@ func ConvertTo32(hex string)(ret string){
 	m1["u"] = "w"
 	m1["v"] = "x"
 
-
-
-
-
-
-
-
 	g1:=big.NewInt(0)
 	g1.SetString(hex,16)
 	// fmt.Println(g1.Text(16))
 	// fmt.Println(g1.Text(32))
 	ori:=g1.Text(32)
 	for _,v:=range ori{
-		ret+=m1[v])
+		ret+=m1[v]
 	}
 	return
 }
