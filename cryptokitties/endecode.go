@@ -141,6 +141,6 @@ func MixGenes(mGenes,sGenes string)(ret string){
 			}
 		}
 	}
-	ret= string(babyGenes)
+	ret= string(babyGenes[:])
 	return
 }
