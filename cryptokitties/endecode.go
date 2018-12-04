@@ -98,6 +98,17 @@ func iseven(c rune) bool {
 	return false
 }
 func MixGenes(mGenes, sGenes string) (ret string) {
+	// 	Here is a quick sketch of the relative odds of getting a specific gene from the parents
+
+	// 75% - either dominant gene [D1] from parent A or B
+
+	// 18.75% (75/4) - chance of getting either 1st recessive [R1] from A or B
+
+	// 4.69% (75/4²) - chance of getting either 2nd recessive [R2] from A or B
+
+	// 1.17% (75/4³) - chance of getting either 3rd recessive [R3] from A or B
+
+	// 25% - chance of getting a mutation given A & B contain the right gene pairs
 	// 	ddca578ka4f7949p4d11535kaeea175h846k2243aa9gfdcd
 	//	ddca5k78a47f994p4d11553keaea175h846k4223aa9gdfcd
 	//  c9am65567ff7b9gg1d1138539f77647577k46784f9gpfcaa
