@@ -14,6 +14,7 @@ import (
 	// "github.com/ethereum/go-ethereum/common"
 	// "github.com/ethereum/go-ethereum/core/types"
 	// "github.com/ethereum/go-ethereum/event"
+	"fmt"
 )
 var (
 	ALPHABET = "123456789abcdefghijkmnopqrstuvwx"//此实现不是32进制表示，正确的应该是从0-w，在golang中需要将转换完的32进制
@@ -26,7 +27,9 @@ func ConvertTo32(hex string)(ret string){
 	// fmt.Println(g1.Text(32))
 	ori:=g1.Text(32)
 	for _,v:=range ori{
-		ret+=string(ALPHABET[int(v)])
+		index:=int(v)
+		fmt.Println(index)
+		ret+=string(ALPHABET[index])
 	}
 	return
 }
