@@ -19,6 +19,17 @@ var (
 	ALPHABET = "123456789abcdefghijkmnopqrstuvwx"//此实现不是32进制表示，正确的应该是从0-w，在golang中需要将转换完的32进制
   	BASE     = 32   //## 32 chars/letters/digits
 )
+func ConvertTo32(hex string)(ret string){
+	g1:=big.NewInt(0)
+	g1.SetString(hex,16)
+	// fmt.Println(g1.Text(16))
+	// fmt.Println(g1.Text(32))
+	ori:=g1.Text(32)
+	for i,_:=range ori{
+		ret+=ALPHABET[i]
+	}
+	return
+}
 //   def self.encode( num )
 //     buf = String.new
 //     while num >= BASE

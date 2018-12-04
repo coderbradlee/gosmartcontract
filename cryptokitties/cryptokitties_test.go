@@ -105,30 +105,8 @@ func TestMix(t *testing.T){
 	gene3:="00004a52931ce4085c14bdce014a0318846a0c808c60294a6314a34a1295b9ce"			
 	// fmt.Println(anyToDecimal(gene1, 32))
 	// fmt.Println(anyToDecimal(gene2, 32))
-	g1:=big.NewInt(0)
-	// g1.SetString(gene1,16)
-	// fmt.Println(g1.Text(16))
-	// fmt.Println(g1.Text(32))
-	// ccb9 467j 93e6 838n 3c00 424j 9dd9 064g 735j 1132 998f ecbc
-	// ddca 578k a4f7 949p 4d11 535k aeea 175h 846k 2243 aa9g fdcd
-	fmt.Println("")
-
-	// g1.SetString(gene2,16)
-	// fmt.Println(g1.Text(16))
+	out:=ConvertTo32(gene3)
 	
-	fmt.Println("")
-
-	g1.SetString(gene3,16)
-	fmt.Println(g1.Text(16))
-	fmt.Println(g1.Text(32))
-	ori:=g1.Text(32)
-	out:=""
-	for _,v:=range ori{
-		var c rune=rune(v)
-		i1:=int(c)
-		i1++
-		out+=string(rune(i1))
-	}
 	fmt.Println(out)
 	// 9999 6774 11e1 9fee 0550 6644 d868 1330 5556 6553 9899 beee
 	// aaaa 7885 22f2 agff 1661 7755 e979 2441 6667 7664 a9aa cfff
