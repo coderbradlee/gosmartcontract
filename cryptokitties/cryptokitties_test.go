@@ -116,10 +116,14 @@ func TestMix(t *testing.T){
 	g1.SetString(gene2,16)
 	fmt.Println(g1.Text(16))
 	ori:=g1.Text(32)
-	for i,_:=range ori{
-		ori[i]=ori[i]+1
+	out:=""
+	for _,v:=range ori{
+		// ori[i]=ori[i]+1
+		i1:=int(v)
+		i1++
+		out+=string(i1)
 	}
-	fmt.Println(ori)
+	fmt.Println(out)
 	
 	fmt.Println("")
 
