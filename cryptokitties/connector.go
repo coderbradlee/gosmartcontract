@@ -41,11 +41,12 @@ type Connecter struct {
 
 // NewConnecterWithDeploy 部署合约，并创建一个connecter
 func NewConnecterWithDeploy(host string, ownerAuth *bind.TransactOpts) (ret *Connecter, err error) {
-	conn, err := ethclient.Dial(host)
+	conn, errs := ethclient.Dial(host)
 	var kittycorecontractaddress common.Address
-	if err != nil {
+	if errs != nil {
 		// panic(err)
-		fmt.Println("Dial err:", err)
+		fmt.Println("Dial err:", errs)
+		err = errs
 		return
 	}
 	{
