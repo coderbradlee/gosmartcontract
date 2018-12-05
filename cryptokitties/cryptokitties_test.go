@@ -93,6 +93,7 @@ func TestSet(t *testing.T) {
 		}
 		fmt.Println("ret: ", ret.Hex())
 	}
+	time.Sleep(time.Second * 10)
 	{
 		// 	KittyAuction setSaleAuctionAddress 设置SaleClockAuction地址
 		ret, err := kc.SetSaleAuctionAddress(ownerAuth, common.HexToAddress(SaleClockAuctionAddress))
@@ -102,6 +103,7 @@ func TestSet(t *testing.T) {
 		}
 		fmt.Println("SetSaleAuctionAddress: ", ret.Hash().Hex())
 	}
+	time.Sleep(time.Second * 10)
 	{
 		// 	KittyAuction setSiringAuctionAddress设置SiringClockAuction地址
 		ret, err := kc.SetSiringAuctionAddress(ownerAuth, common.HexToAddress(SiringClockAuctionAddress))
@@ -111,6 +113,7 @@ func TestSet(t *testing.T) {
 		}
 		fmt.Println("SetSiringAuctionAddress: ", ret.Hash().Hex())
 	}
+	time.Sleep(time.Second * 10)
 	{
 		// 	KittyAccessControl setCEO设置CEO地址
 		ret, err := kc.SetCEO(ownerAuth, common.HexToAddress(userAddress11))
@@ -120,6 +123,7 @@ func TestSet(t *testing.T) {
 		}
 		fmt.Println("SetCEO: ", ret.Hash().Hex())
 	}
+	time.Sleep(time.Second * 10)
 	{
 		// 	KittyAccessControl setCFO设置CFO地址
 		ret, err := kc.SetCFO(ownerAuth, common.HexToAddress(userAddress11))
@@ -129,6 +133,7 @@ func TestSet(t *testing.T) {
 		}
 		fmt.Println("SetCFO: ", ret.Hash().Hex())
 	}
+	time.Sleep(time.Second * 10)
 	{
 		// 	KittyAccessControl setCOO设置COO地址
 		ret, err := kc.SetCOO(ownerAuth, common.HexToAddress(userAddress11))
@@ -138,6 +143,7 @@ func TestSet(t *testing.T) {
 		}
 		fmt.Println("SetCOO: ", ret.Hash().Hex())
 	}
+	time.Sleep(time.Second * 10)
 	{
 		// 	KittyOwnership setMetadataAddress 设置ERC721Metadata地址
 		ret, err := kc.SetMetadataAddress(ownerAuth, common.HexToAddress(ERC721MetadataAddress))
@@ -147,6 +153,7 @@ func TestSet(t *testing.T) {
 		}
 		fmt.Println("SetMetadataAddress: ", ret.Hash().Hex())
 	}
+	time.Sleep(time.Second * 10)
 	{
 		// 	KittyBreeding setGeneScienceAddress
 		ret, err := kc.SetGeneScienceAddress(ownerAuth, common.HexToAddress(GeneScienceAddress))
