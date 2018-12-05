@@ -82,6 +82,14 @@ func TestSet(t *testing.T) {
 	}
 	kc := connec.KittyCores
 	{
+		ret, err := kc.CeoAddress(nil)
+		if err != nil {
+			fmt.Println(err)
+			return
+		}
+		fmt.Println("ret: ", ret.Hex())
+	}
+	{
 		// 	KittyAuction setSaleAuctionAddress 设置SaleClockAuction地址
 		ret, err := kc.SetSaleAuctionAddress(ownerAuth, common.HexToAddress(SaleClockAuctionAddress))
 		if err != nil {
