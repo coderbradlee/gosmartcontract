@@ -76,7 +76,7 @@ func TestSet(t *testing.T) {
 	kc := connec.KittyCores
 	{
 		// 	KittyAuction setSaleAuctionAddress 设置SaleClockAuction地址
-		ret, err := kc.SetSaleAuctionAddress(ownerAuth, SaleClockAuctionAddress)
+		ret, err := kc.SetSaleAuctionAddress(ownerAuth, common.HexToAddress(SaleClockAuctionAddress))
 		if err != nil {
 			fmt.Println(err)
 			return
@@ -85,7 +85,7 @@ func TestSet(t *testing.T) {
 	}
 	{
 		// 	KittyAuction setSiringAuctionAddress设置SiringClockAuction地址
-		ret, err := kc.SetSiringAuctionAddress(ownerAuth, SiringClockAuctionAddress)
+		ret, err := kc.SetSiringAuctionAddress(ownerAuth, common.HexToAddress(SiringClockAuctionAddress))
 		if err != nil {
 			fmt.Println(err)
 			return
@@ -94,7 +94,7 @@ func TestSet(t *testing.T) {
 	}
 	{
 		// 	KittyAccessControl setCEO设置CEO地址
-		ret, err := kc.SetCEO(ownerAuth, userAddress11)
+		ret, err := kc.SetCEO(ownerAuth, common.HexToAddress(userAddress11))
 		if err != nil {
 			fmt.Println(err)
 			return
@@ -103,7 +103,7 @@ func TestSet(t *testing.T) {
 	}
 	{
 		// 	KittyAccessControl setCFO设置CFO地址
-		ret, err := kc.SetCFO(ownerAuth, userAddress11)
+		ret, err := kc.SetCFO(ownerAuth, common.HexToAddress(userAddress11))
 		if err != nil {
 			fmt.Println(err)
 			return
@@ -112,7 +112,7 @@ func TestSet(t *testing.T) {
 	}
 	{
 		// 	KittyAccessControl setCOO设置COO地址
-		ret, err := kc.SetCOO(ownerAuth, userAddress11)
+		ret, err := kc.SetCOO(ownerAuth, common.HexToAddress(userAddress11))
 		if err != nil {
 			fmt.Println(err)
 			return
@@ -121,7 +121,7 @@ func TestSet(t *testing.T) {
 	}
 	{
 		// 	KittyOwnership setMetadataAddress 设置ERC721Metadata地址
-		ret, err := kc.SetMetadataAddress(ownerAuth, ERC721MetadataAddress)
+		ret, err := kc.SetMetadataAddress(ownerAuth, common.HexToAddress(ERC721MetadataAddress))
 		if err != nil {
 			fmt.Println(err)
 			return
@@ -130,7 +130,7 @@ func TestSet(t *testing.T) {
 	}
 	{
 		// 	KittyBreeding setGeneScienceAddress
-		ret, err := kc.SetGeneScienceAddress(ownerAuth, GeneScienceAddress)
+		ret, err := kc.SetGeneScienceAddress(ownerAuth, common.HexToAddress(GeneScienceAddress))
 		if err != nil {
 			fmt.Println(err)
 			return
