@@ -19,25 +19,81 @@ type Connecter struct {
 	ctx  context.Context
 	conn *ethclient.Client
 	// lottery         *NXlottery
-	contractAddress common.Address
+	// ERC721Metadata     = "0x6F75F0217aB98E2143EA87f9bC5D8E223f462468"
+	// KittyCore          = "0x3727bb3Cdf2b872fb499B26dADbEA609040A92eC"
+	// SiringClockAuction = "0xEaC3Ba398BB4b0cb9Ef69D3983E63Da28fE6f8aF"
+	// SaleClockAuction   = "0x41cAbc4f3Cb83a26b18FbFda9D637B7b9A7bcDC6"
+	ERC721Metadata     *ERC721Metadata     //1
+	KittyCore          *KittyCore          //2
+	SiringClockAuction *SiringClockAuction //3
+	SaleClockAuction   *SaleClockAuction   //4
+	contractAddress    common.Address
 }
 
-// func NewConnecter(host, addr string) *Connecter {
-// 	contractAddress := common.HexToAddress(addr)
-// 	conn, err := ethclient.Dial(host)
-// 	if err != nil {
-// 		panic(err)
-// 	}
-// 	l, err := NewNXlottery(contractAddress, conn)
-// 	if err != nil {
-// 		panic(err)
-// 	}
-// 	return &Connecter{
-// 		ctx:     context.Background(),
-// 		conn:    conn,
-// 		lottery: l,
-// 	}
-// }
+func NewConnecter(host, addr, types string) (c *Connecter, errs error) {
+	contractAddress := common.HexToAddress(addr)
+	conn, err := ethclient.Dial(host)
+	if err != nil {
+		fmt.Println("dial:", err)
+		errs = err
+		return
+	}
+	switch types {
+	case "1":
+		l, err := NewERC721Metadata(addr, conn)
+		if err != nil {
+			fmt.Println("NewERC721Metadata:", err)
+			errs = err
+			return
+		}
+		c = &Connecter{
+			ctx:            context.Background(),
+			conn:           conn,
+			ERC721Metadata: l,
+		}
+		return
+	case "2":
+		l, err := NewKittyCore(addr, conn)
+		if err != nil {
+			fmt.Println("NewKittyCore:", err)
+			errs = err
+			return
+		}
+		c = &Connecter{
+			ctx:       context.Background(),
+			conn:      conn,
+			KittyCore: l,
+		}
+		return
+	case "3":
+		l, err := NewSiringClockAuction(addr, conn)
+		if err != nil {
+			fmt.Println("NewSiringClockAuction:", err)
+			errs = err
+			return
+		}
+		c = &Connecter{
+			ctx:                context.Background(),
+			conn:               conn,
+			SiringClockAuction: l,
+		}
+		return
+	case "4":
+		l, err := NewSaleClockAuction(addr, conn)
+		if err != nil {
+			fmt.Println("NewSaleClockAuction:", err)
+			errs = err
+			return
+		}
+		c = &Connecter{
+			ctx:              context.Background(),
+			conn:             conn,
+			SaleClockAuction: l,
+		}
+		return
+	}
+
+}
 
 // NewConnecterWithDeploy 部署合约，并创建一个connecter
 func NewConnecterWithDeploy(host string, ownerAuth *bind.TransactOpts) (ret *Connecter, errs error) {

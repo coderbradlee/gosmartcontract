@@ -19,11 +19,16 @@ import (
 var (
 	//metamask 0xe0e1b1e5d63e0ead6bfefcfc5a9dce543913cc15 7E76C9320595DEAA02A05DE3DE32507BC5C8B680B91E94384ADAA08CBAB0FF56
 	// 0xaa3f808a9c7bb22bc8d81dd033811b5ee2cb2207 E0EDBBB22B16FB763C9D12F63EFC735495F6716066E720F5C308A5C5B4735923
-	selfhost = "http://192.168.1.52:18545"
-	userAddress11   = "0xA6e2d4666b0c4B73bDbb54CA8209bfD0EC89Ea88"
-	userAddress22   = "0x1eB5E96518f6DA9FFcf32a401F26e2a8CA9E10b7"
-	userPrivateKey1 = "8b01fcf00efb07a877e57c69811b414586ec1e7d531443ab0d88a9093b05f015"
-	userPrivateKey2 = "6a7af08e232aacd433158d5586d513be64d97044e83b7f5738bc345917ba6c17"
+	selfhost           = "http://192.168.1.52:18545"
+	userAddress11      = "0xA6e2d4666b0c4B73bDbb54CA8209bfD0EC89Ea88"
+	userAddress22      = "0x1eB5E96518f6DA9FFcf32a401F26e2a8CA9E10b7"
+	userPrivateKey1    = "8b01fcf00efb07a877e57c69811b414586ec1e7d531443ab0d88a9093b05f015"
+	userPrivateKey2    = "6a7af08e232aacd433158d5586d513be64d97044e83b7f5738bc345917ba6c17"
+	GeneScience        = "0xFBC0c5ABc63fc0FE15164249c9b4cc7278eFc9B2"
+	ERC721Metadata     = "0x6F75F0217aB98E2143EA87f9bC5D8E223f462468"
+	KittyCore          = "0x3727bb3Cdf2b872fb499B26dADbEA609040A92eC"
+	SiringClockAuction = "0xEaC3Ba398BB4b0cb9Ef69D3983E63Da28fE6f8aF"
+	SaleClockAuction   = "0x41cAbc4f3Cb83a26b18FbFda9D637B7b9A7bcDC6"
 )
 
 func TestMix(t *testing.T) {
@@ -53,11 +58,85 @@ func TestMix(t *testing.T) {
 
 func TestDeploy(t *testing.T) {
 	// ownerAuth := AuthAccount(userKeystore1, userPassphrase1)
-	ownerAuth :=AuthAccountFromPrivateKey(userPrivateKey1)
+	ownerAuth := AuthAccountFromPrivateKey(userPrivateKey1)
 	NewConnecterWithDeploy(selfhost, ownerAuth)
 
 	// fmt.Println("Contract address is: ", c.contractAddress.String())
 
+}
+func TestSet(t *testing.T) {
+	// ownerAuth := AuthAccount(userKeystore1, userPassphrase1)
+	ownerAuth := AuthAccountFromPrivateKey(userPrivateKey1)
+	ownerAuth.GasLimit = uint64(3000000)
+	kc, err := NewConnecter(selfhost, KittyCore, "2")
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	{
+		// 	KittyAuction setSaleAuctionAddress 设置SaleClockAuction地址
+		ret, err := kc.SetSaleAuctionAddress(ownerAuth, SaleClockAuction)
+		if err != nil {
+			fmt.Println(err)
+			return
+		}
+		fmt.Println("SetSaleAuctionAddress: ", ret.Hash().Hex())
+	}
+	{
+		// 	KittyAuction setSiringAuctionAddress设置SiringClockAuction地址
+		ret, err := kc.SetSiringAuctionAddress(ownerAuth, SiringClockAuction)
+		if err != nil {
+			fmt.Println(err)
+			return
+		}
+		fmt.Println("SetSiringAuctionAddress: ", ret.Hash().Hex())
+	}
+	{
+		// 	KittyAccessControl setCEO设置CEO地址
+		ret, err := kc.SetCEO(ownerAuth, userAddress11)
+		if err != nil {
+			fmt.Println(err)
+			return
+		}
+		fmt.Println("SetCEO: ", ret.Hash().Hex())
+	}
+	{
+		// 	KittyAccessControl setCFO设置CFO地址
+		ret, err := kc.SetCFO(ownerAuth, userAddress11)
+		if err != nil {
+			fmt.Println(err)
+			return
+		}
+		fmt.Println("SetCFO: ", ret.Hash().Hex())
+	}
+	{
+		// 	KittyAccessControl setCOO设置COO地址
+		ret, err := kc.SetCOO(ownerAuth, userAddress11)
+		if err != nil {
+			fmt.Println(err)
+			return
+		}
+		fmt.Println("SetCOO: ", ret.Hash().Hex())
+	}
+	{
+		// 	KittyOwnership setMetadataAddress 设置ERC721Metadata地址
+		ret, err := kc.SetMetadataAddress(ownerAuth, ERC721Metadata)
+		if err != nil {
+			fmt.Println(err)
+			return
+		}
+		fmt.Println("SetMetadataAddress: ", ret.Hash().Hex())
+	}
+	{
+		// 	KittyBreeding setGeneScienceAddress
+		ret, err := kc.SetGeneScienceAddress(ownerAuth, GeneScience)
+		if err != nil {
+			fmt.Println(err)
+			return
+		}
+		fmt.Println("SetGeneScienceAddress: ", ret.Hash().Hex())
+	}
+	// KittyCore setNewAddress 升级合约
 }
 
 // func TestBuy(t *testing.T){
