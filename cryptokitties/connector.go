@@ -100,7 +100,7 @@ func NewConnecterWithDeploy(host string, ownerAuth *bind.TransactOpts) *Connecte
 		// ctx:  ctx,
 		conn: conn,
 		// lottery:         l,
-		contractAddress: contractAddress,
+		contractAddress: kittycorecontractaddress,
 	}
 }
 
