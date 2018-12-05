@@ -88,7 +88,7 @@ func TestCreate(t *testing.T) {
 	}
 	kc := connec.KittyCores
 	{
-		ret, err := kc.CreatePromoKitty(ownerAuth, big.NewInt(0), userAddress11)
+		ret, err := kc.CreatePromoKitty(ownerAuth, big.NewInt(0), common.HexToAddress(userAddress11))
 		if err != nil {
 			fmt.Println(err)
 			return
@@ -97,7 +97,7 @@ func TestCreate(t *testing.T) {
 	}
 	time.Sleep(time.Second * 10)
 	{
-		ret, err := kc.CreatePromoKitty(ownerAuth, big.NewInt(0), userAddress11)
+		ret, err := kc.CreatePromoKitty(ownerAuth, big.NewInt(0), common.HexToAddress(userAddress11))
 		if err != nil {
 			fmt.Println(err)
 			return
