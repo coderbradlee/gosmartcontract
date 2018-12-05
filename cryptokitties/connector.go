@@ -42,6 +42,7 @@ type Connecter struct {
 // NewConnecterWithDeploy 部署合约，并创建一个connecter
 func NewConnecterWithDeploy(host string, ownerAuth *bind.TransactOpts) *Connecter {
 	conn, err := ethclient.Dial(host)
+	var kittycorecontractaddress common.Address
 	if err != nil {
 		panic(err)
 	}
@@ -69,11 +70,11 @@ func NewConnecterWithDeploy(host string, ownerAuth *bind.TransactOpts) *Connecte
 			panic(err)
 		}
 		ctx := context.Background()
-		contractAddress, err := bind.WaitDeployed(ctx, conn, tx)
-		fmt.Println("KittyCore:", contractAddress)
+		kittycorecontractaddress, err := bind.WaitDeployed(ctx, conn, tx)
+		fmt.Println("KittyCore:", kittycorecontractaddress)
 	}
 	{
-		_, tx, _, err := DeploySiringClockAuction(ownerAuth, conn)
+		_, tx, _, err := DeploySiringClockAuction(ownerAuth, conn, kittycorecontractaddress, big.NewInt(375))
 		if err != nil {
 			panic(err)
 		}
@@ -82,7 +83,7 @@ func NewConnecterWithDeploy(host string, ownerAuth *bind.TransactOpts) *Connecte
 		fmt.Println("SiringClockAuction:", contractAddress)
 	}
 	{
-		_, tx, _, err := DeploySaleClockAuction(ownerAuth, conn)
+		_, tx, _, err := DeploySaleClockAuction(ownerAuth, conn, kittycorecontractaddress, big.NewInt(375))
 		if err != nil {
 			panic(err)
 		}
@@ -90,7 +91,7 @@ func NewConnecterWithDeploy(host string, ownerAuth *bind.TransactOpts) *Connecte
 		contractAddress, err := bind.WaitDeployed(ctx, conn, tx)
 		fmt.Println("SaleClockAuction:", contractAddress)
 	}
-	
+
 	if err != nil {
 		panic(err)
 	}
