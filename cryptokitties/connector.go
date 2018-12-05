@@ -23,11 +23,11 @@ type Connecter struct {
 	// KittyCore          = "0x3727bb3Cdf2b872fb499B26dADbEA609040A92eC"
 	// SiringClockAuction = "0xEaC3Ba398BB4b0cb9Ef69D3983E63Da28fE6f8aF"
 	// SaleClockAuction   = "0x41cAbc4f3Cb83a26b18FbFda9D637B7b9A7bcDC6"
-	ERC721Metadata     *ERC721Metadata     //1
-	KittyCore          *KittyCore          //2
-	SiringClockAuction *SiringClockAuction //3
-	SaleClockAuction   *SaleClockAuction   //4
-	contractAddress    common.Address
+	ERC721Metadatas     *ERC721Metadata     //1
+	KittyCores          *KittyCore          //2
+	SiringClockAuctions *SiringClockAuction //3
+	SaleClockAuctions   *SaleClockAuction   //4
+	contractAddress     common.Address
 }
 
 func NewConnecter(host, addr, types string) (c *Connecter, errs error) {
@@ -47,9 +47,9 @@ func NewConnecter(host, addr, types string) (c *Connecter, errs error) {
 			return
 		}
 		c = &Connecter{
-			ctx:            context.Background(),
-			conn:           conn,
-			ERC721Metadata: l,
+			ctx:             context.Background(),
+			conn:            conn,
+			ERC721Metadatas: l,
 		}
 		return
 	case "2":
@@ -60,9 +60,9 @@ func NewConnecter(host, addr, types string) (c *Connecter, errs error) {
 			return
 		}
 		c = &Connecter{
-			ctx:       context.Background(),
-			conn:      conn,
-			KittyCore: l,
+			ctx:        context.Background(),
+			conn:       conn,
+			KittyCores: l,
 		}
 		return
 	case "3":
@@ -73,9 +73,9 @@ func NewConnecter(host, addr, types string) (c *Connecter, errs error) {
 			return
 		}
 		c = &Connecter{
-			ctx:                context.Background(),
-			conn:               conn,
-			SiringClockAuction: l,
+			ctx:                 context.Background(),
+			conn:                conn,
+			SiringClockAuctions: l,
 		}
 		return
 	case "4":
@@ -86,9 +86,9 @@ func NewConnecter(host, addr, types string) (c *Connecter, errs error) {
 			return
 		}
 		c = &Connecter{
-			ctx:              context.Background(),
-			conn:             conn,
-			SaleClockAuction: l,
+			ctx:               context.Background(),
+			conn:              conn,
+			SaleClockAuctions: l,
 		}
 		return
 	}
