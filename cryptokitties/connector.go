@@ -210,15 +210,15 @@ func (c *Connecter) Buy(auth *bind.TransactOpts, _team uint8) {
 	// 	auth.Value = big.NewInt(1000000000000000)     // in wei,0.001ether
 	// 	auth.GasLimit = uint64(300000) // in units
 	// 	auth.GasPrice = gasPrice
-	auth.GasLimit = uint64(300000)
-	auth.Value = big.NewInt(1000000000000000000) //0.05eth
-	ret1, err := c.lottery.Buy(auth, _team)
-	if err != nil {
-		fmt.Println(err)
-		return
-	}
-	fmt.Println("Buy: ", ret1.Hash().Hex())
-	auth.Value = big.NewInt(0)
+	// auth.GasLimit = uint64(300000)
+	// auth.Value = big.NewInt(1000000000000000000) //0.05eth
+	// ret1, err := c.lottery.Buy(auth, _team)
+	// if err != nil {
+	// 	fmt.Println(err)
+	// 	return
+	// }
+	// fmt.Println("Buy: ", ret1.Hash().Hex())
+	// auth.Value = big.NewInt(0)
 }
 func (c *Connecter) Send(private, to string, amountInt *big.Int) error {
 	// privateKey, err := crypto.HexToECDSA(private)
