@@ -113,7 +113,7 @@ func TestCreate(t *testing.T) {
 		}
 		for _, v := range ret {
 			fmt.Println("ret: ", v.Text(16))
-			kittystruct, err := kc.GetKitty(nil, v)
+			kittystruct, _ := kc.GetKitty(nil, v)
 			fmt.Printf("IsGestating:%v,IsReady:%v,CooldownIndex:%s,NextActionAt:%s,SiringWithId:%s,BirthTime:%s,MatronId:%s,SireId:%s,Generation:%s,Genes:%s\n",kittystruct.IsGestating,kittystruct.IsReady,kittystruct.CooldownIndex.Text(16),kittystruct.NextActionAt.Text(16),kittystruct.SiringWithId.Text(16),kittystruct.BirthTime.Text(16),kittystruct.MatronId.Text(16),kittystruct.SireId.Text(16),kittystruct.Generation.Text(16),kittystruct.Genes.Text(16))
 		}
 
