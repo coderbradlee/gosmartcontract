@@ -96,15 +96,15 @@ func TestCreate(t *testing.T) {
 	// 	fmt.Println("ret: ", ret.Hash().Hex())
 	// }
 	// time.Sleep(time.Second * 10)
-	// {
-	// 	ret, err := kc.CreatePromoKitty(ownerAuth, big.NewInt(0), common.HexToAddress(userAddress11))
-	// 	if err != nil {
-	// 		fmt.Println(err)
-	// 		return
-	// 	}
-	// 	fmt.Println("ret: ", ret.Hash().Hex())
-	// }
-
+	{
+		ret, err := kc.CreatePromoKitty(ownerAuth, big.NewInt(0), common.HexToAddress(userAddress11))
+		if err != nil {
+			fmt.Println(err)
+			return
+		}
+		fmt.Println("ret: ", ret.Hash().Hex())
+	}
+	time.Sleep(time.Second * 10)
 	{
 		ret, err := kc.TokensOfOwner(ownerAuth, common.HexToAddress(userAddress11))
 		if err != nil {
