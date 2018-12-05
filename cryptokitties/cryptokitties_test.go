@@ -68,11 +68,12 @@ func TestSet(t *testing.T) {
 	// ownerAuth := AuthAccount(userKeystore1, userPassphrase1)
 	ownerAuth := AuthAccountFromPrivateKey(userPrivateKey1)
 	ownerAuth.GasLimit = uint64(3000000)
-	kc, err := NewConnecter(selfhost, KittyCoreAddress, "2")
+	connec, err := NewConnecter(selfhost, KittyCoreAddress, "2")
 	if err != nil {
 		fmt.Println(err)
 		return
 	}
+	kc := connec.KittyCores
 	{
 		// 	KittyAuction setSaleAuctionAddress 设置SaleClockAuction地址
 		ret, err := kc.SetSaleAuctionAddress(ownerAuth, SaleClockAuctionAddress)

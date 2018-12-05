@@ -92,7 +92,7 @@ func NewConnecter(host, addr, types string) (c *Connecter, errs error) {
 		}
 		return
 	}
-
+	return
 }
 
 // NewConnecterWithDeploy 部署合约，并创建一个connecter
