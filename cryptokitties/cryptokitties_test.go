@@ -93,7 +93,7 @@ func TestCreate(t *testing.T) {
 			fmt.Println(err)
 			return
 		}
-		fmt.Println("ret: ", ret.Hex())
+		fmt.Println("ret: ", ret.Hash().Hex())
 	}
 	time.Sleep(time.Second * 10)
 	{
@@ -102,7 +102,7 @@ func TestCreate(t *testing.T) {
 			fmt.Println(err)
 			return
 		}
-		fmt.Println("ret: ", ret.Hex())
+		fmt.Println("ret: ", ret.Hash().Hex())
 	}
 }
 func TestSet(t *testing.T) {
