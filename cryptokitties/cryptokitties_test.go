@@ -87,22 +87,34 @@ func TestCreate(t *testing.T) {
 		return
 	}
 	kc := connec.KittyCores
+	// {
+	// 	ret, err := kc.CreatePromoKitty(ownerAuth, big.NewInt(0), common.HexToAddress(userAddress11))
+	// 	if err != nil {
+	// 		fmt.Println(err)
+	// 		return
+	// 	}
+	// 	fmt.Println("ret: ", ret.Hash().Hex())
+	// }
+	// time.Sleep(time.Second * 10)
+	// {
+	// 	ret, err := kc.CreatePromoKitty(ownerAuth, big.NewInt(0), common.HexToAddress(userAddress11))
+	// 	if err != nil {
+	// 		fmt.Println(err)
+	// 		return
+	// 	}
+	// 	fmt.Println("ret: ", ret.Hash().Hex())
+	// }
+
 	{
-		ret, err := kc.CreatePromoKitty(ownerAuth, big.NewInt(0), common.HexToAddress(userAddress11))
+		ret, err := kc.TokensOfOwner(ownerAuth, common.HexToAddress(userAddress11))
 		if err != nil {
 			fmt.Println(err)
 			return
 		}
-		fmt.Println("ret: ", ret.Hash().Hex())
-	}
-	time.Sleep(time.Second * 10)
-	{
-		ret, err := kc.CreatePromoKitty(ownerAuth, big.NewInt(0), common.HexToAddress(userAddress11))
-		if err != nil {
-			fmt.Println(err)
-			return
+		for _, v := range ret {
+			fmt.Println("ret: ", v.Text(16))
 		}
-		fmt.Println("ret: ", ret.Hash().Hex())
+
 	}
 }
 func TestSet(t *testing.T) {
