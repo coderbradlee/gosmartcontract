@@ -75,6 +75,35 @@ func TestDeploy(t *testing.T) {
 	// fmt.Println("Contract address is: ", c.contractAddress.String())
 
 }
+
+func TestCreate(t *testing.T) {
+	// ownerAuth := AuthAccount(userKeystore1, userPassphrase1)
+	ownerAuth := AuthAccountFromPrivateKey(userPrivateKey1)
+	ownerAuth.GasLimit = uint64(8000000)
+	connec, err := NewConnecter(selfhost, KittyCoreAddress, "2")
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	kc := connec.KittyCores
+	{
+		ret, err := kc.CreatePromoKitty(ownerAuth, big.NewInt(0), userAddress11)
+		if err != nil {
+			fmt.Println(err)
+			return
+		}
+		fmt.Println("ret: ", ret.Hex())
+	}
+	time.Sleep(time.Second * 10)
+	{
+		ret, err := kc.CreatePromoKitty(ownerAuth, big.NewInt(0), userAddress11)
+		if err != nil {
+			fmt.Println(err)
+			return
+		}
+		fmt.Println("ret: ", ret.Hex())
+	}
+}
 func TestSet(t *testing.T) {
 	// ownerAuth := AuthAccount(userKeystore1, userPassphrase1)
 	ownerAuth := AuthAccountFromPrivateKey(userPrivateKey1)
