@@ -99,7 +99,7 @@ func NewConnecter(host, addr, types string) (c *Connecter, errs error) {
 
 // NewConnecterWithDeploy 部署合约，并创建一个connecter
 func NewConnecterWithDeploy(host string, ownerAuth *bind.TransactOpts) (ret *Connecter, errs error) {
-	ownerAuth.GasLimit = uint64(3000000)
+	ownerAuth.GasLimit = uint64(8000000)
 	conn, err := ethclient.Dial(host)
 	var kittycorecontractaddress common.Address
 	if err != nil {
