@@ -33,6 +33,7 @@ type Connecter struct {
 
 func NewConnecter(host, addr, types string) (c *Connecter, errs error) {
 	contractAddress := common.HexToAddress(addr)
+	fmt.Println("contractAddress:", contractAddress.Hex())
 	conn, err := ethclient.Dial(host)
 	if err != nil {
 		fmt.Println("dial:", err)
