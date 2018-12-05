@@ -97,7 +97,7 @@ func TestCreate(t *testing.T) {
 	// }
 	// time.Sleep(time.Second * 10)
 	{
-		ret, err := kc.CreatePromoKitty(ownerAuth, big.NewInt(0), common.HexToAddress(userAddress11))
+		ret, err := kc.CreatePromoKitty(ownerAuth, big.NewInt(111122223333), common.HexToAddress(userAddress11))
 		if err != nil {
 			fmt.Println(err)
 			return
