@@ -19,7 +19,11 @@ import (
 var (
 	//metamask 0xe0e1b1e5d63e0ead6bfefcfc5a9dce543913cc15 7E76C9320595DEAA02A05DE3DE32507BC5C8B680B91E94384ADAA08CBAB0FF56
 	// 0xaa3f808a9c7bb22bc8d81dd033811b5ee2cb2207 E0EDBBB22B16FB763C9D12F63EFC735495F6716066E720F5C308A5C5B4735923
-	selfhost        = "http://192.168.1.52:18545"
+	// selfhost               = "http://192.168.1.52:18545"
+	selfhost               = "https://kovan.infura.io"
+	userAddressmetamask    = "0x6356908ACe09268130DEE2b7de643314BBeb3683"
+	userPrivateKeymetamask = "0d4d9b248110257c575ef2e8d93dd53471d9178984482817dcbd6edb607f8cc5"
+
 	userAddress11   = "0xc416d12f3EBA9D10A1Cf21E1E6ea6509Da009ec1"
 	userAddress22   = "0x86993A973Cfffc4aCe686492DbA8d718e9C0eC64"
 	userPrivateKey1 = "e9348b789c81492178e4e1aedb05b0a33babd07d07efd57da9ff883a00ddbb34"
@@ -73,7 +77,7 @@ func TestDeploy(t *testing.T) {
 }
 func TestSet(t *testing.T) {
 	// ownerAuth := AuthAccount(userKeystore1, userPassphrase1)
-	ownerAuth := AuthAccountFromPrivateKey(userPrivateKey1)
+	ownerAuth := AuthAccountFromPrivateKey(userPrivateKeymetamask)
 	ownerAuth.GasLimit = uint64(3000000)
 	connec, err := NewConnecter(selfhost, KittyCoreAddress, "2")
 	if err != nil {
@@ -109,7 +113,7 @@ func TestSet(t *testing.T) {
 	}
 	{
 		// 	KittyAccessControl setCEO设置CEO地址
-		ret, err := kc.SetCEO(ownerAuth, common.HexToAddress(userAddress11))
+		ret, err := kc.SetCEO(ownerAuth, common.HexToAddress(userAddressmetamask))
 		if err != nil {
 			fmt.Println(err)
 			return
@@ -118,7 +122,7 @@ func TestSet(t *testing.T) {
 	}
 	{
 		// 	KittyAccessControl setCFO设置CFO地址
-		ret, err := kc.SetCFO(ownerAuth, common.HexToAddress(userAddress11))
+		ret, err := kc.SetCFO(ownerAuth, common.HexToAddress(userAddressmetamask))
 		if err != nil {
 			fmt.Println(err)
 			return
@@ -127,7 +131,7 @@ func TestSet(t *testing.T) {
 	}
 	{
 		// 	KittyAccessControl setCOO设置COO地址
-		ret, err := kc.SetCOO(ownerAuth, common.HexToAddress(userAddress11))
+		ret, err := kc.SetCOO(ownerAuth, common.HexToAddress(userAddressmetamask))
 		if err != nil {
 			fmt.Println(err)
 			return
