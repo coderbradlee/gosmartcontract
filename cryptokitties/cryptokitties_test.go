@@ -69,7 +69,7 @@ func TestMix(t *testing.T) {
 
 func TestDeploy(t *testing.T) {
 	// ownerAuth := AuthAccount(userKeystore1, userPassphrase1)
-	ownerAuth := AuthAccountFromPrivateKey(userPrivateKey1)
+	ownerAuth := AuthAccountFromPrivateKey(userPrivateKeymetamask)
 	NewConnecterWithDeploy(selfhost, ownerAuth)
 
 	// fmt.Println("Contract address is: ", c.contractAddress.String())
