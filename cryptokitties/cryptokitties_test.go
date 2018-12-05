@@ -77,7 +77,7 @@ func TestDeploy(t *testing.T) {
 }
 func TestSet(t *testing.T) {
 	// ownerAuth := AuthAccount(userKeystore1, userPassphrase1)
-	ownerAuth := AuthAccountFromPrivateKey(userPrivateKey11)
+	ownerAuth := AuthAccountFromPrivateKey(userPrivateKey1)
 	ownerAuth.GasLimit = uint64(8000000)
 	connec, err := NewConnecter(selfhost, KittyCoreAddress, "2")
 	if err != nil {
