@@ -40,19 +40,20 @@ type Connecter struct {
 // }
 
 // NewConnecterWithDeploy 部署合约，并创建一个connecter
-func NewConnecterWithDeploy(host string, ownerAuth *bind.TransactOpts) (ret *Connecter, err error) {
-	conn, errs := ethclient.Dial(host)
+func NewConnecterWithDeploy(host string, ownerAuth *bind.TransactOpts) (ret *Connecter, errs error) {
+	conn, err := ethclient.Dial(host)
 	var kittycorecontractaddress common.Address
-	if errs != nil {
+	if err != nil {
 		// panic(err)
-		fmt.Println("Dial err:", errs)
-		err = errs
+		fmt.Println("Dial err:", err)
+		errs = err
 		return
 	}
 	{
 		_, tx, _, err := DeployGeneScienceInterface(ownerAuth, conn)
 		if err != nil {
 			fmt.Println("DeployGeneScienceInterface err:", err)
+			errs = err
 			return
 		}
 		ctx := context.Background()
@@ -63,6 +64,7 @@ func NewConnecterWithDeploy(host string, ownerAuth *bind.TransactOpts) (ret *Con
 		_, tx, _, err := DeployERC721Metadata(ownerAuth, conn)
 		if err != nil {
 			fmt.Println("DeployERC721Metadata err:", err)
+			errs = err
 			return
 		}
 		ctx := context.Background()
@@ -73,6 +75,7 @@ func NewConnecterWithDeploy(host string, ownerAuth *bind.TransactOpts) (ret *Con
 		_, tx, _, err := DeployKittyCore(ownerAuth, conn)
 		if err != nil {
 			fmt.Println("DeployKittyCore err:", err)
+			errs = err
 			return
 		}
 		ctx := context.Background()
@@ -83,6 +86,7 @@ func NewConnecterWithDeploy(host string, ownerAuth *bind.TransactOpts) (ret *Con
 		_, tx, _, err := DeploySiringClockAuction(ownerAuth, conn, kittycorecontractaddress, big.NewInt(375))
 		if err != nil {
 			fmt.Println("DeploySiringClockAuction err:", err)
+			errs = err
 			return
 		}
 		ctx := context.Background()
@@ -93,6 +97,7 @@ func NewConnecterWithDeploy(host string, ownerAuth *bind.TransactOpts) (ret *Con
 		_, tx, _, err := DeploySaleClockAuction(ownerAuth, conn, kittycorecontractaddress, big.NewInt(375))
 		if err != nil {
 			fmt.Println("DeploySaleClockAuction err:", err)
+			errs = err
 			return
 		}
 		ctx := context.Background()
@@ -103,6 +108,7 @@ func NewConnecterWithDeploy(host string, ownerAuth *bind.TransactOpts) (ret *Con
 	if err != nil {
 		// panic(err)
 		fmt.Println("last err:", err)
+		errs = err
 		return
 	}
 
