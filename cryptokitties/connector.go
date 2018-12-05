@@ -40,7 +40,7 @@ func NewConnecter(host, addr, types string) (c *Connecter, errs error) {
 	}
 	switch types {
 	case "1":
-		l, err := NewERC721Metadata(addr, conn)
+		l, err := NewERC721Metadata(common.HexToAddress(addr), conn)
 		if err != nil {
 			fmt.Println("NewERC721Metadata:", err)
 			errs = err
@@ -53,7 +53,7 @@ func NewConnecter(host, addr, types string) (c *Connecter, errs error) {
 		}
 		return
 	case "2":
-		l, err := NewKittyCore(addr, conn)
+		l, err := NewKittyCore(common.HexToAddress(addr), conn)
 		if err != nil {
 			fmt.Println("NewKittyCore:", err)
 			errs = err
@@ -66,7 +66,7 @@ func NewConnecter(host, addr, types string) (c *Connecter, errs error) {
 		}
 		return
 	case "3":
-		l, err := NewSiringClockAuction(addr, conn)
+		l, err := NewSiringClockAuction(common.HexToAddress(addr), conn)
 		if err != nil {
 			fmt.Println("NewSiringClockAuction:", err)
 			errs = err
@@ -79,7 +79,7 @@ func NewConnecter(host, addr, types string) (c *Connecter, errs error) {
 		}
 		return
 	case "4":
-		l, err := NewSaleClockAuction(addr, conn)
+		l, err := NewSaleClockAuction(common.HexToAddress(addr), conn)
 		if err != nil {
 			fmt.Println("NewSaleClockAuction:", err)
 			errs = err
