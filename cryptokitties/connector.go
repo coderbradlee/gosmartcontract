@@ -188,14 +188,15 @@ func (c *Connecter) BlockNumber() *big.Int {
 	}
 	return blockNumber.Number()
 }
-func (c *Connecter) Accounts() (ret []string) {
-	ret, err := c.conn.GetAccounts(c.ctx)
-	if err != nil {
-		log.Fatal("GetAccounts error", err)
-		return nil
-	}
-	return ret
-}
+
+// func (c *Connecter) Accounts() (ret []string) {
+// 	ret, err := c.conn.GetAccounts(c.ctx)
+// 	if err != nil {
+// 		log.Fatal("GetAccounts error", err)
+// 		return nil
+// 	}
+// 	return ret
+// }
 
 // BalanceOfEth 以太币余额
 func (c *Connecter) BalanceOfEth(addr common.Address) *big.Int {
