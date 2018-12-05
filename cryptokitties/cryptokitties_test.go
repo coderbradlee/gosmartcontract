@@ -6,7 +6,7 @@ import (
 	// "crypto/ecdsa"
 	"fmt"
 	// "github.com/ethereum/go-ethereum/accounts/abi/bind"
-	// "github.com/ethereum/go-ethereum/common"
+	"github.com/ethereum/go-ethereum/common"
 	// "github.com/ethereum/go-ethereum/crypto"
 	// "github.com/ethereum/go-ethereum/ethclient"
 	// "log"
