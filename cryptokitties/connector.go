@@ -53,7 +53,7 @@ func NewConnecterWithDeploy(host string, ownerAuth *bind.TransactOpts) *Connecte
 		}
 		ctx := context.Background()
 		contractAddress, err := bind.WaitDeployed(ctx, conn, tx)
-		fmt.Println("GeneScience:", contractAddress)
+		fmt.Println("GeneScience:", contractAddress.Hex())
 	}
 	{
 		_, tx, _, err := DeployERC721Metadata(ownerAuth, conn)
@@ -62,7 +62,7 @@ func NewConnecterWithDeploy(host string, ownerAuth *bind.TransactOpts) *Connecte
 		}
 		ctx := context.Background()
 		contractAddress, err := bind.WaitDeployed(ctx, conn, tx)
-		fmt.Println("ERC721Metadata:", contractAddress)
+		fmt.Println("ERC721Metadata:", contractAddress.Hex())
 	}
 	{
 		_, tx, _, err := DeployKittyCore(ownerAuth, conn)
@@ -71,7 +71,7 @@ func NewConnecterWithDeploy(host string, ownerAuth *bind.TransactOpts) *Connecte
 		}
 		ctx := context.Background()
 		kittycorecontractaddress, err := bind.WaitDeployed(ctx, conn, tx)
-		fmt.Println("KittyCore:", kittycorecontractaddress)
+		fmt.Println("KittyCore:", kittycorecontractaddress.Hex())
 	}
 	{
 		_, tx, _, err := DeploySiringClockAuction(ownerAuth, conn, kittycorecontractaddress, big.NewInt(375))
@@ -80,7 +80,7 @@ func NewConnecterWithDeploy(host string, ownerAuth *bind.TransactOpts) *Connecte
 		}
 		ctx := context.Background()
 		contractAddress, err := bind.WaitDeployed(ctx, conn, tx)
-		fmt.Println("SiringClockAuction:", contractAddress)
+		fmt.Println("SiringClockAuction:", contractAddress.Hex())
 	}
 	{
 		_, tx, _, err := DeploySaleClockAuction(ownerAuth, conn, kittycorecontractaddress, big.NewInt(375))
@@ -89,7 +89,7 @@ func NewConnecterWithDeploy(host string, ownerAuth *bind.TransactOpts) *Connecte
 		}
 		ctx := context.Background()
 		contractAddress, err := bind.WaitDeployed(ctx, conn, tx)
-		fmt.Println("SaleClockAuction:", contractAddress)
+		fmt.Println("SaleClockAuction:", contractAddress.Hex())
 	}
 
 	if err != nil {
