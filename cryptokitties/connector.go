@@ -112,7 +112,7 @@ func NewConnecterWithDeploy(host string, ownerAuth *bind.TransactOpts) (ret *Con
 		return
 	}
 
-	ret := &Connecter{
+	ret = &Connecter{
 		// ctx:  ctx,
 		conn: conn,
 		// lottery:         l,
