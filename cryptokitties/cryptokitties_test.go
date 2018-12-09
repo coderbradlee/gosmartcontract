@@ -49,13 +49,17 @@ func TestMix(t *testing.T) {
 	// 63169218f348dc640d171b000208934b5a90189038cb3084624a50f7316c
 	gene2 := "00005a13429085339c6521ef0300011c82438c628cc431a63298e3721f772d29"
 	// 5a13429085339c6521ef0300011c82438c628cc431a63298e3721f772d29
-	// gene3:="00004a52931ce4085c14bdce014a0318846a0c808c60294a6314a34a1295b9ce"
+	gene3 := "4a52931ce4085c14bdce014a0318846a0c808c60294a6314a34a1295b9ce"
 	// fmt.Println(anyToDecimal(gene1, 32))
 	// fmt.Println(anyToDecimal(gene2, 32))
 	out1 := ConvertTo32(gene1)
 	fmt.Println(out1)
 	out2 := ConvertTo32(gene2)
 	fmt.Println(out2)
+
+	out3 := ConvertTo32(gene3)
+	fmt.Println(out3)
+
 	// out=ConvertTo32(gene3)
 	// fmt.Println(out)
 	// ddca578ka4f7949p4d11535kaeea175h846k2243aa9gfdcd
@@ -114,7 +118,7 @@ func TestCreate(t *testing.T) {
 		for _, v := range ret {
 			fmt.Println("ret: ", v.Text(16))
 			kittystruct, _ := kc.GetKitty(nil, v)
-			fmt.Printf("IsGestating:%v,IsReady:%v,CooldownIndex:%s,NextActionAt:%s,SiringWithId:%s,BirthTime:%s,MatronId:%s,SireId:%s,Generation:%s,Genes:%s\n",kittystruct.IsGestating,kittystruct.IsReady,kittystruct.CooldownIndex.Text(16),kittystruct.NextActionAt.Text(16),kittystruct.SiringWithId.Text(16),kittystruct.BirthTime.Text(16),kittystruct.MatronId.Text(16),kittystruct.SireId.Text(16),kittystruct.Generation.Text(16),kittystruct.Genes.Text(16))
+			fmt.Printf("IsGestating:%v,IsReady:%v,CooldownIndex:%s,NextActionAt:%s,SiringWithId:%s,BirthTime:%s,MatronId:%s,SireId:%s,Generation:%s,Genes:%s\n", kittystruct.IsGestating, kittystruct.IsReady, kittystruct.CooldownIndex.Text(16), kittystruct.NextActionAt.Text(16), kittystruct.SiringWithId.Text(16), kittystruct.BirthTime.Text(16), kittystruct.MatronId.Text(16), kittystruct.SireId.Text(16), kittystruct.Generation.Text(16), kittystruct.Genes.Text(16))
 		}
 
 	}
