@@ -61,14 +61,6 @@ func main() {
 
 	token, err := erc721.NewErc721(contractAddr, sim)
 	{
-		bala, err := token.BalanceOf(nil, common.HexToAddress(ownerAddress))
-		if err != nil {
-			log.Fatal("BalanceOf.", err)
-		}
-		fmt.Printf("owner balance:%v\n", bala.Text(10))
-	}
-
-	{
 		bala, err := token.BalanceOf(nil, common.HexToAddress(debtorAddr))
 		if err != nil {
 			log.Fatal("BalanceOf.", err)
@@ -82,10 +74,19 @@ func main() {
 		}
 		fmt.Printf("creditor balance:%v\n", bala.Text(10))
 	}
+	/////mint to creditorAddr
+	_, err = token.Mint(auth, common.HexToAddress(creditorAddr),big.NewInt(11111))
+	if err != nil {
+		log.Fatal("mint.", err)
+	}
 
-
-
-
+	{
+		bala, err := token.BalanceOf(nil, common.HexToAddress(creditorAddr))
+		if err != nil {
+			log.Fatal("BalanceOf.", err)
+		}
+		fmt.Printf("creditor balance:%v\n", bala.Text(10))
+	}
 
 
 }

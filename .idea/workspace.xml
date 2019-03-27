@@ -2,8 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c13322a7-16ca-4faf-a093-2f343f068b00" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/erc721/mocks/nf-token-mock.sol" beforeDir="false" afterPath="$PROJECT_DIR$/erc721/mocks/nf-token-mock.sol" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/erc721/erc721.go" beforeDir="false" afterPath="$PROJECT_DIR$/erc721/erc721.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/erc721/mocks/erc721.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/main.go" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -14,22 +15,19 @@
   <component name="FileEditorManager">
     <leaf>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/README.md">
-          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-            <state split_layout="FIRST">
-              <first_editor relative-caret-position="191">
-                <caret line="28" column="44" selection-start-line="28" selection-start-column="44" selection-end-line="28" selection-end-column="44" />
-              </first_editor>
-              <second_editor />
+        <entry file="file://$PROJECT_DIR$/main.go">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="435">
+              <caret line="88" column="5" selection-start-line="88" selection-start-column="5" selection-end-line="88" selection-end-column="5" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/erc721/mocks/nf-token-mock.sol">
+        <entry file="file://$PROJECT_DIR$/erc721/erc721.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="176">
-              <caret line="8" column="20" selection-start-line="8" selection-start-column="9" selection-end-line="8" selection-end-column="20" />
+            <state relative-caret-position="232">
+              <caret line="422" column="37" selection-start-line="422" selection-start-column="33" selection-end-line="422" selection-end-column="37" />
             </state>
           </provider>
         </entry>
@@ -47,12 +45,12 @@
       <find>new</find>
       <find>sim</find>
       <find>mint</find>
-      <find>min</find>
       <find>transfer</find>
       <find>symbo</find>
       <find>New</find>
       <find>from</find>
       <find>userPrivateKey1</find>
+      <find>min</find>
     </findStrings>
   </component>
   <component name="GOROOT" path="E:\work\goroot" />
@@ -78,9 +76,9 @@
         <option value="$PROJECT_DIR$/erc721/utils/erc165.sol" />
         <option value="$PROJECT_DIR$/erc721/utils/supports-interface.sol" />
         <option value="$PROJECT_DIR$/build.sh" />
-        <option value="$PROJECT_DIR$/main.go" />
         <option value="$PROJECT_DIR$/erc721/mocks/nf-token-mock.sol" />
         <option value="$PROJECT_DIR$/README.md" />
+        <option value="$PROJECT_DIR$/main.go" />
       </list>
     </option>
   </component>
@@ -111,38 +109,6 @@
               <item name="gosmartcontract" type="b2602c69:ProjectViewProjectNode" />
               <item name="gosmartcontract" type="462c0819:PsiDirectoryNode" />
               <item name="erc721" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="gosmartcontract" type="b2602c69:ProjectViewProjectNode" />
-              <item name="gosmartcontract" type="462c0819:PsiDirectoryNode" />
-              <item name="erc721" type="462c0819:PsiDirectoryNode" />
-              <item name="math" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="gosmartcontract" type="b2602c69:ProjectViewProjectNode" />
-              <item name="gosmartcontract" type="462c0819:PsiDirectoryNode" />
-              <item name="erc721" type="462c0819:PsiDirectoryNode" />
-              <item name="mocks" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="gosmartcontract" type="b2602c69:ProjectViewProjectNode" />
-              <item name="gosmartcontract" type="462c0819:PsiDirectoryNode" />
-              <item name="testganache" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="gosmartcontract" type="b2602c69:ProjectViewProjectNode" />
-              <item name="gosmartcontract" type="462c0819:PsiDirectoryNode" />
-              <item name="testgaslimit" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="gosmartcontract" type="b2602c69:ProjectViewProjectNode" />
-              <item name="gosmartcontract" type="462c0819:PsiDirectoryNode" />
-              <item name="testkovan" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="gosmartcontract" type="b2602c69:ProjectViewProjectNode" />
-              <item name="gosmartcontract" type="462c0819:PsiDirectoryNode" />
-              <item name="tests" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -351,13 +317,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/erc721/erc721.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="389">
-          <caret line="169" column="1" selection-start-line="169" selection-start-column="1" selection-end-line="169" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/main2.gobak">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="154">
@@ -410,16 +369,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/main.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="193">
-          <caret line="47" column="62" selection-start-line="47" selection-start-column="62" selection-end-line="47" selection-end-column="62" />
-          <folding>
-            <element signature="e#14#279#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/erc721/tokens/nf-token.sol">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="968">
@@ -448,6 +397,16 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="FIRST">
+          <first_editor relative-caret-position="191">
+            <caret line="28" selection-start-line="28" selection-end-line="28" selection-end-column="77" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/erc721/mocks/nf-token-mock.sol">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="176">
@@ -455,13 +414,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="FIRST">
-          <first_editor relative-caret-position="191">
-            <caret line="28" column="44" selection-start-line="28" selection-start-column="44" selection-end-line="28" selection-end-column="44" />
-          </first_editor>
-          <second_editor />
+    <entry file="file://$PROJECT_DIR$/erc721/erc721.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="232">
+          <caret line="422" column="37" selection-start-line="422" selection-start-column="33" selection-end-line="422" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="435">
+          <caret line="88" column="5" selection-start-line="88" selection-start-column="5" selection-end-line="88" selection-end-column="5" />
         </state>
       </provider>
     </entry>
