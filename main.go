@@ -6,7 +6,7 @@ import (
 	"log"
 	"math/big"
 	// "time"
-	"./Divies"
+	"./erc721"
 
 	"github.com/ethereum/go-ethereum/accounts/abi/bind"
 	"github.com/ethereum/go-ethereum/accounts/abi/bind/backends"
