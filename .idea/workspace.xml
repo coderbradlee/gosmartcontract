@@ -15,8 +15,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/main.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="413">
-              <caret line="72" column="28" selection-start-line="72" selection-start-column="28" selection-end-line="72" selection-end-column="28" />
+            <state relative-caret-position="435">
+              <caret line="76" column="16" selection-start-line="76" selection-start-column="16" selection-end-line="76" selection-end-column="16" />
               <folding>
                 <element signature="e#14#279#0" expanded="true" />
               </folding>
@@ -45,8 +45,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/main2.gobak">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="330">
-              <caret line="56" column="52" selection-start-line="56" selection-start-column="40" selection-end-line="56" selection-end-column="52" />
+            <state relative-caret-position="132">
+              <caret line="618" column="7" selection-start-line="618" selection-start-column="7" selection-end-line="618" selection-end-column="19" />
             </state>
           </provider>
         </entry>
@@ -63,6 +63,8 @@
       <find>New</find>
       <find>CreateToken</find>
       <find>balance</find>
+      <find>new</find>
+      <find>sim</find>
     </findStrings>
   </component>
   <component name="GOROOT" path="E:\work\goroot" />
@@ -415,13 +417,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/main2.gobak">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="56" column="52" selection-start-line="56" selection-start-column="40" selection-end-line="56" selection-end-column="52" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/erc721/erc721.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="144">
@@ -429,10 +424,17 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/main2.gobak">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="132">
+          <caret line="618" column="7" selection-start-line="618" selection-start-column="7" selection-end-line="618" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/main.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="413">
-          <caret line="72" column="28" selection-start-line="72" selection-start-column="28" selection-end-line="72" selection-end-column="28" />
+        <state relative-caret-position="435">
+          <caret line="76" column="16" selection-start-line="76" selection-start-column="16" selection-end-line="76" selection-end-column="16" />
           <folding>
             <element signature="e#14#279#0" expanded="true" />
           </folding>

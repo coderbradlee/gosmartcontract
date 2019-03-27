@@ -47,7 +47,7 @@ func main() {
 		log.Fatalf("could not deploy Divies: %v", err)
 	}
 	fmt.Printf("erc721 contract at address %s\n", addr.String())
-
+	sim.Commit()
 
 	debtorPriKey, debtorAddr, err := createAccount()
 	if err != nil {
@@ -74,7 +74,7 @@ func main() {
 	}
 	fmt.Printf("creditor balance:%v\n", bala.Text(10))
 
-
+	sim.Commit()
 }
 func createAccount() ( private string, addr string, err error) {
 	priKey, err := crypto.GenerateKey()
