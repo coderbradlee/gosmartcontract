@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"log"
 	"math/big"
 	"./erc721"
@@ -73,7 +72,7 @@ func main() {
 	}
 	sim.Commit()
 
-	fmt.Println("after transfer:")
+	log.Println("after transfer:")
 	{
 		bala, err := token.BalanceOf(nil, common.HexToAddress(debtorAddr))
 		if err != nil {
