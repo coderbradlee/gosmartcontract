@@ -31,18 +31,17 @@ func main() {
 		log.Fatal("risk amount cannot be greater than total amount")
 	}
 
-
-	key, _ := crypto.GenerateKey()
-	auth := bind.NewKeyedTransactor(key)
+	ownerKey, ownerAddress, _ := createAccount()
+	auth := bind.NewKeyedTransactor(ownerKey)
 
 	alloc := make(core.GenesisAlloc)
 	b := new(big.Int)
 	b.SetString("1337000000000000000000000", 10)
 	fmt.Println(b.Text(10))
 	alloc[auth.From] = core.GenesisAccount{Balance: b}
-	sim := backends.NewSimulatedBackend(alloc,8000000)
+	sim := backends.NewSimulatedBackend(alloc, 8000000)
 
-	addr, _, _, err := erc721.DeployErc721(auth, sim)
+	contractAddr, _, _, err := erc721.DeployErc721(auth, sim)
 	if err != nil {
 		log.Fatalf("could not deploy Divies: %v", err)
 	}
@@ -53,28 +52,42 @@ func main() {
 	if err != nil {
 		log.Fatal("Failed to create account.", err)
 	}
-	fmt.Printf("debtor private:%s,address:%s\n",debtorPriKey,debtorAddr)
+	fmt.Printf("debtor private:%s,address:%s\n", debtorPriKey, debtorAddr)
 	creditorPriKey, creditorAddr, err := createAccount()
 	if err != nil {
 		log.Fatal("Failed to create account.", err)
 	}
-	fmt.Printf("creditor private:%s,address:%s\n",creditorPriKey,creditorAddr)
+	fmt.Printf("creditor private:%s,address:%s\n", creditorPriKey, creditorAddr)
 
-
-	token, err := erc721.NewErc721(addr, sim)
-	bala, err := token.BalanceOf(nil,common.HexToAddress(debtorAddr))
-	if err != nil {
-		log.Fatal("BalanceOf.", err)
+	token, err := erc721.NewErc721(contractAddr, sim)
+	{
+		bala, err := token.BalanceOf(nil, common.HexToAddress(ownerAddress))
+		if err != nil {
+			log.Fatal("BalanceOf.", err)
+		}
+		fmt.Printf("owner balance:%v\n", bala.Text(10))
 	}
-	fmt.Printf("debtor balance:%v\n", bala.Text(10))
 
-	bala, err = token.BalanceOf(nil,common.HexToAddress(creditorAddr))
-	if err != nil {
-		log.Fatal("BalanceOf.", err)
+	{
+		bala, err := token.BalanceOf(nil, common.HexToAddress(debtorAddr))
+		if err != nil {
+			log.Fatal("BalanceOf.", err)
+		}
+		fmt.Printf("debtor balance:%v\n", bala.Text(10))
 	}
-	fmt.Printf("creditor balance:%v\n", bala.Text(10))
+	{
+		bala, err := token.BalanceOf(nil, common.HexToAddress(creditorAddr))
+		if err != nil {
+			log.Fatal("BalanceOf.", err)
+		}
+		fmt.Printf("creditor balance:%v\n", bala.Text(10))
+	}
 
-	sim.Commit()
+
+
+
+
+
 }
 func createAccount() ( private string, addr string, err error) {
 	priKey, err := crypto.GenerateKey()
