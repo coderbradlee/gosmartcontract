@@ -3,20 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="c13322a7-16ca-4faf-a093-2f343f068b00" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/erc721/mocks/nf-token-enumerable-mock.sol" beforeDir="false" afterPath="$PROJECT_DIR$/erc721/mocks/nf-token-enumerable-mock.sol" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/erc721/mocks/nf-token-metadata-enumerable-mock.sol" beforeDir="false" afterPath="$PROJECT_DIR$/erc721/mocks/nf-token-metadata-enumerable-mock.sol" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/erc721/mocks/nf-token-metadata-mock.sol" beforeDir="false" afterPath="$PROJECT_DIR$/erc721/mocks/nf-token-metadata-mock.sol" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/erc721/mocks/nf-token-mock.sol" beforeDir="false" afterPath="$PROJECT_DIR$/erc721/mocks/nf-token-mock.sol" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/erc721/ownership/ownable.sol" beforeDir="false" afterPath="$PROJECT_DIR$/erc721/ownership/ownable.sol" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/erc721/tokens/erc721-enumerable.sol" beforeDir="false" afterPath="$PROJECT_DIR$/erc721/tokens/erc721-enumerable.sol" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/erc721/tokens/erc721-metadata.sol" beforeDir="false" afterPath="$PROJECT_DIR$/erc721/tokens/erc721-metadata.sol" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/erc721/tokens/erc721-token-receiver.sol" beforeDir="false" afterPath="$PROJECT_DIR$/erc721/tokens/erc721-token-receiver.sol" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/erc721/tokens/erc721.sol" beforeDir="false" afterPath="$PROJECT_DIR$/erc721/tokens/erc721.sol" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/erc721/tokens/nf-token-enumerable.sol" beforeDir="false" afterPath="$PROJECT_DIR$/erc721/tokens/nf-token-enumerable.sol" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/erc721/tokens/nf-token-metadata.sol" beforeDir="false" afterPath="$PROJECT_DIR$/erc721/tokens/nf-token-metadata.sol" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/erc721/tokens/nf-token.sol" beforeDir="false" afterPath="$PROJECT_DIR$/erc721/tokens/nf-token.sol" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/main.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.gobak" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/erc721/utils/address-utils.sol" beforeDir="false" afterPath="$PROJECT_DIR$/erc721/utils/address-utils.sol" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/erc721/utils/erc165.sol" beforeDir="false" afterPath="$PROJECT_DIR$/erc721/utils/erc165.sol" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -35,8 +23,56 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/erc721/math/safe-math.sol">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <caret column="17" selection-start-column="17" selection-end-column="17" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/erc721/tokens/nf-token.sol">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <caret column="16" lean-forward="true" selection-start-column="16" selection-end-column="17" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/README.md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="FIRST">
+              <first_editor relative-caret-position="301">
+                <caret line="25" selection-start-line="25" selection-end-line="25" selection-end-column="119" />
+              </first_editor>
+              <second_editor />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/erc721/utils/address-utils.sol">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <caret column="16" lean-forward="true" selection-start-column="16" selection-end-column="17" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/erc721/utils/erc165.sol">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <caret column="17" selection-start-column="17" selection-end-column="17" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/erc721/utils/supports-interface.sol">
           <provider selected="true" editor-type-id="text-editor">
             <state>
               <caret column="17" selection-start-column="17" selection-end-column="17" />
@@ -59,7 +95,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/main.go" />
         <option value="$PROJECT_DIR$/erc721/tokens/nf-token.sol" />
         <option value="$PROJECT_DIR$/erc721/tokens/nf-token-enumerable.sol" />
@@ -74,6 +109,10 @@
         <option value="$PROJECT_DIR$/erc721/mocks/nf-token-metadata-mock.sol" />
         <option value="$PROJECT_DIR$/erc721/mocks/nf-token-mock.sol" />
         <option value="$PROJECT_DIR$/erc721/math/safe-math.sol" />
+        <option value="$PROJECT_DIR$/README.md" />
+        <option value="$PROJECT_DIR$/erc721/utils/address-utils.sol" />
+        <option value="$PROJECT_DIR$/erc721/utils/erc165.sol" />
+        <option value="$PROJECT_DIR$/erc721/utils/supports-interface.sol" />
       </list>
     </option>
   </component>
@@ -128,6 +167,12 @@
               <item name="gosmartcontract" type="462c0819:PsiDirectoryNode" />
               <item name="erc721" type="462c0819:PsiDirectoryNode" />
               <item name="tokens" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="gosmartcontract" type="b2602c69:ProjectViewProjectNode" />
+              <item name="gosmartcontract" type="462c0819:PsiDirectoryNode" />
+              <item name="erc721" type="462c0819:PsiDirectoryNode" />
+              <item name="utils" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="gosmartcontract" type="b2602c69:ProjectViewProjectNode" />
@@ -248,23 +293,6 @@
     <entry file="file://$PROJECT_DIR$/tests/deploymanu.txt">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="176">
-            <caret line="21" selection-start-line="21" selection-end-line="21" selection-end-column="54" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/erc721/tokens/nf-token.sol">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="16" lean-forward="true" selection-start-column="16" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/erc721/tokens/nf-token-enumerable.sol">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -335,6 +363,13 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/erc721/math/safe-math.sol">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="17" selection-start-column="17" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/erc721/mocks/nf-token-mock.sol">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -342,7 +377,38 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/erc721/math/safe-math.sol">
+    <entry file="file://$PROJECT_DIR$/erc721/tokens/nf-token.sol">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="16" lean-forward="true" selection-start-column="16" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="FIRST">
+          <first_editor relative-caret-position="301">
+            <caret line="25" selection-start-line="25" selection-end-line="25" selection-end-column="119" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/erc721/utils/address-utils.sol">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="16" lean-forward="true" selection-start-column="16" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/erc721/utils/erc165.sol">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="17" selection-start-column="17" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/erc721/utils/supports-interface.sol">
       <provider selected="true" editor-type-id="text-editor">
         <state>
           <caret column="17" selection-start-column="17" selection-end-column="17" />

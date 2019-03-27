@@ -20,7 +20,20 @@ abigen --sol=Contract.sol --pkg=main --out=contract.go
 ```
 abigen --sol=FomoETC.sol --pkg=FomoETC --out=FomoETC.go
 abigen --sol=nf-token.sol --pkg=erc721 --out=erc721.go
+solc -o . --bin --ast --asm --allow-paths /root/gosmartcontract/erc721,/root/gosmartcontract/erc721/math,/root/gosmartcontract/erc721/ownership,/root/gosmartcontract/erc721/tokens,/root/gosmartcontract/erc721/utils nf-token.sol 
 
+
+solc -o . --bin --ast --asm --allow-paths /root/gosmartcontract/erc721 /root/gosmartcontract/erc721/tokens/nf-token.sol
+
+
+
+solc -o . --bin --ast --asm --allow-paths ../math/safe-math.sol,/root/gosmartcontract/erc721/tokens nf-token.sol
+
+solc /root/gosmartcontract/erc721/... -o . --bin --ast --asm nf-token.sol
+
+
+--allow-paths /sample/path,/another/sample/path
+abigen --bin="0x6080604052600436106100535763ffffffff60e060020a600035041663114719c5811461005857806318d0376c1461007f5780631a9be331146100945780634ccbe888146100a9578063c105c5ed146100be575b600080fd5b34801561006457600080fd5b5061006d6100d5565b60408051918252519081900360200190f35b34801561008b57600080fd5b5061006d6100ed565b3480156100a057600080fd5b5061006d610104565b3480156100b557600080fd5b5061006d61011b565b3480156100ca57600080fd5b506100d3610132565b005b6000805460ff16156100e657600080fd5b50610e1090565b6000805460ff16156100fe57600080fd5b50603c90565b6000805460ff161561011557600080fd5b50607890565b6000805460ff161561012c57600080fd5b50600f90565b6000805460ff191660011790555600a165627a7a72305820bef27da50bba901119b988fb734dcd5734d21efbd6a773b0a9b165c2d523e7230029" --pkg=erc721 --out=erc721.go
 
 abigen --sol=testinterface.sol --pkg=testinterface --out=testinterface.go
 abigen --sol=etclottery.sol --pkg=main --out=etclottery.go
