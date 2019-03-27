@@ -46,10 +46,10 @@ func main() {
 	alloc[auth.From] = core.GenesisAccount{Balance: b}
 	sim := backends.NewSimulatedBackend(alloc,8000000)
 
-	addrDivies, _, _, err := Divies.DeployDivies(auth, sim)
+	addr, _, _, err := erc721.DeployErc721(auth, sim)
 	if err != nil {
 		log.Fatalf("could not deploy Divies: %v", err)
 	}
-	fmt.Printf("Divies contract at address %s...\n", addrDivies.String())
+	fmt.Printf("erc721 contract at address %s...\n", addr.String())
 
 }
