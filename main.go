@@ -7,18 +7,12 @@ import (
 	"math/big"
 	// "time"
 	"./erc721"
-	"crypto/ecdsa"
 	"encoding/hex"
 	"github.com/ethereum/go-ethereum/accounts/abi/bind"
 	"github.com/ethereum/go-ethereum/accounts/abi/bind/backends"
 	"github.com/ethereum/go-ethereum/core"
 	"github.com/ethereum/go-ethereum/crypto"
 	"github.com/ethereum/go-ethereum/common"
-)
-
-const (
-	host = "http://47.91.31.224:2301"
-	// host="http://13.113.9.175:18545"
 )
 
 func main() {
@@ -57,12 +51,12 @@ func main() {
 
 	debtorPriKey, debtorAddr, err := createAccount()
 	if err != nil {
-		log.Fatal("Failed to create account.", zap.Error(err))
+		log.Fatal("Failed to create account.", err)
 	}
 	fmt.Printf("debtor private:%s,address:%s\n",debtorPriKey,debtorAddr)
 	creditorPriKey, creditorAddr, err := createAccount()
 	if err != nil {
-		log.Fatal("Failed to create account.", zap.Error(err))
+		log.Fatal("Failed to create account.", err)
 	}
 	fmt.Printf("creditor private:%s,address:%s\n",creditorPriKey,creditorAddr)
 
