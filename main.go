@@ -55,28 +55,26 @@ func main() {
 	fmt.Printf("erc721 contract at address %s\n", addr.String())
 
 
-	_, debtorPriKey, debtorAddr, err := createAccount()
+	debtorPriKey, debtorAddr, err := createAccount()
 	if err != nil {
 		log.Fatal("Failed to create account.", zap.Error(err))
 	}
 	fmt.Printf("debtor private:%s,address:%s\n",debtorPriKey,debtorAddr)
-	_, creditorPriKey, creditorAddr, err := createAccount()
+	creditorPriKey, creditorAddr, err := createAccount()
 	if err != nil {
 		log.Fatal("Failed to create account.", zap.Error(err))
 	}
 	fmt.Printf("creditor private:%s,address:%s\n",creditorPriKey,creditorAddr)
 
 }
-func createAccount() (public string, private string, addr string, err error) {
+func createAccount() ( private string, addr string, err error) {
 	priKey, err := crypto.GenerateKey()
 	if err != nil {
 		return
 	}
-	private=priKey.HexString()
-
+	private=fmt.SPrintf("%x", priKey.D.Bytes())
 
 	pubKey := priKey.PublicKey
-	public=pubKey.HexString()
 	pubBytes := crypto.FromECDSAPub(&pubKey)
 	address := common.BytesToAddress(crypto.Keccak256(pubBytes[1:])[12:])
 	addr=hex.EncodeToString(address[:])
