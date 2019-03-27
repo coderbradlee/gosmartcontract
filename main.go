@@ -60,6 +60,15 @@ func main() {
 	}
 	fmt.Printf("creditor private:%s,address:%s\n",creditorPriKey,creditorAddr)
 
+
+	token, err := erc721.NewErc721(addr, sim)
+	bala, _ := token.BalanceOf(nil,common.HexToAddress(debtorAddr))
+	fmt.Printf("debtor balance:%v\n", bala.Text(10))
+
+	bala, _ = token.BalanceOf(nil,common.HexToAddress(creditorAddr))
+	fmt.Printf("creditor balance:%v\n", bala.Text(10))
+
+
 }
 func createAccount() ( private string, addr string, err error) {
 	priKey, err := crypto.GenerateKey()
@@ -67,11 +76,9 @@ func createAccount() ( private string, addr string, err error) {
 		return
 	}
 	private=fmt.Sprintf("%x", priKey.D.Bytes())
-
 	pubKey := priKey.PublicKey
 	pubBytes := crypto.FromECDSAPub(&pubKey)
 	address := common.BytesToAddress(crypto.Keccak256(pubBytes[1:])[12:])
 	addr=hex.EncodeToString(address[:])
-
 	return
 }
