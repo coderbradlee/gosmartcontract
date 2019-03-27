@@ -89,7 +89,10 @@ func main() {
 		}
 		fmt.Printf("creditor balance:%v\n", bala.Text(10))
 	}
-	_, err = token.SafeTransferFrom(auth, common.HexToAddress(creditorAddr),common.HexToAddress(debtorAddr),big.NewInt(11111),nil)
+	
+	creditorAuth :=AuthAccountFromPrivateKey(creditorPriKey)
+	creditorAuth.GasLimit = uint64(6800000)
+	_, err = token.SafeTransferFrom(creditorAuth, common.HexToAddress(creditorAddr),common.HexToAddress(debtorAddr),big.NewInt(11111),nil)
 	if err != nil {
 		log.Fatal("SafeTransferFrom.", err)
 	}
