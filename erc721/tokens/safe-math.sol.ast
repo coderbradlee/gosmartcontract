@@ -1,0 +1,313 @@
+PragmaDirective
+   Source: "pragma solidity ^0.5.6;"
+ContractDefinition "SafeMath"
+   Source: "library SafeMath\n{\n\n  /**\n   * @dev Multiplies two numbers, reverts on overflow.\n   * @param _factor1 Factor number.\n   * @param _factor2 Factor number.\n   * @return The product of the two factors.\n   */\n  function mul(\n    uint256 _factor1,\n    uint256 _factor2\n  )\n    internal\n    pure\n    returns (uint256 product)\n  {\n    // Gas optimization: this is cheaper than requiring 'a' not being zero, but the\n    // benefit is lost if 'b' is also tested.\n    // See: https://github.com/OpenZeppelin/openzeppelin-solidity/pull/522\n    if (_factor1 == 0)\n    {\n      return 0;\n    }\n\n    product = _factor1 * _factor2;\n    require(product / _factor1 == _factor2);\n  }\n\n  /**\n   * @dev Integer division of two numbers, truncating the quotient, reverts on division by zero.\n   * @param _dividend Dividend number.\n   * @param _divisor Divisor number.\n   * @return The quotient.\n   */\n  function div(\n    uint256 _dividend,\n    uint256 _divisor\n  )\n    internal\n    pure\n    returns (uint256 quotient)\n  {\n    // Solidity automatically asserts when dividing by 0, using all gas.\n    require(_divisor > 0);\n    quotient = _dividend / _divisor;\n    // assert(_dividend == _divisor * quotient + _dividend % _divisor); // There is no case in which this doesn't hold.\n  }\n\n  /**\n   * @dev Substracts two numbers, throws on overflow (i.e. if subtrahend is greater than minuend).\n   * @param _minuend Minuend number.\n   * @param _subtrahend Subtrahend number.\n   * @return Difference.\n   */\n  function sub(\n    uint256 _minuend,\n    uint256 _subtrahend\n  )\n    internal\n    pure\n    returns (uint256 difference)\n  {\n    require(_subtrahend <= _minuend);\n    difference = _minuend - _subtrahend;\n  }\n\n  /**\n   * @dev Adds two numbers, reverts on overflow.\n   * @param _addend1 Number.\n   * @param _addend2 Number.\n   * @return Sum.\n   */\n  function add(\n    uint256 _addend1,\n    uint256 _addend2\n  )\n    internal\n    pure\n    returns (uint256 sum)\n  {\n    sum = _addend1 + _addend2;\n    require(sum >= _addend1);\n  }\n\n  /**\n    * @dev Divides two numbers and returns the remainder (unsigned integer modulo), reverts when\n    * dividing by zero.\n    * @param _dividend Number.\n    * @param _divisor Number.\n    * @return Remainder.\n    */\n  function mod(\n    uint256 _dividend,\n    uint256 _divisor\n  )\n    internal\n    pure\n    returns (uint256 remainder) \n  {\n    require(_divisor != 0);\n    remainder = _dividend % _divisor;\n  }\n\n}"
+  FunctionDefinition "mul"
+     Source: "function mul(\n    uint256 _factor1,\n    uint256 _factor2\n  )\n    internal\n    pure\n    returns (uint256 product)\n  {\n    // Gas optimization: this is cheaper than requiring 'a' not being zero, but the\n    // benefit is lost if 'b' is also tested.\n    // See: https://github.com/OpenZeppelin/openzeppelin-solidity/pull/522\n    if (_factor1 == 0)\n    {\n      return 0;\n    }\n\n    product = _factor1 * _factor2;\n    require(product / _factor1 == _factor2);\n  }"
+    ParameterList
+       Source: "(\n    uint256 _factor1,\n    uint256 _factor2\n  )"
+      VariableDeclaration "_factor1"
+         Type: uint256
+         Source: "uint256 _factor1"
+        ElementaryTypeName uint256
+           Source: "uint256"
+      VariableDeclaration "_factor2"
+         Type: uint256
+         Source: "uint256 _factor2"
+        ElementaryTypeName uint256
+           Source: "uint256"
+    ParameterList
+       Source: "(uint256 product)"
+      VariableDeclaration "product"
+         Type: uint256
+         Source: "uint256 product"
+        ElementaryTypeName uint256
+           Source: "uint256"
+    Block
+       Source: "{\n    // Gas optimization: this is cheaper than requiring 'a' not being zero, but the\n    // benefit is lost if 'b' is also tested.\n    // See: https://github.com/OpenZeppelin/openzeppelin-solidity/pull/522\n    if (_factor1 == 0)\n    {\n      return 0;\n    }\n\n    product = _factor1 * _factor2;\n    require(product / _factor1 == _factor2);\n  }"
+      IfStatement
+         Source: "if (_factor1 == 0)\n    {\n      return 0;\n    }"
+        BinaryOperation using operator ==
+           Type: bool
+           Source: "_factor1 == 0"
+          Identifier _factor1
+             Type: uint256
+             Source: "_factor1"
+          Literal, token: [no token] value: 0
+             Type: int_const 0
+             Source: "0"
+        Block
+           Source: "{\n      return 0;\n    }"
+          Return
+             Source: "return 0"
+            Literal, token: [no token] value: 0
+               Type: int_const 0
+               Source: "0"
+      ExpressionStatement
+         Source: "product = _factor1 * _factor2"
+        Assignment using operator =
+           Type: uint256
+           Source: "product = _factor1 * _factor2"
+          Identifier product
+             Type: uint256
+             Source: "product"
+          BinaryOperation using operator *
+             Type: uint256
+             Source: "_factor1 * _factor2"
+            Identifier _factor1
+               Type: uint256
+               Source: "_factor1"
+            Identifier _factor2
+               Type: uint256
+               Source: "_factor2"
+      ExpressionStatement
+         Source: "require(product / _factor1 == _factor2)"
+        FunctionCall
+           Type: tuple()
+           Source: "require(product / _factor1 == _factor2)"
+          Identifier require
+             Type: function (bool) pure
+             Source: "require"
+          BinaryOperation using operator ==
+             Type: bool
+             Source: "product / _factor1 == _factor2"
+            BinaryOperation using operator /
+               Type: uint256
+               Source: "product / _factor1"
+              Identifier product
+                 Type: uint256
+                 Source: "product"
+              Identifier _factor1
+                 Type: uint256
+                 Source: "_factor1"
+            Identifier _factor2
+               Type: uint256
+               Source: "_factor2"
+  FunctionDefinition "div"
+     Source: "function div(\n    uint256 _dividend,\n    uint256 _divisor\n  )\n    internal\n    pure\n    returns (uint256 quotient)\n  {\n    // Solidity automatically asserts when dividing by 0, using all gas.\n    require(_divisor > 0);\n    quotient = _dividend / _divisor;\n    // assert(_dividend == _divisor * quotient + _dividend % _divisor); // There is no case in which this doesn't hold.\n  }"
+    ParameterList
+       Source: "(\n    uint256 _dividend,\n    uint256 _divisor\n  )"
+      VariableDeclaration "_dividend"
+         Type: uint256
+         Source: "uint256 _dividend"
+        ElementaryTypeName uint256
+           Source: "uint256"
+      VariableDeclaration "_divisor"
+         Type: uint256
+         Source: "uint256 _divisor"
+        ElementaryTypeName uint256
+           Source: "uint256"
+    ParameterList
+       Source: "(uint256 quotient)"
+      VariableDeclaration "quotient"
+         Type: uint256
+         Source: "uint256 quotient"
+        ElementaryTypeName uint256
+           Source: "uint256"
+    Block
+       Source: "{\n    // Solidity automatically asserts when dividing by 0, using all gas.\n    require(_divisor > 0);\n    quotient = _dividend / _divisor;\n    // assert(_dividend == _divisor * quotient + _dividend % _divisor); // There is no case in which this doesn't hold.\n  }"
+      ExpressionStatement
+         Source: "require(_divisor > 0)"
+        FunctionCall
+           Type: tuple()
+           Source: "require(_divisor > 0)"
+          Identifier require
+             Type: function (bool) pure
+             Source: "require"
+          BinaryOperation using operator >
+             Type: bool
+             Source: "_divisor > 0"
+            Identifier _divisor
+               Type: uint256
+               Source: "_divisor"
+            Literal, token: [no token] value: 0
+               Type: int_const 0
+               Source: "0"
+      ExpressionStatement
+         Source: "quotient = _dividend / _divisor"
+        Assignment using operator =
+           Type: uint256
+           Source: "quotient = _dividend / _divisor"
+          Identifier quotient
+             Type: uint256
+             Source: "quotient"
+          BinaryOperation using operator /
+             Type: uint256
+             Source: "_dividend / _divisor"
+            Identifier _dividend
+               Type: uint256
+               Source: "_dividend"
+            Identifier _divisor
+               Type: uint256
+               Source: "_divisor"
+  FunctionDefinition "sub"
+     Source: "function sub(\n    uint256 _minuend,\n    uint256 _subtrahend\n  )\n    internal\n    pure\n    returns (uint256 difference)\n  {\n    require(_subtrahend <= _minuend);\n    difference = _minuend - _subtrahend;\n  }"
+    ParameterList
+       Source: "(\n    uint256 _minuend,\n    uint256 _subtrahend\n  )"
+      VariableDeclaration "_minuend"
+         Type: uint256
+         Source: "uint256 _minuend"
+        ElementaryTypeName uint256
+           Source: "uint256"
+      VariableDeclaration "_subtrahend"
+         Type: uint256
+         Source: "uint256 _subtrahend"
+        ElementaryTypeName uint256
+           Source: "uint256"
+    ParameterList
+       Source: "(uint256 difference)"
+      VariableDeclaration "difference"
+         Type: uint256
+         Source: "uint256 difference"
+        ElementaryTypeName uint256
+           Source: "uint256"
+    Block
+       Source: "{\n    require(_subtrahend <= _minuend);\n    difference = _minuend - _subtrahend;\n  }"
+      ExpressionStatement
+         Source: "require(_subtrahend <= _minuend)"
+        FunctionCall
+           Type: tuple()
+           Source: "require(_subtrahend <= _minuend)"
+          Identifier require
+             Type: function (bool) pure
+             Source: "require"
+          BinaryOperation using operator <=
+             Type: bool
+             Source: "_subtrahend <= _minuend"
+            Identifier _subtrahend
+               Type: uint256
+               Source: "_subtrahend"
+            Identifier _minuend
+               Type: uint256
+               Source: "_minuend"
+      ExpressionStatement
+         Source: "difference = _minuend - _subtrahend"
+        Assignment using operator =
+           Type: uint256
+           Source: "difference = _minuend - _subtrahend"
+          Identifier difference
+             Type: uint256
+             Source: "difference"
+          BinaryOperation using operator -
+             Type: uint256
+             Source: "_minuend - _subtrahend"
+            Identifier _minuend
+               Type: uint256
+               Source: "_minuend"
+            Identifier _subtrahend
+               Type: uint256
+               Source: "_subtrahend"
+  FunctionDefinition "add"
+     Source: "function add(\n    uint256 _addend1,\n    uint256 _addend2\n  )\n    internal\n    pure\n    returns (uint256 sum)\n  {\n    sum = _addend1 + _addend2;\n    require(sum >= _addend1);\n  }"
+    ParameterList
+       Source: "(\n    uint256 _addend1,\n    uint256 _addend2\n  )"
+      VariableDeclaration "_addend1"
+         Type: uint256
+         Source: "uint256 _addend1"
+        ElementaryTypeName uint256
+           Source: "uint256"
+      VariableDeclaration "_addend2"
+         Type: uint256
+         Source: "uint256 _addend2"
+        ElementaryTypeName uint256
+           Source: "uint256"
+    ParameterList
+       Source: "(uint256 sum)"
+      VariableDeclaration "sum"
+         Type: uint256
+         Source: "uint256 sum"
+        ElementaryTypeName uint256
+           Source: "uint256"
+    Block
+       Source: "{\n    sum = _addend1 + _addend2;\n    require(sum >= _addend1);\n  }"
+      ExpressionStatement
+         Source: "sum = _addend1 + _addend2"
+        Assignment using operator =
+           Type: uint256
+           Source: "sum = _addend1 + _addend2"
+          Identifier sum
+             Type: uint256
+             Source: "sum"
+          BinaryOperation using operator +
+             Type: uint256
+             Source: "_addend1 + _addend2"
+            Identifier _addend1
+               Type: uint256
+               Source: "_addend1"
+            Identifier _addend2
+               Type: uint256
+               Source: "_addend2"
+      ExpressionStatement
+         Source: "require(sum >= _addend1)"
+        FunctionCall
+           Type: tuple()
+           Source: "require(sum >= _addend1)"
+          Identifier require
+             Type: function (bool) pure
+             Source: "require"
+          BinaryOperation using operator >=
+             Type: bool
+             Source: "sum >= _addend1"
+            Identifier sum
+               Type: uint256
+               Source: "sum"
+            Identifier _addend1
+               Type: uint256
+               Source: "_addend1"
+  FunctionDefinition "mod"
+     Source: "function mod(\n    uint256 _dividend,\n    uint256 _divisor\n  )\n    internal\n    pure\n    returns (uint256 remainder) \n  {\n    require(_divisor != 0);\n    remainder = _dividend % _divisor;\n  }"
+    ParameterList
+       Source: "(\n    uint256 _dividend,\n    uint256 _divisor\n  )"
+      VariableDeclaration "_dividend"
+         Type: uint256
+         Source: "uint256 _dividend"
+        ElementaryTypeName uint256
+           Source: "uint256"
+      VariableDeclaration "_divisor"
+         Type: uint256
+         Source: "uint256 _divisor"
+        ElementaryTypeName uint256
+           Source: "uint256"
+    ParameterList
+       Source: "(uint256 remainder)"
+      VariableDeclaration "remainder"
+         Type: uint256
+         Source: "uint256 remainder"
+        ElementaryTypeName uint256
+           Source: "uint256"
+    Block
+       Source: "{\n    require(_divisor != 0);\n    remainder = _dividend % _divisor;\n  }"
+      ExpressionStatement
+         Source: "require(_divisor != 0)"
+        FunctionCall
+           Type: tuple()
+           Source: "require(_divisor != 0)"
+          Identifier require
+             Type: function (bool) pure
+             Source: "require"
+          BinaryOperation using operator !=
+             Type: bool
+             Source: "_divisor != 0"
+            Identifier _divisor
+               Type: uint256
+               Source: "_divisor"
+            Literal, token: [no token] value: 0
+               Type: int_const 0
+               Source: "0"
+      ExpressionStatement
+         Source: "remainder = _dividend % _divisor"
+        Assignment using operator =
+           Type: uint256
+           Source: "remainder = _dividend % _divisor"
+          Identifier remainder
+             Type: uint256
+             Source: "remainder"
+          BinaryOperation using operator %
+             Type: uint256
+             Source: "_dividend % _divisor"
+            Identifier _dividend
+               Type: uint256
+               Source: "_dividend"
+            Identifier _divisor
+               Type: uint256
+               Source: "_divisor"

@@ -1,0 +1,73 @@
+PragmaDirective
+   Source: "pragma solidity ^0.5.6;"
+ImportDirective "./erc165.sol"
+   Source: "import \"./erc165.sol\";"
+ContractDefinition "SupportsInterface"
+   Source: "contract SupportsInterface is\n  ERC165\n{\n\n  /**\n   * @dev Mapping of supported intefraces.\n   * @notice You must not set element 0xffffffff to true.\n   */\n  mapping(bytes4 => bool) internal supportedInterfaces;\n\n  /**\n   * @dev Contract constructor.\n   */\n  constructor()\n    public \n  {\n    supportedInterfaces[0x01ffc9a7] = true; // ERC165\n  }\n\n  /**\n   * @dev Function to check which interfaces are suported by this contract.\n   * @param _interfaceID Id of the interface.\n   * @return True if _interfaceID is supported, false otherwise.\n   */\n  function supportsInterface(\n    bytes4 _interfaceID\n  )\n    external\n    view\n    returns (bool)\n  {\n    return supportedInterfaces[_interfaceID];\n  }\n\n}"
+  InheritanceSpecifier
+     Source: "ERC165"
+    UserDefinedTypeName "ERC165"
+       Source: "ERC165"
+  VariableDeclaration "supportedInterfaces"
+     Type: mapping(bytes4 => bool)
+     Source: "mapping(bytes4 => bool) internal supportedInterfaces"
+    Mapping
+       Source: "mapping(bytes4 => bool)"
+      ElementaryTypeName bytes4
+         Source: "bytes4"
+      ElementaryTypeName bool
+         Source: "bool"
+  FunctionDefinition "" - public
+     Source: "constructor()\n    public \n  {\n    supportedInterfaces[0x01ffc9a7] = true; // ERC165\n  }"
+    ParameterList
+       Source: "()"
+    ParameterList
+       Source: ""
+    Block
+       Source: "{\n    supportedInterfaces[0x01ffc9a7] = true; // ERC165\n  }"
+      ExpressionStatement
+         Source: "supportedInterfaces[0x01ffc9a7] = true"
+        Assignment using operator =
+           Type: bool
+           Source: "supportedInterfaces[0x01ffc9a7] = true"
+          IndexAccess
+             Type: bool
+             Source: "supportedInterfaces[0x01ffc9a7]"
+            Identifier supportedInterfaces
+               Type: mapping(bytes4 => bool)
+               Source: "supportedInterfaces"
+            Literal, token: [no token] value: 0x01ffc9a7
+               Type: int_const 33540519
+               Source: "0x01ffc9a7"
+          Literal, token: true value: true
+             Type: bool
+             Source: "true"
+  FunctionDefinition "supportsInterface" - public - const
+     Source: "function supportsInterface(\n    bytes4 _interfaceID\n  )\n    external\n    view\n    returns (bool)\n  {\n    return supportedInterfaces[_interfaceID];\n  }"
+    ParameterList
+       Source: "(\n    bytes4 _interfaceID\n  )"
+      VariableDeclaration "_interfaceID"
+         Type: bytes4
+         Source: "bytes4 _interfaceID"
+        ElementaryTypeName bytes4
+           Source: "bytes4"
+    ParameterList
+       Source: "(bool)"
+      VariableDeclaration ""
+         Type: bool
+         Source: "bool"
+        ElementaryTypeName bool
+           Source: "bool"
+    Block
+       Source: "{\n    return supportedInterfaces[_interfaceID];\n  }"
+      Return
+         Source: "return supportedInterfaces[_interfaceID]"
+        IndexAccess
+           Type: bool
+           Source: "supportedInterfaces[_interfaceID]"
+          Identifier supportedInterfaces
+             Type: mapping(bytes4 => bool)
+             Source: "supportedInterfaces"
+          Identifier _interfaceID
+             Type: bytes4
+             Source: "_interfaceID"

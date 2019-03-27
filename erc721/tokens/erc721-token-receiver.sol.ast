@@ -1,0 +1,35 @@
+PragmaDirective
+   Source: "pragma solidity ^0.5.6;"
+ContractDefinition "ERC721TokenReceiver"
+   Source: "interface ERC721TokenReceiver\n{\n\n  /**\n   * @dev Handle the receipt of a NFT. The ERC721 smart contract calls this function on the\n   * recipient after a `transfer`. This function MAY throw to revert and reject the transfer. Return\n   * of other than the magic value MUST result in the transaction being reverted.\n   * Returns `bytes4(keccak256(\"onERC721Received(address,address,uint256,bytes)\"))` unless throwing.\n   * @notice The contract address is always the message sender. A wallet/broker/auction application\n   * MUST implement the wallet interface if it will accept safe transfers.\n   * @param _operator The address which called `safeTransferFrom` function.\n   * @param _from The address which previously owned the token.\n   * @param _tokenId The NFT identifier which is being transferred.\n   * @param _data Additional data with no specified format.\n   * @return Returns `bytes4(keccak256(\"onERC721Received(address,address,uint256,bytes)\"))`.\n   */\n  function onERC721Received(\n    address _operator,\n    address _from,\n    uint256 _tokenId,\n    bytes calldata _data\n  )\n    external\n    returns(bytes4);\n    \n}"
+  FunctionDefinition "onERC721Received" - public
+     Source: "function onERC721Received(\n    address _operator,\n    address _from,\n    uint256 _tokenId,\n    bytes calldata _data\n  )\n    external\n    returns(bytes4);"
+    ParameterList
+       Source: "(\n    address _operator,\n    address _from,\n    uint256 _tokenId,\n    bytes calldata _data\n  )"
+      VariableDeclaration "_operator"
+         Type: address
+         Source: "address _operator"
+        ElementaryTypeName address
+           Source: "address"
+      VariableDeclaration "_from"
+         Type: address
+         Source: "address _from"
+        ElementaryTypeName address
+           Source: "address"
+      VariableDeclaration "_tokenId"
+         Type: uint256
+         Source: "uint256 _tokenId"
+        ElementaryTypeName uint256
+           Source: "uint256"
+      VariableDeclaration "_data"
+         Type: bytes calldata
+         Source: "bytes calldata _data"
+        ElementaryTypeName bytes
+           Source: "bytes"
+    ParameterList
+       Source: "(bytes4)"
+      VariableDeclaration ""
+         Type: bytes4
+         Source: "bytes4"
+        ElementaryTypeName bytes4
+           Source: "bytes4"

@@ -1,0 +1,3232 @@
+    /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":269:13659  contract NFToken is... */
+  mstore(0x40, 0x80)
+    /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":3850:3936  constructor()... */
+  callvalue
+    /* "--CODEGEN--":8:17   */
+  dup1
+    /* "--CODEGEN--":5:7   */
+  iszero
+  tag_1
+  jumpi
+    /* "--CODEGEN--":30:31   */
+  0x00
+    /* "--CODEGEN--":27:28   */
+  dup1
+    /* "--CODEGEN--":20:32   */
+  revert
+    /* "--CODEGEN--":5:7   */
+tag_1:
+    /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":3850:3936  constructor()... */
+  pop
+    /* "/root/gosmartcontract/erc721/utils/supports-interface.sol":456:460  true */
+  0x01
+    /* "/root/gosmartcontract/erc721/utils/supports-interface.sol":422:441  supportedInterfaces */
+  0x00
+    /* "/root/gosmartcontract/erc721/utils/supports-interface.sol":422:453  supportedInterfaces[0x01ffc9a7] */
+  dup1
+    /* "/root/gosmartcontract/erc721/utils/supports-interface.sol":442:452  0x01ffc9a7 */
+  0x01ffc9a7
+    /* "/root/gosmartcontract/erc721/utils/supports-interface.sol":422:453  supportedInterfaces[0x01ffc9a7] */
+  0xe0
+  shl
+  not(0xffffffffffffffffffffffffffffffffffffffffffffffffffffffff)
+  and
+  dup2
+  mstore
+  0x20
+  add
+  swap1
+  dup2
+  mstore
+  0x20
+  add
+  0x00
+  keccak256
+  0x00
+    /* "/root/gosmartcontract/erc721/utils/supports-interface.sol":422:460  supportedInterfaces[0x01ffc9a7] = true */
+  0x0100
+  exp
+  dup2
+  sload
+  dup2
+  0xff
+  mul
+  not
+  and
+  swap1
+  dup4
+  iszero
+  iszero
+  mul
+  or
+  swap1
+  sstore
+  pop
+    /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":3917:3921  true */
+  0x01
+    /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":3883:3902  supportedInterfaces */
+  0x00
+    /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":3883:3914  supportedInterfaces[0x80ac58cd] */
+  dup1
+    /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":3903:3913  0x80ac58cd */
+  0x80ac58cd
+    /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":3883:3914  supportedInterfaces[0x80ac58cd] */
+  0xe0
+  shl
+  not(0xffffffffffffffffffffffffffffffffffffffffffffffffffffffff)
+  and
+  dup2
+  mstore
+  0x20
+  add
+  swap1
+  dup2
+  mstore
+  0x20
+  add
+  0x00
+  keccak256
+  0x00
+    /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":3883:3921  supportedInterfaces[0x80ac58cd] = true */
+  0x0100
+  exp
+  dup2
+  sload
+  dup2
+  0xff
+  mul
+  not
+  and
+  swap1
+  dup4
+  iszero
+  iszero
+  mul
+  or
+  swap1
+  sstore
+  pop
+    /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":269:13659  contract NFToken is... */
+  dataSize(sub_0)
+  dup1
+  dataOffset(sub_0)
+  0x00
+  codecopy
+  0x00
+  return
+stop
+
+sub_0: assembly {
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":269:13659  contract NFToken is... */
+      mstore(0x40, 0x80)
+      callvalue
+        /* "--CODEGEN--":8:17   */
+      dup1
+        /* "--CODEGEN--":5:7   */
+      iszero
+      tag_1
+      jumpi
+        /* "--CODEGEN--":30:31   */
+      0x00
+        /* "--CODEGEN--":27:28   */
+      dup1
+        /* "--CODEGEN--":20:32   */
+      revert
+        /* "--CODEGEN--":5:7   */
+    tag_1:
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":269:13659  contract NFToken is... */
+      pop
+      jumpi(tag_2, lt(calldatasize, 0x04))
+      shr(0xe0, calldataload(0x00))
+      dup1
+      0x6352211e
+      gt
+      tag_13
+      jumpi
+      dup1
+      0x6352211e
+      eq
+      tag_8
+      jumpi
+      dup1
+      0x70a08231
+      eq
+      tag_9
+      jumpi
+      dup1
+      0xa22cb465
+      eq
+      tag_10
+      jumpi
+      dup1
+      0xb88d4fde
+      eq
+      tag_11
+      jumpi
+      dup1
+      0xe985e9c5
+      eq
+      tag_12
+      jumpi
+      jump(tag_2)
+    tag_13:
+      dup1
+      0x01ffc9a7
+      eq
+      tag_3
+      jumpi
+      dup1
+      0x081812fc
+      eq
+      tag_4
+      jumpi
+      dup1
+      0x095ea7b3
+      eq
+      tag_5
+      jumpi
+      dup1
+      0x23b872dd
+      eq
+      tag_6
+      jumpi
+      dup1
+      0x42842e0e
+      eq
+      tag_7
+      jumpi
+    tag_2:
+      0x00
+      dup1
+      revert
+        /* "/root/gosmartcontract/erc721/utils/supports-interface.sol":678:828  function supportsInterface(... */
+    tag_3:
+      tag_14
+      0x04
+      dup1
+      calldatasize
+      sub
+        /* "--CODEGEN--":13:15   */
+      0x20
+        /* "--CODEGEN--":8:11   */
+      dup2
+        /* "--CODEGEN--":5:16   */
+      lt
+        /* "--CODEGEN--":2:4   */
+      iszero
+      tag_15
+      jumpi
+        /* "--CODEGEN--":29:30   */
+      0x00
+        /* "--CODEGEN--":26:27   */
+      dup1
+        /* "--CODEGEN--":19:31   */
+      revert
+        /* "--CODEGEN--":2:4   */
+    tag_15:
+        /* "/root/gosmartcontract/erc721/utils/supports-interface.sol":678:828  function supportsInterface(... */
+      dup2
+      add
+      swap1
+      dup1
+      dup1
+      calldataload
+      not(0xffffffffffffffffffffffffffffffffffffffffffffffffffffffff)
+      and
+      swap1
+      0x20
+      add
+      swap1
+      swap3
+      swap2
+      swap1
+      pop
+      pop
+      pop
+      tag_16
+      jump	// in
+    tag_14:
+      mload(0x40)
+      dup1
+      dup3
+      iszero
+      iszero
+      iszero
+      iszero
+      dup2
+      mstore
+      0x20
+      add
+      swap2
+      pop
+      pop
+      mload(0x40)
+      dup1
+      swap2
+      sub
+      swap1
+      return
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":8854:9014  function getApproved(... */
+    tag_4:
+      tag_17
+      0x04
+      dup1
+      calldatasize
+      sub
+        /* "--CODEGEN--":13:15   */
+      0x20
+        /* "--CODEGEN--":8:11   */
+      dup2
+        /* "--CODEGEN--":5:16   */
+      lt
+        /* "--CODEGEN--":2:4   */
+      iszero
+      tag_18
+      jumpi
+        /* "--CODEGEN--":29:30   */
+      0x00
+        /* "--CODEGEN--":26:27   */
+      dup1
+        /* "--CODEGEN--":19:31   */
+      revert
+        /* "--CODEGEN--":2:4   */
+    tag_18:
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":8854:9014  function getApproved(... */
+      dup2
+      add
+      swap1
+      dup1
+      dup1
+      calldataload
+      swap1
+      0x20
+      add
+      swap1
+      swap3
+      swap2
+      swap1
+      pop
+      pop
+      pop
+      tag_19
+      jump	// in
+    tag_17:
+      mload(0x40)
+      dup1
+      dup3
+      0xffffffffffffffffffffffffffffffffffffffff
+      and
+      0xffffffffffffffffffffffffffffffffffffffff
+      and
+      dup2
+      mstore
+      0x20
+      add
+      swap2
+      pop
+      pop
+      mload(0x40)
+      dup1
+      swap2
+      sub
+      swap1
+      return
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":6816:7131  function approve(... */
+    tag_5:
+      tag_20
+      0x04
+      dup1
+      calldatasize
+      sub
+        /* "--CODEGEN--":13:15   */
+      0x40
+        /* "--CODEGEN--":8:11   */
+      dup2
+        /* "--CODEGEN--":5:16   */
+      lt
+        /* "--CODEGEN--":2:4   */
+      iszero
+      tag_21
+      jumpi
+        /* "--CODEGEN--":29:30   */
+      0x00
+        /* "--CODEGEN--":26:27   */
+      dup1
+        /* "--CODEGEN--":19:31   */
+      revert
+        /* "--CODEGEN--":2:4   */
+    tag_21:
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":6816:7131  function approve(... */
+      dup2
+      add
+      swap1
+      dup1
+      dup1
+      calldataload
+      0xffffffffffffffffffffffffffffffffffffffff
+      and
+      swap1
+      0x20
+      add
+      swap1
+      swap3
+      swap2
+      swap1
+      dup1
+      calldataload
+      swap1
+      0x20
+      add
+      swap1
+      swap3
+      swap2
+      swap1
+      pop
+      pop
+      pop
+      tag_22
+      jump	// in
+    tag_20:
+      stop
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":6104:6404  function transferFrom(... */
+    tag_6:
+      tag_23
+      0x04
+      dup1
+      calldatasize
+      sub
+        /* "--CODEGEN--":13:15   */
+      0x60
+        /* "--CODEGEN--":8:11   */
+      dup2
+        /* "--CODEGEN--":5:16   */
+      lt
+        /* "--CODEGEN--":2:4   */
+      iszero
+      tag_24
+      jumpi
+        /* "--CODEGEN--":29:30   */
+      0x00
+        /* "--CODEGEN--":26:27   */
+      dup1
+        /* "--CODEGEN--":19:31   */
+      revert
+        /* "--CODEGEN--":2:4   */
+    tag_24:
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":6104:6404  function transferFrom(... */
+      dup2
+      add
+      swap1
+      dup1
+      dup1
+      calldataload
+      0xffffffffffffffffffffffffffffffffffffffff
+      and
+      swap1
+      0x20
+      add
+      swap1
+      swap3
+      swap2
+      swap1
+      dup1
+      calldataload
+      0xffffffffffffffffffffffffffffffffffffffff
+      and
+      swap1
+      0x20
+      add
+      swap1
+      swap3
+      swap2
+      swap1
+      dup1
+      calldataload
+      swap1
+      0x20
+      add
+      swap1
+      swap3
+      swap2
+      swap1
+      pop
+      pop
+      pop
+      tag_25
+      jump	// in
+    tag_23:
+      stop
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":5381:5538  function safeTransferFrom(... */
+    tag_7:
+      tag_26
+      0x04
+      dup1
+      calldatasize
+      sub
+        /* "--CODEGEN--":13:15   */
+      0x60
+        /* "--CODEGEN--":8:11   */
+      dup2
+        /* "--CODEGEN--":5:16   */
+      lt
+        /* "--CODEGEN--":2:4   */
+      iszero
+      tag_27
+      jumpi
+        /* "--CODEGEN--":29:30   */
+      0x00
+        /* "--CODEGEN--":26:27   */
+      dup1
+        /* "--CODEGEN--":19:31   */
+      revert
+        /* "--CODEGEN--":2:4   */
+    tag_27:
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":5381:5538  function safeTransferFrom(... */
+      dup2
+      add
+      swap1
+      dup1
+      dup1
+      calldataload
+      0xffffffffffffffffffffffffffffffffffffffff
+      and
+      swap1
+      0x20
+      add
+      swap1
+      swap3
+      swap2
+      swap1
+      dup1
+      calldataload
+      0xffffffffffffffffffffffffffffffffffffffff
+      and
+      swap1
+      0x20
+      add
+      swap1
+      swap3
+      swap2
+      swap1
+      dup1
+      calldataload
+      swap1
+      0x20
+      add
+      swap1
+      swap3
+      swap2
+      swap1
+      pop
+      pop
+      pop
+      tag_28
+      jump	// in
+    tag_26:
+      stop
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":8447:8617  function ownerOf(... */
+    tag_8:
+      tag_29
+      0x04
+      dup1
+      calldatasize
+      sub
+        /* "--CODEGEN--":13:15   */
+      0x20
+        /* "--CODEGEN--":8:11   */
+      dup2
+        /* "--CODEGEN--":5:16   */
+      lt
+        /* "--CODEGEN--":2:4   */
+      iszero
+      tag_30
+      jumpi
+        /* "--CODEGEN--":29:30   */
+      0x00
+        /* "--CODEGEN--":26:27   */
+      dup1
+        /* "--CODEGEN--":19:31   */
+      revert
+        /* "--CODEGEN--":2:4   */
+    tag_30:
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":8447:8617  function ownerOf(... */
+      dup2
+      add
+      swap1
+      dup1
+      dup1
+      calldataload
+      swap1
+      0x20
+      add
+      swap1
+      swap3
+      swap2
+      swap1
+      pop
+      pop
+      pop
+      tag_31
+      jump	// in
+    tag_29:
+      mload(0x40)
+      dup1
+      dup3
+      0xffffffffffffffffffffffffffffffffffffffff
+      and
+      0xffffffffffffffffffffffffffffffffffffffff
+      and
+      dup2
+      mstore
+      0x20
+      add
+      swap2
+      pop
+      pop
+      mload(0x40)
+      dup1
+      swap2
+      sub
+      swap1
+      return
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":8029:8196  function balanceOf(... */
+    tag_9:
+      tag_32
+      0x04
+      dup1
+      calldatasize
+      sub
+        /* "--CODEGEN--":13:15   */
+      0x20
+        /* "--CODEGEN--":8:11   */
+      dup2
+        /* "--CODEGEN--":5:16   */
+      lt
+        /* "--CODEGEN--":2:4   */
+      iszero
+      tag_33
+      jumpi
+        /* "--CODEGEN--":29:30   */
+      0x00
+        /* "--CODEGEN--":26:27   */
+      dup1
+        /* "--CODEGEN--":19:31   */
+      revert
+        /* "--CODEGEN--":2:4   */
+    tag_33:
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":8029:8196  function balanceOf(... */
+      dup2
+      add
+      swap1
+      dup1
+      dup1
+      calldataload
+      0xffffffffffffffffffffffffffffffffffffffff
+      and
+      swap1
+      0x20
+      add
+      swap1
+      swap3
+      swap2
+      swap1
+      pop
+      pop
+      pop
+      tag_34
+      jump	// in
+    tag_32:
+      mload(0x40)
+      dup1
+      dup3
+      dup2
+      mstore
+      0x20
+      add
+      swap2
+      pop
+      pop
+      mload(0x40)
+      dup1
+      swap2
+      sub
+      swap1
+      return
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":7533:7743  function setApprovalForAll(... */
+    tag_10:
+      tag_35
+      0x04
+      dup1
+      calldatasize
+      sub
+        /* "--CODEGEN--":13:15   */
+      0x40
+        /* "--CODEGEN--":8:11   */
+      dup2
+        /* "--CODEGEN--":5:16   */
+      lt
+        /* "--CODEGEN--":2:4   */
+      iszero
+      tag_36
+      jumpi
+        /* "--CODEGEN--":29:30   */
+      0x00
+        /* "--CODEGEN--":26:27   */
+      dup1
+        /* "--CODEGEN--":19:31   */
+      revert
+        /* "--CODEGEN--":2:4   */
+    tag_36:
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":7533:7743  function setApprovalForAll(... */
+      dup2
+      add
+      swap1
+      dup1
+      dup1
+      calldataload
+      0xffffffffffffffffffffffffffffffffffffffff
+      and
+      swap1
+      0x20
+      add
+      swap1
+      swap3
+      swap2
+      swap1
+      dup1
+      calldataload
+      iszero
+      iszero
+      swap1
+      0x20
+      add
+      swap1
+      swap3
+      swap2
+      swap1
+      pop
+      pop
+      pop
+      tag_37
+      jump	// in
+    tag_35:
+      stop
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":4796:4982  function safeTransferFrom(... */
+    tag_11:
+      tag_38
+      0x04
+      dup1
+      calldatasize
+      sub
+        /* "--CODEGEN--":13:16   */
+      0x80
+        /* "--CODEGEN--":8:11   */
+      dup2
+        /* "--CODEGEN--":5:17   */
+      lt
+        /* "--CODEGEN--":2:4   */
+      iszero
+      tag_39
+      jumpi
+        /* "--CODEGEN--":30:31   */
+      0x00
+        /* "--CODEGEN--":27:28   */
+      dup1
+        /* "--CODEGEN--":20:32   */
+      revert
+        /* "--CODEGEN--":2:4   */
+    tag_39:
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":4796:4982  function safeTransferFrom(... */
+      dup2
+      add
+      swap1
+      dup1
+      dup1
+      calldataload
+      0xffffffffffffffffffffffffffffffffffffffff
+      and
+      swap1
+      0x20
+      add
+      swap1
+      swap3
+      swap2
+      swap1
+      dup1
+      calldataload
+      0xffffffffffffffffffffffffffffffffffffffff
+      and
+      swap1
+      0x20
+      add
+      swap1
+      swap3
+      swap2
+      swap1
+      dup1
+      calldataload
+      swap1
+      0x20
+      add
+      swap1
+      swap3
+      swap2
+      swap1
+      dup1
+      calldataload
+      swap1
+      0x20
+      add
+      swap1
+        /* "--CODEGEN--":21:32   */
+      0x0100000000
+        /* "--CODEGEN--":8:19   */
+      dup2
+        /* "--CODEGEN--":5:33   */
+      gt
+        /* "--CODEGEN--":2:4   */
+      iszero
+      tag_40
+      jumpi
+        /* "--CODEGEN--":46:47   */
+      0x00
+        /* "--CODEGEN--":43:44   */
+      dup1
+        /* "--CODEGEN--":36:48   */
+      revert
+        /* "--CODEGEN--":2:4   */
+    tag_40:
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":4796:4982  function safeTransferFrom(... */
+      dup3
+      add
+        /* "--CODEGEN--":35:44   */
+      dup4
+        /* "--CODEGEN--":28:32   */
+      0x20
+        /* "--CODEGEN--":12:26   */
+      dup3
+        /* "--CODEGEN--":8:33   */
+      add
+        /* "--CODEGEN--":5:45   */
+      gt
+        /* "--CODEGEN--":2:4   */
+      iszero
+      tag_41
+      jumpi
+        /* "--CODEGEN--":58:59   */
+      0x00
+        /* "--CODEGEN--":55:56   */
+      dup1
+        /* "--CODEGEN--":48:60   */
+      revert
+        /* "--CODEGEN--":2:4   */
+    tag_41:
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":4796:4982  function safeTransferFrom(... */
+      dup1
+      calldataload
+      swap1
+      0x20
+      add
+      swap2
+        /* "--CODEGEN--":100:109   */
+      dup5
+        /* "--CODEGEN--":95:96   */
+      0x01
+        /* "--CODEGEN--":81:93   */
+      dup4
+        /* "--CODEGEN--":77:97   */
+      mul
+        /* "--CODEGEN--":67:75   */
+      dup5
+        /* "--CODEGEN--":63:98   */
+      add
+        /* "--CODEGEN--":60:110   */
+      gt
+        /* "--CODEGEN--":39:50   */
+      0x0100000000
+        /* "--CODEGEN--":25:37   */
+      dup4
+        /* "--CODEGEN--":22:51   */
+      gt
+        /* "--CODEGEN--":11:118   */
+      or
+        /* "--CODEGEN--":8:10   */
+      iszero
+      tag_42
+      jumpi
+        /* "--CODEGEN--":131:132   */
+      0x00
+        /* "--CODEGEN--":128:129   */
+      dup1
+        /* "--CODEGEN--":121:133   */
+      revert
+        /* "--CODEGEN--":8:10   */
+    tag_42:
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":4796:4982  function safeTransferFrom(... */
+      swap1
+      swap2
+      swap3
+      swap4
+      swap2
+      swap3
+      swap4
+      swap1
+      pop
+      pop
+      pop
+      tag_43
+      jump	// in
+    tag_38:
+      stop
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":9275:9444  function isApprovedForAll(... */
+    tag_12:
+      tag_44
+      0x04
+      dup1
+      calldatasize
+      sub
+        /* "--CODEGEN--":13:15   */
+      0x40
+        /* "--CODEGEN--":8:11   */
+      dup2
+        /* "--CODEGEN--":5:16   */
+      lt
+        /* "--CODEGEN--":2:4   */
+      iszero
+      tag_45
+      jumpi
+        /* "--CODEGEN--":29:30   */
+      0x00
+        /* "--CODEGEN--":26:27   */
+      dup1
+        /* "--CODEGEN--":19:31   */
+      revert
+        /* "--CODEGEN--":2:4   */
+    tag_45:
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":9275:9444  function isApprovedForAll(... */
+      dup2
+      add
+      swap1
+      dup1
+      dup1
+      calldataload
+      0xffffffffffffffffffffffffffffffffffffffff
+      and
+      swap1
+      0x20
+      add
+      swap1
+      swap3
+      swap2
+      swap1
+      dup1
+      calldataload
+      0xffffffffffffffffffffffffffffffffffffffff
+      and
+      swap1
+      0x20
+      add
+      swap1
+      swap3
+      swap2
+      swap1
+      pop
+      pop
+      pop
+      tag_46
+      jump	// in
+    tag_44:
+      mload(0x40)
+      dup1
+      dup3
+      iszero
+      iszero
+      iszero
+      iszero
+      dup2
+      mstore
+      0x20
+      add
+      swap2
+      pop
+      pop
+      mload(0x40)
+      dup1
+      swap2
+      sub
+      swap1
+      return
+        /* "/root/gosmartcontract/erc721/utils/supports-interface.sol":678:828  function supportsInterface(... */
+    tag_16:
+        /* "/root/gosmartcontract/erc721/utils/supports-interface.sol":769:773  bool */
+      0x00
+        /* "/root/gosmartcontract/erc721/utils/supports-interface.sol":790:809  supportedInterfaces */
+      dup1
+        /* "/root/gosmartcontract/erc721/utils/supports-interface.sol":790:823  supportedInterfaces[_interfaceID] */
+      0x00
+        /* "/root/gosmartcontract/erc721/utils/supports-interface.sol":810:822  _interfaceID */
+      dup4
+        /* "/root/gosmartcontract/erc721/utils/supports-interface.sol":790:823  supportedInterfaces[_interfaceID] */
+      not(0xffffffffffffffffffffffffffffffffffffffffffffffffffffffff)
+      and
+      not(0xffffffffffffffffffffffffffffffffffffffffffffffffffffffff)
+      and
+      dup2
+      mstore
+      0x20
+      add
+      swap1
+      dup2
+      mstore
+      0x20
+      add
+      0x00
+      keccak256
+      0x00
+      swap1
+      sload
+      swap1
+      0x0100
+      exp
+      swap1
+      div
+      0xff
+      and
+        /* "/root/gosmartcontract/erc721/utils/supports-interface.sol":783:823  return supportedInterfaces[_interfaceID] */
+      swap1
+      pop
+        /* "/root/gosmartcontract/erc721/utils/supports-interface.sol":678:828  function supportsInterface(... */
+      swap2
+      swap1
+      pop
+      jump	// out
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":8854:9014  function getApproved(... */
+    tag_19:
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":8963:8970  address */
+      0x00
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":8940:8948  _tokenId */
+      dup2
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":3787:3788  0 */
+      0x00
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":3756:3789  idToOwner[_tokenId] != address(0) */
+      0xffffffffffffffffffffffffffffffffffffffff
+      and
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":3756:3765  idToOwner */
+      0x01
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":3756:3775  idToOwner[_tokenId] */
+      0x00
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":3766:3774  _tokenId */
+      dup4
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":3756:3775  idToOwner[_tokenId] */
+      dup2
+      mstore
+      0x20
+      add
+      swap1
+      dup2
+      mstore
+      0x20
+      add
+      0x00
+      keccak256
+      0x00
+      swap1
+      sload
+      swap1
+      0x0100
+      exp
+      swap1
+      div
+      0xffffffffffffffffffffffffffffffffffffffff
+      and
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":3756:3789  idToOwner[_tokenId] != address(0) */
+      0xffffffffffffffffffffffffffffffffffffffff
+      and
+      eq
+      iszero
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":3748:3790  require(idToOwner[_tokenId] != address(0)) */
+      tag_49
+      jumpi
+      0x00
+      dup1
+      revert
+    tag_49:
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":8987:8999  idToApproval */
+      0x02
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":8987:9009  idToApproval[_tokenId] */
+      0x00
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":9000:9008  _tokenId */
+      dup5
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":8987:9009  idToApproval[_tokenId] */
+      dup2
+      mstore
+      0x20
+      add
+      swap1
+      dup2
+      mstore
+      0x20
+      add
+      0x00
+      keccak256
+      0x00
+      swap1
+      sload
+      swap1
+      0x0100
+      exp
+      swap1
+      div
+      0xffffffffffffffffffffffffffffffffffffffff
+      and
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":8980:9009  return idToApproval[_tokenId] */
+      swap2
+      pop
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":8854:9014  function getApproved(... */
+      pop
+      swap2
+      swap1
+      pop
+      jump	// out
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":6816:7131  function approve(... */
+    tag_22:
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":6910:6918  _tokenId */
+      dup1
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":3052:3070  address tokenOwner */
+      0x00
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":3073:3082  idToOwner */
+      0x01
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":3073:3092  idToOwner[_tokenId] */
+      0x00
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":3083:3091  _tokenId */
+      dup4
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":3073:3092  idToOwner[_tokenId] */
+      dup2
+      mstore
+      0x20
+      add
+      swap1
+      dup2
+      mstore
+      0x20
+      add
+      0x00
+      keccak256
+      0x00
+      swap1
+      sload
+      swap1
+      0x0100
+      exp
+      swap1
+      div
+      0xffffffffffffffffffffffffffffffffffffffff
+      and
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":3052:3092  address tokenOwner = idToOwner[_tokenId] */
+      swap1
+      pop
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":3120:3130  msg.sender */
+      caller
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":3106:3130  tokenOwner == msg.sender */
+      0xffffffffffffffffffffffffffffffffffffffff
+      and
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":3106:3116  tokenOwner */
+      dup2
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":3106:3130  tokenOwner == msg.sender */
+      0xffffffffffffffffffffffffffffffffffffffff
+      and
+      eq
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":3106:3174  tokenOwner == msg.sender || ownerToOperators[tokenOwner][msg.sender] */
+      dup1
+      tag_52
+      jumpi
+      pop
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":3134:3150  ownerToOperators */
+      0x04
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":3134:3162  ownerToOperators[tokenOwner] */
+      0x00
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":3151:3161  tokenOwner */
+      dup3
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":3134:3162  ownerToOperators[tokenOwner] */
+      0xffffffffffffffffffffffffffffffffffffffff
+      and
+      0xffffffffffffffffffffffffffffffffffffffff
+      and
+      dup2
+      mstore
+      0x20
+      add
+      swap1
+      dup2
+      mstore
+      0x20
+      add
+      0x00
+      keccak256
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":3134:3174  ownerToOperators[tokenOwner][msg.sender] */
+      0x00
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":3163:3173  msg.sender */
+      caller
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":3134:3174  ownerToOperators[tokenOwner][msg.sender] */
+      0xffffffffffffffffffffffffffffffffffffffff
+      and
+      0xffffffffffffffffffffffffffffffffffffffff
+      and
+      dup2
+      mstore
+      0x20
+      add
+      swap1
+      dup2
+      mstore
+      0x20
+      add
+      0x00
+      keccak256
+      0x00
+      swap1
+      sload
+      swap1
+      0x0100
+      exp
+      swap1
+      div
+      0xff
+      and
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":3106:3174  tokenOwner == msg.sender || ownerToOperators[tokenOwner][msg.sender] */
+    tag_52:
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":3098:3175  require(tokenOwner == msg.sender || ownerToOperators[tokenOwner][msg.sender]) */
+      tag_53
+      jumpi
+      0x00
+      dup1
+      revert
+    tag_53:
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":6937:6945  _tokenId */
+      dup3
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":3787:3788  0 */
+      0x00
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":3756:3789  idToOwner[_tokenId] != address(0) */
+      0xffffffffffffffffffffffffffffffffffffffff
+      and
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":3756:3765  idToOwner */
+      0x01
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":3756:3775  idToOwner[_tokenId] */
+      0x00
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":3766:3774  _tokenId */
+      dup4
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":3756:3775  idToOwner[_tokenId] */
+      dup2
+      mstore
+      0x20
+      add
+      swap1
+      dup2
+      mstore
+      0x20
+      add
+      0x00
+      keccak256
+      0x00
+      swap1
+      sload
+      swap1
+      0x0100
+      exp
+      swap1
+      div
+      0xffffffffffffffffffffffffffffffffffffffff
+      and
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":3756:3789  idToOwner[_tokenId] != address(0) */
+      0xffffffffffffffffffffffffffffffffffffffff
+      and
+      eq
+      iszero
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":3748:3790  require(idToOwner[_tokenId] != address(0)) */
+      tag_55
+      jumpi
+      0x00
+      dup1
+      revert
+    tag_55:
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":6955:6973  address tokenOwner */
+      0x00
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":6976:6985  idToOwner */
+      0x01
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":6976:6995  idToOwner[_tokenId] */
+      0x00
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":6986:6994  _tokenId */
+      dup7
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":6976:6995  idToOwner[_tokenId] */
+      dup2
+      mstore
+      0x20
+      add
+      swap1
+      dup2
+      mstore
+      0x20
+      add
+      0x00
+      keccak256
+      0x00
+      swap1
+      sload
+      swap1
+      0x0100
+      exp
+      swap1
+      div
+      0xffffffffffffffffffffffffffffffffffffffff
+      and
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":6955:6995  address tokenOwner = idToOwner[_tokenId] */
+      swap1
+      pop
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":7022:7032  tokenOwner */
+      dup1
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":7009:7032  _approved != tokenOwner */
+      0xffffffffffffffffffffffffffffffffffffffff
+      and
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":7009:7018  _approved */
+      dup7
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":7009:7032  _approved != tokenOwner */
+      0xffffffffffffffffffffffffffffffffffffffff
+      and
+      eq
+      iszero
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":7001:7033  require(_approved != tokenOwner) */
+      tag_57
+      jumpi
+      0x00
+      dup1
+      revert
+    tag_57:
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":7065:7074  _approved */
+      dup6
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":7040:7052  idToApproval */
+      0x02
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":7040:7062  idToApproval[_tokenId] */
+      0x00
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":7053:7061  _tokenId */
+      dup8
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":7040:7062  idToApproval[_tokenId] */
+      dup2
+      mstore
+      0x20
+      add
+      swap1
+      dup2
+      mstore
+      0x20
+      add
+      0x00
+      keccak256
+      0x00
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":7040:7074  idToApproval[_tokenId] = _approved */
+      0x0100
+      exp
+      dup2
+      sload
+      dup2
+      0xffffffffffffffffffffffffffffffffffffffff
+      mul
+      not
+      and
+      swap1
+      dup4
+      0xffffffffffffffffffffffffffffffffffffffff
+      and
+      mul
+      or
+      swap1
+      sstore
+      pop
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":7117:7125  _tokenId */
+      dup5
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":7106:7115  _approved */
+      dup7
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":7085:7126  Approval(tokenOwner, _approved, _tokenId) */
+      0xffffffffffffffffffffffffffffffffffffffff
+      and
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":7094:7104  tokenOwner */
+      dup3
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":7085:7126  Approval(tokenOwner, _approved, _tokenId) */
+      0xffffffffffffffffffffffffffffffffffffffff
+      and
+      0x8c5be1e5ebec7d5bd14f71427d1e84f3dd0314c0f7b2291e5b200ac8c7c3b925
+      mload(0x40)
+      mload(0x40)
+      dup1
+      swap2
+      sub
+      swap1
+      log4
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":3796:3797  _ */
+      pop
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":3181:3182  _ */
+      pop
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":6816:7131  function approve(... */
+      pop
+      pop
+      pop
+      pop
+      jump	// out
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":6104:6404  function transferFrom(... */
+    tag_25:
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":6217:6225  _tokenId */
+      dup1
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":3376:3394  address tokenOwner */
+      0x00
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":3397:3406  idToOwner */
+      0x01
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":3397:3416  idToOwner[_tokenId] */
+      0x00
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":3407:3415  _tokenId */
+      dup4
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":3397:3416  idToOwner[_tokenId] */
+      dup2
+      mstore
+      0x20
+      add
+      swap1
+      dup2
+      mstore
+      0x20
+      add
+      0x00
+      keccak256
+      0x00
+      swap1
+      sload
+      swap1
+      0x0100
+      exp
+      swap1
+      div
+      0xffffffffffffffffffffffffffffffffffffffff
+      and
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":3376:3416  address tokenOwner = idToOwner[_tokenId] */
+      swap1
+      pop
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":3451:3461  msg.sender */
+      caller
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":3437:3461  tokenOwner == msg.sender */
+      0xffffffffffffffffffffffffffffffffffffffff
+      and
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":3437:3447  tokenOwner */
+      dup2
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":3437:3461  tokenOwner == msg.sender */
+      0xffffffffffffffffffffffffffffffffffffffff
+      and
+      eq
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":3437:3507  tokenOwner == msg.sender... */
+      dup1
+      tag_59
+      jumpi
+      pop
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":3497:3507  msg.sender */
+      caller
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":3471:3507  idToApproval[_tokenId] == msg.sender */
+      0xffffffffffffffffffffffffffffffffffffffff
+      and
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":3471:3483  idToApproval */
+      0x02
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":3471:3493  idToApproval[_tokenId] */
+      0x00
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":3484:3492  _tokenId */
+      dup5
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":3471:3493  idToApproval[_tokenId] */
+      dup2
+      mstore
+      0x20
+      add
+      swap1
+      dup2
+      mstore
+      0x20
+      add
+      0x00
+      keccak256
+      0x00
+      swap1
+      sload
+      swap1
+      0x0100
+      exp
+      swap1
+      div
+      0xffffffffffffffffffffffffffffffffffffffff
+      and
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":3471:3507  idToApproval[_tokenId] == msg.sender */
+      0xffffffffffffffffffffffffffffffffffffffff
+      and
+      eq
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":3437:3507  tokenOwner == msg.sender... */
+    tag_59:
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":3437:3557  tokenOwner == msg.sender... */
+      dup1
+      tag_60
+      jumpi
+      pop
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":3517:3533  ownerToOperators */
+      0x04
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":3517:3545  ownerToOperators[tokenOwner] */
+      0x00
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":3534:3544  tokenOwner */
+      dup3
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":3517:3545  ownerToOperators[tokenOwner] */
+      0xffffffffffffffffffffffffffffffffffffffff
+      and
+      0xffffffffffffffffffffffffffffffffffffffff
+      and
+      dup2
+      mstore
+      0x20
+      add
+      swap1
+      dup2
+      mstore
+      0x20
+      add
+      0x00
+      keccak256
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":3517:3557  ownerToOperators[tokenOwner][msg.sender] */
+      0x00
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":3546:3556  msg.sender */
+      caller
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":3517:3557  ownerToOperators[tokenOwner][msg.sender] */
+      0xffffffffffffffffffffffffffffffffffffffff
+      and
+      0xffffffffffffffffffffffffffffffffffffffff
+      and
+      dup2
+      mstore
+      0x20
+      add
+      swap1
+      dup2
+      mstore
+      0x20
+      add
+      0x00
+      keccak256
+      0x00
+      swap1
+      sload
+      swap1
+      0x0100
+      exp
+      swap1
+      div
+      0xff
+      and
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":3437:3557  tokenOwner == msg.sender... */
+    tag_60:
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":3422:3563  require(... */
+      tag_61
+      jumpi
+      0x00
+      dup1
+      revert
+    tag_61:
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":6244:6252  _tokenId */
+      dup3
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":3787:3788  0 */
+      0x00
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":3756:3789  idToOwner[_tokenId] != address(0) */
+      0xffffffffffffffffffffffffffffffffffffffff
+      and
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":3756:3765  idToOwner */
+      0x01
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":3756:3775  idToOwner[_tokenId] */
+      0x00
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":3766:3774  _tokenId */
+      dup4
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":3756:3775  idToOwner[_tokenId] */
+      dup2
+      mstore
+      0x20
+      add
+      swap1
+      dup2
+      mstore
+      0x20
+      add
+      0x00
+      keccak256
+      0x00
+      swap1
+      sload
+      swap1
+      0x0100
+      exp
+      swap1
+      div
+      0xffffffffffffffffffffffffffffffffffffffff
+      and
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":3756:3789  idToOwner[_tokenId] != address(0) */
+      0xffffffffffffffffffffffffffffffffffffffff
+      and
+      eq
+      iszero
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":3748:3790  require(idToOwner[_tokenId] != address(0)) */
+      tag_63
+      jumpi
+      0x00
+      dup1
+      revert
+    tag_63:
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":6262:6280  address tokenOwner */
+      0x00
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":6283:6292  idToOwner */
+      0x01
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":6283:6302  idToOwner[_tokenId] */
+      0x00
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":6293:6301  _tokenId */
+      dup7
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":6283:6302  idToOwner[_tokenId] */
+      dup2
+      mstore
+      0x20
+      add
+      swap1
+      dup2
+      mstore
+      0x20
+      add
+      0x00
+      keccak256
+      0x00
+      swap1
+      sload
+      swap1
+      0x0100
+      exp
+      swap1
+      div
+      0xffffffffffffffffffffffffffffffffffffffff
+      and
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":6262:6302  address tokenOwner = idToOwner[_tokenId] */
+      swap1
+      pop
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":6330:6335  _from */
+      dup7
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":6316:6335  tokenOwner == _from */
+      0xffffffffffffffffffffffffffffffffffffffff
+      and
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":6316:6326  tokenOwner */
+      dup2
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":6316:6335  tokenOwner == _from */
+      0xffffffffffffffffffffffffffffffffffffffff
+      and
+      eq
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":6308:6336  require(tokenOwner == _from) */
+      tag_65
+      jumpi
+      0x00
+      dup1
+      revert
+    tag_65:
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":6365:6366  0 */
+      0x00
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":6350:6367  _to != address(0) */
+      0xffffffffffffffffffffffffffffffffffffffff
+      and
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":6350:6353  _to */
+      dup7
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":6350:6367  _to != address(0) */
+      0xffffffffffffffffffffffffffffffffffffffff
+      and
+      eq
+      iszero
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":6342:6368  require(_to != address(0)) */
+      tag_66
+      jumpi
+      0x00
+      dup1
+      revert
+    tag_66:
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":6375:6399  _transfer(_to, _tokenId) */
+      tag_67
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":6385:6388  _to */
+      dup7
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":6390:6398  _tokenId */
+      dup7
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":6375:6384  _transfer */
+      tag_68
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":6375:6399  _transfer(_to, _tokenId) */
+      jump	// in
+    tag_67:
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":3796:3797  _ */
+      pop
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":3569:3570  _ */
+      pop
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":6104:6404  function transferFrom(... */
+      pop
+      pop
+      pop
+      pop
+      pop
+      jump	// out
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":5381:5538  function safeTransferFrom(... */
+    tag_28:
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":5490:5533  _safeTransferFrom(_from, _to, _tokenId, "") */
+      tag_70
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":5508:5513  _from */
+      dup4
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":5515:5518  _to */
+      dup4
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":5520:5528  _tokenId */
+      dup4
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":5490:5533  _safeTransferFrom(_from, _to, _tokenId, "") */
+      mload(0x40)
+      dup1
+      0x20
+      add
+      0x40
+      mstore
+      dup1
+      0x00
+      dup2
+      mstore
+      pop
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":5490:5507  _safeTransferFrom */
+      tag_71
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":5490:5533  _safeTransferFrom(_from, _to, _tokenId, "") */
+      jump	// in
+    tag_70:
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":5381:5538  function safeTransferFrom(... */
+      pop
+      pop
+      pop
+      jump	// out
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":8447:8617  function ownerOf(... */
+    tag_31:
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":8525:8539  address _owner */
+      0x00
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":8558:8567  idToOwner */
+      0x01
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":8558:8577  idToOwner[_tokenId] */
+      0x00
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":8568:8576  _tokenId */
+      dup4
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":8558:8577  idToOwner[_tokenId] */
+      dup2
+      mstore
+      0x20
+      add
+      swap1
+      dup2
+      mstore
+      0x20
+      add
+      0x00
+      keccak256
+      0x00
+      swap1
+      sload
+      swap1
+      0x0100
+      exp
+      swap1
+      div
+      0xffffffffffffffffffffffffffffffffffffffff
+      and
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":8549:8577  _owner = idToOwner[_tokenId] */
+      swap1
+      pop
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":8609:8610  0 */
+      0x00
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":8591:8611  _owner != address(0) */
+      0xffffffffffffffffffffffffffffffffffffffff
+      and
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":8591:8597  _owner */
+      dup2
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":8591:8611  _owner != address(0) */
+      0xffffffffffffffffffffffffffffffffffffffff
+      and
+      eq
+      iszero
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":8583:8612  require(_owner != address(0)) */
+      tag_73
+      jumpi
+      0x00
+      dup1
+      revert
+    tag_73:
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":8447:8617  function ownerOf(... */
+      swap2
+      swap1
+      pop
+      jump	// out
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":8029:8196  function balanceOf(... */
+    tag_34:
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":8107:8114  uint256 */
+      0x00
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":8150:8151  0 */
+      dup1
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":8132:8152  _owner != address(0) */
+      0xffffffffffffffffffffffffffffffffffffffff
+      and
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":8132:8138  _owner */
+      dup3
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":8132:8152  _owner != address(0) */
+      0xffffffffffffffffffffffffffffffffffffffff
+      and
+      eq
+      iszero
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":8124:8153  require(_owner != address(0)) */
+      tag_75
+      jumpi
+      0x00
+      dup1
+      revert
+    tag_75:
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":8166:8191  _getOwnerNFTCount(_owner) */
+      tag_76
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":8184:8190  _owner */
+      dup3
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":8166:8183  _getOwnerNFTCount */
+      tag_77
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":8166:8191  _getOwnerNFTCount(_owner) */
+      jump	// in
+    tag_76:
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":8159:8191  return _getOwnerNFTCount(_owner) */
+      swap1
+      pop
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":8029:8196  function balanceOf(... */
+      swap2
+      swap1
+      pop
+      jump	// out
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":7533:7743  function setApprovalForAll(... */
+    tag_37:
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":7670:7679  _approved */
+      dup1
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":7628:7644  ownerToOperators */
+      0x04
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":7628:7656  ownerToOperators[msg.sender] */
+      0x00
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":7645:7655  msg.sender */
+      caller
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":7628:7656  ownerToOperators[msg.sender] */
+      0xffffffffffffffffffffffffffffffffffffffff
+      and
+      0xffffffffffffffffffffffffffffffffffffffff
+      and
+      dup2
+      mstore
+      0x20
+      add
+      swap1
+      dup2
+      mstore
+      0x20
+      add
+      0x00
+      keccak256
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":7628:7667  ownerToOperators[msg.sender][_operator] */
+      0x00
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":7657:7666  _operator */
+      dup5
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":7628:7667  ownerToOperators[msg.sender][_operator] */
+      0xffffffffffffffffffffffffffffffffffffffff
+      and
+      0xffffffffffffffffffffffffffffffffffffffff
+      and
+      dup2
+      mstore
+      0x20
+      add
+      swap1
+      dup2
+      mstore
+      0x20
+      add
+      0x00
+      keccak256
+      0x00
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":7628:7679  ownerToOperators[msg.sender][_operator] = _approved */
+      0x0100
+      exp
+      dup2
+      sload
+      dup2
+      0xff
+      mul
+      not
+      and
+      swap1
+      dup4
+      iszero
+      iszero
+      mul
+      or
+      swap1
+      sstore
+      pop
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":7717:7726  _operator */
+      dup2
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":7690:7738  ApprovalForAll(msg.sender, _operator, _approved) */
+      0xffffffffffffffffffffffffffffffffffffffff
+      and
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":7705:7715  msg.sender */
+      caller
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":7690:7738  ApprovalForAll(msg.sender, _operator, _approved) */
+      0xffffffffffffffffffffffffffffffffffffffff
+      and
+      0x17307eab39ab6107e8899845ad3d59bd9653f200f220920489ca2b5937696c31
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":7728:7737  _approved */
+      dup4
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":7690:7738  ApprovalForAll(msg.sender, _operator, _approved) */
+      mload(0x40)
+      dup1
+      dup3
+      iszero
+      iszero
+      iszero
+      iszero
+      dup2
+      mstore
+      0x20
+      add
+      swap2
+      pop
+      pop
+      mload(0x40)
+      dup1
+      swap2
+      sub
+      swap1
+      log3
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":7533:7743  function setApprovalForAll(... */
+      pop
+      pop
+      jump	// out
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":4796:4982  function safeTransferFrom(... */
+    tag_43:
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":4931:4977  _safeTransferFrom(_from, _to, _tokenId, _data) */
+      tag_80
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":4949:4954  _from */
+      dup6
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":4956:4959  _to */
+      dup6
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":4961:4969  _tokenId */
+      dup6
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":4971:4976  _data */
+      dup6
+      dup6
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":4931:4977  _safeTransferFrom(_from, _to, _tokenId, _data) */
+      dup1
+      dup1
+      0x1f
+      add
+      0x20
+      dup1
+      swap2
+      div
+      mul
+      0x20
+      add
+      mload(0x40)
+      swap1
+      dup2
+      add
+      0x40
+      mstore
+      dup1
+      swap4
+      swap3
+      swap2
+      swap1
+      dup2
+      dup2
+      mstore
+      0x20
+      add
+      dup4
+      dup4
+        /* "--CODEGEN--":30:33   */
+      dup1
+        /* "--CODEGEN--":22:28   */
+      dup3
+        /* "--CODEGEN--":14:20   */
+      dup5
+        /* "--CODEGEN--":1:34   */
+      calldatacopy
+        /* "--CODEGEN--":99:100   */
+      0x00
+        /* "--CODEGEN--":93:96   */
+      dup2
+        /* "--CODEGEN--":85:91   */
+      dup5
+        /* "--CODEGEN--":81:97   */
+      add
+        /* "--CODEGEN--":74:101   */
+      mstore
+        /* "--CODEGEN--":137:141   */
+      0x1f
+        /* "--CODEGEN--":133:142   */
+      not
+        /* "--CODEGEN--":126:130   */
+      0x1f
+        /* "--CODEGEN--":121:124   */
+      dup3
+        /* "--CODEGEN--":117:131   */
+      add
+        /* "--CODEGEN--":113:143   */
+      and
+        /* "--CODEGEN--":106:143   */
+      swap1
+      pop
+        /* "--CODEGEN--":169:172   */
+      dup1
+        /* "--CODEGEN--":161:167   */
+      dup4
+        /* "--CODEGEN--":157:173   */
+      add
+        /* "--CODEGEN--":147:173   */
+      swap3
+      pop
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":4931:4977  _safeTransferFrom(_from, _to, _tokenId, _data) */
+      pop
+      pop
+      pop
+      pop
+      pop
+      pop
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":4931:4948  _safeTransferFrom */
+      tag_71
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":4931:4977  _safeTransferFrom(_from, _to, _tokenId, _data) */
+      jump	// in
+    tag_80:
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":4796:4982  function safeTransferFrom(... */
+      pop
+      pop
+      pop
+      pop
+      pop
+      jump	// out
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":9275:9444  function isApprovedForAll(... */
+    tag_46:
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":9383:9387  bool */
+      0x00
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":9404:9420  ownerToOperators */
+      0x04
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":9404:9428  ownerToOperators[_owner] */
+      0x00
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":9421:9427  _owner */
+      dup5
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":9404:9428  ownerToOperators[_owner] */
+      0xffffffffffffffffffffffffffffffffffffffff
+      and
+      0xffffffffffffffffffffffffffffffffffffffff
+      and
+      dup2
+      mstore
+      0x20
+      add
+      swap1
+      dup2
+      mstore
+      0x20
+      add
+      0x00
+      keccak256
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":9404:9439  ownerToOperators[_owner][_operator] */
+      0x00
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":9429:9438  _operator */
+      dup4
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":9404:9439  ownerToOperators[_owner][_operator] */
+      0xffffffffffffffffffffffffffffffffffffffff
+      and
+      0xffffffffffffffffffffffffffffffffffffffff
+      and
+      dup2
+      mstore
+      0x20
+      add
+      swap1
+      dup2
+      mstore
+      0x20
+      add
+      0x00
+      keccak256
+      0x00
+      swap1
+      sload
+      swap1
+      0x0100
+      exp
+      swap1
+      div
+      0xff
+      and
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":9397:9439  return ownerToOperators[_owner][_operator] */
+      swap1
+      pop
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":9275:9444  function isApprovedForAll(... */
+      swap3
+      swap2
+      pop
+      pop
+      jump	// out
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":9627:9889  function _transfer(... */
+    tag_68:
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":9710:9722  address from */
+      0x00
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":9725:9734  idToOwner */
+      0x01
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":9725:9744  idToOwner[_tokenId] */
+      0x00
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":9735:9743  _tokenId */
+      dup4
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":9725:9744  idToOwner[_tokenId] */
+      dup2
+      mstore
+      0x20
+      add
+      swap1
+      dup2
+      mstore
+      0x20
+      add
+      0x00
+      keccak256
+      0x00
+      swap1
+      sload
+      swap1
+      0x0100
+      exp
+      swap1
+      div
+      0xffffffffffffffffffffffffffffffffffffffff
+      and
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":9710:9744  address from = idToOwner[_tokenId] */
+      swap1
+      pop
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":9750:9774  _clearApproval(_tokenId) */
+      tag_83
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":9765:9773  _tokenId */
+      dup3
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":9750:9764  _clearApproval */
+      tag_84
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":9750:9774  _clearApproval(_tokenId) */
+      jump	// in
+    tag_83:
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":9781:9811  _removeNFToken(from, _tokenId) */
+      tag_85
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":9796:9800  from */
+      dup2
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":9802:9810  _tokenId */
+      dup4
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":9781:9795  _removeNFToken */
+      tag_86
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":9781:9811  _removeNFToken(from, _tokenId) */
+      jump	// in
+    tag_85:
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":9817:9843  _addNFToken(_to, _tokenId) */
+      tag_87
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":9829:9832  _to */
+      dup4
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":9834:9842  _tokenId */
+      dup4
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":9817:9828  _addNFToken */
+      tag_88
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":9817:9843  _addNFToken(_to, _tokenId) */
+      jump	// in
+    tag_87:
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":9875:9883  _tokenId */
+      dup2
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":9870:9873  _to */
+      dup4
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":9855:9884  Transfer(from, _to, _tokenId) */
+      0xffffffffffffffffffffffffffffffffffffffff
+      and
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":9864:9868  from */
+      dup3
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":9855:9884  Transfer(from, _to, _tokenId) */
+      0xffffffffffffffffffffffffffffffffffffffff
+      and
+      0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef
+      mload(0x40)
+      mload(0x40)
+      dup1
+      swap2
+      sub
+      swap1
+      log4
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":9627:9889  function _transfer(... */
+      pop
+      pop
+      pop
+      jump	// out
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":12844:13364  function _safeTransferFrom(... */
+    tag_71:
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":12985:12993  _tokenId */
+      dup2
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":3376:3394  address tokenOwner */
+      0x00
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":3397:3406  idToOwner */
+      0x01
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":3397:3416  idToOwner[_tokenId] */
+      0x00
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":3407:3415  _tokenId */
+      dup4
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":3397:3416  idToOwner[_tokenId] */
+      dup2
+      mstore
+      0x20
+      add
+      swap1
+      dup2
+      mstore
+      0x20
+      add
+      0x00
+      keccak256
+      0x00
+      swap1
+      sload
+      swap1
+      0x0100
+      exp
+      swap1
+      div
+      0xffffffffffffffffffffffffffffffffffffffff
+      and
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":3376:3416  address tokenOwner = idToOwner[_tokenId] */
+      swap1
+      pop
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":3451:3461  msg.sender */
+      caller
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":3437:3461  tokenOwner == msg.sender */
+      0xffffffffffffffffffffffffffffffffffffffff
+      and
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":3437:3447  tokenOwner */
+      dup2
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":3437:3461  tokenOwner == msg.sender */
+      0xffffffffffffffffffffffffffffffffffffffff
+      and
+      eq
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":3437:3507  tokenOwner == msg.sender... */
+      dup1
+      tag_90
+      jumpi
+      pop
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":3497:3507  msg.sender */
+      caller
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":3471:3507  idToApproval[_tokenId] == msg.sender */
+      0xffffffffffffffffffffffffffffffffffffffff
+      and
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":3471:3483  idToApproval */
+      0x02
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":3471:3493  idToApproval[_tokenId] */
+      0x00
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":3484:3492  _tokenId */
+      dup5
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":3471:3493  idToApproval[_tokenId] */
+      dup2
+      mstore
+      0x20
+      add
+      swap1
+      dup2
+      mstore
+      0x20
+      add
+      0x00
+      keccak256
+      0x00
+      swap1
+      sload
+      swap1
+      0x0100
+      exp
+      swap1
+      div
+      0xffffffffffffffffffffffffffffffffffffffff
+      and
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":3471:3507  idToApproval[_tokenId] == msg.sender */
+      0xffffffffffffffffffffffffffffffffffffffff
+      and
+      eq
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":3437:3507  tokenOwner == msg.sender... */
+    tag_90:
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":3437:3557  tokenOwner == msg.sender... */
+      dup1
+      tag_91
+      jumpi
+      pop
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":3517:3533  ownerToOperators */
+      0x04
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":3517:3545  ownerToOperators[tokenOwner] */
+      0x00
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":3534:3544  tokenOwner */
+      dup3
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":3517:3545  ownerToOperators[tokenOwner] */
+      0xffffffffffffffffffffffffffffffffffffffff
+      and
+      0xffffffffffffffffffffffffffffffffffffffff
+      and
+      dup2
+      mstore
+      0x20
+      add
+      swap1
+      dup2
+      mstore
+      0x20
+      add
+      0x00
+      keccak256
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":3517:3557  ownerToOperators[tokenOwner][msg.sender] */
+      0x00
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":3546:3556  msg.sender */
+      caller
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":3517:3557  ownerToOperators[tokenOwner][msg.sender] */
+      0xffffffffffffffffffffffffffffffffffffffff
+      and
+      0xffffffffffffffffffffffffffffffffffffffff
+      and
+      dup2
+      mstore
+      0x20
+      add
+      swap1
+      dup2
+      mstore
+      0x20
+      add
+      0x00
+      keccak256
+      0x00
+      swap1
+      sload
+      swap1
+      0x0100
+      exp
+      swap1
+      div
+      0xff
+      and
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":3437:3557  tokenOwner == msg.sender... */
+    tag_91:
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":3422:3563  require(... */
+      tag_92
+      jumpi
+      0x00
+      dup1
+      revert
+    tag_92:
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":13012:13020  _tokenId */
+      dup4
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":3787:3788  0 */
+      0x00
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":3756:3789  idToOwner[_tokenId] != address(0) */
+      0xffffffffffffffffffffffffffffffffffffffff
+      and
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":3756:3765  idToOwner */
+      0x01
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":3756:3775  idToOwner[_tokenId] */
+      0x00
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":3766:3774  _tokenId */
+      dup4
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":3756:3775  idToOwner[_tokenId] */
+      dup2
+      mstore
+      0x20
+      add
+      swap1
+      dup2
+      mstore
+      0x20
+      add
+      0x00
+      keccak256
+      0x00
+      swap1
+      sload
+      swap1
+      0x0100
+      exp
+      swap1
+      div
+      0xffffffffffffffffffffffffffffffffffffffff
+      and
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":3756:3789  idToOwner[_tokenId] != address(0) */
+      0xffffffffffffffffffffffffffffffffffffffff
+      and
+      eq
+      iszero
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":3748:3790  require(idToOwner[_tokenId] != address(0)) */
+      tag_94
+      jumpi
+      0x00
+      dup1
+      revert
+    tag_94:
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":13030:13048  address tokenOwner */
+      0x00
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":13051:13060  idToOwner */
+      0x01
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":13051:13070  idToOwner[_tokenId] */
+      0x00
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":13061:13069  _tokenId */
+      dup8
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":13051:13070  idToOwner[_tokenId] */
+      dup2
+      mstore
+      0x20
+      add
+      swap1
+      dup2
+      mstore
+      0x20
+      add
+      0x00
+      keccak256
+      0x00
+      swap1
+      sload
+      swap1
+      0x0100
+      exp
+      swap1
+      div
+      0xffffffffffffffffffffffffffffffffffffffff
+      and
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":13030:13070  address tokenOwner = idToOwner[_tokenId] */
+      swap1
+      pop
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":13098:13103  _from */
+      dup8
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":13084:13103  tokenOwner == _from */
+      0xffffffffffffffffffffffffffffffffffffffff
+      and
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":13084:13094  tokenOwner */
+      dup2
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":13084:13103  tokenOwner == _from */
+      0xffffffffffffffffffffffffffffffffffffffff
+      and
+      eq
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":13076:13104  require(tokenOwner == _from) */
+      tag_96
+      jumpi
+      0x00
+      dup1
+      revert
+    tag_96:
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":13133:13134  0 */
+      0x00
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":13118:13135  _to != address(0) */
+      0xffffffffffffffffffffffffffffffffffffffff
+      and
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":13118:13121  _to */
+      dup8
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":13118:13135  _to != address(0) */
+      0xffffffffffffffffffffffffffffffffffffffff
+      and
+      eq
+      iszero
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":13110:13136  require(_to != address(0)) */
+      tag_97
+      jumpi
+      0x00
+      dup1
+      revert
+    tag_97:
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":13143:13167  _transfer(_to, _tokenId) */
+      tag_98
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":13153:13156  _to */
+      dup8
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":13158:13166  _tokenId */
+      dup8
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":13143:13152  _transfer */
+      tag_68
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":13143:13167  _transfer(_to, _tokenId) */
+      jump	// in
+    tag_98:
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":13178:13194  _to.isContract() */
+      tag_99
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":13178:13181  _to */
+      dup8
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":13178:13192  _to.isContract */
+      0xffffffffffffffffffffffffffffffffffffffff
+      and
+      tag_100
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":13178:13194  _to.isContract() */
+      jump	// in
+    tag_99:
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":13174:13360  if (_to.isContract()) ... */
+      iszero
+      tag_101
+      jumpi
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":13209:13222  bytes4 retval */
+      0x00
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":13245:13248  _to */
+      dup8
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":13225:13266  ERC721TokenReceiver(_to).onERC721Received */
+      0xffffffffffffffffffffffffffffffffffffffff
+      and
+      0x150b7a02
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":13267:13277  msg.sender */
+      caller
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":13279:13284  _from */
+      dup12
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":13286:13294  _tokenId */
+      dup11
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":13296:13301  _data */
+      dup11
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":13225:13302  ERC721TokenReceiver(_to).onERC721Received(msg.sender, _from, _tokenId, _data) */
+      mload(0x40)
+      dup6
+      0xffffffff
+      and
+      0xe0
+      shl
+      dup2
+      mstore
+      0x04
+      add
+      dup1
+      dup6
+      0xffffffffffffffffffffffffffffffffffffffff
+      and
+      0xffffffffffffffffffffffffffffffffffffffff
+      and
+      dup2
+      mstore
+      0x20
+      add
+      dup5
+      0xffffffffffffffffffffffffffffffffffffffff
+      and
+      0xffffffffffffffffffffffffffffffffffffffff
+      and
+      dup2
+      mstore
+      0x20
+      add
+      dup4
+      dup2
+      mstore
+      0x20
+      add
+      dup1
+      0x20
+      add
+      dup3
+      dup2
+      sub
+      dup3
+      mstore
+      dup4
+      dup2
+      dup2
+      mload
+      dup2
+      mstore
+      0x20
+      add
+      swap2
+      pop
+      dup1
+      mload
+      swap1
+      0x20
+      add
+      swap1
+      dup1
+      dup4
+      dup4
+        /* "--CODEGEN--":23:24   */
+      0x00
+        /* "--CODEGEN--":8:108   */
+    tag_102:
+        /* "--CODEGEN--":33:36   */
+      dup4
+        /* "--CODEGEN--":30:31   */
+      dup2
+        /* "--CODEGEN--":27:37   */
+      lt
+        /* "--CODEGEN--":8:108   */
+      iszero
+      tag_104
+      jumpi
+        /* "--CODEGEN--":99:100   */
+      dup1
+        /* "--CODEGEN--":94:97   */
+      dup3
+        /* "--CODEGEN--":90:101   */
+      add
+        /* "--CODEGEN--":84:102   */
+      mload
+        /* "--CODEGEN--":80:81   */
+      dup2
+        /* "--CODEGEN--":75:78   */
+      dup5
+        /* "--CODEGEN--":71:82   */
+      add
+        /* "--CODEGEN--":64:103   */
+      mstore
+        /* "--CODEGEN--":52:54   */
+      0x20
+        /* "--CODEGEN--":49:50   */
+      dup2
+        /* "--CODEGEN--":45:55   */
+      add
+        /* "--CODEGEN--":40:55   */
+      swap1
+      pop
+        /* "--CODEGEN--":8:108   */
+      jump(tag_102)
+    tag_104:
+        /* "--CODEGEN--":12:26   */
+      pop
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":13225:13302  ERC721TokenReceiver(_to).onERC721Received(msg.sender, _from, _tokenId, _data) */
+      pop
+      pop
+      pop
+      swap1
+      pop
+      swap1
+      dup2
+      add
+      swap1
+      0x1f
+      and
+      dup1
+      iszero
+      tag_105
+      jumpi
+      dup1
+      dup3
+      sub
+      dup1
+      mload
+      0x01
+      dup4
+      0x20
+      sub
+      0x0100
+      exp
+      sub
+      not
+      and
+      dup2
+      mstore
+      0x20
+      add
+      swap2
+      pop
+    tag_105:
+      pop
+      swap6
+      pop
+      pop
+      pop
+      pop
+      pop
+      pop
+      0x20
+      mload(0x40)
+      dup1
+      dup4
+      sub
+      dup2
+      0x00
+      dup8
+      dup1
+      extcodesize
+      iszero
+        /* "--CODEGEN--":8:17   */
+      dup1
+        /* "--CODEGEN--":5:7   */
+      iszero
+      tag_106
+      jumpi
+        /* "--CODEGEN--":30:31   */
+      0x00
+        /* "--CODEGEN--":27:28   */
+      dup1
+        /* "--CODEGEN--":20:32   */
+      revert
+        /* "--CODEGEN--":5:7   */
+    tag_106:
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":13225:13302  ERC721TokenReceiver(_to).onERC721Received(msg.sender, _from, _tokenId, _data) */
+      pop
+      gas
+      call
+      iszero
+        /* "--CODEGEN--":8:17   */
+      dup1
+        /* "--CODEGEN--":5:7   */
+      iszero
+      tag_107
+      jumpi
+        /* "--CODEGEN--":45:61   */
+      returndatasize
+        /* "--CODEGEN--":42:43   */
+      0x00
+        /* "--CODEGEN--":39:40   */
+      dup1
+        /* "--CODEGEN--":24:62   */
+      returndatacopy
+        /* "--CODEGEN--":77:93   */
+      returndatasize
+        /* "--CODEGEN--":74:75   */
+      0x00
+        /* "--CODEGEN--":67:94   */
+      revert
+        /* "--CODEGEN--":5:7   */
+    tag_107:
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":13225:13302  ERC721TokenReceiver(_to).onERC721Received(msg.sender, _from, _tokenId, _data) */
+      pop
+      pop
+      pop
+      pop
+      mload(0x40)
+      returndatasize
+        /* "--CODEGEN--":13:15   */
+      0x20
+        /* "--CODEGEN--":8:11   */
+      dup2
+        /* "--CODEGEN--":5:16   */
+      lt
+        /* "--CODEGEN--":2:4   */
+      iszero
+      tag_108
+      jumpi
+        /* "--CODEGEN--":29:30   */
+      0x00
+        /* "--CODEGEN--":26:27   */
+      dup1
+        /* "--CODEGEN--":19:31   */
+      revert
+        /* "--CODEGEN--":2:4   */
+    tag_108:
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":13225:13302  ERC721TokenReceiver(_to).onERC721Received(msg.sender, _from, _tokenId, _data) */
+      dup2
+      add
+      swap1
+      dup1
+      dup1
+      mload
+      swap1
+      0x20
+      add
+      swap1
+      swap3
+      swap2
+      swap1
+      pop
+      pop
+      pop
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":13209:13302  bytes4 retval = ERC721TokenReceiver(_to).onERC721Received(msg.sender, _from, _tokenId, _data) */
+      swap1
+      pop
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":601:611  0x150b7a02 */
+      0x150b7a02
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":13328:13352  MAGIC_ON_ERC721_RECEIVED */
+      0xe0
+      shl
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":13318:13352  retval == MAGIC_ON_ERC721_RECEIVED */
+      not(0xffffffffffffffffffffffffffffffffffffffffffffffffffffffff)
+      and
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":13318:13324  retval */
+      dup2
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":13318:13352  retval == MAGIC_ON_ERC721_RECEIVED */
+      not(0xffffffffffffffffffffffffffffffffffffffffffffffffffffffff)
+      and
+      eq
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":13310:13353  require(retval == MAGIC_ON_ERC721_RECEIVED) */
+      tag_109
+      jumpi
+      0x00
+      dup1
+      revert
+    tag_109:
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":13174:13360  if (_to.isContract()) ... */
+      pop
+    tag_101:
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":3796:3797  _ */
+      pop
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":3569:3570  _ */
+      pop
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":12844:13364  function _safeTransferFrom(... */
+      pop
+      pop
+      pop
+      pop
+      pop
+      pop
+      jump	// out
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":12433:12575  function _getOwnerNFTCount(... */
+    tag_77:
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":12519:12526  uint256 */
+      0x00
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":12543:12562  ownerToNFTokenCount */
+      0x03
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":12543:12570  ownerToNFTokenCount[_owner] */
+      0x00
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":12563:12569  _owner */
+      dup4
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":12543:12570  ownerToNFTokenCount[_owner] */
+      0xffffffffffffffffffffffffffffffffffffffff
+      and
+      0xffffffffffffffffffffffffffffffffffffffff
+      and
+      dup2
+      mstore
+      0x20
+      add
+      swap1
+      dup2
+      mstore
+      0x20
+      add
+      0x00
+      keccak256
+      sload
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":12536:12570  return ownerToNFTokenCount[_owner] */
+      swap1
+      pop
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":12433:12575  function _getOwnerNFTCount(... */
+      swap2
+      swap1
+      pop
+      jump	// out
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":13492:13656  function _clearApproval(... */
+    tag_84:
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":13600:13601  0 */
+      0x00
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":13566:13602  idToApproval[_tokenId] != address(0) */
+      0xffffffffffffffffffffffffffffffffffffffff
+      and
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":13566:13578  idToApproval */
+      0x02
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":13566:13588  idToApproval[_tokenId] */
+      0x00
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":13579:13587  _tokenId */
+      dup4
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":13566:13588  idToApproval[_tokenId] */
+      dup2
+      mstore
+      0x20
+      add
+      swap1
+      dup2
+      mstore
+      0x20
+      add
+      0x00
+      keccak256
+      0x00
+      swap1
+      sload
+      swap1
+      0x0100
+      exp
+      swap1
+      div
+      0xffffffffffffffffffffffffffffffffffffffff
+      and
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":13566:13602  idToApproval[_tokenId] != address(0) */
+      0xffffffffffffffffffffffffffffffffffffffff
+      and
+      eq
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":13562:13652  if (idToApproval[_tokenId] != address(0))... */
+      tag_112
+      jumpi
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":13623:13635  idToApproval */
+      0x02
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":13623:13645  idToApproval[_tokenId] */
+      0x00
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":13636:13644  _tokenId */
+      dup3
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":13623:13645  idToApproval[_tokenId] */
+      dup2
+      mstore
+      0x20
+      add
+      swap1
+      dup2
+      mstore
+      0x20
+      add
+      0x00
+      keccak256
+      0x00
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":13616:13645  delete idToApproval[_tokenId] */
+      0x0100
+      exp
+      dup2
+      sload
+      swap1
+      0xffffffffffffffffffffffffffffffffffffffff
+      mul
+      not
+      and
+      swap1
+      sstore
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":13562:13652  if (idToApproval[_tokenId] != address(0))... */
+    tag_112:
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":13492:13656  function _clearApproval(... */
+      pop
+      jump	// out
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":11429:11658  function _removeNFToken(... */
+    tag_86:
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":11550:11555  _from */
+      dup2
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":11527:11555  idToOwner[_tokenId] == _from */
+      0xffffffffffffffffffffffffffffffffffffffff
+      and
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":11527:11536  idToOwner */
+      0x01
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":11527:11546  idToOwner[_tokenId] */
+      0x00
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":11537:11545  _tokenId */
+      dup4
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":11527:11546  idToOwner[_tokenId] */
+      dup2
+      mstore
+      0x20
+      add
+      swap1
+      dup2
+      mstore
+      0x20
+      add
+      0x00
+      keccak256
+      0x00
+      swap1
+      sload
+      swap1
+      0x0100
+      exp
+      swap1
+      div
+      0xffffffffffffffffffffffffffffffffffffffff
+      and
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":11527:11555  idToOwner[_tokenId] == _from */
+      0xffffffffffffffffffffffffffffffffffffffff
+      and
+      eq
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":11519:11556  require(idToOwner[_tokenId] == _from) */
+      tag_114
+      jumpi
+      0x00
+      dup1
+      revert
+    tag_114:
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":11620:11621  1 */
+      0x01
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":11591:11610  ownerToNFTokenCount */
+      0x03
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":11591:11617  ownerToNFTokenCount[_from] */
+      0x00
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":11611:11616  _from */
+      dup5
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":11591:11617  ownerToNFTokenCount[_from] */
+      0xffffffffffffffffffffffffffffffffffffffff
+      and
+      0xffffffffffffffffffffffffffffffffffffffff
+      and
+      dup2
+      mstore
+      0x20
+      add
+      swap1
+      dup2
+      mstore
+      0x20
+      add
+      0x00
+      keccak256
+      sload
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":11591:11621  ownerToNFTokenCount[_from] - 1 */
+      sub
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":11562:11581  ownerToNFTokenCount */
+      0x03
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":11562:11588  ownerToNFTokenCount[_from] */
+      0x00
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":11582:11587  _from */
+      dup5
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":11562:11588  ownerToNFTokenCount[_from] */
+      0xffffffffffffffffffffffffffffffffffffffff
+      and
+      0xffffffffffffffffffffffffffffffffffffffff
+      and
+      dup2
+      mstore
+      0x20
+      add
+      swap1
+      dup2
+      mstore
+      0x20
+      add
+      0x00
+      keccak256
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":11562:11621  ownerToNFTokenCount[_from] = ownerToNFTokenCount[_from] - 1 */
+      dup2
+      swap1
+      sstore
+      pop
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":11634:11643  idToOwner */
+      0x01
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":11634:11653  idToOwner[_tokenId] */
+      0x00
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":11644:11652  _tokenId */
+      dup3
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":11634:11653  idToOwner[_tokenId] */
+      dup2
+      mstore
+      0x20
+      add
+      swap1
+      dup2
+      mstore
+      0x20
+      add
+      0x00
+      keccak256
+      0x00
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":11627:11653  delete idToOwner[_tokenId] */
+      0x0100
+      exp
+      dup2
+      sload
+      swap1
+      0xffffffffffffffffffffffffffffffffffffffff
+      mul
+      not
+      and
+      swap1
+      sstore
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":11429:11658  function _removeNFToken(... */
+      pop
+      pop
+      jump	// out
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":11917:12145  function _addNFToken(... */
+    tag_88:
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":12041:12042  0 */
+      0x00
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":12010:12043  idToOwner[_tokenId] == address(0) */
+      0xffffffffffffffffffffffffffffffffffffffff
+      and
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":12010:12019  idToOwner */
+      0x01
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":12010:12029  idToOwner[_tokenId] */
+      0x00
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":12020:12028  _tokenId */
+      dup4
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":12010:12029  idToOwner[_tokenId] */
+      dup2
+      mstore
+      0x20
+      add
+      swap1
+      dup2
+      mstore
+      0x20
+      add
+      0x00
+      keccak256
+      0x00
+      swap1
+      sload
+      swap1
+      0x0100
+      exp
+      swap1
+      div
+      0xffffffffffffffffffffffffffffffffffffffff
+      and
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":12010:12043  idToOwner[_tokenId] == address(0) */
+      0xffffffffffffffffffffffffffffffffffffffff
+      and
+      eq
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":12002:12044  require(idToOwner[_tokenId] == address(0)) */
+      tag_116
+      jumpi
+      0x00
+      dup1
+      revert
+    tag_116:
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":12073:12076  _to */
+      dup2
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":12051:12060  idToOwner */
+      0x01
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":12051:12070  idToOwner[_tokenId] */
+      0x00
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":12061:12069  _tokenId */
+      dup4
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":12051:12070  idToOwner[_tokenId] */
+      dup2
+      mstore
+      0x20
+      add
+      swap1
+      dup2
+      mstore
+      0x20
+      add
+      0x00
+      keccak256
+      0x00
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":12051:12076  idToOwner[_tokenId] = _to */
+      0x0100
+      exp
+      dup2
+      sload
+      dup2
+      0xffffffffffffffffffffffffffffffffffffffff
+      mul
+      not
+      and
+      swap1
+      dup4
+      0xffffffffffffffffffffffffffffffffffffffff
+      and
+      mul
+      or
+      swap1
+      sstore
+      pop
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":12109:12140  ownerToNFTokenCount[_to].add(1) */
+      tag_117
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":12138:12139  1 */
+      0x01
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":12109:12128  ownerToNFTokenCount */
+      0x03
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":12109:12133  ownerToNFTokenCount[_to] */
+      0x00
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":12129:12132  _to */
+      dup6
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":12109:12133  ownerToNFTokenCount[_to] */
+      0xffffffffffffffffffffffffffffffffffffffff
+      and
+      0xffffffffffffffffffffffffffffffffffffffff
+      and
+      dup2
+      mstore
+      0x20
+      add
+      swap1
+      dup2
+      mstore
+      0x20
+      add
+      0x00
+      keccak256
+      sload
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":12109:12137  ownerToNFTokenCount[_to].add */
+      tag_118
+      swap1
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":12109:12140  ownerToNFTokenCount[_to].add(1) */
+      swap2
+      swap1
+      0xffffffff
+      and
+      jump	// in
+    tag_117:
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":12082:12101  ownerToNFTokenCount */
+      0x03
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":12082:12106  ownerToNFTokenCount[_to] */
+      0x00
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":12102:12105  _to */
+      dup5
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":12082:12106  ownerToNFTokenCount[_to] */
+      0xffffffffffffffffffffffffffffffffffffffff
+      and
+      0xffffffffffffffffffffffffffffffffffffffff
+      and
+      dup2
+      mstore
+      0x20
+      add
+      swap1
+      dup2
+      mstore
+      0x20
+      add
+      0x00
+      keccak256
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":12082:12140  ownerToNFTokenCount[_to] = ownerToNFTokenCount[_to].add(1) */
+      dup2
+      swap1
+      sstore
+      pop
+        /* "/root/gosmartcontract/erc721/tokens/nf-token.sol":11917:12145  function _addNFToken(... */
+      pop
+      pop
+      jump	// out
+        /* "/root/gosmartcontract/erc721/utils/address-utils.sol":281:877  function isContract(... */
+    tag_100:
+        /* "/root/gosmartcontract/erc721/utils/address-utils.sol":359:376  bool addressCheck */
+      0x00
+        /* "/root/gosmartcontract/erc721/utils/address-utils.sol":386:398  uint256 size */
+      dup1
+        /* "/root/gosmartcontract/erc721/utils/address-utils.sol":812:817  _addr */
+      dup3
+        /* "/root/gosmartcontract/erc721/utils/address-utils.sol":800:818  extcodesize(_addr) */
+      extcodesize
+        /* "/root/gosmartcontract/erc721/utils/address-utils.sol":792:818  size := extcodesize(_addr) */
+      swap1
+      pop
+        /* "/root/gosmartcontract/erc721/utils/address-utils.sol":871:872  0 */
+      0x00
+        /* "/root/gosmartcontract/erc721/utils/address-utils.sol":864:868  size */
+      dup2
+        /* "/root/gosmartcontract/erc721/utils/address-utils.sol":864:872  size > 0 */
+      gt
+        /* "/root/gosmartcontract/erc721/utils/address-utils.sol":849:872  addressCheck = size > 0 */
+      swap2
+      pop
+        /* "/root/gosmartcontract/erc721/utils/address-utils.sol":281:877  function isContract(... */
+      pop
+      swap2
+      swap1
+      pop
+      jump	// out
+        /* "/root/gosmartcontract/erc721/math/safe-math.sol":2070:2247  function add(... */
+    tag_118:
+        /* "/root/gosmartcontract/erc721/math/safe-math.sol":2166:2177  uint256 sum */
+      0x00
+        /* "/root/gosmartcontract/erc721/math/safe-math.sol":2204:2212  _addend2 */
+      dup2
+        /* "/root/gosmartcontract/erc721/math/safe-math.sol":2193:2201  _addend1 */
+      dup4
+        /* "/root/gosmartcontract/erc721/math/safe-math.sol":2193:2212  _addend1 + _addend2 */
+      add
+        /* "/root/gosmartcontract/erc721/math/safe-math.sol":2187:2212  sum = _addend1 + _addend2 */
+      swap1
+      pop
+        /* "/root/gosmartcontract/erc721/math/safe-math.sol":2233:2241  _addend1 */
+      dup3
+        /* "/root/gosmartcontract/erc721/math/safe-math.sol":2226:2229  sum */
+      dup2
+        /* "/root/gosmartcontract/erc721/math/safe-math.sol":2226:2241  sum >= _addend1 */
+      lt
+      iszero
+        /* "/root/gosmartcontract/erc721/math/safe-math.sol":2218:2242  require(sum >= _addend1) */
+      tag_121
+      jumpi
+      0x00
+      dup1
+      revert
+    tag_121:
+        /* "/root/gosmartcontract/erc721/math/safe-math.sol":2070:2247  function add(... */
+      swap3
+      swap2
+      pop
+      pop
+      jump	// out
+
+    auxdata: 0xa165627a7a7230582037049157cbd6e49b4768a0ce1568f8aedebd0d842c0e44b836ffbf191c27be040029
+}

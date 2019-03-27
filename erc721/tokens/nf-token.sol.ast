@@ -1,0 +1,1643 @@
+PragmaDirective
+   Source: "pragma solidity ^0.5.6;"
+ImportDirective "./erc721.sol"
+   Source: "import \"./erc721.sol\";"
+ImportDirective "./erc721-token-receiver.sol"
+   Source: "import \"./erc721-token-receiver.sol\";"
+ImportDirective "../math/safe-math.sol"
+   Source: "import \"../math/safe-math.sol\";"
+ImportDirective "../utils/supports-interface.sol"
+   Source: "import \"../utils/supports-interface.sol\";"
+ImportDirective "../utils/address-utils.sol"
+   Source: "import \"../utils/address-utils.sol\";"
+ContractDefinition "NFToken"
+   Source: "contract NFToken is\n  ERC721,\n  SupportsInterface\n{\n  using SafeMath for uint256;\n  using AddressUtils for address;\n\n  /**\n   * @dev Magic value of a smart contract that can recieve NFT.\n   * Equal to: bytes4(keccak256(\"onERC721Received(address,address,uint256,bytes)\")).\n   */\n  bytes4 internal constant MAGIC_ON_ERC721_RECEIVED = 0x150b7a02;\n\n  /**\n   * @dev A mapping from NFT ID to the address that owns it.\n   */\n  mapping (uint256 => address) internal idToOwner;\n\n  /**\n   * @dev Mapping from NFT ID to approved address.\n   */\n  mapping (uint256 => address) internal idToApproval;\n\n   /**\n   * @dev Mapping from owner address to count of his tokens.\n   */\n  mapping (address => uint256) private ownerToNFTokenCount;\n\n  /**\n   * @dev Mapping from owner address to mapping of operator addresses.\n   */\n  mapping (address => mapping (address => bool)) internal ownerToOperators;\n\n  /**\n   * @dev Emits when ownership of any NFT changes by any mechanism. This event emits when NFTs are\n   * created (`from` == 0) and destroyed (`to` == 0). Exception: during contract creation, any\n   * number of NFTs may be created and assigned without emitting Transfer. At the time of any\n   * transfer, the approved address for that NFT (if any) is reset to none.\n   * @param _from Sender of NFT (if address is zero address it indicates token creation).\n   * @param _to Receiver of NFT (if address is zero address it indicates token destruction).\n   * @param _tokenId The NFT that got transfered.\n   */\n  event Transfer(\n    address indexed _from,\n    address indexed _to,\n    uint256 indexed _tokenId\n  );\n\n  /**\n   * @dev This emits when the approved address for an NFT is changed or reaffirmed. The zero\n   * address indicates there is no approved address. When a Transfer event emits, this also\n   * indicates that the approved address for that NFT (if any) is reset to none.\n   * @param _owner Owner of NFT.\n   * @param _approved Address that we are approving.\n   * @param _tokenId NFT which we are approving.\n   */\n  event Approval(\n    address indexed _owner,\n    address indexed _approved,\n    uint256 indexed _tokenId\n  );\n\n  /**\n   * @dev This emits when an operator is enabled or disabled for an owner. The operator can manage\n   * all NFTs of the owner.\n   * @param _owner Owner of NFT.\n   * @param _operator Address to which we are setting operator rights.\n   * @param _approved Status of operator rights(true if operator rights are given and false if\n   * revoked).\n   */\n  event ApprovalForAll(\n    address indexed _owner,\n    address indexed _operator,\n    bool _approved\n  );\n\n  /**\n   * @dev Guarantees that the msg.sender is an owner or operator of the given NFT.\n   * @param _tokenId ID of the NFT to validate.\n   */\n  modifier canOperate(\n    uint256 _tokenId\n  ) \n  {\n    address tokenOwner = idToOwner[_tokenId];\n    require(tokenOwner == msg.sender || ownerToOperators[tokenOwner][msg.sender]);\n    _;\n  }\n\n  /**\n   * @dev Guarantees that the msg.sender is allowed to transfer NFT.\n   * @param _tokenId ID of the NFT to transfer.\n   */\n  modifier canTransfer(\n    uint256 _tokenId\n  ) \n  {\n    address tokenOwner = idToOwner[_tokenId];\n    require(\n      tokenOwner == msg.sender\n      || idToApproval[_tokenId] == msg.sender\n      || ownerToOperators[tokenOwner][msg.sender]\n    );\n    _;\n  }\n\n  /**\n   * @dev Guarantees that _tokenId is a valid Token.\n   * @param _tokenId ID of the NFT to validate.\n   */\n  modifier validNFToken(\n    uint256 _tokenId\n  )\n  {\n    require(idToOwner[_tokenId] != address(0));\n    _;\n  }\n\n  /**\n   * @dev Contract constructor.\n   */\n  constructor()\n    public\n  {\n    supportedInterfaces[0x80ac58cd] = true; // ERC721\n  }\n\n  /**\n   * @dev Transfers the ownership of an NFT from one address to another address. This function can\n   * be changed to payable.\n   * @notice Throws unless `msg.sender` is the current owner, an authorized operator, or the\n   * approved address for this NFT. Throws if `_from` is not the current owner. Throws if `_to` is\n   * the zero address. Throws if `_tokenId` is not a valid NFT. When transfer is complete, this\n   * function checks if `_to` is a smart contract (code size > 0). If so, it calls \n   * `onERC721Received` on `_to` and throws if the return value is not \n   * `bytes4(keccak256(\"onERC721Received(address,uint256,bytes)\"))`.\n   * @param _from The current owner of the NFT.\n   * @param _to The new owner.\n   * @param _tokenId The NFT to transfer.\n   * @param _data Additional data with no specified format, sent in call to `_to`.\n   */\n  function safeTransferFrom(\n    address _from,\n    address _to,\n    uint256 _tokenId,\n    bytes calldata _data\n  )\n    external\n  {\n    _safeTransferFrom(_from, _to, _tokenId, _data);\n  }\n\n  /**\n   * @dev Transfers the ownership of an NFT from one address to another address. This function can\n   * be changed to payable.\n   * @notice This works identically to the other function with an extra data parameter, except this\n   * function just sets data to \"\"\n   * @param _from The current owner of the NFT.\n   * @param _to The new owner.\n   * @param _tokenId The NFT to transfer.\n   */\n  function safeTransferFrom(\n    address _from,\n    address _to,\n    uint256 _tokenId\n  )\n    external\n  {\n    _safeTransferFrom(_from, _to, _tokenId, \"\");\n  }\n\n  /**\n   * @dev Throws unless `msg.sender` is the current owner, an authorized operator, or the approved\n   * address for this NFT. Throws if `_from` is not the current owner. Throws if `_to` is the zero\n   * address. Throws if `_tokenId` is not a valid NFT. This function can be changed to payable.\n   * @notice The caller is responsible to confirm that `_to` is capable of receiving NFTs or else\n   * they maybe be permanently lost.\n   * @param _from The current owner of the NFT.\n   * @param _to The new owner.\n   * @param _tokenId The NFT to transfer.\n   */\n  function transferFrom(\n    address _from,\n    address _to,\n    uint256 _tokenId\n  )\n    external\n    canTransfer(_tokenId)\n    validNFToken(_tokenId)\n  {\n    address tokenOwner = idToOwner[_tokenId];\n    require(tokenOwner == _from);\n    require(_to != address(0));\n\n    _transfer(_to, _tokenId);\n  }\n\n  /**\n   * @dev Set or reaffirm the approved address for an NFT. This function can be changed to payable.\n   * @notice The zero address indicates there is no approved address. Throws unless `msg.sender` is\n   * the current NFT owner, or an authorized operator of the current owner.\n   * @param _approved Address to be approved for the given NFT ID.\n   * @param _tokenId ID of the token to be approved.\n   */\n  function approve(\n    address _approved,\n    uint256 _tokenId\n  )\n    external\n    canOperate(_tokenId)\n    validNFToken(_tokenId)\n  {\n    address tokenOwner = idToOwner[_tokenId];\n    require(_approved != tokenOwner);\n\n    idToApproval[_tokenId] = _approved;\n    emit Approval(tokenOwner, _approved, _tokenId);\n  }\n\n  /**\n   * @dev Enables or disables approval for a third party (\"operator\") to manage all of\n   * `msg.sender`'s assets. It also emits the ApprovalForAll event.\n   * @notice This works even if sender doesn't own any tokens at the time.\n   * @param _operator Address to add to the set of authorized operators.\n   * @param _approved True if the operators is approved, false to revoke approval.\n   */\n  function setApprovalForAll(\n    address _operator,\n    bool _approved\n  )\n    external\n  {\n    ownerToOperators[msg.sender][_operator] = _approved;\n    emit ApprovalForAll(msg.sender, _operator, _approved);\n  }\n\n  /**\n   * @dev Returns the number of NFTs owned by `_owner`. NFTs assigned to the zero address are\n   * considered invalid, and this function throws for queries about the zero address.\n   * @param _owner Address for whom to query the balance.\n   * @return Balance of _owner.\n   */\n  function balanceOf(\n    address _owner\n  )\n    external\n    view\n    returns (uint256)\n  {\n    require(_owner != address(0));\n    return _getOwnerNFTCount(_owner);\n  }\n\n  /**\n   * @dev Returns the address of the owner of the NFT. NFTs assigned to zero address are considered\n   * invalid, and queries about them do throw.\n   * @param _tokenId The identifier for an NFT.\n   * @return Address of _tokenId owner.\n   */\n  function ownerOf(\n    uint256 _tokenId\n  )\n    external\n    view\n    returns (address _owner)\n  {\n    _owner = idToOwner[_tokenId];\n    require(_owner != address(0));\n  }\n\n  /**\n   * @dev Get the approved address for a single NFT.\n   * @notice Throws if `_tokenId` is not a valid NFT.\n   * @param _tokenId ID of the NFT to query the approval of.\n   * @return Address that _tokenId is approved for. \n   */\n  function getApproved(\n    uint256 _tokenId\n  )\n    external\n    view\n    validNFToken(_tokenId)\n    returns (address)\n  {\n    return idToApproval[_tokenId];\n  }\n\n  /**\n   * @dev Checks if `_operator` is an approved operator for `_owner`.\n   * @param _owner The address that owns the NFTs.\n   * @param _operator The address that acts on behalf of the owner.\n   * @return True if approved for all, false otherwise.\n   */\n  function isApprovedForAll(\n    address _owner,\n    address _operator\n  )\n    external\n    view\n    returns (bool)\n  {\n    return ownerToOperators[_owner][_operator];\n  }\n\n  /**\n   * @dev Actually preforms the transfer.\n   * @notice Does NO checks.\n   * @param _to Address of a new owner.\n   * @param _tokenId The NFT that is being transferred.\n   */\n  function _transfer(\n    address _to,\n    uint256 _tokenId\n  )\n    internal\n  {\n    address from = idToOwner[_tokenId];\n    _clearApproval(_tokenId);\n\n    _removeNFToken(from, _tokenId);\n    _addNFToken(_to, _tokenId);\n\n    emit Transfer(from, _to, _tokenId);\n  }\n   \n  /**\n   * @dev Mints a new NFT.\n   * @notice This is an internal function which should be called from user-implemented external\n   * mint function. Its purpose is to show and properly initialize data structures when using this\n   * implementation.\n   * @param _to The address that will own the minted NFT.\n   * @param _tokenId of the NFT to be minted by the msg.sender.\n   */\n  function _mint(\n    address _to,\n    uint256 _tokenId\n  )\n    internal\n  {\n    require(_to != address(0));\n    require(idToOwner[_tokenId] == address(0));\n\n    _addNFToken(_to, _tokenId);\n\n    emit Transfer(address(0), _to, _tokenId);\n  }\n\n  /**\n   * @dev Burns a NFT.\n   * @notice This is an internal function which should be called from user-implemented external burn\n   * function. Its purpose is to show and properly initialize data structures when using this\n   * implementation. Also, note that this burn implementation allows the minter to re-mint a burned\n   * NFT.\n   * @param _tokenId ID of the NFT to be burned.\n   */\n  function _burn(\n    uint256 _tokenId\n  )\n    internal\n    validNFToken(_tokenId)\n  {\n    address tokenOwner = idToOwner[_tokenId];\n    _clearApproval(_tokenId);\n    _removeNFToken(tokenOwner, _tokenId);\n    emit Transfer(tokenOwner, address(0), _tokenId);\n  }\n\n  /**\n   * @dev Removes a NFT from owner.\n   * @notice Use and override this function with caution. Wrong usage can have serious consequences.\n   * @param _from Address from wich we want to remove the NFT.\n   * @param _tokenId Which NFT we want to remove.\n   */\n  function _removeNFToken(\n    address _from,\n    uint256 _tokenId\n  )\n    internal\n  {\n    require(idToOwner[_tokenId] == _from);\n    ownerToNFTokenCount[_from] = ownerToNFTokenCount[_from] - 1;\n    delete idToOwner[_tokenId];\n  }\n\n  /**\n   * @dev Assignes a new NFT to owner.\n   * @notice Use and override this function with caution. Wrong usage can have serious consequences.\n   * @param _to Address to wich we want to add the NFT.\n   * @param _tokenId Which NFT we want to add.\n   */\n  function _addNFToken(\n    address _to,\n    uint256 _tokenId\n  )\n    internal\n  {\n    require(idToOwner[_tokenId] == address(0));\n\n    idToOwner[_tokenId] = _to;\n    ownerToNFTokenCount[_to] = ownerToNFTokenCount[_to].add(1);\n  }\n\n  /**\n   *\u00a0@dev Helper function that gets NFT count of owner. This is needed for overriding in enumerable\n   * extension to remove double storage (gas optimization) of owner nft count.\n   * @param _owner Address for whom to query the count.\n   * @return Number of _owner NFTs.\n   */\n  function _getOwnerNFTCount(\n    address _owner\n  )\n    internal\n    view\n    returns (uint256)\n  {\n    return ownerToNFTokenCount[_owner];\n  }\n\n  /**\n   * @dev Actually perform the safeTransferFrom.\n   * @param _from The current owner of the NFT.\n   * @param _to The new owner.\n   * @param _tokenId The NFT to transfer.\n   * @param _data Additional data with no specified format, sent in call to `_to`.\n   */\n  function _safeTransferFrom(\n    address _from,\n    address _to,\n    uint256 _tokenId,\n    bytes memory _data\n  )\n    private\n    canTransfer(_tokenId)\n    validNFToken(_tokenId)\n  {\n    address tokenOwner = idToOwner[_tokenId];\n    require(tokenOwner == _from);\n    require(_to != address(0));\n\n    _transfer(_to, _tokenId);\n\n    if (_to.isContract()) \n    {\n      bytes4 retval = ERC721TokenReceiver(_to).onERC721Received(msg.sender, _from, _tokenId, _data);\n      require(retval == MAGIC_ON_ERC721_RECEIVED);\n    }\n  }\n\n  /** \n   * @dev Clears the current approval of a given NFT ID.\n   * @param _tokenId ID of the NFT to be transferred.\n   */\n  function _clearApproval(\n    uint256 _tokenId\n  )\n    private\n  {\n    if (idToApproval[_tokenId] != address(0))\n    {\n      delete idToApproval[_tokenId];\n    }\n  }\n\n}"
+  InheritanceSpecifier
+     Source: "ERC721"
+    UserDefinedTypeName "ERC721"
+       Source: "ERC721"
+  InheritanceSpecifier
+     Source: "SupportsInterface"
+    UserDefinedTypeName "SupportsInterface"
+       Source: "SupportsInterface"
+  UsingForDirective
+     Source: "using SafeMath for uint256;"
+    UserDefinedTypeName "SafeMath"
+       Source: "SafeMath"
+    ElementaryTypeName uint256
+       Source: "uint256"
+  UsingForDirective
+     Source: "using AddressUtils for address;"
+    UserDefinedTypeName "AddressUtils"
+       Source: "AddressUtils"
+    ElementaryTypeName address
+       Source: "address"
+  VariableDeclaration "MAGIC_ON_ERC721_RECEIVED"
+     Type: bytes4
+     Source: "bytes4 internal constant MAGIC_ON_ERC721_RECEIVED = 0x150b7a02"
+    ElementaryTypeName bytes4
+       Source: "bytes4"
+    Literal, token: [no token] value: 0x150b7a02
+       Type: int_const 353073666
+       Source: "0x150b7a02"
+  VariableDeclaration "idToOwner"
+     Type: mapping(uint256 => address)
+     Source: "mapping (uint256 => address) internal idToOwner"
+    Mapping
+       Source: "mapping (uint256 => address)"
+      ElementaryTypeName uint256
+         Source: "uint256"
+      ElementaryTypeName address
+         Source: "address"
+  VariableDeclaration "idToApproval"
+     Type: mapping(uint256 => address)
+     Source: "mapping (uint256 => address) internal idToApproval"
+    Mapping
+       Source: "mapping (uint256 => address)"
+      ElementaryTypeName uint256
+         Source: "uint256"
+      ElementaryTypeName address
+         Source: "address"
+  VariableDeclaration "ownerToNFTokenCount"
+     Type: mapping(address => uint256)
+     Source: "mapping (address => uint256) private ownerToNFTokenCount"
+    Mapping
+       Source: "mapping (address => uint256)"
+      ElementaryTypeName address
+         Source: "address"
+      ElementaryTypeName uint256
+         Source: "uint256"
+  VariableDeclaration "ownerToOperators"
+     Type: mapping(address => mapping(address => bool))
+     Source: "mapping (address => mapping (address => bool)) internal ownerToOperators"
+    Mapping
+       Source: "mapping (address => mapping (address => bool))"
+      ElementaryTypeName address
+         Source: "address"
+      Mapping
+         Source: "mapping (address => bool)"
+        ElementaryTypeName address
+           Source: "address"
+        ElementaryTypeName bool
+           Source: "bool"
+  EventDefinition "Transfer"
+     Source: "event Transfer(\n    address indexed _from,\n    address indexed _to,\n    uint256 indexed _tokenId\n  );"
+    ParameterList
+       Source: "(\n    address indexed _from,\n    address indexed _to,\n    uint256 indexed _tokenId\n  )"
+      VariableDeclaration "_from"
+         Type: address
+         Source: "address indexed _from"
+        ElementaryTypeName address
+           Source: "address"
+      VariableDeclaration "_to"
+         Type: address
+         Source: "address indexed _to"
+        ElementaryTypeName address
+           Source: "address"
+      VariableDeclaration "_tokenId"
+         Type: uint256
+         Source: "uint256 indexed _tokenId"
+        ElementaryTypeName uint256
+           Source: "uint256"
+  EventDefinition "Approval"
+     Source: "event Approval(\n    address indexed _owner,\n    address indexed _approved,\n    uint256 indexed _tokenId\n  );"
+    ParameterList
+       Source: "(\n    address indexed _owner,\n    address indexed _approved,\n    uint256 indexed _tokenId\n  )"
+      VariableDeclaration "_owner"
+         Type: address
+         Source: "address indexed _owner"
+        ElementaryTypeName address
+           Source: "address"
+      VariableDeclaration "_approved"
+         Type: address
+         Source: "address indexed _approved"
+        ElementaryTypeName address
+           Source: "address"
+      VariableDeclaration "_tokenId"
+         Type: uint256
+         Source: "uint256 indexed _tokenId"
+        ElementaryTypeName uint256
+           Source: "uint256"
+  EventDefinition "ApprovalForAll"
+     Source: "event ApprovalForAll(\n    address indexed _owner,\n    address indexed _operator,\n    bool _approved\n  );"
+    ParameterList
+       Source: "(\n    address indexed _owner,\n    address indexed _operator,\n    bool _approved\n  )"
+      VariableDeclaration "_owner"
+         Type: address
+         Source: "address indexed _owner"
+        ElementaryTypeName address
+           Source: "address"
+      VariableDeclaration "_operator"
+         Type: address
+         Source: "address indexed _operator"
+        ElementaryTypeName address
+           Source: "address"
+      VariableDeclaration "_approved"
+         Type: bool
+         Source: "bool _approved"
+        ElementaryTypeName bool
+           Source: "bool"
+  ModifierDefinition "canOperate"
+     Source: "modifier canOperate(\n    uint256 _tokenId\n  ) \n  {\n    address tokenOwner = idToOwner[_tokenId];\n    require(tokenOwner == msg.sender || ownerToOperators[tokenOwner][msg.sender]);\n    _;\n  }"
+    ParameterList
+       Source: "(\n    uint256 _tokenId\n  )"
+      VariableDeclaration "_tokenId"
+         Type: uint256
+         Source: "uint256 _tokenId"
+        ElementaryTypeName uint256
+           Source: "uint256"
+    Block
+       Source: "{\n    address tokenOwner = idToOwner[_tokenId];\n    require(tokenOwner == msg.sender || ownerToOperators[tokenOwner][msg.sender]);\n    _;\n  }"
+      VariableDeclarationStatement
+         Source: "address tokenOwner = idToOwner[_tokenId]"
+        VariableDeclaration "tokenOwner"
+           Type: address
+           Source: "address tokenOwner"
+          ElementaryTypeName address
+             Source: "address"
+        IndexAccess
+           Type: address
+           Source: "idToOwner[_tokenId]"
+          Identifier idToOwner
+             Type: mapping(uint256 => address)
+             Source: "idToOwner"
+          Identifier _tokenId
+             Type: uint256
+             Source: "_tokenId"
+      ExpressionStatement
+         Source: "require(tokenOwner == msg.sender || ownerToOperators[tokenOwner][msg.sender])"
+        FunctionCall
+           Type: tuple()
+           Source: "require(tokenOwner == msg.sender || ownerToOperators[tokenOwner][msg.sender])"
+          Identifier require
+             Type: function (bool) pure
+             Source: "require"
+          BinaryOperation using operator ||
+             Type: bool
+             Source: "tokenOwner == msg.sender || ownerToOperators[tokenOwner][msg.sender]"
+            BinaryOperation using operator ==
+               Type: bool
+               Source: "tokenOwner == msg.sender"
+              Identifier tokenOwner
+                 Type: address
+                 Source: "tokenOwner"
+              MemberAccess to member sender
+                 Type: address payable
+                 Source: "msg.sender"
+                Identifier msg
+                   Type: msg
+                   Source: "msg"
+            IndexAccess
+               Type: bool
+               Source: "ownerToOperators[tokenOwner][msg.sender]"
+              IndexAccess
+                 Type: mapping(address => bool)
+                 Source: "ownerToOperators[tokenOwner]"
+                Identifier ownerToOperators
+                   Type: mapping(address => mapping(address => bool))
+                   Source: "ownerToOperators"
+                Identifier tokenOwner
+                   Type: address
+                   Source: "tokenOwner"
+              MemberAccess to member sender
+                 Type: address payable
+                 Source: "msg.sender"
+                Identifier msg
+                   Type: msg
+                   Source: "msg"
+      PlaceholderStatement
+         Source: "_"
+  ModifierDefinition "canTransfer"
+     Source: "modifier canTransfer(\n    uint256 _tokenId\n  ) \n  {\n    address tokenOwner = idToOwner[_tokenId];\n    require(\n      tokenOwner == msg.sender\n      || idToApproval[_tokenId] == msg.sender\n      || ownerToOperators[tokenOwner][msg.sender]\n    );\n    _;\n  }"
+    ParameterList
+       Source: "(\n    uint256 _tokenId\n  )"
+      VariableDeclaration "_tokenId"
+         Type: uint256
+         Source: "uint256 _tokenId"
+        ElementaryTypeName uint256
+           Source: "uint256"
+    Block
+       Source: "{\n    address tokenOwner = idToOwner[_tokenId];\n    require(\n      tokenOwner == msg.sender\n      || idToApproval[_tokenId] == msg.sender\n      || ownerToOperators[tokenOwner][msg.sender]\n    );\n    _;\n  }"
+      VariableDeclarationStatement
+         Source: "address tokenOwner = idToOwner[_tokenId]"
+        VariableDeclaration "tokenOwner"
+           Type: address
+           Source: "address tokenOwner"
+          ElementaryTypeName address
+             Source: "address"
+        IndexAccess
+           Type: address
+           Source: "idToOwner[_tokenId]"
+          Identifier idToOwner
+             Type: mapping(uint256 => address)
+             Source: "idToOwner"
+          Identifier _tokenId
+             Type: uint256
+             Source: "_tokenId"
+      ExpressionStatement
+         Source: "require(\n      tokenOwner == msg.sender\n      || idToApproval[_tokenId] == msg.sender\n      || ownerToOperators[tokenOwner][msg.sender]\n    )"
+        FunctionCall
+           Type: tuple()
+           Source: "require(\n      tokenOwner == msg.sender\n      || idToApproval[_tokenId] == msg.sender\n      || ownerToOperators[tokenOwner][msg.sender]\n    )"
+          Identifier require
+             Type: function (bool) pure
+             Source: "require"
+          BinaryOperation using operator ||
+             Type: bool
+             Source: "tokenOwner == msg.sender\n      || idToApproval[_tokenId] == msg.sender\n      || ownerToOperators[tokenOwner][msg.sender]"
+            BinaryOperation using operator ||
+               Type: bool
+               Source: "tokenOwner == msg.sender\n      || idToApproval[_tokenId] == msg.sender"
+              BinaryOperation using operator ==
+                 Type: bool
+                 Source: "tokenOwner == msg.sender"
+                Identifier tokenOwner
+                   Type: address
+                   Source: "tokenOwner"
+                MemberAccess to member sender
+                   Type: address payable
+                   Source: "msg.sender"
+                  Identifier msg
+                     Type: msg
+                     Source: "msg"
+              BinaryOperation using operator ==
+                 Type: bool
+                 Source: "idToApproval[_tokenId] == msg.sender"
+                IndexAccess
+                   Type: address
+                   Source: "idToApproval[_tokenId]"
+                  Identifier idToApproval
+                     Type: mapping(uint256 => address)
+                     Source: "idToApproval"
+                  Identifier _tokenId
+                     Type: uint256
+                     Source: "_tokenId"
+                MemberAccess to member sender
+                   Type: address payable
+                   Source: "msg.sender"
+                  Identifier msg
+                     Type: msg
+                     Source: "msg"
+            IndexAccess
+               Type: bool
+               Source: "ownerToOperators[tokenOwner][msg.sender]"
+              IndexAccess
+                 Type: mapping(address => bool)
+                 Source: "ownerToOperators[tokenOwner]"
+                Identifier ownerToOperators
+                   Type: mapping(address => mapping(address => bool))
+                   Source: "ownerToOperators"
+                Identifier tokenOwner
+                   Type: address
+                   Source: "tokenOwner"
+              MemberAccess to member sender
+                 Type: address payable
+                 Source: "msg.sender"
+                Identifier msg
+                   Type: msg
+                   Source: "msg"
+      PlaceholderStatement
+         Source: "_"
+  ModifierDefinition "validNFToken"
+     Source: "modifier validNFToken(\n    uint256 _tokenId\n  )\n  {\n    require(idToOwner[_tokenId] != address(0));\n    _;\n  }"
+    ParameterList
+       Source: "(\n    uint256 _tokenId\n  )"
+      VariableDeclaration "_tokenId"
+         Type: uint256
+         Source: "uint256 _tokenId"
+        ElementaryTypeName uint256
+           Source: "uint256"
+    Block
+       Source: "{\n    require(idToOwner[_tokenId] != address(0));\n    _;\n  }"
+      ExpressionStatement
+         Source: "require(idToOwner[_tokenId] != address(0))"
+        FunctionCall
+           Type: tuple()
+           Source: "require(idToOwner[_tokenId] != address(0))"
+          Identifier require
+             Type: function (bool) pure
+             Source: "require"
+          BinaryOperation using operator !=
+             Type: bool
+             Source: "idToOwner[_tokenId] != address(0)"
+            IndexAccess
+               Type: address
+               Source: "idToOwner[_tokenId]"
+              Identifier idToOwner
+                 Type: mapping(uint256 => address)
+                 Source: "idToOwner"
+              Identifier _tokenId
+                 Type: uint256
+                 Source: "_tokenId"
+            FunctionCall
+               Type: address payable
+               Source: "address(0)"
+              ElementaryTypeNameExpression address
+                 Type: type(address)
+                 Source: "address"
+              Literal, token: [no token] value: 0
+                 Type: int_const 0
+                 Source: "0"
+      PlaceholderStatement
+         Source: "_"
+  FunctionDefinition "" - public
+     Source: "constructor()\n    public\n  {\n    supportedInterfaces[0x80ac58cd] = true; // ERC721\n  }"
+    ParameterList
+       Source: "()"
+    ParameterList
+       Source: ""
+    Block
+       Source: "{\n    supportedInterfaces[0x80ac58cd] = true; // ERC721\n  }"
+      ExpressionStatement
+         Source: "supportedInterfaces[0x80ac58cd] = true"
+        Assignment using operator =
+           Type: bool
+           Source: "supportedInterfaces[0x80ac58cd] = true"
+          IndexAccess
+             Type: bool
+             Source: "supportedInterfaces[0x80ac58cd]"
+            Identifier supportedInterfaces
+               Type: mapping(bytes4 => bool)
+               Source: "supportedInterfaces"
+            Literal, token: [no token] value: 0x80ac58cd
+               Type: int_const 2158778573
+               Source: "0x80ac58cd"
+          Literal, token: true value: true
+             Type: bool
+             Source: "true"
+  FunctionDefinition "safeTransferFrom" - public
+     Source: "function safeTransferFrom(\n    address _from,\n    address _to,\n    uint256 _tokenId,\n    bytes calldata _data\n  )\n    external\n  {\n    _safeTransferFrom(_from, _to, _tokenId, _data);\n  }"
+    ParameterList
+       Source: "(\n    address _from,\n    address _to,\n    uint256 _tokenId,\n    bytes calldata _data\n  )"
+      VariableDeclaration "_from"
+         Type: address
+         Source: "address _from"
+        ElementaryTypeName address
+           Source: "address"
+      VariableDeclaration "_to"
+         Type: address
+         Source: "address _to"
+        ElementaryTypeName address
+           Source: "address"
+      VariableDeclaration "_tokenId"
+         Type: uint256
+         Source: "uint256 _tokenId"
+        ElementaryTypeName uint256
+           Source: "uint256"
+      VariableDeclaration "_data"
+         Type: bytes calldata
+         Source: "bytes calldata _data"
+        ElementaryTypeName bytes
+           Source: "bytes"
+    ParameterList
+       Source: ""
+    Block
+       Source: "{\n    _safeTransferFrom(_from, _to, _tokenId, _data);\n  }"
+      ExpressionStatement
+         Source: "_safeTransferFrom(_from, _to, _tokenId, _data)"
+        FunctionCall
+           Type: tuple()
+           Source: "_safeTransferFrom(_from, _to, _tokenId, _data)"
+          Identifier _safeTransferFrom
+             Type: function (address,address,uint256,bytes memory)
+             Source: "_safeTransferFrom"
+          Identifier _from
+             Type: address
+             Source: "_from"
+          Identifier _to
+             Type: address
+             Source: "_to"
+          Identifier _tokenId
+             Type: uint256
+             Source: "_tokenId"
+          Identifier _data
+             Type: bytes calldata
+             Source: "_data"
+  FunctionDefinition "safeTransferFrom" - public
+     Source: "function safeTransferFrom(\n    address _from,\n    address _to,\n    uint256 _tokenId\n  )\n    external\n  {\n    _safeTransferFrom(_from, _to, _tokenId, \"\");\n  }"
+    ParameterList
+       Source: "(\n    address _from,\n    address _to,\n    uint256 _tokenId\n  )"
+      VariableDeclaration "_from"
+         Type: address
+         Source: "address _from"
+        ElementaryTypeName address
+           Source: "address"
+      VariableDeclaration "_to"
+         Type: address
+         Source: "address _to"
+        ElementaryTypeName address
+           Source: "address"
+      VariableDeclaration "_tokenId"
+         Type: uint256
+         Source: "uint256 _tokenId"
+        ElementaryTypeName uint256
+           Source: "uint256"
+    ParameterList
+       Source: ""
+    Block
+       Source: "{\n    _safeTransferFrom(_from, _to, _tokenId, \"\");\n  }"
+      ExpressionStatement
+         Source: "_safeTransferFrom(_from, _to, _tokenId, \"\")"
+        FunctionCall
+           Type: tuple()
+           Source: "_safeTransferFrom(_from, _to, _tokenId, \"\")"
+          Identifier _safeTransferFrom
+             Type: function (address,address,uint256,bytes memory)
+             Source: "_safeTransferFrom"
+          Identifier _from
+             Type: address
+             Source: "_from"
+          Identifier _to
+             Type: address
+             Source: "_to"
+          Identifier _tokenId
+             Type: uint256
+             Source: "_tokenId"
+          Literal, token: [no token] value: 
+             Type: literal_string ""
+             Source: "\"\""
+  FunctionDefinition "transferFrom" - public
+     Source: "function transferFrom(\n    address _from,\n    address _to,\n    uint256 _tokenId\n  )\n    external\n    canTransfer(_tokenId)\n    validNFToken(_tokenId)\n  {\n    address tokenOwner = idToOwner[_tokenId];\n    require(tokenOwner == _from);\n    require(_to != address(0));\n\n    _transfer(_to, _tokenId);\n  }"
+    ParameterList
+       Source: "(\n    address _from,\n    address _to,\n    uint256 _tokenId\n  )"
+      VariableDeclaration "_from"
+         Type: address
+         Source: "address _from"
+        ElementaryTypeName address
+           Source: "address"
+      VariableDeclaration "_to"
+         Type: address
+         Source: "address _to"
+        ElementaryTypeName address
+           Source: "address"
+      VariableDeclaration "_tokenId"
+         Type: uint256
+         Source: "uint256 _tokenId"
+        ElementaryTypeName uint256
+           Source: "uint256"
+    ParameterList
+       Source: ""
+    ModifierInvocation "canTransfer"
+       Source: "canTransfer(_tokenId)"
+      Identifier canTransfer
+         Type: modifier (uint256)
+         Source: "canTransfer"
+      Identifier _tokenId
+         Type: uint256
+         Source: "_tokenId"
+    ModifierInvocation "validNFToken"
+       Source: "validNFToken(_tokenId)"
+      Identifier validNFToken
+         Type: modifier (uint256)
+         Source: "validNFToken"
+      Identifier _tokenId
+         Type: uint256
+         Source: "_tokenId"
+    Block
+       Source: "{\n    address tokenOwner = idToOwner[_tokenId];\n    require(tokenOwner == _from);\n    require(_to != address(0));\n\n    _transfer(_to, _tokenId);\n  }"
+      VariableDeclarationStatement
+         Source: "address tokenOwner = idToOwner[_tokenId]"
+        VariableDeclaration "tokenOwner"
+           Type: address
+           Source: "address tokenOwner"
+          ElementaryTypeName address
+             Source: "address"
+        IndexAccess
+           Type: address
+           Source: "idToOwner[_tokenId]"
+          Identifier idToOwner
+             Type: mapping(uint256 => address)
+             Source: "idToOwner"
+          Identifier _tokenId
+             Type: uint256
+             Source: "_tokenId"
+      ExpressionStatement
+         Source: "require(tokenOwner == _from)"
+        FunctionCall
+           Type: tuple()
+           Source: "require(tokenOwner == _from)"
+          Identifier require
+             Type: function (bool) pure
+             Source: "require"
+          BinaryOperation using operator ==
+             Type: bool
+             Source: "tokenOwner == _from"
+            Identifier tokenOwner
+               Type: address
+               Source: "tokenOwner"
+            Identifier _from
+               Type: address
+               Source: "_from"
+      ExpressionStatement
+         Source: "require(_to != address(0))"
+        FunctionCall
+           Type: tuple()
+           Source: "require(_to != address(0))"
+          Identifier require
+             Type: function (bool) pure
+             Source: "require"
+          BinaryOperation using operator !=
+             Type: bool
+             Source: "_to != address(0)"
+            Identifier _to
+               Type: address
+               Source: "_to"
+            FunctionCall
+               Type: address payable
+               Source: "address(0)"
+              ElementaryTypeNameExpression address
+                 Type: type(address)
+                 Source: "address"
+              Literal, token: [no token] value: 0
+                 Type: int_const 0
+                 Source: "0"
+      ExpressionStatement
+         Source: "_transfer(_to, _tokenId)"
+        FunctionCall
+           Type: tuple()
+           Source: "_transfer(_to, _tokenId)"
+          Identifier _transfer
+             Type: function (address,uint256)
+             Source: "_transfer"
+          Identifier _to
+             Type: address
+             Source: "_to"
+          Identifier _tokenId
+             Type: uint256
+             Source: "_tokenId"
+  FunctionDefinition "approve" - public
+     Source: "function approve(\n    address _approved,\n    uint256 _tokenId\n  )\n    external\n    canOperate(_tokenId)\n    validNFToken(_tokenId)\n  {\n    address tokenOwner = idToOwner[_tokenId];\n    require(_approved != tokenOwner);\n\n    idToApproval[_tokenId] = _approved;\n    emit Approval(tokenOwner, _approved, _tokenId);\n  }"
+    ParameterList
+       Source: "(\n    address _approved,\n    uint256 _tokenId\n  )"
+      VariableDeclaration "_approved"
+         Type: address
+         Source: "address _approved"
+        ElementaryTypeName address
+           Source: "address"
+      VariableDeclaration "_tokenId"
+         Type: uint256
+         Source: "uint256 _tokenId"
+        ElementaryTypeName uint256
+           Source: "uint256"
+    ParameterList
+       Source: ""
+    ModifierInvocation "canOperate"
+       Source: "canOperate(_tokenId)"
+      Identifier canOperate
+         Type: modifier (uint256)
+         Source: "canOperate"
+      Identifier _tokenId
+         Type: uint256
+         Source: "_tokenId"
+    ModifierInvocation "validNFToken"
+       Source: "validNFToken(_tokenId)"
+      Identifier validNFToken
+         Type: modifier (uint256)
+         Source: "validNFToken"
+      Identifier _tokenId
+         Type: uint256
+         Source: "_tokenId"
+    Block
+       Source: "{\n    address tokenOwner = idToOwner[_tokenId];\n    require(_approved != tokenOwner);\n\n    idToApproval[_tokenId] = _approved;\n    emit Approval(tokenOwner, _approved, _tokenId);\n  }"
+      VariableDeclarationStatement
+         Source: "address tokenOwner = idToOwner[_tokenId]"
+        VariableDeclaration "tokenOwner"
+           Type: address
+           Source: "address tokenOwner"
+          ElementaryTypeName address
+             Source: "address"
+        IndexAccess
+           Type: address
+           Source: "idToOwner[_tokenId]"
+          Identifier idToOwner
+             Type: mapping(uint256 => address)
+             Source: "idToOwner"
+          Identifier _tokenId
+             Type: uint256
+             Source: "_tokenId"
+      ExpressionStatement
+         Source: "require(_approved != tokenOwner)"
+        FunctionCall
+           Type: tuple()
+           Source: "require(_approved != tokenOwner)"
+          Identifier require
+             Type: function (bool) pure
+             Source: "require"
+          BinaryOperation using operator !=
+             Type: bool
+             Source: "_approved != tokenOwner"
+            Identifier _approved
+               Type: address
+               Source: "_approved"
+            Identifier tokenOwner
+               Type: address
+               Source: "tokenOwner"
+      ExpressionStatement
+         Source: "idToApproval[_tokenId] = _approved"
+        Assignment using operator =
+           Type: address
+           Source: "idToApproval[_tokenId] = _approved"
+          IndexAccess
+             Type: address
+             Source: "idToApproval[_tokenId]"
+            Identifier idToApproval
+               Type: mapping(uint256 => address)
+               Source: "idToApproval"
+            Identifier _tokenId
+               Type: uint256
+               Source: "_tokenId"
+          Identifier _approved
+             Type: address
+             Source: "_approved"
+      EmitStatement
+         Source: "emit Approval(tokenOwner, _approved, _tokenId)"
+        FunctionCall
+           Type: tuple()
+           Source: "Approval(tokenOwner, _approved, _tokenId)"
+          Identifier Approval
+             Type: function (address,address,uint256)
+             Source: "Approval"
+          Identifier tokenOwner
+             Type: address
+             Source: "tokenOwner"
+          Identifier _approved
+             Type: address
+             Source: "_approved"
+          Identifier _tokenId
+             Type: uint256
+             Source: "_tokenId"
+  FunctionDefinition "setApprovalForAll" - public
+     Source: "function setApprovalForAll(\n    address _operator,\n    bool _approved\n  )\n    external\n  {\n    ownerToOperators[msg.sender][_operator] = _approved;\n    emit ApprovalForAll(msg.sender, _operator, _approved);\n  }"
+    ParameterList
+       Source: "(\n    address _operator,\n    bool _approved\n  )"
+      VariableDeclaration "_operator"
+         Type: address
+         Source: "address _operator"
+        ElementaryTypeName address
+           Source: "address"
+      VariableDeclaration "_approved"
+         Type: bool
+         Source: "bool _approved"
+        ElementaryTypeName bool
+           Source: "bool"
+    ParameterList
+       Source: ""
+    Block
+       Source: "{\n    ownerToOperators[msg.sender][_operator] = _approved;\n    emit ApprovalForAll(msg.sender, _operator, _approved);\n  }"
+      ExpressionStatement
+         Source: "ownerToOperators[msg.sender][_operator] = _approved"
+        Assignment using operator =
+           Type: bool
+           Source: "ownerToOperators[msg.sender][_operator] = _approved"
+          IndexAccess
+             Type: bool
+             Source: "ownerToOperators[msg.sender][_operator]"
+            IndexAccess
+               Type: mapping(address => bool)
+               Source: "ownerToOperators[msg.sender]"
+              Identifier ownerToOperators
+                 Type: mapping(address => mapping(address => bool))
+                 Source: "ownerToOperators"
+              MemberAccess to member sender
+                 Type: address payable
+                 Source: "msg.sender"
+                Identifier msg
+                   Type: msg
+                   Source: "msg"
+            Identifier _operator
+               Type: address
+               Source: "_operator"
+          Identifier _approved
+             Type: bool
+             Source: "_approved"
+      EmitStatement
+         Source: "emit ApprovalForAll(msg.sender, _operator, _approved)"
+        FunctionCall
+           Type: tuple()
+           Source: "ApprovalForAll(msg.sender, _operator, _approved)"
+          Identifier ApprovalForAll
+             Type: function (address,address,bool)
+             Source: "ApprovalForAll"
+          MemberAccess to member sender
+             Type: address payable
+             Source: "msg.sender"
+            Identifier msg
+               Type: msg
+               Source: "msg"
+          Identifier _operator
+             Type: address
+             Source: "_operator"
+          Identifier _approved
+             Type: bool
+             Source: "_approved"
+  FunctionDefinition "balanceOf" - public - const
+     Source: "function balanceOf(\n    address _owner\n  )\n    external\n    view\n    returns (uint256)\n  {\n    require(_owner != address(0));\n    return _getOwnerNFTCount(_owner);\n  }"
+    ParameterList
+       Source: "(\n    address _owner\n  )"
+      VariableDeclaration "_owner"
+         Type: address
+         Source: "address _owner"
+        ElementaryTypeName address
+           Source: "address"
+    ParameterList
+       Source: "(uint256)"
+      VariableDeclaration ""
+         Type: uint256
+         Source: "uint256"
+        ElementaryTypeName uint256
+           Source: "uint256"
+    Block
+       Source: "{\n    require(_owner != address(0));\n    return _getOwnerNFTCount(_owner);\n  }"
+      ExpressionStatement
+         Source: "require(_owner != address(0))"
+        FunctionCall
+           Type: tuple()
+           Source: "require(_owner != address(0))"
+          Identifier require
+             Type: function (bool) pure
+             Source: "require"
+          BinaryOperation using operator !=
+             Type: bool
+             Source: "_owner != address(0)"
+            Identifier _owner
+               Type: address
+               Source: "_owner"
+            FunctionCall
+               Type: address payable
+               Source: "address(0)"
+              ElementaryTypeNameExpression address
+                 Type: type(address)
+                 Source: "address"
+              Literal, token: [no token] value: 0
+                 Type: int_const 0
+                 Source: "0"
+      Return
+         Source: "return _getOwnerNFTCount(_owner)"
+        FunctionCall
+           Type: uint256
+           Source: "_getOwnerNFTCount(_owner)"
+          Identifier _getOwnerNFTCount
+             Type: function (address) view returns (uint256)
+             Source: "_getOwnerNFTCount"
+          Identifier _owner
+             Type: address
+             Source: "_owner"
+  FunctionDefinition "ownerOf" - public - const
+     Source: "function ownerOf(\n    uint256 _tokenId\n  )\n    external\n    view\n    returns (address _owner)\n  {\n    _owner = idToOwner[_tokenId];\n    require(_owner != address(0));\n  }"
+    ParameterList
+       Source: "(\n    uint256 _tokenId\n  )"
+      VariableDeclaration "_tokenId"
+         Type: uint256
+         Source: "uint256 _tokenId"
+        ElementaryTypeName uint256
+           Source: "uint256"
+    ParameterList
+       Source: "(address _owner)"
+      VariableDeclaration "_owner"
+         Type: address
+         Source: "address _owner"
+        ElementaryTypeName address
+           Source: "address"
+    Block
+       Source: "{\n    _owner = idToOwner[_tokenId];\n    require(_owner != address(0));\n  }"
+      ExpressionStatement
+         Source: "_owner = idToOwner[_tokenId]"
+        Assignment using operator =
+           Type: address
+           Source: "_owner = idToOwner[_tokenId]"
+          Identifier _owner
+             Type: address
+             Source: "_owner"
+          IndexAccess
+             Type: address
+             Source: "idToOwner[_tokenId]"
+            Identifier idToOwner
+               Type: mapping(uint256 => address)
+               Source: "idToOwner"
+            Identifier _tokenId
+               Type: uint256
+               Source: "_tokenId"
+      ExpressionStatement
+         Source: "require(_owner != address(0))"
+        FunctionCall
+           Type: tuple()
+           Source: "require(_owner != address(0))"
+          Identifier require
+             Type: function (bool) pure
+             Source: "require"
+          BinaryOperation using operator !=
+             Type: bool
+             Source: "_owner != address(0)"
+            Identifier _owner
+               Type: address
+               Source: "_owner"
+            FunctionCall
+               Type: address payable
+               Source: "address(0)"
+              ElementaryTypeNameExpression address
+                 Type: type(address)
+                 Source: "address"
+              Literal, token: [no token] value: 0
+                 Type: int_const 0
+                 Source: "0"
+  FunctionDefinition "getApproved" - public - const
+     Source: "function getApproved(\n    uint256 _tokenId\n  )\n    external\n    view\n    validNFToken(_tokenId)\n    returns (address)\n  {\n    return idToApproval[_tokenId];\n  }"
+    ParameterList
+       Source: "(\n    uint256 _tokenId\n  )"
+      VariableDeclaration "_tokenId"
+         Type: uint256
+         Source: "uint256 _tokenId"
+        ElementaryTypeName uint256
+           Source: "uint256"
+    ParameterList
+       Source: "(address)"
+      VariableDeclaration ""
+         Type: address
+         Source: "address"
+        ElementaryTypeName address
+           Source: "address"
+    ModifierInvocation "validNFToken"
+       Source: "validNFToken(_tokenId)"
+      Identifier validNFToken
+         Type: modifier (uint256)
+         Source: "validNFToken"
+      Identifier _tokenId
+         Type: uint256
+         Source: "_tokenId"
+    Block
+       Source: "{\n    return idToApproval[_tokenId];\n  }"
+      Return
+         Source: "return idToApproval[_tokenId]"
+        IndexAccess
+           Type: address
+           Source: "idToApproval[_tokenId]"
+          Identifier idToApproval
+             Type: mapping(uint256 => address)
+             Source: "idToApproval"
+          Identifier _tokenId
+             Type: uint256
+             Source: "_tokenId"
+  FunctionDefinition "isApprovedForAll" - public - const
+     Source: "function isApprovedForAll(\n    address _owner,\n    address _operator\n  )\n    external\n    view\n    returns (bool)\n  {\n    return ownerToOperators[_owner][_operator];\n  }"
+    ParameterList
+       Source: "(\n    address _owner,\n    address _operator\n  )"
+      VariableDeclaration "_owner"
+         Type: address
+         Source: "address _owner"
+        ElementaryTypeName address
+           Source: "address"
+      VariableDeclaration "_operator"
+         Type: address
+         Source: "address _operator"
+        ElementaryTypeName address
+           Source: "address"
+    ParameterList
+       Source: "(bool)"
+      VariableDeclaration ""
+         Type: bool
+         Source: "bool"
+        ElementaryTypeName bool
+           Source: "bool"
+    Block
+       Source: "{\n    return ownerToOperators[_owner][_operator];\n  }"
+      Return
+         Source: "return ownerToOperators[_owner][_operator]"
+        IndexAccess
+           Type: bool
+           Source: "ownerToOperators[_owner][_operator]"
+          IndexAccess
+             Type: mapping(address => bool)
+             Source: "ownerToOperators[_owner]"
+            Identifier ownerToOperators
+               Type: mapping(address => mapping(address => bool))
+               Source: "ownerToOperators"
+            Identifier _owner
+               Type: address
+               Source: "_owner"
+          Identifier _operator
+             Type: address
+             Source: "_operator"
+  FunctionDefinition "_transfer"
+     Source: "function _transfer(\n    address _to,\n    uint256 _tokenId\n  )\n    internal\n  {\n    address from = idToOwner[_tokenId];\n    _clearApproval(_tokenId);\n\n    _removeNFToken(from, _tokenId);\n    _addNFToken(_to, _tokenId);\n\n    emit Transfer(from, _to, _tokenId);\n  }"
+    ParameterList
+       Source: "(\n    address _to,\n    uint256 _tokenId\n  )"
+      VariableDeclaration "_to"
+         Type: address
+         Source: "address _to"
+        ElementaryTypeName address
+           Source: "address"
+      VariableDeclaration "_tokenId"
+         Type: uint256
+         Source: "uint256 _tokenId"
+        ElementaryTypeName uint256
+           Source: "uint256"
+    ParameterList
+       Source: ""
+    Block
+       Source: "{\n    address from = idToOwner[_tokenId];\n    _clearApproval(_tokenId);\n\n    _removeNFToken(from, _tokenId);\n    _addNFToken(_to, _tokenId);\n\n    emit Transfer(from, _to, _tokenId);\n  }"
+      VariableDeclarationStatement
+         Source: "address from = idToOwner[_tokenId]"
+        VariableDeclaration "from"
+           Type: address
+           Source: "address from"
+          ElementaryTypeName address
+             Source: "address"
+        IndexAccess
+           Type: address
+           Source: "idToOwner[_tokenId]"
+          Identifier idToOwner
+             Type: mapping(uint256 => address)
+             Source: "idToOwner"
+          Identifier _tokenId
+             Type: uint256
+             Source: "_tokenId"
+      ExpressionStatement
+         Source: "_clearApproval(_tokenId)"
+        FunctionCall
+           Type: tuple()
+           Source: "_clearApproval(_tokenId)"
+          Identifier _clearApproval
+             Type: function (uint256)
+             Source: "_clearApproval"
+          Identifier _tokenId
+             Type: uint256
+             Source: "_tokenId"
+      ExpressionStatement
+         Source: "_removeNFToken(from, _tokenId)"
+        FunctionCall
+           Type: tuple()
+           Source: "_removeNFToken(from, _tokenId)"
+          Identifier _removeNFToken
+             Type: function (address,uint256)
+             Source: "_removeNFToken"
+          Identifier from
+             Type: address
+             Source: "from"
+          Identifier _tokenId
+             Type: uint256
+             Source: "_tokenId"
+      ExpressionStatement
+         Source: "_addNFToken(_to, _tokenId)"
+        FunctionCall
+           Type: tuple()
+           Source: "_addNFToken(_to, _tokenId)"
+          Identifier _addNFToken
+             Type: function (address,uint256)
+             Source: "_addNFToken"
+          Identifier _to
+             Type: address
+             Source: "_to"
+          Identifier _tokenId
+             Type: uint256
+             Source: "_tokenId"
+      EmitStatement
+         Source: "emit Transfer(from, _to, _tokenId)"
+        FunctionCall
+           Type: tuple()
+           Source: "Transfer(from, _to, _tokenId)"
+          Identifier Transfer
+             Type: function (address,address,uint256)
+             Source: "Transfer"
+          Identifier from
+             Type: address
+             Source: "from"
+          Identifier _to
+             Type: address
+             Source: "_to"
+          Identifier _tokenId
+             Type: uint256
+             Source: "_tokenId"
+  FunctionDefinition "_mint"
+     Source: "function _mint(\n    address _to,\n    uint256 _tokenId\n  )\n    internal\n  {\n    require(_to != address(0));\n    require(idToOwner[_tokenId] == address(0));\n\n    _addNFToken(_to, _tokenId);\n\n    emit Transfer(address(0), _to, _tokenId);\n  }"
+    ParameterList
+       Source: "(\n    address _to,\n    uint256 _tokenId\n  )"
+      VariableDeclaration "_to"
+         Type: address
+         Source: "address _to"
+        ElementaryTypeName address
+           Source: "address"
+      VariableDeclaration "_tokenId"
+         Type: uint256
+         Source: "uint256 _tokenId"
+        ElementaryTypeName uint256
+           Source: "uint256"
+    ParameterList
+       Source: ""
+    Block
+       Source: "{\n    require(_to != address(0));\n    require(idToOwner[_tokenId] == address(0));\n\n    _addNFToken(_to, _tokenId);\n\n    emit Transfer(address(0), _to, _tokenId);\n  }"
+      ExpressionStatement
+         Source: "require(_to != address(0))"
+        FunctionCall
+           Type: tuple()
+           Source: "require(_to != address(0))"
+          Identifier require
+             Type: function (bool) pure
+             Source: "require"
+          BinaryOperation using operator !=
+             Type: bool
+             Source: "_to != address(0)"
+            Identifier _to
+               Type: address
+               Source: "_to"
+            FunctionCall
+               Type: address payable
+               Source: "address(0)"
+              ElementaryTypeNameExpression address
+                 Type: type(address)
+                 Source: "address"
+              Literal, token: [no token] value: 0
+                 Type: int_const 0
+                 Source: "0"
+      ExpressionStatement
+         Source: "require(idToOwner[_tokenId] == address(0))"
+        FunctionCall
+           Type: tuple()
+           Source: "require(idToOwner[_tokenId] == address(0))"
+          Identifier require
+             Type: function (bool) pure
+             Source: "require"
+          BinaryOperation using operator ==
+             Type: bool
+             Source: "idToOwner[_tokenId] == address(0)"
+            IndexAccess
+               Type: address
+               Source: "idToOwner[_tokenId]"
+              Identifier idToOwner
+                 Type: mapping(uint256 => address)
+                 Source: "idToOwner"
+              Identifier _tokenId
+                 Type: uint256
+                 Source: "_tokenId"
+            FunctionCall
+               Type: address payable
+               Source: "address(0)"
+              ElementaryTypeNameExpression address
+                 Type: type(address)
+                 Source: "address"
+              Literal, token: [no token] value: 0
+                 Type: int_const 0
+                 Source: "0"
+      ExpressionStatement
+         Source: "_addNFToken(_to, _tokenId)"
+        FunctionCall
+           Type: tuple()
+           Source: "_addNFToken(_to, _tokenId)"
+          Identifier _addNFToken
+             Type: function (address,uint256)
+             Source: "_addNFToken"
+          Identifier _to
+             Type: address
+             Source: "_to"
+          Identifier _tokenId
+             Type: uint256
+             Source: "_tokenId"
+      EmitStatement
+         Source: "emit Transfer(address(0), _to, _tokenId)"
+        FunctionCall
+           Type: tuple()
+           Source: "Transfer(address(0), _to, _tokenId)"
+          Identifier Transfer
+             Type: function (address,address,uint256)
+             Source: "Transfer"
+          FunctionCall
+             Type: address payable
+             Source: "address(0)"
+            ElementaryTypeNameExpression address
+               Type: type(address)
+               Source: "address"
+            Literal, token: [no token] value: 0
+               Type: int_const 0
+               Source: "0"
+          Identifier _to
+             Type: address
+             Source: "_to"
+          Identifier _tokenId
+             Type: uint256
+             Source: "_tokenId"
+  FunctionDefinition "_burn"
+     Source: "function _burn(\n    uint256 _tokenId\n  )\n    internal\n    validNFToken(_tokenId)\n  {\n    address tokenOwner = idToOwner[_tokenId];\n    _clearApproval(_tokenId);\n    _removeNFToken(tokenOwner, _tokenId);\n    emit Transfer(tokenOwner, address(0), _tokenId);\n  }"
+    ParameterList
+       Source: "(\n    uint256 _tokenId\n  )"
+      VariableDeclaration "_tokenId"
+         Type: uint256
+         Source: "uint256 _tokenId"
+        ElementaryTypeName uint256
+           Source: "uint256"
+    ParameterList
+       Source: ""
+    ModifierInvocation "validNFToken"
+       Source: "validNFToken(_tokenId)"
+      Identifier validNFToken
+         Type: modifier (uint256)
+         Source: "validNFToken"
+      Identifier _tokenId
+         Type: uint256
+         Source: "_tokenId"
+    Block
+       Source: "{\n    address tokenOwner = idToOwner[_tokenId];\n    _clearApproval(_tokenId);\n    _removeNFToken(tokenOwner, _tokenId);\n    emit Transfer(tokenOwner, address(0), _tokenId);\n  }"
+      VariableDeclarationStatement
+         Source: "address tokenOwner = idToOwner[_tokenId]"
+        VariableDeclaration "tokenOwner"
+           Type: address
+           Source: "address tokenOwner"
+          ElementaryTypeName address
+             Source: "address"
+        IndexAccess
+           Type: address
+           Source: "idToOwner[_tokenId]"
+          Identifier idToOwner
+             Type: mapping(uint256 => address)
+             Source: "idToOwner"
+          Identifier _tokenId
+             Type: uint256
+             Source: "_tokenId"
+      ExpressionStatement
+         Source: "_clearApproval(_tokenId)"
+        FunctionCall
+           Type: tuple()
+           Source: "_clearApproval(_tokenId)"
+          Identifier _clearApproval
+             Type: function (uint256)
+             Source: "_clearApproval"
+          Identifier _tokenId
+             Type: uint256
+             Source: "_tokenId"
+      ExpressionStatement
+         Source: "_removeNFToken(tokenOwner, _tokenId)"
+        FunctionCall
+           Type: tuple()
+           Source: "_removeNFToken(tokenOwner, _tokenId)"
+          Identifier _removeNFToken
+             Type: function (address,uint256)
+             Source: "_removeNFToken"
+          Identifier tokenOwner
+             Type: address
+             Source: "tokenOwner"
+          Identifier _tokenId
+             Type: uint256
+             Source: "_tokenId"
+      EmitStatement
+         Source: "emit Transfer(tokenOwner, address(0), _tokenId)"
+        FunctionCall
+           Type: tuple()
+           Source: "Transfer(tokenOwner, address(0), _tokenId)"
+          Identifier Transfer
+             Type: function (address,address,uint256)
+             Source: "Transfer"
+          Identifier tokenOwner
+             Type: address
+             Source: "tokenOwner"
+          FunctionCall
+             Type: address payable
+             Source: "address(0)"
+            ElementaryTypeNameExpression address
+               Type: type(address)
+               Source: "address"
+            Literal, token: [no token] value: 0
+               Type: int_const 0
+               Source: "0"
+          Identifier _tokenId
+             Type: uint256
+             Source: "_tokenId"
+  FunctionDefinition "_removeNFToken"
+     Source: "function _removeNFToken(\n    address _from,\n    uint256 _tokenId\n  )\n    internal\n  {\n    require(idToOwner[_tokenId] == _from);\n    ownerToNFTokenCount[_from] = ownerToNFTokenCount[_from] - 1;\n    delete idToOwner[_tokenId];\n  }"
+    ParameterList
+       Source: "(\n    address _from,\n    uint256 _tokenId\n  )"
+      VariableDeclaration "_from"
+         Type: address
+         Source: "address _from"
+        ElementaryTypeName address
+           Source: "address"
+      VariableDeclaration "_tokenId"
+         Type: uint256
+         Source: "uint256 _tokenId"
+        ElementaryTypeName uint256
+           Source: "uint256"
+    ParameterList
+       Source: ""
+    Block
+       Source: "{\n    require(idToOwner[_tokenId] == _from);\n    ownerToNFTokenCount[_from] = ownerToNFTokenCount[_from] - 1;\n    delete idToOwner[_tokenId];\n  }"
+      ExpressionStatement
+         Source: "require(idToOwner[_tokenId] == _from)"
+        FunctionCall
+           Type: tuple()
+           Source: "require(idToOwner[_tokenId] == _from)"
+          Identifier require
+             Type: function (bool) pure
+             Source: "require"
+          BinaryOperation using operator ==
+             Type: bool
+             Source: "idToOwner[_tokenId] == _from"
+            IndexAccess
+               Type: address
+               Source: "idToOwner[_tokenId]"
+              Identifier idToOwner
+                 Type: mapping(uint256 => address)
+                 Source: "idToOwner"
+              Identifier _tokenId
+                 Type: uint256
+                 Source: "_tokenId"
+            Identifier _from
+               Type: address
+               Source: "_from"
+      ExpressionStatement
+         Source: "ownerToNFTokenCount[_from] = ownerToNFTokenCount[_from] - 1"
+        Assignment using operator =
+           Type: uint256
+           Source: "ownerToNFTokenCount[_from] = ownerToNFTokenCount[_from] - 1"
+          IndexAccess
+             Type: uint256
+             Source: "ownerToNFTokenCount[_from]"
+            Identifier ownerToNFTokenCount
+               Type: mapping(address => uint256)
+               Source: "ownerToNFTokenCount"
+            Identifier _from
+               Type: address
+               Source: "_from"
+          BinaryOperation using operator -
+             Type: uint256
+             Source: "ownerToNFTokenCount[_from] - 1"
+            IndexAccess
+               Type: uint256
+               Source: "ownerToNFTokenCount[_from]"
+              Identifier ownerToNFTokenCount
+                 Type: mapping(address => uint256)
+                 Source: "ownerToNFTokenCount"
+              Identifier _from
+                 Type: address
+                 Source: "_from"
+            Literal, token: [no token] value: 1
+               Type: int_const 1
+               Source: "1"
+      ExpressionStatement
+         Source: "delete idToOwner[_tokenId]"
+        UnaryOperation (prefix) delete
+           Type: tuple()
+           Source: "delete idToOwner[_tokenId]"
+          IndexAccess
+             Type: address
+             Source: "idToOwner[_tokenId]"
+            Identifier idToOwner
+               Type: mapping(uint256 => address)
+               Source: "idToOwner"
+            Identifier _tokenId
+               Type: uint256
+               Source: "_tokenId"
+  FunctionDefinition "_addNFToken"
+     Source: "function _addNFToken(\n    address _to,\n    uint256 _tokenId\n  )\n    internal\n  {\n    require(idToOwner[_tokenId] == address(0));\n\n    idToOwner[_tokenId] = _to;\n    ownerToNFTokenCount[_to] = ownerToNFTokenCount[_to].add(1);\n  }"
+    ParameterList
+       Source: "(\n    address _to,\n    uint256 _tokenId\n  )"
+      VariableDeclaration "_to"
+         Type: address
+         Source: "address _to"
+        ElementaryTypeName address
+           Source: "address"
+      VariableDeclaration "_tokenId"
+         Type: uint256
+         Source: "uint256 _tokenId"
+        ElementaryTypeName uint256
+           Source: "uint256"
+    ParameterList
+       Source: ""
+    Block
+       Source: "{\n    require(idToOwner[_tokenId] == address(0));\n\n    idToOwner[_tokenId] = _to;\n    ownerToNFTokenCount[_to] = ownerToNFTokenCount[_to].add(1);\n  }"
+      ExpressionStatement
+         Source: "require(idToOwner[_tokenId] == address(0))"
+        FunctionCall
+           Type: tuple()
+           Source: "require(idToOwner[_tokenId] == address(0))"
+          Identifier require
+             Type: function (bool) pure
+             Source: "require"
+          BinaryOperation using operator ==
+             Type: bool
+             Source: "idToOwner[_tokenId] == address(0)"
+            IndexAccess
+               Type: address
+               Source: "idToOwner[_tokenId]"
+              Identifier idToOwner
+                 Type: mapping(uint256 => address)
+                 Source: "idToOwner"
+              Identifier _tokenId
+                 Type: uint256
+                 Source: "_tokenId"
+            FunctionCall
+               Type: address payable
+               Source: "address(0)"
+              ElementaryTypeNameExpression address
+                 Type: type(address)
+                 Source: "address"
+              Literal, token: [no token] value: 0
+                 Type: int_const 0
+                 Source: "0"
+      ExpressionStatement
+         Source: "idToOwner[_tokenId] = _to"
+        Assignment using operator =
+           Type: address
+           Source: "idToOwner[_tokenId] = _to"
+          IndexAccess
+             Type: address
+             Source: "idToOwner[_tokenId]"
+            Identifier idToOwner
+               Type: mapping(uint256 => address)
+               Source: "idToOwner"
+            Identifier _tokenId
+               Type: uint256
+               Source: "_tokenId"
+          Identifier _to
+             Type: address
+             Source: "_to"
+      ExpressionStatement
+         Source: "ownerToNFTokenCount[_to] = ownerToNFTokenCount[_to].add(1)"
+        Assignment using operator =
+           Type: uint256
+           Source: "ownerToNFTokenCount[_to] = ownerToNFTokenCount[_to].add(1)"
+          IndexAccess
+             Type: uint256
+             Source: "ownerToNFTokenCount[_to]"
+            Identifier ownerToNFTokenCount
+               Type: mapping(address => uint256)
+               Source: "ownerToNFTokenCount"
+            Identifier _to
+               Type: address
+               Source: "_to"
+          FunctionCall
+             Type: uint256
+             Source: "ownerToNFTokenCount[_to].add(1)"
+            MemberAccess to member add
+               Type: function (uint256,uint256) pure returns (uint256)
+               Source: "ownerToNFTokenCount[_to].add"
+              IndexAccess
+                 Type: uint256
+                 Source: "ownerToNFTokenCount[_to]"
+                Identifier ownerToNFTokenCount
+                   Type: mapping(address => uint256)
+                   Source: "ownerToNFTokenCount"
+                Identifier _to
+                   Type: address
+                   Source: "_to"
+            Literal, token: [no token] value: 1
+               Type: int_const 1
+               Source: "1"
+  FunctionDefinition "_getOwnerNFTCount" - const
+     Source: "function _getOwnerNFTCount(\n    address _owner\n  )\n    internal\n    view\n    returns (uint256)\n  {\n    return ownerToNFTokenCount[_owner];\n  }"
+    ParameterList
+       Source: "(\n    address _owner\n  )"
+      VariableDeclaration "_owner"
+         Type: address
+         Source: "address _owner"
+        ElementaryTypeName address
+           Source: "address"
+    ParameterList
+       Source: "(uint256)"
+      VariableDeclaration ""
+         Type: uint256
+         Source: "uint256"
+        ElementaryTypeName uint256
+           Source: "uint256"
+    Block
+       Source: "{\n    return ownerToNFTokenCount[_owner];\n  }"
+      Return
+         Source: "return ownerToNFTokenCount[_owner]"
+        IndexAccess
+           Type: uint256
+           Source: "ownerToNFTokenCount[_owner]"
+          Identifier ownerToNFTokenCount
+             Type: mapping(address => uint256)
+             Source: "ownerToNFTokenCount"
+          Identifier _owner
+             Type: address
+             Source: "_owner"
+  FunctionDefinition "_safeTransferFrom"
+     Source: "function _safeTransferFrom(\n    address _from,\n    address _to,\n    uint256 _tokenId,\n    bytes memory _data\n  )\n    private\n    canTransfer(_tokenId)\n    validNFToken(_tokenId)\n  {\n    address tokenOwner = idToOwner[_tokenId];\n    require(tokenOwner == _from);\n    require(_to != address(0));\n\n    _transfer(_to, _tokenId);\n\n    if (_to.isContract()) \n    {\n      bytes4 retval = ERC721TokenReceiver(_to).onERC721Received(msg.sender, _from, _tokenId, _data);\n      require(retval == MAGIC_ON_ERC721_RECEIVED);\n    }\n  }"
+    ParameterList
+       Source: "(\n    address _from,\n    address _to,\n    uint256 _tokenId,\n    bytes memory _data\n  )"
+      VariableDeclaration "_from"
+         Type: address
+         Source: "address _from"
+        ElementaryTypeName address
+           Source: "address"
+      VariableDeclaration "_to"
+         Type: address
+         Source: "address _to"
+        ElementaryTypeName address
+           Source: "address"
+      VariableDeclaration "_tokenId"
+         Type: uint256
+         Source: "uint256 _tokenId"
+        ElementaryTypeName uint256
+           Source: "uint256"
+      VariableDeclaration "_data"
+         Type: bytes memory
+         Source: "bytes memory _data"
+        ElementaryTypeName bytes
+           Source: "bytes"
+    ParameterList
+       Source: ""
+    ModifierInvocation "canTransfer"
+       Source: "canTransfer(_tokenId)"
+      Identifier canTransfer
+         Type: modifier (uint256)
+         Source: "canTransfer"
+      Identifier _tokenId
+         Type: uint256
+         Source: "_tokenId"
+    ModifierInvocation "validNFToken"
+       Source: "validNFToken(_tokenId)"
+      Identifier validNFToken
+         Type: modifier (uint256)
+         Source: "validNFToken"
+      Identifier _tokenId
+         Type: uint256
+         Source: "_tokenId"
+    Block
+       Source: "{\n    address tokenOwner = idToOwner[_tokenId];\n    require(tokenOwner == _from);\n    require(_to != address(0));\n\n    _transfer(_to, _tokenId);\n\n    if (_to.isContract()) \n    {\n      bytes4 retval = ERC721TokenReceiver(_to).onERC721Received(msg.sender, _from, _tokenId, _data);\n      require(retval == MAGIC_ON_ERC721_RECEIVED);\n    }\n  }"
+      VariableDeclarationStatement
+         Source: "address tokenOwner = idToOwner[_tokenId]"
+        VariableDeclaration "tokenOwner"
+           Type: address
+           Source: "address tokenOwner"
+          ElementaryTypeName address
+             Source: "address"
+        IndexAccess
+           Type: address
+           Source: "idToOwner[_tokenId]"
+          Identifier idToOwner
+             Type: mapping(uint256 => address)
+             Source: "idToOwner"
+          Identifier _tokenId
+             Type: uint256
+             Source: "_tokenId"
+      ExpressionStatement
+         Source: "require(tokenOwner == _from)"
+        FunctionCall
+           Type: tuple()
+           Source: "require(tokenOwner == _from)"
+          Identifier require
+             Type: function (bool) pure
+             Source: "require"
+          BinaryOperation using operator ==
+             Type: bool
+             Source: "tokenOwner == _from"
+            Identifier tokenOwner
+               Type: address
+               Source: "tokenOwner"
+            Identifier _from
+               Type: address
+               Source: "_from"
+      ExpressionStatement
+         Source: "require(_to != address(0))"
+        FunctionCall
+           Type: tuple()
+           Source: "require(_to != address(0))"
+          Identifier require
+             Type: function (bool) pure
+             Source: "require"
+          BinaryOperation using operator !=
+             Type: bool
+             Source: "_to != address(0)"
+            Identifier _to
+               Type: address
+               Source: "_to"
+            FunctionCall
+               Type: address payable
+               Source: "address(0)"
+              ElementaryTypeNameExpression address
+                 Type: type(address)
+                 Source: "address"
+              Literal, token: [no token] value: 0
+                 Type: int_const 0
+                 Source: "0"
+      ExpressionStatement
+         Source: "_transfer(_to, _tokenId)"
+        FunctionCall
+           Type: tuple()
+           Source: "_transfer(_to, _tokenId)"
+          Identifier _transfer
+             Type: function (address,uint256)
+             Source: "_transfer"
+          Identifier _to
+             Type: address
+             Source: "_to"
+          Identifier _tokenId
+             Type: uint256
+             Source: "_tokenId"
+      IfStatement
+         Source: "if (_to.isContract()) \n    {\n      bytes4 retval = ERC721TokenReceiver(_to).onERC721Received(msg.sender, _from, _tokenId, _data);\n      require(retval == MAGIC_ON_ERC721_RECEIVED);\n    }"
+        FunctionCall
+           Type: bool
+           Source: "_to.isContract()"
+          MemberAccess to member isContract
+             Type: function (address) view returns (bool)
+             Source: "_to.isContract"
+            Identifier _to
+               Type: address
+               Source: "_to"
+        Block
+           Source: "{\n      bytes4 retval = ERC721TokenReceiver(_to).onERC721Received(msg.sender, _from, _tokenId, _data);\n      require(retval == MAGIC_ON_ERC721_RECEIVED);\n    }"
+          VariableDeclarationStatement
+             Source: "bytes4 retval = ERC721TokenReceiver(_to).onERC721Received(msg.sender, _from, _tokenId, _data)"
+            VariableDeclaration "retval"
+               Type: bytes4
+               Source: "bytes4 retval"
+              ElementaryTypeName bytes4
+                 Source: "bytes4"
+            FunctionCall
+               Type: bytes4
+               Source: "ERC721TokenReceiver(_to).onERC721Received(msg.sender, _from, _tokenId, _data)"
+              MemberAccess to member onERC721Received
+                 Type: function (address,address,uint256,bytes memory) external returns (bytes4)
+                 Source: "ERC721TokenReceiver(_to).onERC721Received"
+                FunctionCall
+                   Type: contract ERC721TokenReceiver
+                   Source: "ERC721TokenReceiver(_to)"
+                  Identifier ERC721TokenReceiver
+                     Type: type(contract ERC721TokenReceiver)
+                     Source: "ERC721TokenReceiver"
+                  Identifier _to
+                     Type: address
+                     Source: "_to"
+              MemberAccess to member sender
+                 Type: address payable
+                 Source: "msg.sender"
+                Identifier msg
+                   Type: msg
+                   Source: "msg"
+              Identifier _from
+                 Type: address
+                 Source: "_from"
+              Identifier _tokenId
+                 Type: uint256
+                 Source: "_tokenId"
+              Identifier _data
+                 Type: bytes memory
+                 Source: "_data"
+          ExpressionStatement
+             Source: "require(retval == MAGIC_ON_ERC721_RECEIVED)"
+            FunctionCall
+               Type: tuple()
+               Source: "require(retval == MAGIC_ON_ERC721_RECEIVED)"
+              Identifier require
+                 Type: function (bool) pure
+                 Source: "require"
+              BinaryOperation using operator ==
+                 Type: bool
+                 Source: "retval == MAGIC_ON_ERC721_RECEIVED"
+                Identifier retval
+                   Type: bytes4
+                   Source: "retval"
+                Identifier MAGIC_ON_ERC721_RECEIVED
+                   Type: bytes4
+                   Source: "MAGIC_ON_ERC721_RECEIVED"
+  FunctionDefinition "_clearApproval"
+     Source: "function _clearApproval(\n    uint256 _tokenId\n  )\n    private\n  {\n    if (idToApproval[_tokenId] != address(0))\n    {\n      delete idToApproval[_tokenId];\n    }\n  }"
+    ParameterList
+       Source: "(\n    uint256 _tokenId\n  )"
+      VariableDeclaration "_tokenId"
+         Type: uint256
+         Source: "uint256 _tokenId"
+        ElementaryTypeName uint256
+           Source: "uint256"
+    ParameterList
+       Source: ""
+    Block
+       Source: "{\n    if (idToApproval[_tokenId] != address(0))\n    {\n      delete idToApproval[_tokenId];\n    }\n  }"
+      IfStatement
+         Source: "if (idToApproval[_tokenId] != address(0))\n    {\n      delete idToApproval[_tokenId];\n    }"
+        BinaryOperation using operator !=
+           Type: bool
+           Source: "idToApproval[_tokenId] != address(0)"
+          IndexAccess
+             Type: address
+             Source: "idToApproval[_tokenId]"
+            Identifier idToApproval
+               Type: mapping(uint256 => address)
+               Source: "idToApproval"
+            Identifier _tokenId
+               Type: uint256
+               Source: "_tokenId"
+          FunctionCall
+             Type: address payable
+             Source: "address(0)"
+            ElementaryTypeNameExpression address
+               Type: type(address)
+               Source: "address"
+            Literal, token: [no token] value: 0
+               Type: int_const 0
+               Source: "0"
+        Block
+           Source: "{\n      delete idToApproval[_tokenId];\n    }"
+          ExpressionStatement
+             Source: "delete idToApproval[_tokenId]"
+            UnaryOperation (prefix) delete
+               Type: tuple()
+               Source: "delete idToApproval[_tokenId]"
+              IndexAccess
+                 Type: address
+                 Source: "idToApproval[_tokenId]"
+                Identifier idToApproval
+                   Type: mapping(uint256 => address)
+                   Source: "idToApproval"
+                Identifier _tokenId
+                   Type: uint256
+                   Source: "_tokenId"

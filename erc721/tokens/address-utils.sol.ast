@@ -1,0 +1,48 @@
+PragmaDirective
+   Source: "pragma solidity ^0.5.6;"
+ContractDefinition "AddressUtils"
+   Source: "library AddressUtils\n{\n\n  /**\n   * @dev Returns whether the target address is a contract.\n   * @param _addr Address to check.\n   * @return True if _addr is a contract, false if not.\n   */\n  function isContract(\n    address _addr\n  )\n    internal\n    view\n    returns (bool addressCheck)\n  {\n    uint256 size;\n\n    /**\n     * XXX Currently there is no better way to check if there is a contract in an address than to\n     * check the size of the code at that address.\n     * See https://ethereum.stackexchange.com/a/14016/36603 for more details about how this works.\n     * TODO: Check this again before the Serenity release, because all addresses will be\n     * contracts then.\n     */\n    assembly { size := extcodesize(_addr) } // solhint-disable-line\n    addressCheck = size > 0;\n  }\n\n}"
+  FunctionDefinition "isContract" - const
+     Source: "function isContract(\n    address _addr\n  )\n    internal\n    view\n    returns (bool addressCheck)\n  {\n    uint256 size;\n\n    /**\n     * XXX Currently there is no better way to check if there is a contract in an address than to\n     * check the size of the code at that address.\n     * See https://ethereum.stackexchange.com/a/14016/36603 for more details about how this works.\n     * TODO: Check this again before the Serenity release, because all addresses will be\n     * contracts then.\n     */\n    assembly { size := extcodesize(_addr) } // solhint-disable-line\n    addressCheck = size > 0;\n  }"
+    ParameterList
+       Source: "(\n    address _addr\n  )"
+      VariableDeclaration "_addr"
+         Type: address
+         Source: "address _addr"
+        ElementaryTypeName address
+           Source: "address"
+    ParameterList
+       Source: "(bool addressCheck)"
+      VariableDeclaration "addressCheck"
+         Type: bool
+         Source: "bool addressCheck"
+        ElementaryTypeName bool
+           Source: "bool"
+    Block
+       Source: "{\n    uint256 size;\n\n    /**\n     * XXX Currently there is no better way to check if there is a contract in an address than to\n     * check the size of the code at that address.\n     * See https://ethereum.stackexchange.com/a/14016/36603 for more details about how this works.\n     * TODO: Check this again before the Serenity release, because all addresses will be\n     * contracts then.\n     */\n    assembly { size := extcodesize(_addr) } // solhint-disable-line\n    addressCheck = size > 0;\n  }"
+      VariableDeclarationStatement
+         Source: "uint256 size"
+        VariableDeclaration "size"
+           Type: uint256
+           Source: "uint256 size"
+          ElementaryTypeName uint256
+             Source: "uint256"
+      InlineAssembly
+         Source: "assembly { size := extcodesize(_addr) } // solhint-disable-line\n    addressCheck"
+      ExpressionStatement
+         Source: "addressCheck = size > 0"
+        Assignment using operator =
+           Type: bool
+           Source: "addressCheck = size > 0"
+          Identifier addressCheck
+             Type: bool
+             Source: "addressCheck"
+          BinaryOperation using operator >
+             Type: bool
+             Source: "size > 0"
+            Identifier size
+               Type: uint256
+               Source: "size"
+            Literal, token: [no token] value: 0
+               Type: int_const 0
+               Source: "0"

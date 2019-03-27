@@ -1,0 +1,20 @@
+PragmaDirective
+   Source: "pragma solidity ^0.5.6;"
+ContractDefinition "ERC165"
+   Source: "interface ERC165\n{\n\n  /**\n   * @dev Checks if the smart contract includes a specific interface.\n   * @notice This function uses less than 30,000 gas.\n   * @param _interfaceID The interface identifier, as specified in ERC-165.\n   * @return True if _interfaceID is supported, false otherwise.\n   */\n  function supportsInterface(\n    bytes4 _interfaceID\n  )\n    external\n    view\n    returns (bool);\n    \n}"
+  FunctionDefinition "supportsInterface" - public - const
+     Source: "function supportsInterface(\n    bytes4 _interfaceID\n  )\n    external\n    view\n    returns (bool);"
+    ParameterList
+       Source: "(\n    bytes4 _interfaceID\n  )"
+      VariableDeclaration "_interfaceID"
+         Type: bytes4
+         Source: "bytes4 _interfaceID"
+        ElementaryTypeName bytes4
+           Source: "bytes4"
+    ParameterList
+       Source: "(bool)"
+      VariableDeclaration ""
+         Type: bool
+         Source: "bool"
+        ElementaryTypeName bool
+           Source: "bool"
