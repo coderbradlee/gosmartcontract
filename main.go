@@ -32,7 +32,7 @@ func main() {
 	}
 
 	ownerKey, ownerAddress, _ := createAccount()
-	auth := bind.NewKeyedTransactor(ownerKey)
+	auth :=AuthAccountFromPrivateKey(ownerKey)
 
 	alloc := make(core.GenesisAlloc)
 	b := new(big.Int)
@@ -100,4 +100,12 @@ func createAccount() ( private string, addr string, err error) {
 	address := common.BytesToAddress(crypto.Keccak256(pubBytes[1:])[12:])
 	addr=hex.EncodeToString(address[:])
 	return
+}
+func AuthAccountFromPrivateKey(private string) *bind.TransactOpts {
+	privateKey, err := crypto.HexToECDSA(private)
+	if err != nil {
+		fmt.Println(err)
+	}
+	auth := bind.NewKeyedTransactor(privateKey)
+	return auth
 }
