@@ -33,7 +33,8 @@ func main() {
 
 	ownerKey, _, _ := createAccount()
 	auth :=AuthAccountFromPrivateKey(ownerKey)
-
+	auth.GasLimit = uint64(6800000)
+	
 	alloc := make(core.GenesisAlloc)
 	b := new(big.Int)
 	b.SetString("1337000000000000000000000", 10)
