@@ -79,7 +79,7 @@ func main() {
 	if err != nil {
 		log.Fatal("mint.", err)
 	}
-
+	sim.Commit()
 	{
 		bala, err := token.BalanceOf(nil, common.HexToAddress(creditorAddr))
 		if err != nil {
