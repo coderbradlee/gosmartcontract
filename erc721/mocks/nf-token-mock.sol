@@ -1,6 +1,6 @@
 pragma solidity ^0.5.6;
 
-import "../../contracts/tokens/nf-token.sol";
+import "../tokens/nf-token.sol";
 import "../ownership/ownable.sol";
 
 /**

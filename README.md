@@ -26,7 +26,7 @@ solc -o . --bin --ast --asm --allow-paths /root/gosmartcontract/erc721,/root/gos
 solc -o . --bin --ast --asm --allow-paths /root/gosmartcontract/erc721 /root/gosmartcontract/erc721/tokens/nf-token.sol   /////ok
 solc --bin --abi --optimize -o . --allow-paths /root/gosmartcontract/erc721 /root/gosmartcontract/erc721/mocks/nf-token-mock.sol   /////ok
 
-abigen -abi NFToken.abi -bin NFToken.bin --pkg=erc721 --out=erc721.go   ///ok
+abigen -abi NFTokenMock.abi -bin NFTokenMock.bin --pkg=erc721 --out=erc721.go   ///ok
 
 abigen --sol=testinterface.sol --pkg=testinterface --out=testinterface.go
 abigen --sol=etclottery.sol --pkg=main --out=etclottery.go
