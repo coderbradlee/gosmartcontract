@@ -31,7 +31,7 @@ func main() {
 		log.Fatal("risk amount cannot be greater than total amount")
 	}
 
-	ownerKey, ownerAddress, _ := createAccount()
+	ownerKey, _, _ := createAccount()
 	auth :=AuthAccountFromPrivateKey(ownerKey)
 
 	alloc := make(core.GenesisAlloc)
