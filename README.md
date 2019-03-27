@@ -19,6 +19,8 @@ make devtools
 abigen --sol=Contract.sol --pkg=main --out=contract.go
 ```
 abigen --sol=FomoETC.sol --pkg=FomoETC --out=FomoETC.go
+abigen --sol=nf-token.sol --pkg=erc721 --out=erc721.go
+
 
 abigen --sol=testinterface.sol --pkg=testinterface --out=testinterface.go
 abigen --sol=etclottery.sol --pkg=main --out=etclottery.go

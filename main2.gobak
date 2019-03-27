@@ -8,17 +8,18 @@ import (
 	"./Divies"
 	"crypto/ecdsa"
 	// "./PlayerBook"
-	fomo3d "./FomoETC"
-	"./PlayerBook"
+	//fomo3d "./FomoETC"
+	//"./PlayerBook"
 	// "./testinterface"
 	"context"
 	"github.com/ethereum/go-ethereum/accounts/abi/bind"
 	// "github.com/ethereum/go-ethereum/accounts/abi/bind/backends"
-	// "github.com/ethereum/go-ethereum/core"
+	"github.com/ethereum/go-ethereum/core"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/crypto"
 	"github.com/ethereum/go-ethereum/ethclient"
 	// "golang.org/x/net/websocket"
+	"./erc721"
 )
 
 const (
@@ -545,7 +546,22 @@ func testwatch(){
 	s.WatchOnBuys()
 }
 func main() {
-	testwatch()
+	key, _ := crypto.GenerateKey()
+	auth := bind.NewKeyedTransactor(key)
+
+	alloc := make(core.GenesisAlloc)
+	b := new(big.Int)
+	b.SetString("1337000000000000000000000", 10)
+	fmt.Println(b.Text(10))
+	alloc[auth.From] = core.GenesisAccount{Balance: b}
+	sim := backends.NewSimulatedBackend(alloc)
+
+	addrDivies, _, _, err := Divies.DeployDivies(auth, sim)
+	if err != nil {
+		log.Fatalf("could not deploy Divies: %v", err)
+	}
+	fmt.Printf("Divies contract at address %s...\n", addrDivies.String())
+	//testwatch()
 	// testetclotteryadmin()
 	// testwebsocket()
 	// testfomo3d()
