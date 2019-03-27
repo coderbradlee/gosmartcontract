@@ -66,7 +66,7 @@ func createAccount() ( private string, addr string, err error) {
 	if err != nil {
 		return
 	}
-	private=fmt.SPrintf("%x", priKey.D.Bytes())
+	private=fmt.Sprintf("%x", priKey.D.Bytes())
 
 	pubKey := priKey.PublicKey
 	pubBytes := crypto.FromECDSAPub(&pubKey)
