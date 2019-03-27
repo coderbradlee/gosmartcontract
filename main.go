@@ -87,6 +87,29 @@ func main() {
 		}
 		fmt.Printf("creditor balance:%v\n", bala.Text(10))
 	}
+	_, err = token.SafeTransferFrom(auth, common.HexToAddress(creditorAddr),common.HexToAddress(debtorAddr),big.NewInt(11111),nil)
+	if err != nil {
+		log.Fatal("SafeTransferFrom.", err)
+	}
+	sim.Commit()
+
+	fmt.Println("after transfer:")
+	{
+		bala, err := token.BalanceOf(nil, common.HexToAddress(debtorAddr))
+		if err != nil {
+			log.Fatal("BalanceOf.", err)
+		}
+		fmt.Printf("debtor balance:%v\n", bala.Text(10))
+	}
+	{
+		bala, err := token.BalanceOf(nil, common.HexToAddress(creditorAddr))
+		if err != nil {
+			log.Fatal("BalanceOf.", err)
+		}
+		fmt.Printf("creditor balance:%v\n", bala.Text(10))
+	}
+
+
 
 
 }

@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c13322a7-16ca-4faf-a093-2f343f068b00" name="Default Changelist" comment="" />
+    <list default="true" id="c13322a7-16ca-4faf-a093-2f343f068b00" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/main.go" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -13,8 +15,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/main.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="193">
-              <caret line="81" column="16" selection-start-line="81" selection-start-column="16" selection-end-line="81" selection-end-column="16" />
+            <state relative-caret-position="435">
+              <caret line="109" column="5" selection-start-line="109" selection-start-column="5" selection-end-line="109" selection-end-column="5" />
             </state>
           </provider>
         </entry>
@@ -22,8 +24,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/erc721/erc721.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="232">
-              <caret line="422" column="37" selection-start-line="422" selection-start-column="33" selection-end-line="422" selection-end-column="37" />
+            <state relative-caret-position="254">
+              <caret line="443" column="49" selection-start-line="443" selection-start-column="33" selection-end-line="443" selection-end-column="49" />
             </state>
           </provider>
         </entry>
@@ -47,6 +49,7 @@
       <find>from</find>
       <find>userPrivateKey1</find>
       <find>min</find>
+      <find>saf</find>
     </findStrings>
   </component>
   <component name="GOROOT" path="E:\work\goroot" />
@@ -412,15 +415,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/erc721/erc721.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="232">
-          <caret line="422" column="37" selection-start-line="422" selection-start-column="33" selection-end-line="422" selection-end-column="37" />
+        <state relative-caret-position="254">
+          <caret line="443" column="49" selection-start-line="443" selection-start-column="33" selection-end-line="443" selection-end-column="49" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/main.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="193">
-          <caret line="81" column="16" selection-start-line="81" selection-start-column="16" selection-end-line="81" selection-end-column="16" />
+        <state relative-caret-position="435">
+          <caret line="109" column="5" selection-start-line="109" selection-start-column="5" selection-end-line="109" selection-end-column="5" />
         </state>
       </provider>
     </entry>
