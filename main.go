@@ -62,10 +62,16 @@ func main() {
 
 
 	token, err := erc721.NewErc721(addr, sim)
-	bala, _ := token.BalanceOf(nil,common.HexToAddress(debtorAddr))
+	bala, err := token.BalanceOf(nil,common.HexToAddress(debtorAddr))
+	if err != nil {
+		log.Fatal("BalanceOf.", err)
+	}
 	fmt.Printf("debtor balance:%v\n", bala.Text(10))
 
-	bala, _ = token.BalanceOf(nil,common.HexToAddress(creditorAddr))
+	bala, err = token.BalanceOf(nil,common.HexToAddress(creditorAddr))
+	if err != nil {
+		log.Fatal("BalanceOf.", err)
+	}
 	fmt.Printf("creditor balance:%v\n", bala.Text(10))
 
 
