@@ -2,6 +2,7 @@ package main
 
 import (
 	"log"
+	"fmt"
 	"math/big"
 	"./erc721"
 	"encoding/hex"
