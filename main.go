@@ -45,7 +45,7 @@ func main() {
 	if err != nil {
 		log.Fatalf("could not deploy Divies: %v", err)
 	}
-	fmt.Printf("erc721 contract at address %s\n", addr.String())
+	fmt.Printf("erc721 contract at address %s\n", contractAddr.String())
 	sim.Commit()
 
 	debtorPriKey, debtorAddr, err := createAccount()
