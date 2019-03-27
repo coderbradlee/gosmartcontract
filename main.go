@@ -16,7 +16,7 @@ import (
 func main() {
 
 	creditorKey, creditorAddr, _ := createAccount()
-	creditorAuth :=AuthAccountFromPrivateKey(creditorKey)
+	creditorAuth := AuthAccountFromPrivateKey(creditorKey)
 	creditorAuth.GasLimit = uint64(6800000)
 
 	alloc := make(core.GenesisAlloc)
@@ -29,14 +29,14 @@ func main() {
 	if err != nil {
 		log.Fatalf("could not deploy erc721: %v", err)
 	}
-	fmt.Printf("erc721 contract at address %s\n", contractAddr.String())
+	log.Printf("erc721 contract at address %s\n", contractAddr.String())
 	sim.Commit()
 
 	debtorPriKey, debtorAddr, err := createAccount()
 	if err != nil {
 		log.Fatal("Failed to create account.", err)
 	}
-	fmt.Printf("debtor private:%s,address:%s\n", debtorPriKey, debtorAddr)
+	log.Printf("debtor private:%s,address:%s\n", debtorPriKey, debtorAddr)
 
 	token, err := erc721.NewErc721(contractAddr, sim)
 	{
@@ -44,30 +44,30 @@ func main() {
 		if err != nil {
 			log.Fatal("BalanceOf.", err)
 		}
-		fmt.Printf("debtor balance:%v\n", bala.Text(10))
+		log.Printf("debtor balance:%v\n", bala.Text(10))
 	}
 	{
 		bala, err := token.BalanceOf(nil, common.HexToAddress(creditorAddr))
 		if err != nil {
 			log.Fatal("BalanceOf.", err)
 		}
-		fmt.Printf("creditor balance:%v\n", bala.Text(10))
+		log.Printf("creditor balance:%v\n", bala.Text(10))
 	}
 	/////mint to creditorAddr
-	_, err = token.Mint(creditorAuth, common.HexToAddress(creditorAddr),big.NewInt(11111))
+	_, err = token.Mint(creditorAuth, common.HexToAddress(creditorAddr), big.NewInt(11111))
 	if err != nil {
 		log.Fatal("mint.", err)
 	}
 	sim.Commit()
-	fmt.Println("after mint:")
+	log.Println("after mint:")
 	{
 		bala, err := token.BalanceOf(nil, common.HexToAddress(creditorAddr))
 		if err != nil {
 			log.Fatal("BalanceOf.", err)
 		}
-		fmt.Printf("creditor balance:%v\n", bala.Text(10))
+		log.Printf("creditor balance:%v\n", bala.Text(10))
 	}
-	_, err = token.SafeTransferFrom(creditorAuth, common.HexToAddress(creditorAddr),common.HexToAddress(debtorAddr),big.NewInt(11111),nil)
+	_, err = token.SafeTransferFrom(creditorAuth, common.HexToAddress(creditorAddr), common.HexToAddress(debtorAddr), big.NewInt(11111), nil)
 	if err != nil {
 		log.Fatal("SafeTransferFrom.", err)
 	}
@@ -79,19 +79,15 @@ func main() {
 		if err != nil {
 			log.Fatal("BalanceOf.", err)
 		}
-		fmt.Printf("debtor balance:%v\n", bala.Text(10))
+		log.Printf("debtor balance:%v\n", bala.Text(10))
 	}
 	{
 		bala, err := token.BalanceOf(nil, common.HexToAddress(creditorAddr))
 		if err != nil {
 			log.Fatal("BalanceOf.", err)
 		}
-		fmt.Printf("creditor balance:%v\n", bala.Text(10))
+		log.Printf("creditor balance:%v\n", bala.Text(10))
 	}
-
-
-
-
 }
 func createAccount() ( private string, addr string, err error) {
 	priKey, err := crypto.GenerateKey()
@@ -108,7 +104,7 @@ func createAccount() ( private string, addr string, err error) {
 func AuthAccountFromPrivateKey(private string) *bind.TransactOpts {
 	privateKey, err := crypto.HexToECDSA(private)
 	if err != nil {
-		fmt.Println(err)
+		log.Fatal(err)
 	}
 	auth := bind.NewKeyedTransactor(privateKey)
 	return auth
