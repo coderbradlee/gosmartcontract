@@ -18,13 +18,19 @@ make devtools
 ```bash
 abigen --sol=Contract.sol --pkg=main --out=contract.go
 ```
+
 abigen --sol=FomoETC.sol --pkg=FomoETC --out=FomoETC.go
+
+abigen --sol=erc721.sol --pkg=erc721 --out=erc721.go
 abigen --sol=/root/gosmartcontract/erc721/tokens/nf-token.sol --pkg=erc721 --out=erc721.go
 solc -o . --bin --ast --asm --allow-paths /root/gosmartcontract/erc721,/root/gosmartcontract/erc721/math,/root/gosmartcontract/erc721/ownership,/root/gosmartcontract/erc721/tokens,/root/gosmartcontract/erc721/utils nf-token.sol 
 
 
 solc -o . --bin --ast --asm --allow-paths /root/gosmartcontract/erc721 /root/gosmartcontract/erc721/tokens/nf-token.sol   /////ok
 solc --bin --abi --optimize -o . --allow-paths /root/gosmartcontract/erc721 /root/gosmartcontract/erc721/mocks/nf-token-mock.sol   /////ok
+
+solc --bin --abi --optimize -o . --allow-paths /root/gosmartcontract/erc721 /root/gosmartcontract/erc721/mocks/nf-token-mock.sol
+
 
 abigen -abi NFTokenMock.abi -bin NFTokenMock.bin --pkg=erc721 --out=erc721.go   ///ok
 
