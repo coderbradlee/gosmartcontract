@@ -884,7 +884,7 @@ contract Nfties is ERC721Token {
     return _tokenId;
   }
   function createTo(address _owner,uint256 _tokenId) public{
-    string memory tokenUri ="test"
+    string memory tokenUri ="test";
     _mint(_owner,_tokenId);
     _setTokenURI(_tokenId, tokenUri);
     emit Create(_tokenId,_owner,body,feet,head,mouth,extra,_newToken.birthBlock,tokenUri);
