@@ -887,7 +887,6 @@ contract Nfties is ERC721Token {
     string memory tokenUri ="test";
     _mint(_owner,_tokenId);
     _setTokenURI(_tokenId, tokenUri);
-    return _tokenId;
   }
   event Create(
     uint _id,
