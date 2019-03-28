@@ -53,7 +53,7 @@ func main() {
 		}
 		log.Printf("creditor balance:%v\n", bala.Text(10))
 	}
-	/////mint to creditorAddr
+	/////mint to creditorAddr with token id 11111
 	_, err = token.Mint(creditorAuth, common.HexToAddress(creditorAddr), big.NewInt(11111))
 	if err != nil {
 		log.Fatal("mint.", err)
