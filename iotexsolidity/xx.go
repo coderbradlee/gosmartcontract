@@ -28,10 +28,10 @@ var (
 )
 
 // MyContractABI is the input ABI used to generate the binding from.
-const MyContractABI = "[{\"constant\":false,\"inputs\":[],\"name\":\"foo\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"payable\":true,\"stateMutability\":\"payable\",\"type\":\"constructor\"}]"
+const MyContractABI = "[{\"constant\":false,\"inputs\":[],\"name\":\"transferTo\",\"outputs\":[],\"payable\":true,\"stateMutability\":\"payable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[],\"name\":\"foo\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"payable\":true,\"stateMutability\":\"payable\",\"type\":\"constructor\"}]"
 
 // MyContractBin is the compiled bytecode used for deploying new contracts.
-const MyContractBin = `0x608060405260008054600160a060020a031916731e14d5373e1af9cc77f0032ad2cd0fba8be5ea2e179055610139806100396000396000f3006080604052600436106100405763ffffffff7c0100000000000000000000000000000000000000000000000000000000600035041663c29855788114610045575b600080fd5b34801561005157600080fd5b5061005a61005c565b005b6000805460405173ffffffffffffffffffffffffffffffffffffffff9091169190670de0b6b3a76400009082818181858883f150506000805460405173ffffffffffffffffffffffffffffffffffffffff9091169450670de0b6b3a76400009350915081818185875af150506000805460405173ffffffffffffffffffffffffffffffffffffffff9091169350670de0b6b3a764000092509081818185875af192505050151561010b57600080fd5b5600a165627a7a72305820689711ba9d77b16b17047b88796fbefb2dc2d441aaeb740319e83dd639b8fb200029`
+const MyContractBin = `0x608060405260008054600160a060020a031916731e14d5373e1af9cc77f0032ad2cd0fba8be5ea2e17905561014c806100396000396000f30060806040526004361061004b5763ffffffff7c01000000000000000000000000000000000000000000000000000000006000350416631ab5d2608114610050578063c29855781461005a575b600080fd5b61005861006f565b005b34801561006657600080fd5b50610058610071565b565b6000805460405173ffffffffffffffffffffffffffffffffffffffff9091169190670de0b6b3a76400009082818181858883f150506000805460405173ffffffffffffffffffffffffffffffffffffffff9091169450670de0b6b3a76400009350915081818185875af150506000805460405173ffffffffffffffffffffffffffffffffffffffff9091169350670de0b6b3a764000092509081818185875af192505050151561006f57600080fd00a165627a7a723058203d4d3814881386043d89898f43aa51744a102dfae1cec50cbc252c272b89daf50029`
 
 // DeployMyContract deploys a new Ethereum contract, binding an instance of MyContract to it.
 func DeployMyContract(auth *bind.TransactOpts, backend bind.ContractBackend) (common.Address, *types.Transaction, *MyContract, error) {
@@ -207,4 +207,25 @@ func (_MyContract *MyContractSession) Foo() (*types.Transaction, error) {
 // Solidity: function foo() returns()
 func (_MyContract *MyContractTransactorSession) Foo() (*types.Transaction, error) {
 	return _MyContract.Contract.Foo(&_MyContract.TransactOpts)
+}
+
+// TransferTo is a paid mutator transaction binding the contract method 0x1ab5d260.
+//
+// Solidity: function transferTo() returns()
+func (_MyContract *MyContractTransactor) TransferTo(opts *bind.TransactOpts) (*types.Transaction, error) {
+	return _MyContract.contract.Transact(opts, "transferTo")
+}
+
+// TransferTo is a paid mutator transaction binding the contract method 0x1ab5d260.
+//
+// Solidity: function transferTo() returns()
+func (_MyContract *MyContractSession) TransferTo() (*types.Transaction, error) {
+	return _MyContract.Contract.TransferTo(&_MyContract.TransactOpts)
+}
+
+// TransferTo is a paid mutator transaction binding the contract method 0x1ab5d260.
+//
+// Solidity: function transferTo() returns()
+func (_MyContract *MyContractTransactorSession) TransferTo() (*types.Transaction, error) {
+	return _MyContract.Contract.TransferTo(&_MyContract.TransactOpts)
 }
