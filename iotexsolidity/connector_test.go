@@ -53,7 +53,7 @@ func TestDeploy(t *testing.T) {
 	nonceUint64 := uint64(0)
 	toAddress := common.HexToAddress(c.contractAddress.String())
 	amountInt := big.NewInt(100000000000)
-	gasLimitInt := big.NewInt(3000000)
+	gasLimitInt := uint64(3000000)
 	gasPriceInt := big.NewInt(10000000000)
 
 	tx := types.NewTransaction(nonceUint64, toAddress, amountInt, gasLimitInt, gasPriceInt, nil)
