@@ -8,10 +8,6 @@ import (
 	"fmt"
 	"math/big"
 	"testing"
-	"time"
-
-	"github.com/ethereum/go-ethereum/core/types"
-	"github.com/ethereum/go-ethereum/crypto"
 
 	"github.com/ethereum/go-ethereum/common"
 )
@@ -50,37 +46,45 @@ func TestDeploy(t *testing.T) {
 
 	fmt.Println("balance of contract: ", ret1.Text(10))
 
-	// transfer to contract address
-	nonceUint64, err := c.conn.NonceAt(c.ctx, common.HexToAddress(userAddress1), nil)
-	if err != nil {
-		fmt.Println(err)
-		return
-	}
-	toAddress := common.HexToAddress(c.contractAddress.String())
-	amountInt := big.NewInt(1000000000000000000)
-	gasLimitInt := uint64(3000000)
-	gasPriceInt := big.NewInt(10000000000)
+				ret1, err := c.l.WithdrawFee(auth, big.NewInt(10000000000000000))
+				if err != nil {
+					fmt.Println(err)
+					return
+				}
+				fmt.Println("WithdrawFee: ", ret1.Hash().Hex())
+			}
 
-	tx := types.NewTransaction(nonceUint64, toAddress, amountInt, gasLimitInt, gasPriceInt, nil)
-	privateKey, err := crypto.HexToECDSA(userPrivateKey1)
-	if err != nil {
-		fmt.Println(err)
-		return
-	}
-	signed, err := types.SignTx(tx, types.HomesteadSigner{}, privateKey)
-	if err != nil {
-		fmt.Println(err)
-		return
-	}
-	err = c.conn.SendTransaction(c.ctx, signed)
-	if err != nil {
-		fmt.Println(err)
-		return
-	}
-	time.Sleep(time.Second * 30)
-
-	ret2 := c.BalanceOfEth(common.HexToAddress(c.contractAddress.String()))
-	fmt.Println("balance of contract: ", ret2.Text(10))
+	// transfer to contract address,not work,need call method with payable
+	//nonceUint64, err := c.conn.NonceAt(c.ctx, common.HexToAddress(userAddress1), nil)
+	//if err != nil {
+	//	fmt.Println(err)
+	//	return
+	//}
+	//toAddress := common.HexToAddress(c.contractAddress.String())
+	//amountInt := big.NewInt(1000000000000000000)
+	//gasLimitInt := uint64(3000000)
+	//gasPriceInt := big.NewInt(10000000000)
+	//
+	//tx := types.NewTransaction(nonceUint64, toAddress, amountInt, gasLimitInt, gasPriceInt, nil)
+	//privateKey, err := crypto.HexToECDSA(userPrivateKey1)
+	//if err != nil {
+	//	fmt.Println(err)
+	//	return
+	//}
+	//signed, err := types.SignTx(tx, types.HomesteadSigner{}, privateKey)
+	//if err != nil {
+	//	fmt.Println(err)
+	//	return
+	//}
+	//err = c.conn.SendTransaction(c.ctx, signed)
+	//if err != nil {
+	//	fmt.Println(err)
+	//	return
+	//}
+	//time.Sleep(time.Second * 30)
+	//
+	//ret2 := c.BalanceOfEth(common.HexToAddress(c.contractAddress.String()))
+	//fmt.Println("balance of contract: ", ret2.Text(10))
 }
 
 //func TestWithdrawFee(t *testing.T){

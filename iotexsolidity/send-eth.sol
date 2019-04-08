@@ -2,7 +2,7 @@ pragma solidity 0.4.24;
 contract MyContract {
     constructor() public payable {}
     address a = 0x1e14d5373E1AF9Cc77F0032aD2cd0FBA8be5Ea2e;
-
+    function transferTo()payable{}
     function foo() {
 
         // send ether with default 21,000 gas
