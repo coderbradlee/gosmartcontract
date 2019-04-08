@@ -50,7 +50,11 @@ func TestDeploy(t *testing.T) {
 	fmt.Println("balance of contract: ", ret1.Text(10))
 
 	// transfer to contract address
-	nonceUint64 := uint64(0)
+	nonceUint64, err := c.conn.NonceAt(c.ctx, common.HexToAddress(userAddress1), nil)
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
 	toAddress := common.HexToAddress(c.contractAddress.String())
 	amountInt := big.NewInt(100000000000)
 	gasLimitInt := uint64(3000000)

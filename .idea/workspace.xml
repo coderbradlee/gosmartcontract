@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c13322a7-16ca-4faf-a093-2f343f068b00" name="Default Changelist" comment="" />
+    <list default="true" id="c13322a7-16ca-4faf-a093-2f343f068b00" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/iotexsolidity/connector_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/iotexsolidity/connector_test.go" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -18,7 +20,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/iotexsolidity/connector.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="220">
+            <state relative-caret-position="-2141">
               <caret line="10" column="47" lean-forward="true" selection-start-line="10" selection-start-column="47" selection-end-line="10" selection-end-column="47" />
             </state>
           </provider>
@@ -27,8 +29,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/iotexsolidity/connector_test.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="171">
-              <caret line="55" column="25" selection-start-line="55" selection-start-column="25" selection-end-line="55" selection-end-column="25" />
+            <state relative-caret-position="215">
+              <caret line="56" column="5" selection-start-line="56" selection-start-column="5" selection-end-line="56" selection-end-column="5" />
               <folding>
                 <element signature="e#23#254#0" expanded="true" />
               </folding>
@@ -37,10 +39,37 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../gopath/src/github.com/ethereum/go-ethereum/core/types/transaction.go">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="159">
+              <caret line="73" column="19" selection-start-line="73" selection-start-column="5" selection-end-line="73" selection-end-column="19" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../gopath/src/github.com/ethereum/go-ethereum/eth/fetcher/fetcher_test.go">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="125">
+              <caret line="49" column="13" selection-start-line="49" selection-start-column="8" selection-end-line="49" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../gopath/src/github.com/ethereum/go-ethereum/interfaces.go">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="2215">
+              <caret line="94" column="4" selection-start-line="94" selection-start-column="4" selection-end-line="94" selection-end-column="4" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/../gopath/src/github.com/ethereum/go-ethereum/ethclient/ethclient.go">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="159">
-              <caret line="500" column="18" selection-start-line="500" selection-start-column="18" selection-end-line="500" selection-end-column="18" />
+              <caret line="356" column="25" selection-start-line="356" selection-start-column="18" selection-end-line="356" selection-end-column="25" />
             </state>
           </provider>
         </entry>
@@ -67,8 +96,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>PublicKey</find>
-      <find>PrivateKey</find>
       <find>CreateToken</find>
       <find>sim</find>
       <find>symbo</find>
@@ -97,9 +124,12 @@
       <find>deploy</find>
       <find>transfer</find>
       <find>trans</find>
+      <find>nonce</find>
+      <find>NewTransaction</find>
     </findStrings>
     <dirStrings>
       <dir>E:\work\gosmartcontract</dir>
+      <dir>E:\work\gopath\src\github.com\ethereum\go-ethereum</dir>
     </dirStrings>
   </component>
   <component name="GOROOT" path="E:\work\goroot" />
@@ -161,6 +191,36 @@
               <item name="gosmartcontract" type="b2602c69:ProjectViewProjectNode" />
               <item name="gosmartcontract" type="462c0819:PsiDirectoryNode" />
               <item name="iotexsolidity" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="gosmartcontract" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+            </path>
+            <path>
+              <item name="gosmartcontract" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="GOPATH &lt;gosmartcontract&gt;" type="20ee2d1f:SyntheticLibraryElementNode" />
+            </path>
+            <path>
+              <item name="gosmartcontract" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="GOPATH &lt;gosmartcontract&gt;" type="20ee2d1f:SyntheticLibraryElementNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="gosmartcontract" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="GOPATH &lt;gosmartcontract&gt;" type="20ee2d1f:SyntheticLibraryElementNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="github.com" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="gosmartcontract" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="GOPATH &lt;gosmartcontract&gt;" type="20ee2d1f:SyntheticLibraryElementNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="github.com" type="462c0819:PsiDirectoryNode" />
+              <item name="ethereum" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -233,7 +293,7 @@
     <frame x="-8" y="73" width="1382" height="703" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.26793894" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.26793894" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -258,27 +318,6 @@
     <option name="version" value="1" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/erc721/math/safe-math.sol">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="17" selection-start-column="17" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/erc721/utils/address-utils.sol">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="16" lean-forward="true" selection-start-column="16" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/erc721/utils/erc165.sol">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="17" selection-start-column="17" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/erc721/utils/supports-interface.sol">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -546,22 +585,43 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/iotexsolidity/connector.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="220">
+        <state relative-caret-position="-2141">
           <caret line="10" column="47" lean-forward="true" selection-start-line="10" selection-start-column="47" selection-end-line="10" selection-end-column="47" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../gopath/src/github.com/ethereum/go-ethereum/interfaces.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2215">
+          <caret line="94" column="4" selection-start-line="94" selection-start-column="4" selection-end-line="94" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../gopath/src/github.com/ethereum/go-ethereum/core/types/transaction.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="159">
+          <caret line="73" column="19" selection-start-line="73" selection-start-column="5" selection-end-line="73" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../gopath/src/github.com/ethereum/go-ethereum/eth/fetcher/fetcher_test.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="125">
+          <caret line="49" column="13" selection-start-line="49" selection-start-column="8" selection-end-line="49" selection-end-column="13" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/../gopath/src/github.com/ethereum/go-ethereum/ethclient/ethclient.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="159">
-          <caret line="500" column="18" selection-start-line="500" selection-start-column="18" selection-end-line="500" selection-end-column="18" />
+          <caret line="356" column="25" selection-start-line="356" selection-start-column="18" selection-end-line="356" selection-end-column="25" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/iotexsolidity/connector_test.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="171">
-          <caret line="55" column="25" selection-start-line="55" selection-start-column="25" selection-end-line="55" selection-end-column="25" />
+        <state relative-caret-position="215">
+          <caret line="56" column="5" selection-start-line="56" selection-start-column="5" selection-end-line="56" selection-end-column="5" />
           <folding>
             <element signature="e#23#254#0" expanded="true" />
           </folding>
