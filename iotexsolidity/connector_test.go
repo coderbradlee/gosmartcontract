@@ -56,6 +56,10 @@ func TestDeploy(t *testing.T) {
 	}
 	fmt.Println("Attacker: ", hash.Hash().Hex())
 	time.Sleep(time.Second * 30)
+
+	ret1 = c.BalanceOfEth(common.HexToAddress(userPrivateKey1))
+	fmt.Println("balance of userPrivateKey1: ", ret1.Text(10))
+
 	ret1 = c.BalanceOfEth(common.HexToAddress(c.MiniDAOAddress.String()))
 	fmt.Println("balance of minidao: ", ret1.Text(10))
 
