@@ -63,7 +63,6 @@ func NewConnecterWithDeploy(host string, ownerAuth *bind.TransactOpts) *Specific
 	}
 	ctx := context.Background()
 	contractAddress, err := bind.WaitDeployed(ctx, conn, tx)
-	ownerAuth.Value = big.NewInt(0)
 	_, tx, Attacker, err := DeployAttacker(ownerAuth, conn, contractAddress)
 	if err != nil {
 		panic(err)
