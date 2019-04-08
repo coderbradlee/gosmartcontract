@@ -41,7 +41,7 @@ var (
 func TestDeploy(t *testing.T) {
 	ownerAuth := AuthAccountFromPrivateKey(userPrivateKey1)
 	ownerAuth.GasLimit = uint64(3000000)
-	ownerAuth.Value = big.NewInt(100000000000)
+	ownerAuth.Value = big.NewInt(1000000000000000000)
 	ownerAuth.GasPrice = big.NewInt(10000000000)
 	c := NewConnecterWithDeploy(selfhost, ownerAuth)
 
@@ -57,7 +57,7 @@ func TestDeploy(t *testing.T) {
 		return
 	}
 	toAddress := common.HexToAddress(c.contractAddress.String())
-	amountInt := big.NewInt(100000000000)
+	amountInt := big.NewInt(1000000000000000000)
 	gasLimitInt := uint64(3000000)
 	gasPriceInt := big.NewInt(10000000000)
 
