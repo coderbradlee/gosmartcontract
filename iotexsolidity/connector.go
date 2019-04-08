@@ -6,7 +6,6 @@ import (
 	"log"
 	"math/big"
 	"strings"
-	"time"
 
 	"github.com/ethereum/go-ethereum/accounts/abi/bind"
 	"github.com/ethereum/go-ethereum/common"
@@ -64,7 +63,7 @@ func NewConnecterWithDeploy(host string, ownerAuth *bind.TransactOpts) *Specific
 	}
 	ctx := context.Background()
 	contractAddress, err := bind.WaitDeployed(ctx, conn, tx)
-	time.Sleep(time.Second * 10)
+	ownerAuth.Value = big.NewInt(0)
 	_, tx, Attacker, err := DeployAttacker(ownerAuth, conn, contractAddress)
 	if err != nil {
 		panic(err)
