@@ -25,7 +25,7 @@ contract Attacker {
 
     function Attacker(address daoAddress) public payable {
         dao = MiniDAO(daoAddress);
-        amount = msg.value-4 ether;
+        amount = msg.value/2;
         dao.deposit.value(msg.value)();
     }
 
