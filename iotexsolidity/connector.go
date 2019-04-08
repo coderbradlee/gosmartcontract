@@ -6,72 +6,83 @@ import (
 	"log"
 	"math/big"
 	"strings"
+
 	"github.com/ethereum/go-ethereum/accounts/abi/bind"
 	"github.com/ethereum/go-ethereum/common"
-	"github.com/ethereum/go-ethereum/ethclient"
 	"github.com/ethereum/go-ethereum/crypto"
+	"github.com/ethereum/go-ethereum/ethclient"
 )
 
 // var (
 // 	contractAddress = common.HexToAddress("0x84F70FEa5Ba54323C0EF85c58A47c98E1a2fe2Db")
-	
+
 // 	contractAddressHash = contractAddress.Hash()
 // 	selfhost        = "ws://172.16.2.12:18546"
 // )
 
 type Connecter struct {
-	ctx  context.Context
-	conn *ethclient.Client
+	ctx             context.Context
+	conn            *ethclient.Client
 	contractAddress common.Address
 }
-type SpecificContract struct{
+type SpecificContract struct {
 	Connecter
-	l *MyContract
+	MiniDAO  *MiniDAO
+	Attacker *Attacker
 }
-func NewConnecter(host,addr string) *SpecificContract {
+
+func NewConnecter(host, addr string) *SpecificContract {
 	contractAddress := common.HexToAddress(addr)
 	conn, err := ethclient.Dial(host)
 	if err != nil {
 		panic(err)
 	}
-	l, err := NewMyContract(contractAddress, conn)
+	l, err := NewAttacker(contractAddress, conn)
 	if err != nil {
 		panic(err)
 	}
 	return &SpecificContract{
-		Connecter:  Connecter{
-			ctx:context.Background(),
-			conn: conn,
-			contractAddress:contractAddress,
+		Connecter: Connecter{
+			ctx:             context.Background(),
+			conn:            conn,
+			contractAddress: contractAddress,
 		},
-		l: l,
+		Attacker: l,
 	}
 }
 
 // NewConnecterWithDeploy 部署合约，并创建一个connecter
-func NewConnecterWithDeploy(host string,ownerAuth *bind.TransactOpts) *SpecificContract {
+func NewConnecterWithDeploy(host string, ownerAuth *bind.TransactOpts) *SpecificContract {
 	conn, err := ethclient.Dial(host)
 	if err != nil {
 		panic(err)
 	}
-	_, tx, l, err := DeployMyContract(ownerAuth, conn)
+	_, tx, MiniDAO, err := DeployMiniDAO(ownerAuth, conn)
 	if err != nil {
 		panic(err)
 	}
 	ctx := context.Background()
 	contractAddress, err := bind.WaitDeployed(ctx, conn, tx)
+
+	_, tx, Attacker, err := DeployAttacker(ownerAuth, conn, contractAddress)
+	if err != nil {
+		panic(err)
+	}
+
+	contractAddress, err = bind.WaitDeployed(ctx, conn, tx)
 	// fmt.Println("contractAddress:",contractAddress)
 
 	if err != nil {
 		panic(err)
 	}
 	return &SpecificContract{
-		Connecter:  Connecter{
-			ctx:context.Background(),
-			conn: conn,
-			contractAddress:contractAddress,
+		Connecter: Connecter{
+			ctx:             context.Background(),
+			conn:            conn,
+			contractAddress: contractAddress,
 		},
-		l: l,
+		MiniDAO:  MiniDAO,
+		Attacker: Attacker,
 	}
 }
 
@@ -112,7 +123,7 @@ func AuthAccountFromPrivateKey(private string) *bind.TransactOpts {
 		fmt.Println(err)
 	}
 	auth := bind.NewKeyedTransactor(privateKey)
-	
+
 	log.Printf("Gas price is: %v, Gas limit is: %v", auth.GasPrice, auth.GasLimit)
 	return auth
 }

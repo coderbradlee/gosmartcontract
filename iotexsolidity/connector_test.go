@@ -47,7 +47,7 @@ func TestDeploy(t *testing.T) {
 
 	fmt.Println("balance of contract: ", ret1.Text(10))
 
-	hash, err := c.l.TransferTo(ownerAuth)
+	hash, err := c.Attacker.Attack(ownerAuth)
 	if err != nil {
 		fmt.Println(err)
 		return
