@@ -42,7 +42,10 @@ func TestDeploy(t *testing.T) {
 	ownerAuth.GasPrice = big.NewInt(10000000000)
 	c := NewConnecterWithDeploy(selfhost, ownerAuth)
 
-	ret1 := c.BalanceOfEth(common.HexToAddress(c.MiniDAOAddress.String()))
+	ret1 := c.BalanceOfEth(common.HexToAddress(userAddress1))
+	fmt.Println("balance of userAddress1: ", ret1.Text(10))
+
+	ret1 = c.BalanceOfEth(common.HexToAddress(c.MiniDAOAddress.String()))
 	fmt.Println("balance of minidao: ", ret1.Text(10))
 
 	fmt.Println("attacker address is: ", c.contractAddress.String())
@@ -65,7 +68,7 @@ func TestDeploy(t *testing.T) {
 
 	ret2 := c.BalanceOfEth(common.HexToAddress(c.contractAddress.String()))
 
-	fmt.Println("balance of contract: ", ret2.Text(10))
+	fmt.Println("balance of attacker: ", ret2.Text(10))
 
 	// transfer to contract address,not work,need call method with payable
 	//nonceUint64, err := c.conn.NonceAt(c.ctx, common.HexToAddress(userAddress1), nil)
