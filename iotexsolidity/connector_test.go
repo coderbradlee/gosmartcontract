@@ -46,13 +46,16 @@ func TestDeploy(t *testing.T) {
 
 	fmt.Println("balance of contract: ", ret1.Text(10))
 
-				ret1, err := c.l.WithdrawFee(auth, big.NewInt(10000000000000000))
-				if err != nil {
-					fmt.Println(err)
-					return
-				}
-				fmt.Println("WithdrawFee: ", ret1.Hash().Hex())
-			}
+	hash, err := c.l.TransferTo(ownerAuth)
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	fmt.Println("transfer: ", hash.Hash().Hex())
+
+	ret2 := c.BalanceOfEth(common.HexToAddress(c.contractAddress.String()))
+
+	fmt.Println("balance of contract: ", ret2.Text(10))
 
 	// transfer to contract address,not work,need call method with payable
 	//nonceUint64, err := c.conn.NonceAt(c.ctx, common.HexToAddress(userAddress1), nil)
