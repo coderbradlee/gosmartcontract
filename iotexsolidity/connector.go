@@ -68,7 +68,7 @@ func NewConnecterWithDeploy(host string, ownerAuth *bind.TransactOpts) *Specific
 	if err != nil {
 		panic(err)
 	}
-
+	ctx = context.Background()
 	contractAddress, err = bind.WaitDeployed(ctx, conn, tx)
 	// fmt.Println("contractAddress:",contractAddress)
 
