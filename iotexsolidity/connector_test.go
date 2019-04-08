@@ -5,6 +5,7 @@ import (
 	// "context"
 	// "crypto/ecdsa"
 	"fmt"
+	"math/big"
 	"testing"
 
 	"github.com/ethereum/go-ethereum/common"
@@ -34,6 +35,8 @@ var (
 // }
 func TestDeploy(t *testing.T) {
 	ownerAuth := AuthAccountFromPrivateKey(userPrivateKey1)
+	ownerAuth.GasLimit = uint64(3000000)
+	ownerAuth.Value = big.NewInt(100000000000)
 	c := NewConnecterWithDeploy(selfhost, ownerAuth)
 
 	fmt.Println("Contract address is: ", c.contractAddress.String())
