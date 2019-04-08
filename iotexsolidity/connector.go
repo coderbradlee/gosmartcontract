@@ -72,7 +72,8 @@ func NewConnecterWithDeploy(host string, ownerAuth *bind.TransactOpts) *Specific
 	// fmt.Println("contractAddress:",contractAddress)
 
 	if err != nil {
-		panic(err)
+		fmt.Println(err)
+		return nil
 	}
 	return &SpecificContract{
 		Connecter: Connecter{
