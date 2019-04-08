@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c13322a7-16ca-4faf-a093-2f343f068b00" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/iotexsolidity/xx.go" beforeDir="false" afterPath="$PROJECT_DIR$/iotexsolidity/xx.go" afterDir="false" />
-    </list>
+    <list default="true" id="c13322a7-16ca-4faf-a093-2f343f068b00" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -30,16 +27,16 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/iotexsolidity/etclottery_test.go">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/iotexsolidity/connector_test.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret column="21" selection-start-column="21" selection-end-column="21" />
+            <state relative-caret-position="132">
+              <caret line="14" column="41" selection-start-line="14" selection-start-column="41" selection-end-line="14" selection-end-column="41" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/iotexsolidity/xx.go">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="66">
@@ -116,6 +113,7 @@
         <option value="$PROJECT_DIR$/iotexsolidity/connector.go" />
         <option value="$PROJECT_DIR$/iotexsolidity/etclottery_test.go" />
         <option value="$PROJECT_DIR$/iotexsolidity/xx.go" />
+        <option value="$PROJECT_DIR$/iotexsolidity/connector_test.go" />
       </list>
     </option>
   </component>
@@ -170,7 +168,17 @@
       </list>
     </option>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Go Test.TestDeploy in connector_test.go">
+    <configuration name="TestDeploy in connector_test.go" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+      <module name="gosmartcontract" />
+      <working_directory value="$PROJECT_DIR$/iotexsolidity" />
+      <framework value="gotest" />
+      <kind value="FILE" />
+      <directory value="$PROJECT_DIR$/" />
+      <filePath value="$PROJECT_DIR$/iotexsolidity/connector_test.go" />
+      <pattern value="^TestDeploy$" />
+      <method v="2" />
+    </configuration>
     <configuration name="TestDeploy in etclottery_test.go" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
       <module name="gosmartcontract" />
       <working_directory value="$PROJECT_DIR$/iotexsolidity" />
@@ -183,6 +191,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Go Test.TestDeploy in connector_test.go" />
         <item itemvalue="Go Test.TestDeploy in etclottery_test.go" />
       </list>
     </recent_temporary>
@@ -191,12 +200,12 @@
     <frame x="-8" y="73" width="1382" height="703" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.26793894" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.26793894" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.32841328" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.32841328" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -216,13 +225,6 @@
     <option name="version" value="1" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/erc721/tokens/erc721-enumerable.sol">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="17" selection-start-column="17" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/erc721/ownership/ownable.sol">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -502,6 +504,20 @@
     <entry file="file://$PROJECT_DIR$/iotexsolidity/testfunc.sh">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
+    <entry file="file://$PROJECT_DIR$/iotexsolidity/xx.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="66">
+          <caret line="3" column="21" selection-start-line="3" selection-start-column="21" selection-end-line="3" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/iotexsolidity/etclottery_test.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-594">
+          <caret column="21" selection-start-column="21" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/iotexsolidity/connector.go">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -512,17 +528,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/iotexsolidity/etclottery_test.go">
+    <entry file="file://$PROJECT_DIR$/iotexsolidity/connector_test.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="21" selection-start-column="21" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/iotexsolidity/xx.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="66">
-          <caret line="3" column="21" selection-start-line="3" selection-start-column="21" selection-end-line="3" selection-end-column="21" />
+        <state relative-caret-position="132">
+          <caret line="14" column="41" selection-start-line="14" selection-start-column="41" selection-end-line="14" selection-end-column="41" />
         </state>
       </provider>
     </entry>
