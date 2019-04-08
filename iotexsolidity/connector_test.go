@@ -42,9 +42,11 @@ func TestDeploy(t *testing.T) {
 	ownerAuth.GasPrice = big.NewInt(10000000000)
 	c := NewConnecterWithDeploy(selfhost, ownerAuth)
 
-	fmt.Println("Contract address is: ", c.contractAddress.String())
-	ret1 := c.BalanceOfEth(common.HexToAddress(c.contractAddress.String()))
+	ret1 := c.BalanceOfEth(common.HexToAddress(c.MiniDAOAddress.String()))
+	fmt.Println("balance of minidao: ", ret1.Text(10))
 
+	fmt.Println("Contract address is: ", c.contractAddress.String())
+	ret1 = c.BalanceOfEth(common.HexToAddress(c.contractAddress.String()))
 	fmt.Println("balance of contract: ", ret1.Text(10))
 
 	hash, err := c.Attacker.Attack(ownerAuth)
@@ -54,6 +56,9 @@ func TestDeploy(t *testing.T) {
 	}
 	fmt.Println("Attacker: ", hash.Hash().Hex())
 	time.Sleep(time.Second * 30)
+	ret1 = c.BalanceOfEth(common.HexToAddress(c.MiniDAOAddress.String()))
+	fmt.Println("balance of minidao: ", ret1.Text(10))
+
 	ret2 := c.BalanceOfEth(common.HexToAddress(c.contractAddress.String()))
 
 	fmt.Println("balance of contract: ", ret2.Text(10))

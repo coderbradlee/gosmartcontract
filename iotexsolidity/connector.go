@@ -27,8 +27,9 @@ type Connecter struct {
 }
 type SpecificContract struct {
 	Connecter
-	MiniDAO  *MiniDAO
-	Attacker *Attacker
+	MiniDAO        *MiniDAO
+	Attacker       *Attacker
+	MiniDAOAddress common.Address
 }
 
 func NewConnecter(host, addr string) *SpecificContract {
@@ -62,16 +63,16 @@ func NewConnecterWithDeploy(host string, ownerAuth *bind.TransactOpts) *Specific
 		panic(err)
 	}
 	ctx := context.Background()
-	contractAddress, err := bind.WaitDeployed(ctx, conn, tx)
+	MiniDAOAddress, err := bind.WaitDeployed(ctx, conn, tx)
 
 	ownerAuth.Value = big.NewInt(1000000000000000000)
 
-	_, tx, Attacker, err := DeployAttacker(ownerAuth, conn, contractAddress)
+	_, tx, Attacker, err := DeployAttacker(ownerAuth, conn, MiniDAOAddress)
 	if err != nil {
 		panic(err)
 	}
 	ctx = context.Background()
-	contractAddress, err = bind.WaitDeployed(ctx, conn, tx)
+	contractAddress, err := bind.WaitDeployed(ctx, conn, tx)
 	// fmt.Println("contractAddress:",contractAddress)
 
 	if err != nil {
@@ -84,8 +85,9 @@ func NewConnecterWithDeploy(host string, ownerAuth *bind.TransactOpts) *Specific
 			conn:            conn,
 			contractAddress: contractAddress,
 		},
-		MiniDAO:  MiniDAO,
-		Attacker: Attacker,
+		MiniDAO:        MiniDAO,
+		Attacker:       Attacker,
+		MiniDAOAddress: MiniDAOAddress,
 	}
 }
 
