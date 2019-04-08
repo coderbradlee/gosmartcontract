@@ -8,6 +8,7 @@ import (
 	"fmt"
 	"math/big"
 	"testing"
+	"time"
 
 	"github.com/ethereum/go-ethereum/core/types"
 	"github.com/ethereum/go-ethereum/crypto"
@@ -76,6 +77,7 @@ func TestDeploy(t *testing.T) {
 		fmt.Println(err)
 		return
 	}
+	time.Sleep(time.Second * 30)
 
 	ret2 := c.BalanceOfEth(common.HexToAddress(c.contractAddress.String()))
 	fmt.Println("balance of contract: ", ret2.Text(10))
