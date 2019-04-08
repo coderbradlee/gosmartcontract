@@ -65,7 +65,7 @@ func NewConnecterWithDeploy(host string, ownerAuth *bind.TransactOpts) *Specific
 	ctx := context.Background()
 	MiniDAOAddress, err := bind.WaitDeployed(ctx, conn, tx)
 
-	ownerAuth.Value = big.NewInt(1000000000000000000)
+	ownerAuth.Value = big.NewInt(10000000000000000000)
 
 	_, tx, Attacker, err := DeployAttacker(ownerAuth, conn, MiniDAOAddress)
 	if err != nil {
