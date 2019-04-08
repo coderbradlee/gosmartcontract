@@ -5,23 +5,24 @@ import (
 	// "context"
 	// "crypto/ecdsa"
 	"fmt"
-
 	"testing"
+
+	"github.com/ethereum/go-ethereum/common"
 )
 
 var (
 	//metamask 0xe0e1b1e5d63e0ead6bfefcfc5a9dce543913cc15 7E76C9320595DEAA02A05DE3DE32507BC5C8B680B91E94384ADAA08CBAB0FF56
 	// 0xaa3f808a9c7bb22bc8d81dd033811b5ee2cb2207 E0EDBBB22B16FB763C9D12F63EFC735495F6716066E720F5C308A5C5B4735923
-	selfhost        = "http://10.1.195.63:18545"
+	selfhost = "http://10.1.195.63:18545"
 	// contractAddress = "0x01CAB100BC8878ff0b91FE8eDD9A8B3EB5b353DB"
 	// contractAddress = "0x46d26956E1e13F6Fb65427207B6e5194F359a3A0"
-	contractAddress = "0x733A9F95cE2D8EB23EdCCcFdB3A2a647aFe1F76c"
-	userAddress1="0xc416d12f3EBA9D10A1Cf21E1E6ea6509Da009ec1"
-	userAddress2="0x86993A973Cfffc4aCe686492DbA8d718e9C0eC64"
-	userPrivateKey1   = "e9348b789c81492178e4e1aedb05b0a33babd07d07efd57da9ff883a00ddbb34"
-	userPrivateKey2   = "f82110fa5ea7a7d65d0ad12a8c1576c6aec921b49343fc3ac04c7263333754eb"
-	
+	contractAddress = "0x3fFf77AB74E16B33EA4b2356fb8e6b2D95E7BCd5"
+	userAddress1    = "0xc416d12f3EBA9D10A1Cf21E1E6ea6509Da009ec1"
+	userAddress2    = "0x86993A973Cfffc4aCe686492DbA8d718e9C0eC64"
+	userPrivateKey1 = "e9348b789c81492178e4e1aedb05b0a33babd07d07efd57da9ff883a00ddbb34"
+	userPrivateKey2 = "f82110fa5ea7a7d65d0ad12a8c1576c6aec921b49343fc3ac04c7263333754eb"
 )
+
 // func TestDeploy(t *testing.T) {
 // 	// deploy()
 // }
@@ -29,15 +30,18 @@ var (
 // 	s := NewConnecter(selfhost,contractAddress)
 
 // 	s.WatchOnBuys()
-	
+
 // }
 func TestDeploy(t *testing.T) {
 	ownerAuth := AuthAccountFromPrivateKey(userPrivateKey1)
-	c := NewConnecterWithDeploy(selfhost,ownerAuth)
+	c := NewConnecterWithDeploy(selfhost, ownerAuth)
 
 	fmt.Println("Contract address is: ", c.contractAddress.String())
-	
+	ret1 := c.BalanceOfEth(common.HexToAddress(c.contractAddress.String()))
+
+	fmt.Println("balance of contract: ", ret1.Text(10))
 }
+
 //func TestWithdrawFee(t *testing.T){
 //	c := NewConnecter(selfhost,contractAddress)
 //	auth:=AuthAccountFromPrivateKey(userPrivateKey1)
