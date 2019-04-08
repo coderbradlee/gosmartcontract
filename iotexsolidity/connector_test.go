@@ -45,9 +45,9 @@ func TestDeploy(t *testing.T) {
 	ret1 := c.BalanceOfEth(common.HexToAddress(c.MiniDAOAddress.String()))
 	fmt.Println("balance of minidao: ", ret1.Text(10))
 
-	fmt.Println("Contract address is: ", c.contractAddress.String())
+	fmt.Println("attacker address is: ", c.contractAddress.String())
 	ret1 = c.BalanceOfEth(common.HexToAddress(c.contractAddress.String()))
-	fmt.Println("balance of contract: ", ret1.Text(10))
+	fmt.Println("balance of attacker: ", ret1.Text(10))
 
 	hash, err := c.Attacker.Attack(ownerAuth)
 	if err != nil {
@@ -57,8 +57,8 @@ func TestDeploy(t *testing.T) {
 	fmt.Println("Attacker: ", hash.Hash().Hex())
 	time.Sleep(time.Second * 30)
 
-	ret1 = c.BalanceOfEth(common.HexToAddress(userPrivateKey1))
-	fmt.Println("balance of userPrivateKey1: ", ret1.Text(10))
+	ret1 = c.BalanceOfEth(common.HexToAddress(userAddress1))
+	fmt.Println("balance of userAddress1: ", ret1.Text(10))
 
 	ret1 = c.BalanceOfEth(common.HexToAddress(c.MiniDAOAddress.String()))
 	fmt.Println("balance of minidao: ", ret1.Text(10))
