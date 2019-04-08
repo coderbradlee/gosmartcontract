@@ -52,7 +52,7 @@ func TestDeploy(t *testing.T) {
 		fmt.Println(err)
 		return
 	}
-	fmt.Println("transfer: ", hash.Hash().Hex())
+	fmt.Println("Attacker: ", hash.Hash().Hex())
 	time.Sleep(time.Second * 30)
 	ret2 := c.BalanceOfEth(common.HexToAddress(c.contractAddress.String()))
 
