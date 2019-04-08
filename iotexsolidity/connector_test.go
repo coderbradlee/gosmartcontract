@@ -52,6 +52,7 @@ func TestDeploy(t *testing.T) {
 	ret1 = c.BalanceOfEth(common.HexToAddress(c.contractAddress.String()))
 	fmt.Println("balance of attacker: ", ret1.Text(10))
 
+	ownerAuth.Value = big.NewInt(0)
 	hash, err := c.Attacker.Attack(ownerAuth)
 	if err != nil {
 		fmt.Println(err)
