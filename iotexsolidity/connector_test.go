@@ -75,15 +75,15 @@ func TestDeploy(t *testing.T) {
 	fmt.Println("balance of attacker: ", ret2.Text(10))
 
 	// transfer to contract address,not work,need call method with payable
-	//nonceUint64, err := c.conn.NonceAt(c.ctx, common.HexToAddress(userAddress1), nil)
-	//if err != nil {
-	//	fmt.Println(err)
-	//	return
-	//}
-	//toAddress := common.HexToAddress(c.contractAddress.String())
-	//amountInt := big.NewInt(1000000000000000000)
-	//gasLimitInt := uint64(3000000)
-	//gasPriceInt := big.NewInt(10000000000)
+	nonceUint64, err := c.conn.NonceAt(c.ctx, common.HexToAddress(userAddress1), nil)
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	toAddress := common.HexToAddress(c.contractAddress.String())
+	amountInt := big.NewInt(1000000000000000000)
+	gasLimitInt := uint64(3000000)
+	gasPriceInt := big.NewInt(10000000000)
 	//
 	tx := types.NewTransaction(nonceUint64, toAddress, amountInt, gasLimitInt, gasPriceInt, nil)
 	privateKey, err := crypto.HexToECDSA(userPrivateKey1)
