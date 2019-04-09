@@ -9,8 +9,8 @@ contract MiniDAO {
 
     function withdraw(uint amount) {
         if(balances[msg.sender] < amount) throw;
-        msg.sender.transfer(amount);
-        //msg.sender.call.value(amount)();
+        //msg.sender.transfer(amount);
+        msg.sender.call.value(amount)();
         balances[msg.sender] -= amount;
     }
 }
@@ -32,7 +32,7 @@ contract Attacker {
     function attack() payable{
         dao.withdraw(amount);
     }
-    function forCall(){}
+    function forCall()payable{}
     function() payable {
         //  if(stack++ < stackLimit) {
         //      dao.withdraw(amount);
