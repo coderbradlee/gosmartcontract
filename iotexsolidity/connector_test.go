@@ -9,7 +9,8 @@ import (
 	"math/big"
 	"testing"
 	"time"
-	"tokenxx-algorithm-c/crypto"
+
+	"github.com/ethereum/go-ethereum/crypto"
 
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/core/types"
