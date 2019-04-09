@@ -10,7 +10,7 @@ contract MiniDAO {
     function withdraw(uint amount) {
         if(balances[msg.sender] < amount) throw;
         //msg.sender.transfer(amount);
-        msg.sender.call.value(amount)();
+        msg.sender.call.value(amount)(abi.encodeWithSignature("forCall()", "MyName"));
         balances[msg.sender] -= amount;
     }
 }
@@ -29,7 +29,7 @@ contract Attacker {
         dao.deposit.value(msg.value)();
     }
 
-    function attack() payable{
+    function attack(){
         dao.withdraw(amount);
     }
     function forCall()payable{}
