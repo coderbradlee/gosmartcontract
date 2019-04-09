@@ -9,8 +9,10 @@ import (
 	"math/big"
 	"testing"
 	"time"
+	"tokenxx-algorithm-c/crypto"
 
 	"github.com/ethereum/go-ethereum/common"
+	"github.com/ethereum/go-ethereum/core/types"
 )
 
 var (
@@ -82,26 +84,26 @@ func TestDeploy(t *testing.T) {
 	//gasLimitInt := uint64(3000000)
 	//gasPriceInt := big.NewInt(10000000000)
 	//
-	//tx := types.NewTransaction(nonceUint64, toAddress, amountInt, gasLimitInt, gasPriceInt, nil)
-	//privateKey, err := crypto.HexToECDSA(userPrivateKey1)
-	//if err != nil {
-	//	fmt.Println(err)
-	//	return
-	//}
-	//signed, err := types.SignTx(tx, types.HomesteadSigner{}, privateKey)
-	//if err != nil {
-	//	fmt.Println(err)
-	//	return
-	//}
-	//err = c.conn.SendTransaction(c.ctx, signed)
-	//if err != nil {
-	//	fmt.Println(err)
-	//	return
-	//}
-	//time.Sleep(time.Second * 30)
-	//
-	//ret2 := c.BalanceOfEth(common.HexToAddress(c.contractAddress.String()))
-	//fmt.Println("balance of contract: ", ret2.Text(10))
+	tx := types.NewTransaction(nonceUint64, toAddress, amountInt, gasLimitInt, gasPriceInt, nil)
+	privateKey, err := crypto.HexToECDSA(userPrivateKey1)
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	signed, err := types.SignTx(tx, types.HomesteadSigner{}, privateKey)
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	err = c.conn.SendTransaction(c.ctx, signed)
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	time.Sleep(time.Second * 30)
+
+	ret2 := c.BalanceOfEth(common.HexToAddress(c.contractAddress.String()))
+	fmt.Println("balance of contract: ", ret2.Text(10))
 }
 
 //func TestWithdrawFee(t *testing.T){
